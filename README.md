@@ -1,5 +1,5 @@
 
-# 📘 Proyecto Final - Módulo Entornos de Desarrollo
+# 📘 Proyecto Integrado 1º DAW
 
 Este proyecto se desarrollará aplicando la metodología **MÉTRICA v3** dentro del marco de la norma **ISO/IEC 12207**. Los alumnos deben seguir un ciclo de vida estructurado y entregar cada fase documentada en su repositorio personal.
 
