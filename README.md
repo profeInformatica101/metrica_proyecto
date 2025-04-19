@@ -1,4 +1,3 @@
-
 # 📘 Proyecto Integrado 1º DAW
 
 Este proyecto se desarrollará aplicando la metodología **MÉTRICA v3** dentro del marco de la norma **ISO/IEC 12207**. Los alumnos deben seguir un ciclo de vida estructurado y entregar cada fase documentada en su repositorio personal.
@@ -14,6 +13,7 @@ Desarrollar una pequeña aplicación software con almacenamiento en base de dato
 - 🧰 **DBeaver** (recomendado) para gestión visual de BBDD
 - 🧱 **Umbrello** (obligatorio) para diagramas UML
 - 🌐 **GitHub** para control de versiones y entrega del proyecto
+- 🧪 **JUnit 5** para pruebas automatizadas
 
 ## 📂 Estructura del Proyecto
 
@@ -67,6 +67,7 @@ Este proyecto forma parte del módulo de Entornos de Desarrollo.
 - SQLite + DBeaver
 - GitHub
 - Umbrello (diagramas UML)
+- JUnit 5 (pruebas unitarias)
 
 ## Estructura del repositorio
 [Ver estructura recomendada más arriba]
@@ -76,6 +77,9 @@ Este proyecto forma parte del módulo de Entornos de Desarrollo.
 - ASI: Requisitos y análisis
 - DSI/CSI: Diseño técnico (diagramas)
 - IAS: Implementación y pruebas
+
+## Pruebas unitarias
+El proyecto debe incluir pruebas automatizadas con **JUnit 5**. Se exige una **cobertura mínima del 50%** en las clases principales. Las pruebas deben estar bien organizadas en la carpeta `/test` y documentadas en el README.
 
 ## Autor
 - Nombre: TU NOMBRE
