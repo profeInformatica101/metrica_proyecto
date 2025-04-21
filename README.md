@@ -97,6 +97,7 @@ Incluye dependencias básicas para:
 - Pruebas con JUnit 5 (`junit-jupiter`)
 
 Ver: https://github.com/profeInformatica101/maven
+Ver: https://profeinformatica101.github.io/tareas/java/bbdd/SQLite.html
 
 ---
 
