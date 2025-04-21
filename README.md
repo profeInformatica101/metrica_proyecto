@@ -28,8 +28,8 @@ metrica_proyecto/
 │   └── test/java/es/instituto/proyecto/
 │       └── AppTest.java
 ├── docs/uml/
-│   ├── diagrama_clases.xmi
-│   └── diagrama_secuencia.xmi
+│   ├── Específicación requisitos del proyecto.doc
+│   └── diagramas_umbrello.xmi
 └── recursos/
     └── basedatos.db
 ```
