@@ -48,11 +48,11 @@ Fases basadas en MÉTRICA v3 adaptadas a ISO 12207:
 
 | Fase | Entrega en Moodle | Formato |
 |------|--------------------|---------|
-| PSI  | Estudio de Viabilidad | PDF |
-| ASI  | Requisitos + Casos de uso | PDF + Imagen |
-| DSI + CSI | Diagrama de clases y comportamiento | ZIP |
+| PSI  | Estudio de Viabilidad | DOC  [OPCIONAL]|
+| ASI  | Requisitos + Casos de uso | DOC + diagrama de Umbrello [OBLIGATORIO]|
+| DSI + CSI | Diagrama de clases y comportamiento | DOC + diagramas en Umbrello |
 | IAS  | Código, pruebas, documentación | Repositorio GitHub |
-| Eval. | Informe de calidad y checklist | PDF |
+| Eval. | Informe de calidad y checklist | PDF [OPCIONAL]|
 
 ## 📘 README.md Recomendado
 
@@ -62,7 +62,7 @@ Fases basadas en MÉTRICA v3 adaptadas a ISO 12207:
 Este proyecto forma parte del módulo de Entornos de Desarrollo.
 
 ## Tecnologías utilizadas
-- Java 17
+- Java
 - Maven
 - SQLite + DBeaver
 - GitHub
