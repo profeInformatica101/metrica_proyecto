@@ -1,6 +1,9 @@
 # 📘 Proyecto Integrado 1º DAW
 
 Este proyecto se desarrollará aplicando la metodología **MÉTRICA v3** dentro del marco de la norma **ISO/IEC 12207**. Los alumnos deben seguir un ciclo de vida estructurado y entregar cada fase documentada en su repositorio personal.
+## Técnicas y Prácticas Métrica v3 (PDF)
+https://administracionelectronica.gob.es/pae_Home/en/dam/jcr:da7d91fa-d6bd-467c-be32-a72e27c603b3/METRICA_V3_Tecnicas.pdf
+
 
 ## 🎯 Objetivo General
 Desarrollar una pequeña aplicación software con almacenamiento en base de datos y diseño orientado a objetos, aplicando buenas prácticas de análisis, diseño, implementación y pruebas, siguiendo el modelo de desarrollo de MÉTRICA v3.
