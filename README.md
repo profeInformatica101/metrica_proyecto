@@ -96,7 +96,7 @@ Incluye dependencias básicas para:
 - SQLite (`sqlite-jdbc`)
 - Pruebas con JUnit 5 (`junit-jupiter`)
 
-[Ver ejemplo en pom.xml incluido en el proyecto]
+Ver: https://github.com/profeInformatica101/maven
 
 ---
 
