@@ -7,7 +7,7 @@ Desarrollar una pequeña aplicación software con almacenamiento en base de dato
 
 ## 🧰 Herramientas Obligatorias y Recomendadas
 
-- ☕ **Java 17**
+- ☕ Lenguaje de programación **Java**
 - 📦 **Maven** como gestor de dependencias
 - 🐬 **SQLite** como base de datos local
 - 🧰 **DBeaver** (recomendado) para gestión visual de BBDD
