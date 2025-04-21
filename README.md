@@ -107,4 +107,4 @@ Ver: https://profeinformatica101.github.io/tareas/java/bbdd/SQLite.html
 https://github.com/<usuario>/metrica_proyecto
 ```
 
-¡Buena suerte y a programar con método!
+¡Buena suerte y a programar siguiendo una metodología!
