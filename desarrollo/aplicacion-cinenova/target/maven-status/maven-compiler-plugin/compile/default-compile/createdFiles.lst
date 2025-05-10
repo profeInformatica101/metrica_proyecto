@@ -1,4 +1,11 @@
-com\cinenova\VentanaPrincipal.class
-com\cinenova\VentanaPrincipal$1.class
-com\cinenova\App.class
+com\cinenova\entidades\Sala.class
+com\cinenova\entidades\Persona.class
+com\cinenova\entidades\Sesión.class
 com\cinenova\VentanaPrincipal$2.class
+com\cinenova\VentanaPrincipal.class
+com\cinenova\entidades\Entrada.class
+com\cinenova\entidades\Película.class
+com\cinenova\VentanaPrincipal$1.class
+com\cinenova\entidades\Cliente.class
+com\cinenova\App.class
+com\cinenova\entidades\Empleado.class
