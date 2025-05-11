@@ -9,9 +9,13 @@ CREATE TABLE Persona (
     nombre VARCHAR2(50) NOT NULL,
     apellidos VARCHAR2(50) NOT NULL,
     contrasena VARCHAR2(50) NOT NULL,
+    puntosGanados NUMBER DEFAULT 0 NOT NULL,
+    dni VARCHAR2(9),
+    sueldo NUMBER(10,2),
     esEmpleado NUMBER(1) NOT NULL,
     esJefe NUMBER(1) NOT NULL
 );
+
 
 CREATE TABLE Pelicula (
     id_pelicula NUMBER PRIMARY KEY,
@@ -47,7 +51,7 @@ CREATE TABLE Sesion (
     id_pelicula NUMBER,
     numeroSala NUMBER,
     fechaHora DATE NOT NULL,
-    precio NUMBER(10) NOT NULL,
+    precio NUMBER(10, 2) NOT NULL,
     PRIMARY KEY (id_pelicula, numeroSala, fechaHora),
     FOREIGN KEY (id_pelicula) REFERENCES Pelicula(id_pelicula),
     FOREIGN KEY (numeroSala) REFERENCES Sala(numero)
@@ -58,7 +62,7 @@ CREATE TABLE Entrada (
     id_pelicula NUMBER,
     numeroSala NUMBER,
     fechaHora DATE NOT NULL,
-    correoPersona VARCHAR2(100) UNIQUE NOT NULL,
+    correoPersona VARCHAR2(100) NOT NULL,
     asiento VARCHAR2(10) NOT NULL,
     precioFinal NUMBER(10) NOT NULL,
     fechaCompra DATE DEFAULT SYSDATE,
@@ -69,16 +73,36 @@ CREATE TABLE Entrada (
 
 
 
-INSERT INTO Persona VALUES ('ana.garcia@email.com', 'Ana', 'García López', 'pass123', 0, 0);
-INSERT INTO Persona VALUES ('luis.mr@email.com', 'Luis', 'Martínez Ruiz', 'luis456', 1, 0);
-INSERT INTO Persona VALUES ('marta.pz@email.com', 'Marta', 'Pérez Soto', 'marta789', 0, 0);
-INSERT INTO Persona VALUES ('carlos.gd@email.com', 'Carlos', 'Gómez Díaz', 'cg123', 1, 1);
-INSERT INTO Persona VALUES ('lucia.tv@email.com', 'Lucía', 'Torres Vera', 'lucia456', 0, 0);
-INSERT INTO Persona VALUES ('pedro.rl@email.com', 'Pedro', 'Reyes León', 'pedro789', 0, 0);
-INSERT INTO Persona VALUES ('sofia.ms@email.com', 'Sofía', 'Molina Sáez', 'sofia321', 0, 0);
-INSERT INTO Persona VALUES ('david.og@email.com', 'David', 'Ortega Gil', 'david111', 0, 0);
-INSERT INTO Persona VALUES ('elena.nr@email.com', 'Elena', 'Navas Ruiz', 'elena777', 0, 0);
-INSERT INTO Persona VALUES ('jorge.dp@email.com', 'Jorge', 'Delgado Pons', 'jorge888', 0, 0);
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('ana.perez@gmail.com', 'Ana', 'Pérez López', 'ana123', 120, NULL, NULL, 0, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('juan.garcia@gmail.com', 'Juan', 'García Ruiz', 'juan456', 75, NULL, NULL, 0, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('laura.martin@gmail.com', 'Laura', 'Martín Díaz', 'laura789', 200, NULL, NULL, 0, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('carlos.lopez@cine.com', 'Carlos', 'López Gómez', 'carlos123', 0, '12345678A', 1800.00, 1, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('maria.sanchez@cine.com', 'María', 'Sánchez Ramos', 'maria456', 0, '87654321B', 2000.00, 1, 1);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('david.fernandez@cine.com', 'David', 'Fernández Cano', 'david789', 0, '11223344C', 1700.00, 1, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('lucia.moreno@gmail.com', 'Lucía', 'Moreno Vidal', 'lucia321', 50, NULL, NULL, 0, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('sergio.alonso@gmail.com', 'Sergio', 'Alonso Castro', 'sergio654', 90, NULL, NULL, 0, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('ines.torres@cine.com', 'Inés', 'Torres Ortega', 'ines987', 0, '99887766D', 1850.00, 1, 0);
+
+INSERT INTO Persona (correo, nombre, apellidos, contrasena, puntosGanados, dni, sueldo, esEmpleado, esJefe)
+VALUES ('alberto.romero@cine.com', 'Alberto', 'Romero Nieto', 'alberto000', 0, '55667788E', 2200.00, 1, 1);
+
 
 
 INSERT INTO Pelicula VALUES (1, 'Inception', 148, 'Ciencia Ficción', '13+', 'Un ladrón roba secretos del subconsciente.');
@@ -117,13 +141,14 @@ INSERT INTO Sesion VALUES (9, 9, TO_DATE('2025-05-20 17:30', 'YYYY-MM-DD HH24:MI
 INSERT INTO Sesion VALUES (10, 10, TO_DATE('2025-05-20 19:00', 'YYYY-MM-DD HH24:MI'), 9.00);
 
 
-INSERT INTO Entrada VALUES (1, 1, TO_DATE('2025-05-15 18:00', 'YYYY-MM-DD HH24:MI'), 'ana.garcia@email.com', 'A1', 8.50, SYSDATE);
-INSERT INTO Entrada VALUES (2, 2, TO_DATE('2025-05-15 20:30', 'YYYY-MM-DD HH24:MI'), 'luis.mr@email.com', 'B2', 7.00, SYSDATE);
-INSERT INTO Entrada VALUES (3, 3, TO_DATE('2025-05-16 17:00', 'YYYY-MM-DD HH24:MI'), 'marta.pz@email.com', 'C3', 9.00, SYSDATE);
-INSERT INTO Entrada VALUES (4, 4, TO_DATE('2025-05-16 19:30', 'YYYY-MM-DD HH24:MI'), 'carlos.gd@email.com', 'D4', 6.50, SYSDATE);
-INSERT INTO Entrada VALUES (5, 5, TO_DATE('2025-05-17 21:00', 'YYYY-MM-DD HH24:MI'), 'lucia.tv@email.com', 'E5', 10.00, SYSDATE);
-INSERT INTO Entrada VALUES (6, 6, TO_DATE('2025-05-18 16:00', 'YYYY-MM-DD HH24:MI'), 'pedro.rl@email.com', 'F6', 9.50, SYSDATE);
-INSERT INTO Entrada VALUES (7, 7, TO_DATE('2025-05-18 18:30', 'YYYY-MM-DD HH24:MI'), 'sofia.ms@email.com', 'G7', 6.00, SYSDATE);
-INSERT INTO Entrada VALUES (8, 8, TO_DATE('2025-05-19 20:00', 'YYYY-MM-DD HH24:MI'), 'david.og@email.com', 'H8', 8.00, SYSDATE);
-INSERT INTO Entrada VALUES (9, 9, TO_DATE('2025-05-20 17:30', 'YYYY-MM-DD HH24:MI'), 'elena.nr@email.com', 'I9', 7.50, SYSDATE);
-INSERT INTO Entrada VALUES (10, 10, TO_DATE('2025-05-20 19:00', 'YYYY-MM-DD HH24:MI'), 'jorge.dp@email.com', 'J10', 9.00, SYSDATE);
+INSERT INTO Entrada VALUES (1, 1, TO_DATE('2025-05-15 18:00', 'YYYY-MM-DD HH24:MI'), 'ana.perez@gmail.com', 'A1', 8.50, SYSDATE);
+INSERT INTO Entrada VALUES (2, 2, TO_DATE('2025-05-15 20:30', 'YYYY-MM-DD HH24:MI'), 'juan.garcia@gmail.com', 'B2', 7.00, SYSDATE);
+INSERT INTO Entrada VALUES (3, 3, TO_DATE('2025-05-16 17:00', 'YYYY-MM-DD HH24:MI'), 'laura.martin@gmail.com', 'C3', 9.00, SYSDATE);
+INSERT INTO Entrada VALUES (4, 4, TO_DATE('2025-05-16 19:30', 'YYYY-MM-DD HH24:MI'), 'lucia.moreno@gmail.com', 'D4', 6.50, SYSDATE);
+INSERT INTO Entrada VALUES (5, 5, TO_DATE('2025-05-17 21:00', 'YYYY-MM-DD HH24:MI'), 'sergio.alonso@gmail.com', 'E5', 10.00, SYSDATE);
+INSERT INTO Entrada VALUES (6, 6, TO_DATE('2025-05-18 16:00', 'YYYY-MM-DD HH24:MI'), 'carlos.lopez@cine.com', 'F6', 9.50, SYSDATE);
+INSERT INTO Entrada VALUES (7, 7, TO_DATE('2025-05-18 18:30', 'YYYY-MM-DD HH24:MI'), 'maria.sanchez@cine.com', 'G7', 6.00, SYSDATE);
+INSERT INTO Entrada VALUES (8, 8, TO_DATE('2025-05-19 20:00', 'YYYY-MM-DD HH24:MI'), 'david.fernandez@cine.com', 'H8', 8.00, SYSDATE);
+INSERT INTO Entrada VALUES (9, 9, TO_DATE('2025-05-20 17:30', 'YYYY-MM-DD HH24:MI'), 'ines.torres@cine.com', 'I9', 7.50, SYSDATE);
+INSERT INTO Entrada VALUES (10, 10, TO_DATE('2025-05-20 19:00', 'YYYY-MM-DD HH24:MI'), 'alberto.romero@cine.com', 'J10', 9.00, SYSDATE);
+
