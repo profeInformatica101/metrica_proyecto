@@ -16,8 +16,40 @@ public class Sala {
         this.es3D = es3D;
         this.esVIP = esVIP;
     }
-    
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public boolean isEs3D() {
+        return es3D;
+    }
+
+    public void setEs3D(boolean es3D) {
+        this.es3D = es3D;
+    }
+
+    public boolean isEsVIP() {
+        return esVIP;
+    }
+
+    public void setEsVIP(boolean esVIP) {
+        this.esVIP = esVIP;
+    }
+    
+    
     @Override
     public String toString() {
         return "Sala{" + "nombre=" + numero + ", capacidad=" + capacidad + ", es3D=" + es3D + ", esVIP=" + esVIP + '}';

@@ -19,6 +19,39 @@ public class Sesión {
         this.precio = precio;
     }
 
+    public Date getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(Date fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public Película getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Película pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    
+    
     @Override
     public String toString() {
         return "Sesi\u00f3n{" + "fechaHora=" + fechaHora + ", pelicula=" + pelicula + ", sala=" + sala + ", precio=" + precio + '}';

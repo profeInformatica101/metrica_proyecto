@@ -17,6 +17,39 @@ public class Entrada {
         this.precioFinal = precioFinal;
     }
 
+    public int getAsiento() {
+        return asiento;
+    }
+
+    public void setAsiento(int asiento) {
+        this.asiento = asiento;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Sesión getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(Sesión sesion) {
+        this.sesion = sesion;
+    }
+
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+
+    
     @Override
     public String toString() {
         return "Entrada{" + "asiento=" + asiento + ", cliente=" + cliente + ", sesion=" + sesion + ", precioFinal=" + precioFinal + '}';

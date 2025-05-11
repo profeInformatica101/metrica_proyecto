@@ -5,17 +5,30 @@ package com.cinenova.entidades;
  * @author Juan Carlos
  */
 public class Cliente extends Persona{
-    private String codigoCliente;
+    private int puntosGanados;
 
-    public Cliente(String codigoCliente, String nombre, String apellidos, String correo, String contrasena) {
-        super(nombre, apellidos, correo, contrasena);
-        this.codigoCliente = codigoCliente;
+    public Cliente(int puntosGanados, String nombre, String apellidos, String correo, String contrasena, boolean esEmpleado, boolean esJefe) {
+        super(nombre, apellidos, correo, contrasena, esEmpleado, esJefe);
+        this.puntosGanados = puntosGanados;
     }
 
+    public int getPuntosGanados() {
+        return puntosGanados;
+    }
+
+    public void setPuntosGanados(int puntosGanados) {
+        this.puntosGanados = puntosGanados;
+    }
+
+    
+    
     @Override
     public String toString() {
-        return super.toString() + "Cliente{" + "codigoCliente=" + codigoCliente + '}';
+        return super.toString() + "Cliente{" + "puntosGanados=" + puntosGanados + '}';
     }
+
+   
+
     
     
 }

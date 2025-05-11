@@ -1,5 +1,7 @@
 package com.cinenova;
 
+import com.cinenova.consultas.obtenerClientes;
+import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerPeliculas;
 import com.cinenova.consultas.obtenerSalas;
 
@@ -13,5 +15,7 @@ public class App
     {
         System.out.println(obtenerSalas.obtenerConsulta());
         System.out.println(obtenerPeliculas.obtenerConsulta());
+        System.out.println(obtenerClientes.obtenerConsulta());
+        System.out.println(obtenerEmpleados.obtenerConsulta());
     }
 }
