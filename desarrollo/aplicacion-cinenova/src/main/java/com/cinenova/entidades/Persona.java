@@ -8,11 +8,13 @@ public abstract class Persona {
     private String nombre;
     private String apellidos;
     private String correo;
+    private String contrasena;
 
-    public Persona(String nombre, String apellidos, String correo) {
+    public Persona(String nombre, String apellidos, String correo, String contrasena) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
+        this.contrasena = contrasena;
     }
 
     @Override
@@ -20,7 +22,7 @@ public abstract class Persona {
         return "Persona{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", correo=" + correo + '}';
     }
 
-    
+     
 
     
 }

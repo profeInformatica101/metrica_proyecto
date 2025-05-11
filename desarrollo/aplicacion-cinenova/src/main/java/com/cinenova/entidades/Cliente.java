@@ -7,8 +7,8 @@ package com.cinenova.entidades;
 public class Cliente extends Persona{
     private String codigoCliente;
 
-    public Cliente(String codigoCliente, String nombre, String apellidos, String correo) {
-        super(nombre, apellidos, correo);
+    public Cliente(String codigoCliente, String nombre, String apellidos, String correo, String contrasena) {
+        super(nombre, apellidos, correo, contrasena);
         this.codigoCliente = codigoCliente;
     }
 

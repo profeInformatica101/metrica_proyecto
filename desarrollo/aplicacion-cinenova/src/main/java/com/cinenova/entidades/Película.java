@@ -1,30 +1,34 @@
 package com.cinenova.entidades;
 
-import java.util.Date;
-
 /**
  *
  * @author Juan Carlos
  */
 public class Película {
-    private String nombre;
-    private int anioLanzamiento;
-    private Date fechaPublicacionCartelera;
-    private String director;
+    private int idPelicula;
+    private String titulo;
     private int duracion;
+    private String genero;
+    private String clasificacionEdad;
+    private String descripcion;
 
-    public Película(String nombre, int anioLanzamiento, Date fechaPublicacionCartelera, String director, int duracion) {
-        this.nombre = nombre;
-        this.anioLanzamiento = anioLanzamiento;
-        this.fechaPublicacionCartelera = fechaPublicacionCartelera;
-        this.director = director;
+    public Película(int idPelicula, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
+        this.idPelicula = idPelicula;
+        this.titulo = titulo;
         this.duracion = duracion;
+        this.genero = genero;
+        this.clasificacionEdad = clasificacionEdad;
+        this.descripcion = descripcion;
     }
 
     @Override
     public String toString() {
-        return "Pel\u00edcula{" + "nombre=" + nombre + ", anioLanzamiento=" + anioLanzamiento + ", fechaPublicacionCartelera=" + fechaPublicacionCartelera + ", director=" + director + ", duracion=" + duracion + '}';
+        return "Pel\u00edcula{" + "titulo=" + titulo + ", duracion=" + duracion + ", genero=" + genero + ", clasificacionEdad=" + clasificacionEdad + ", descripcion=" + descripcion + '}';
     }
+
+    
+    
+    
     
     
 }
