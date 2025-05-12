@@ -2,7 +2,6 @@ package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
 import com.cinenova.consultas.añadirPersona;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
