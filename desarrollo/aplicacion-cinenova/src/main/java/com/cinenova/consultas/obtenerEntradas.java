@@ -32,7 +32,7 @@ public class obtenerEntradas {
             Sesión sesion = null;
             while (resultSet.next()) {
                 for(int i = 0; i < clientes.size(); i++){
-                    if((clientes.get(i).getCorreo().equals(resultSet.getString("correo")))){
+                    if((clientes.get(i).getCorreo().equals(resultSet.getString("correoPersona")))){
                         cliente = clientes.get(i);
                     }
                 }

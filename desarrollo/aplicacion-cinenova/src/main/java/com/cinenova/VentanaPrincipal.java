@@ -6,6 +6,7 @@ import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEntradas;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Entrada;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -378,15 +379,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(autenticaciónCliente.esCliente(correo, contrasena)){
             String nombre = "";
             String apellidos = "";
+            int puntos = 0;
             List<Cliente> clientes = obtenerClientes.obtenerConsulta();
             for(int i = 0; i < clientes.size(); i++){
                 if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
                     nombre = clientes.get(i).getNombre();
                     apellidos = clientes.get(i).getApellidos();
+                    puntos = clientes.get(i).getPuntosGanados();
                 }
             }
             List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
-            List<Entrada> entradasCliente = null;
+            List<Entrada> entradasCliente = new ArrayList<>();
             for(int i = 0; i < entradas.size(); i++){
                 if(entradas.get(i).getCliente().getCorreo().equals(correo)){
                     entradasCliente.add(entradas.get(i));
@@ -406,6 +409,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             VentanaCliente.setModal(true);
             VentanaCliente.setTitle("Ventana cliente");
             Bienvenida.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
+            PuntosObtenidos.setText("Tienes acumulados " + puntos + " puntos.");
             VentanaCliente.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(jPanel1, "Correo y/o la contraseña incorrectos.","Error",JOptionPane.ERROR_MESSAGE);
