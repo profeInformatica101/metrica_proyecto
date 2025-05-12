@@ -4,12 +4,30 @@ import com.cinenova.autenticación.autenticaciónCliente;
 import com.cinenova.consultas.añadirPersona;
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEntradas;
+import com.cinenova.consultas.obtenerPeliculas;
+import com.cinenova.consultas.obtenerSesiones;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Entrada;
+import com.cinenova.entidades.Película;
+import com.cinenova.entidades.Sesión;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  * Clase para la ventana principal de la aplicación
@@ -50,6 +68,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PuntosObtenidos = new javax.swing.JLabel();
         QueDeseaHacer = new javax.swing.JLabel();
         TituloListadoEntradas = new javax.swing.JLabel();
+        DescargarEntrada = new javax.swing.JButton();
+        DevolverEntrada = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         VentanaRegistro = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         CampoNombre = new javax.swing.JTextField();
@@ -62,6 +83,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         CampoContraseñaRegistro = new javax.swing.JPasswordField();
         RegistrarseConfirmar = new javax.swing.JButton();
         BorrarDatosRegistro = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        VentanaCompra = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        VerSesionesScroll = new javax.swing.JScrollPane();
+        VerSesiones = new javax.swing.JTable();
+        ComprarEntrada = new javax.swing.JButton();
+        SesionSeleccionada = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -82,22 +113,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         LogoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cinenova_logo.png"))); // NOI18N
 
-        ComprarEntradas.setText("Comprar entradas");
-
-        ModificarEntradas.setText("Modificar entradas");
-
-        ListadoEntradasCliente.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        ComprarEntradas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ComprarEntradas.setText("Comprar entrada");
+        ComprarEntradas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprarEntradasActionPerformed(evt);
+            }
         });
+
+        ModificarEntradas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ModificarEntradas.setText("Modificar entrada");
+
+        ListadoEntradasCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ListadoEntradas1.setViewportView(ListadoEntradasCliente);
 
+        PuntosObtenidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PuntosObtenidos.setText("Puntos");
 
+        QueDeseaHacer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         QueDeseaHacer.setText("¿Qué desea hacer?");
 
+        TituloListadoEntradas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TituloListadoEntradas.setText("Tu listado de entradas compradas:");
+
+        DescargarEntrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DescargarEntrada.setText("Descargar entrada");
+        DescargarEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DescargarEntradaActionPerformed(evt);
+            }
+        });
+
+        DevolverEntrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DevolverEntrada.setText("Devolver entrada");
+        DevolverEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DevolverEntradaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -105,23 +158,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ComprarEntradas)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(QueDeseaHacer)
-                    .addComponent(ModificarEntradas)
                     .addComponent(LogoCliente)
-                    .addComponent(PuntosObtenidos))
+                    .addComponent(PuntosObtenidos)
+                    .addComponent(DescargarEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DevolverEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModificarEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComprarEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(Bienvenida)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TituloListadoEntradas)
-                            .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82))))
+                            .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Bienvenida))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,21 +189,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(LogoCliente))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(Bienvenida)))
-                .addGap(18, 18, 18)
-                .addComponent(QueDeseaHacer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(TituloListadoEntradas)
+                        .addComponent(Bienvenida)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(QueDeseaHacer)
+                    .addComponent(TituloListadoEntradas, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 18, Short.MAX_VALUE)
                         .addComponent(ComprarEntradas)
-                        .addGap(31, 31, 31)
+                        .addGap(35, 35, 35)
                         .addComponent(ModificarEntradas)
-                        .addGap(121, 121, 121)
+                        .addGap(37, 37, 37)
+                        .addComponent(DescargarEntrada)
+                        .addGap(37, 37, 37)
+                        .addComponent(DevolverEntrada)
+                        .addGap(28, 28, 28)
                         .addComponent(PuntosObtenidos))
-                    .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                    .addComponent(ListadoEntradas1))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout VentanaClienteLayout = new javax.swing.GroupLayout(VentanaCliente.getContentPane());
@@ -162,14 +226,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        CampoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        Nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Nombre.setText("Nombre:");
 
+        Apellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Apellidos.setText("Apellidos:");
 
+        CampoApellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CorreoRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CorreoRegistro.setText("Correo:");
 
+        CampoCorreoRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ContraseñaRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ContraseñaRegistro.setText("Contraseña:");
 
+        CampoContraseñaRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        RegistrarseConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RegistrarseConfirmar.setText("Registrarse");
         RegistrarseConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,12 +254,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        BorrarDatosRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         BorrarDatosRegistro.setText("Borrar datos");
         BorrarDatosRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BorrarDatosRegistroActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Introduzca los datos para su registro");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,37 +273,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CorreoRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CampoApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(CampoNombre)
-                                    .addComponent(CampoCorreoRegistro)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ContraseñaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CampoContraseñaRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ContraseñaRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CorreoRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(178, 178, 178)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addComponent(RegistrarseConfirmar)
-                        .addGap(40, 40, 40)
-                        .addComponent(BorrarDatosRegistro)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CampoContraseñaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(RegistrarseConfirmar)
+                                .addGap(40, 40, 40)
+                                .addComponent(BorrarDatosRegistro))
+                            .addComponent(CampoCorreoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Nombre))
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Apellidos)
                     .addComponent(CampoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
@@ -237,7 +321,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RegistrarseConfirmar)
                     .addComponent(BorrarDatosRegistro))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout VentanaRegistroLayout = new javax.swing.GroupLayout(VentanaRegistro.getContentPane());
@@ -249,6 +333,79 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaRegistroLayout.setVerticalGroup(
             VentanaRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        VerSesiones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        VerSesionesScroll.setViewportView(VerSesiones);
+
+        ComprarEntrada.setText("Comprar entrada");
+
+        SesionSeleccionada.setText("Seleccione una sesión para poder comprar una entrada");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(VerSesionesScroll)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(SesionSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addComponent(ComprarEntrada)
+                .addGap(106, 106, 106))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(VerSesionesScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ComprarEntrada)
+                    .addComponent(SesionSeleccionada))
+                .addGap(17, 17, 17))
+        );
+
+        javax.swing.GroupLayout VentanaCompraLayout = new javax.swing.GroupLayout(VentanaCompra.getContentPane());
+        VentanaCompra.getContentPane().setLayout(VentanaCompraLayout);
+        VentanaCompraLayout.setHorizontalGroup(
+            VentanaCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaCompraLayout.setVerticalGroup(
+            VentanaCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -438,9 +595,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             int row = añadirPersona.añadirCliente(correo, nombre, apellidos, contrasena);
             if(row > 0){
                 JOptionPane.showMessageDialog(VentanaRegistro, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
+                String nombreMostrar = "";
+                String apellidosMostrar = "";
+                int puntos = 0;
+                List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+                for(int i = 0; i < clientes.size(); i++){
+                    if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
+                        nombreMostrar = clientes.get(i).getNombre();
+                        apellidosMostrar = clientes.get(i).getApellidos();
+                        puntos = clientes.get(i).getPuntosGanados();
+                    }
+                }
+                List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
+                List<Entrada> entradasCliente = new ArrayList<>();
+                for(int i = 0; i < entradas.size(); i++){
+                    if(entradas.get(i).getCliente().getCorreo().equals(correo)){
+                        entradasCliente.add(entradas.get(i));
+                    }
+                }
+                DefaultListModel lista = new DefaultListModel<>();
+                if(entradasCliente.isEmpty()){
+                    lista.addElement("No tienes entradas compradas");
+                }else{
+                    for (int i = 0; i < entradasCliente.size(); i++) {
+                        lista.addElement(entradasCliente.get(i));
+                    }
+                    ListadoEntradasCliente.setModel(lista);
+                    
+
+            }
+            VentanaRegistro.dispose();
             VentanaCliente.pack();
             VentanaCliente.setLocationRelativeTo(null);
-            VentanaCliente.setTitle("Ventana cliente");
+            VentanaCliente.setTitle("Área de cliente");
+            Bienvenida.setText("¡Bienvenid@ " + nombreMostrar + " " + apellidosMostrar + "!");
+            PuntosObtenidos.setText("Tienes acumulados " + puntos + " puntos.");
             VentanaCliente.setModal(true);
             VentanaCliente.setVisible(true);
             }else{
@@ -463,6 +652,49 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         CampoCorreoRegistro.setText("");
         CampoContraseñaRegistro.setText("");
     }//GEN-LAST:event_BorrarDatosRegistroActionPerformed
+
+    private void DevolverEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevolverEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DevolverEntradaActionPerformed
+
+    private void DescargarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescargarEntradaActionPerformed
+        
+        
+    }//GEN-LAST:event_DescargarEntradaActionPerformed
+
+    private void ComprarEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradasActionPerformed
+        VentanaCompra.pack();
+        VentanaCompra.setLocationRelativeTo(null);
+        VentanaCompra.setTitle("Comprar entradas");
+        VentanaCompra.setModal(true);
+        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Precio", "Asientos disponibles"};
+        DefaultTableModel tabla = new DefaultTableModel(columnas, 0);
+        Map<Integer, Integer> entradasVendidas = obtenerEntradas.obtenerEntradasCompradasPorSala();
+        if(sesiones.isEmpty()){
+            JOptionPane.showMessageDialog(VentanaCompra, "No se han encontrado entradas a la venta","Información",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            for (int i = 0; i < sesiones.size(); i++) {
+                    int numeroSala = sesiones.get(i).getSala().getNumero();
+                    int capacidad = sesiones.get(i).getSala().getCapacidad();
+                    int vendidas = entradasVendidas.getOrDefault(numeroSala, 0);
+                    int asientosDisponibles = capacidad - vendidas;
+                    String asientosDisponiblesTotal = String.valueOf(asientosDisponibles) + "/" + String.valueOf(capacidad);
+                    Object[] fila = {
+                        sesiones.get(i).getPelicula().getTitulo(),
+                        sesiones.get(i).getSala().getNumero(),
+                        formato.format(sesiones.get(i).getFechaHora()),
+                        sesiones.get(i).getPrecio(),
+                        asientosDisponiblesTotal
+                    };
+                    tabla.addRow(fila);
+                }
+            }
+            VerSesiones.setModel(tabla);
+            VerSesiones.setEnabled(false);
+            VentanaCompra.setVisible(true);        
+    }//GEN-LAST:event_ComprarEntradasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -510,11 +742,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField CampoCorreo;
     private javax.swing.JTextField CampoCorreoRegistro;
     private javax.swing.JTextField CampoNombre;
+    private javax.swing.JButton ComprarEntrada;
     private javax.swing.JButton ComprarEntradas;
     private javax.swing.JLabel Contraseña;
     private javax.swing.JLabel ContraseñaRegistro;
     private javax.swing.JLabel Correo;
     private javax.swing.JLabel CorreoRegistro;
+    private javax.swing.JButton DescargarEntrada;
+    private javax.swing.JButton DevolverEntrada;
     private javax.swing.JLabel EresEmpleado;
     private javax.swing.JButton IniciarSesión;
     private javax.swing.JScrollPane ListadoEntradas1;
@@ -529,11 +764,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton Registrarse;
     private javax.swing.JButton RegistrarseConfirmar;
     private javax.swing.JSeparator Separador;
+    private javax.swing.JLabel SesionSeleccionada;
     private javax.swing.JLabel TituloListadoEntradas;
     private javax.swing.JDialog VentanaCliente;
+    private javax.swing.JDialog VentanaCompra;
     private javax.swing.JDialog VentanaRegistro;
+    private javax.swing.JTable VerSesiones;
+    private javax.swing.JScrollPane VerSesionesScroll;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

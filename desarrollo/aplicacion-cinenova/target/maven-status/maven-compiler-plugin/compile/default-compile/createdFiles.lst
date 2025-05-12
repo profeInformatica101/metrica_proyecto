@@ -1,3 +1,4 @@
+com\cinenova\VentanaPrincipal$9.class
 com\cinenova\entidades\Persona.class
 com\cinenova\entidades\Sesión.class
 com\cinenova\VentanaPrincipal$2.class
@@ -11,8 +12,10 @@ com\cinenova\autenticación\autenticaciónEmpleado.class
 com\cinenova\entidades\Empleado.class
 com\cinenova\entidades\Sala.class
 com\cinenova\VentanaPrincipal$3.class
+com\cinenova\VentanaPrincipal$8.class
 com\cinenova\entidades\Entrada.class
 com\cinenova\VentanaPrincipal$1.class
+com\cinenova\VentanaPrincipal$10.class
 com\cinenova\VentanaPrincipal$5.class
 com\cinenova\consultas\obtenerSesiones.class
 com\cinenova\consultas\obtenerClientes.class

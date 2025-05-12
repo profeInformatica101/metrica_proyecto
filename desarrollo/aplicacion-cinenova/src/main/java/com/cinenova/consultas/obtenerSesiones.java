@@ -1,6 +1,5 @@
 package com.cinenova.consultas;
 
-import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Película;
 import com.cinenova.entidades.Sala;
 import com.cinenova.entidades.Sesión;
@@ -55,4 +54,5 @@ public class obtenerSesiones {
         
         return sesiones;
     }
+    
 }

@@ -1,5 +1,9 @@
 package com.cinenova.entidades;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Juan Carlos
@@ -9,6 +13,7 @@ public class Entrada {
     private Cliente cliente;
     private Sesión sesion;
     private double precioFinal;
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public Entrada(int asiento, Cliente cliente, Sesión sesion, double precioFinal) {
         this.asiento = asiento;
@@ -49,10 +54,19 @@ public class Entrada {
         this.precioFinal = precioFinal;
     }
 
+    public void descargarEntrada(Entrada entrada){
+        try{
+            FileWriter entradaTXT = new FileWriter(entrada.getSesion().getPelicula().getTitulo() + "_" + entrada.getSesion().getSala().getNumero() + "_" + entrada.getAsiento() + "_" + formato.format(sesion.getFechaHora()) + ".txt");
+            entradaTXT.write(entrada.toString());
+            entradaTXT.close();
+        }catch(IOException e){
+            System.out.println("Error al escribir la entrada: " + e.getMessage());
+        }
+    }
     
     @Override
     public String toString() {
-        return "Entrada{" + "asiento=" + asiento + ", cliente=" + cliente + ", sesion=" + sesion + ", precioFinal=" + precioFinal + '}';
+        return sesion.getPelicula().getTitulo() + " | Sala: " + sesion.getSala().getNumero() + " Asiento: " + asiento + " | Fecha/Hora: " + formato.format(sesion.getFechaHora()) + " | Precio: " + precioFinal;
     }
 
     

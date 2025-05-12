@@ -1,5 +1,6 @@
 package com.cinenova.entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,6 +12,7 @@ public class Sesión {
     private Película pelicula;
     private Sala sala;
     private double precio;
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public Sesión(Película pelicula, Sala sala, Date fechaHora, double precio) {
         this.fechaHora = fechaHora;
@@ -54,7 +56,7 @@ public class Sesión {
     
     @Override
     public String toString() {
-        return "Sesi\u00f3n{" + "fechaHora=" + fechaHora + ", pelicula=" + pelicula + ", sala=" + sala + ", precio=" + precio + '}';
+        return pelicula.getTitulo() + "," + sala.getNumero() + "," + formato.format(fechaHora) + "," + precio;
     }
 
     

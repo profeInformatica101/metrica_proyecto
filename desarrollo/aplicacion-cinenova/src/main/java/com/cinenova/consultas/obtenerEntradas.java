@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -37,7 +39,7 @@ public class obtenerEntradas {
                     }
                 }
                 for(int i = 0; i < sesiones.size(); i++){
-                    if(sesiones.get(i).getPelicula().getIdPelicula() == resultSet.getInt("id_pelicula") && sesiones.get(i).getSala().getNumero() == resultSet.getInt("numeroSala") && sesiones.get(i).getFechaHora() == resultSet.getDate("fechaHora")){
+                    if(sesiones.get(i).getPelicula().getIdPelicula() == resultSet.getInt("id_pelicula") && sesiones.get(i).getFechaHora().equals(resultSet.getTimestamp("fechaHora"))){
                         sesion = sesiones.get(i);
                     }
                 }
@@ -54,4 +56,30 @@ public class obtenerEntradas {
         
         return entradas;
     }
+    
+    public static Map<Integer, Integer> obtenerEntradasCompradasPorSala() {
+        Map<Integer, Integer> entradasPorSala = new HashMap<>();
+        String sql = "SELECT numeroSala FROM Entrada";
+
+        try (Connection conn = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             Statement statement = conn.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            while (resultSet.next()) {
+                int sala = resultSet.getInt("numeroSala");
+                entradasPorSala.merge(sala, 1, Integer::sum);
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return entradasPorSala;
+    }
+
+
+    
 }

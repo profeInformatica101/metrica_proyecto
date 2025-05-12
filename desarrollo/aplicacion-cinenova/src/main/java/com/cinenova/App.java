@@ -4,6 +4,7 @@ import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerPeliculas;
 import com.cinenova.consultas.obtenerSalas;
+import com.cinenova.consultas.obtenerSesiones;
 
 /**
  * Hello world!
@@ -17,6 +18,6 @@ public class App
         System.out.println(obtenerPeliculas.obtenerConsulta());
         System.out.println(obtenerClientes.obtenerConsulta());
         System.out.println(obtenerEmpleados.obtenerConsulta());
-        System.out.println("Hola");
+        System.out.println(obtenerSesiones.obtenerConsulta());
     }
 }
