@@ -17,5 +17,6 @@ public class App
         System.out.println(obtenerPeliculas.obtenerConsulta());
         System.out.println(obtenerClientes.obtenerConsulta());
         System.out.println(obtenerEmpleados.obtenerConsulta());
+        System.out.println("Hola");
     }
 }
