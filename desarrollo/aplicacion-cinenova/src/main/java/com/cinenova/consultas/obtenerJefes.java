@@ -1,6 +1,6 @@
 package com.cinenova.consultas;
 
-import com.cinenova.entidades.Empleado;
+import com.cinenova.entidades.Jefe;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,11 +13,11 @@ import java.util.List;
  *
  * @author Juan Carlos
  */
-public class obtenerEmpleados {
+public class obtenerJefes {
     
-    public static List<Empleado> obtenerConsulta(){
-        List<Empleado> empleados = new ArrayList<>();
-        String sql = "SELECT * FROM Persona WHERE esEmpleado = 1 AND esJefe = 0";
+    public static List<Jefe> obtenerConsulta(){
+        List<Jefe> jefes = new ArrayList<>();
+        String sql = "SELECT * FROM Persona WHERE esJefe = 1";
 
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
@@ -26,9 +26,9 @@ public class obtenerEmpleados {
             ResultSet resultSet = statement.executeQuery(sql);
             
             while (resultSet.next()) {
-                Empleado empleado = new Empleado(resultSet.getString("dni"), resultSet.getDouble("sueldo"), resultSet.getString("nombre"), resultSet.getString("apellidos"), resultSet.getString("correo"), resultSet.getString("contrasena"), resultSet.getBoolean("esEmpleado"), resultSet.getBoolean("esJefe"));
+                Jefe jefe = new Jefe(resultSet.getString("dni"), resultSet.getDouble("sueldo"), resultSet.getString("nombre"), resultSet.getString("apellidos"), resultSet.getString("correo"), resultSet.getString("contrasena"), resultSet.getBoolean("esEmpleado"), resultSet.getBoolean("esJefe"));
                 
-                empleados.add(empleado);
+                jefes.add(jefe);
             }
 
         } catch (SQLException e) {
@@ -37,6 +37,6 @@ public class obtenerEmpleados {
             e.printStackTrace();
         }
         
-        return empleados;
+        return jefes;
     }
 }

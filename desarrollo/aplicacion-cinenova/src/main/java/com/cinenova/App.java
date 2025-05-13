@@ -2,6 +2,7 @@ package com.cinenova;
 
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEmpleados;
+import com.cinenova.consultas.obtenerJefes;
 import com.cinenova.consultas.obtenerPeliculas;
 import com.cinenova.consultas.obtenerSalas;
 import com.cinenova.consultas.obtenerSesiones;
@@ -19,5 +20,6 @@ public class App
         System.out.println(obtenerClientes.obtenerConsulta());
         System.out.println(obtenerEmpleados.obtenerConsulta());
         System.out.println(obtenerSesiones.obtenerConsulta());
+        System.out.println(obtenerJefes.obtenerConsulta());
     }
 }
