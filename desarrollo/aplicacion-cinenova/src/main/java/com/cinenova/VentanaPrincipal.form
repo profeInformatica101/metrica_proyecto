@@ -35,7 +35,6 @@
                           <Component id="PuntosObtenidos" min="-2" max="-2" attributes="0"/>
                           <Component id="DescargarEntrada" alignment="0" max="32767" attributes="0"/>
                           <Component id="DevolverEntrada" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ModificarEntradas" alignment="0" max="32767" attributes="0"/>
                           <Component id="ComprarEntradas" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -84,13 +83,11 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                               <Component id="ComprarEntradas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="ModificarEntradas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="DescargarEntrada" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="DevolverEntrada" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="DescargarEntrada" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                               <Component id="PuntosObtenidos" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="ListadoEntradas1" max="32767" attributes="0"/>
@@ -126,14 +123,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComprarEntradasActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="ModificarEntradas">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Modificar entrada"/>
-              </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="ListadoEntradas1">
               <AuxValues>

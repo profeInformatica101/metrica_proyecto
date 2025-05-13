@@ -62,7 +62,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Bienvenida = new javax.swing.JLabel();
         LogoCliente = new javax.swing.JLabel();
         ComprarEntradas = new javax.swing.JButton();
-        ModificarEntradas = new javax.swing.JButton();
         ListadoEntradas1 = new javax.swing.JScrollPane();
         ListadoEntradasCliente = new javax.swing.JList<>();
         PuntosObtenidos = new javax.swing.JLabel();
@@ -121,9 +120,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        ModificarEntradas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ModificarEntradas.setText("Modificar entrada");
-
         ListadoEntradasCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ListadoEntradas1.setViewportView(ListadoEntradasCliente);
 
@@ -164,7 +160,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(PuntosObtenidos)
                     .addComponent(DescargarEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DevolverEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ModificarEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ComprarEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -201,13 +196,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 18, Short.MAX_VALUE)
                         .addComponent(ComprarEntradas)
-                        .addGap(35, 35, 35)
-                        .addComponent(ModificarEntradas)
-                        .addGap(37, 37, 37)
-                        .addComponent(DescargarEntrada)
-                        .addGap(37, 37, 37)
+                        .addGap(29, 29, 29)
                         .addComponent(DevolverEntrada)
-                        .addGap(28, 28, 28)
+                        .addGap(34, 34, 34)
+                        .addComponent(DescargarEntrada)
+                        .addGap(101, 101, 101)
                         .addComponent(PuntosObtenidos))
                     .addComponent(ListadoEntradas1))
                 .addGap(38, 38, 38))
@@ -756,7 +749,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> ListadoEntradasCliente;
     private javax.swing.JLabel Logo;
     private javax.swing.JLabel LogoCliente;
-    private javax.swing.JButton ModificarEntradas;
     private javax.swing.JLabel NoRegistrado;
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel PuntosObtenidos;
