@@ -53,8 +53,8 @@ Fases basadas en MÉTRICA v3 adaptadas a ISO 12207:
 |------|--------------------|---------|
 | PSI  | Estudio de Viabilidad | DOC  [OPCIONAL]|
 | ASI  | Requisitos + Casos de uso | DOC + diagrama de Umbrello [OBLIGATORIO]|
-| DSI + CSI | Diagrama de clases y comportamiento | DOC + diagramas en Umbrello [OBLIGATORIO] |
-| IAS  | Código, pruebas, documentación | Repositorio GitHub [OBLIGATORIO] |
+| DSI  | Diagrama de clases y comportamiento | DOC + diagramas en Umbrello [OBLIGATORIO] |
+| IAS + CSI | Código, pruebas, documentación | Repositorio GitHub [OBLIGATORIO] |
 | Eval. | Informe de calidad y checklist | PDF [OPCIONAL]|
 
 ## 📘 README.md Recomendado
