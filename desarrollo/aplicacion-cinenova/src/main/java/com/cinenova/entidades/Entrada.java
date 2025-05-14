@@ -48,7 +48,24 @@ public class Entrada {
         return precioFinal;
     }
 
-    public void setPrecioFinal(double precioFinal) {
+    public void setPrecioFinal(double precio) {
+        int puntos = cliente.getPuntosGanados();
+        if(puntos >= 100 && puntos < 200){
+            this.precioFinal = sesion.getPrecio() * 0.9;
+            cliente.setPuntosGanados(puntos - 100);
+        }else if(puntos >= 200 && puntos < 300){
+            this.precioFinal = sesion.getPrecio() * 0.8;
+            cliente.setPuntosGanados(puntos - 200);
+        }else if(puntos >= 300 && puntos < 400){
+            this.precioFinal = sesion.getPrecio() * 0.7;
+            cliente.setPuntosGanados(puntos - 300);
+        }else if(puntos >= 400 && puntos < 500){
+            this.precioFinal = sesion.getPrecio() * 0.6;
+            cliente.setPuntosGanados(puntos - 400);
+        }else if(puntos >= 500){
+            this.precioFinal = sesion.getPrecio() * 0.5;
+            cliente.setPuntosGanados(puntos - 500);
+        }
         this.precioFinal = precioFinal;
     }
     

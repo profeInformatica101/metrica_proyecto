@@ -5,6 +5,7 @@ import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Sesión;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -78,6 +79,35 @@ public class obtenerEntradas {
         }
 
         return entradasPorSala;
+    }
+    
+    public static List<Integer> obtenerAsientosOcupadosDeSala(Integer numeroSala) {
+        List<Integer> asientosOcupados = new ArrayList<>();
+        String sql = "SELECT asiento FROM Entrada WHERE numeroSala = ?";
+        int row = 0;
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+         
+
+            preparedStatement.setInt(1, numeroSala);
+            
+            
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                int asiento = resultSet.getInt("asiento");
+                asientosOcupados.add(asiento);
+            }
+        }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return asientosOcupados;
     }
 
 

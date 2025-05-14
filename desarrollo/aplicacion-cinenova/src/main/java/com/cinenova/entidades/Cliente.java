@@ -56,6 +56,7 @@ public class Cliente extends Persona{
         return descargada;
     }
     
+    
     public List<Entrada> verEntradas(){
         List<Entrada> entradasCliente = new ArrayList<>();
         List<Entrada> entradas = obtenerEntradas.obtenerConsulta();

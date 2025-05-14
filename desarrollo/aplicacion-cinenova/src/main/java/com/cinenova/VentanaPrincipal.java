@@ -1,35 +1,24 @@
 package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
+import com.cinenova.consultas.añadirEntrada;
 import com.cinenova.consultas.añadirPersona;
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEntradas;
-import com.cinenova.consultas.obtenerPeliculas;
 import com.cinenova.consultas.obtenerSesiones;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Entrada;
-import com.cinenova.entidades.Película;
 import com.cinenova.entidades.Sesión;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import javax.swing.DefaultCellEditor;
+import java.util.Set;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 /**
  * Clase para la ventana principal de la aplicación
@@ -441,6 +430,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         AsientosDisponibles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         ComprarEntradaAsiento.setText("Comprar entrada");
+        ComprarEntradaAsiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprarEntradaAsientoActionPerformed(evt);
+            }
+        });
 
         PuntosGanadosCompra.setText("¡Por la compra de una entrada recibirás 5 puntos!");
 
@@ -687,11 +681,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
             VentanaCliente.pack();
             VentanaCliente.setLocationRelativeTo(null);
-            VentanaCliente.setModal(true);
+            VentanaCliente.setModal(false);
             VentanaCliente.setTitle("Ventana cliente");
             Bienvenida.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
             PuntosObtenidos.setText("Tienes acumulados " + puntos + " puntos.");
             VentanaCliente.setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(jPanel1, "Correo y/o la contraseña incorrectos.","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -754,8 +749,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             VentanaCliente.setTitle("Área de cliente");
             Bienvenida.setText("¡Bienvenid@ " + nombreMostrar + " " + apellidosMostrar + "!");
             PuntosObtenidos.setText("Tienes acumulados " + puntos + " puntos.");
-            VentanaCliente.setModal(true);
+            VentanaCliente.setModal(false);
             VentanaCliente.setVisible(true);
+            this.dispose();
             }else{
                 JOptionPane.showMessageDialog(VentanaRegistro, "El registro no ha podido realizarse.","Error",JOptionPane.ERROR_MESSAGE);
             }
@@ -881,12 +877,58 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ValorSala.setText(String.valueOf(sesión.getSala().getNumero()));
         ValorDiaHora.setText(formato.format(sesión.getFechaHora()));
         int capacidad = sesión.getSala().getCapacidad();
-        for(int i = 1; i <= capacidad; i++){
-            AsientosDisponibles.addItem(String.valueOf(i));
+        List<Integer> obtenerEntrada;
+        List<Integer> asientosOcupados = obtenerEntradas.obtenerAsientosOcupadosDeSala(sesión.getSala().getNumero());
+        Set<Integer> ocupadosSet = new HashSet<>(asientosOcupados);
+        for (int i = 1; i <= capacidad; i++) {
+            if (!ocupadosSet.contains(i)) {
+                AsientosDisponibles.addItem(String.valueOf(i));
+            }
         }
+        
         VentanaSesiones.dispose();
         VentanaCompraEntrada.setVisible(true);
     }//GEN-LAST:event_ComprarEntradaActionPerformed
+
+    private void ComprarEntradaAsientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradaAsientoActionPerformed
+        int sesionSeleccionada = VerSesiones.getSelectedRow();
+        Sesión sesión = null;
+        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        for(int i = 0; i < sesiones.size(); i++){
+            if(i == sesionSeleccionada){
+                sesión = sesiones.get(i);
+            }
+        }
+        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+        Cliente cliente = null;
+        for(int i = 0; i < clientes.size(); i++){
+            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
+                cliente = clientes.get(i);
+            }
+        }
+        int asiento = Integer.valueOf(AsientosDisponibles.getSelectedItem().toString());
+        Entrada entrada = new Entrada(asiento, cliente, sesión, 0);
+        entrada.setPrecioFinal(entrada.getSesion().getPrecio());
+        int exito = añadirEntrada.añadirEntrada(entrada);
+        if(exito == 1){
+            cliente.setPuntosGanados(cliente.getPuntosGanados() + 5);
+            JOptionPane.showMessageDialog(VentanaSesiones, "Entrada comprada con éxito.","Entrada comprada",JOptionPane.INFORMATION_MESSAGE);
+            List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
+                List<Entrada> entradasCliente = cliente.verEntradas();
+                DefaultListModel lista = new DefaultListModel<>();
+                if(entradasCliente.isEmpty()){
+                    lista.addElement("No tienes entradas compradas");
+                }else{
+                    for (int i = 0; i < entradasCliente.size(); i++) {
+                        lista.addElement(entradasCliente.get(i));
+                    }
+                    ListadoEntradasCliente.setModel(lista);
+                }
+        }else{
+            JOptionPane.showMessageDialog(VentanaSesiones, "No se ha podido comprar la entrada.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ComprarEntradaAsientoActionPerformed
 
     /**
      * @param args the command line arguments
