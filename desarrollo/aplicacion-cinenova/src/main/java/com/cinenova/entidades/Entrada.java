@@ -66,9 +66,21 @@ public class Entrada {
             this.precioFinal = sesion.getPrecio() * 0.5;
             cliente.setPuntosGanados(puntos - 500);
         }
-        this.precioFinal = precioFinal;
     }
     
+    public String mostrarEntradaFormato() {
+        StringBuilder entrada = new StringBuilder();
+        entrada.append("╔════════════════════════════╗\n");
+        entrada.append("║         CINENOVA 🎬        ║\n");
+        entrada.append("╠════════════════════════════╣\n");
+        entrada.append("║ Película:  ").append(sesion.getPelicula().getTitulo()).append("\n");
+        entrada.append("║ Sala:      ").append(sesion.getSala().getNumero()).append("\n");
+        entrada.append("║ Asiento:   ").append(asiento).append("\n");
+        entrada.append("║ Fecha/Hora:").append(" ").append(formato.format(sesion.getFechaHora())).append("\n");
+        entrada.append("║ Precio:    ").append(precioFinal).append(" €").append("\n");
+        entrada.append("╚════════════════════════════╝\n");
+        return entrada.toString();
+    }
     @Override
     public String toString() {
         return sesion.getPelicula().getTitulo() + " | Sala: " + sesion.getSala().getNumero() + " Asiento: " + asiento + " | Fecha/Hora: " + formato.format(sesion.getFechaHora()) + " | Precio: " + precioFinal;

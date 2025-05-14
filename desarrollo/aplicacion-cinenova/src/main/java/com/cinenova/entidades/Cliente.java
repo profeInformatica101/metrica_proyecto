@@ -2,6 +2,7 @@ package com.cinenova.entidades;
 
 import com.cinenova.consultas.devolverEntrada;
 import com.cinenova.consultas.obtenerEntradas;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -42,11 +43,11 @@ public class Cliente extends Persona{
         return exito;
     }
     
-    public boolean descargarEntrada(Entrada entrada){
+    public boolean descargarEntrada(Entrada entrada, File archivoDestino){
         boolean descargada = false;
         try{
-            FileWriter entradaTXT = new FileWriter("entrada_descargada" + ".txt");
-            entradaTXT.write(entrada.toString());
+            FileWriter entradaTXT = new FileWriter(archivoDestino);
+            entradaTXT.write(entrada.mostrarEntradaFormato());
             entradaTXT.close();
             descargada = true;
         }catch(IOException e){

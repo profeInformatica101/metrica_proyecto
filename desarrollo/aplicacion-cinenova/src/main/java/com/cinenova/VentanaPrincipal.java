@@ -1,6 +1,7 @@
 package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
+import com.cinenova.consultas.actualizarPuntosGanados;
 import com.cinenova.consultas.añadirEntrada;
 import com.cinenova.consultas.añadirPersona;
 import com.cinenova.consultas.obtenerClientes;
@@ -9,6 +10,8 @@ import com.cinenova.consultas.obtenerSesiones;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Sesión;
+import java.awt.Color;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -95,8 +99,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ValorPelicula = new javax.swing.JLabel();
         ValorSala = new javax.swing.JLabel();
         ValorDiaHora = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        nombreAsientosDisponibles = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        nombrePrecioSesion = new javax.swing.JLabel();
+        precioSesion = new javax.swing.JLabel();
+        VentanaRutaDescarga = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -109,6 +116,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Separador = new javax.swing.JSeparator();
         EresEmpleado = new javax.swing.JLabel();
         AccesoEmpleados = new javax.swing.JButton();
+
+        VentanaCliente.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                CerrarProgramaAlCerrarVentanaCliente(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -447,8 +460,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ValorDiaHora.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ValorDiaHora.setText("fecha");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Asientos disponibles:");
+        nombreAsientosDisponibles.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nombreAsientosDisponibles.setText("Asientos disponibles:");
+
+        nombrePrecioSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nombrePrecioSesion.setText("Precio final:");
+
+        precioSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        precioSesion.setText("precio sesion");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -462,27 +481,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(PuntosGanadosCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(FechaHoraSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NumeroSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NombrePelicula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TituloComprarEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(FechaHoraSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(NumeroSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(NombrePelicula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(ValorDiaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ValorPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ValorSala, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ValorPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ValorSala, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ValorDiaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nombrePrecioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AsientosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(precioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))))
+                    .addComponent(TituloComprarEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(nombreAsientosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AsientosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -495,24 +517,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NombrePelicula)
-                    .addComponent(ValorPelicula))
+                    .addComponent(ValorPelicula)
+                    .addComponent(nombrePrecioSesion)
+                    .addComponent(precioSesion))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NumeroSala)
                     .addComponent(ValorSala))
-                .addGap(47, 47, 47)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FechaHoraSesion)
                     .addComponent(ValorDiaHora))
                 .addGap(45, 45, 45)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AsientosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(nombreAsientosDisponibles))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComprarEntradaAsiento)
                     .addComponent(PuntosGanadosCompra))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout VentanaCompraEntradaLayout = new javax.swing.GroupLayout(VentanaCompraEntrada.getContentPane());
@@ -525,6 +549,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             VentanaCompraEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        VentanaRutaDescarga.setBackground(java.awt.Color.white);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -671,7 +697,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 }
             }
             DefaultListModel lista = new DefaultListModel<>();
-            if(entradasCliente.size() < 1){
+            if(entradasCliente.isEmpty()){
                 lista.add(0, "No hay entradas");
             }else{
                 for (int i = 0; i < entradasCliente.size(); i++) {
@@ -794,8 +820,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     for (int i = 0; i < entradasCliente.size(); i++) {
                         lista.addElement(entradasCliente.get(i));
                     }
-                    ListadoEntradasCliente.setModel(lista);
+                    
                 }
+                ListadoEntradasCliente.setModel(lista);
         }else{
             JOptionPane.showMessageDialog(VentanaCliente, "La entrada no ha podido ser devuelta.","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -810,12 +837,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 cliente = clientes.get(i);
             }
         }
-        boolean descargada = cliente.descargarEntrada(cliente.verEntradas().get(indice));
+        boolean descargada = false;
+        VentanaRutaDescarga.setDialogTitle("Guardar entrada descargada");
+        VentanaRutaDescarga.setSelectedFile(new File("entrada_descargada.txt"));
+
+        int userSelection = VentanaRutaDescarga.showSaveDialog(null);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File archivo = VentanaRutaDescarga.getSelectedFile();
+            descargada = cliente.descargarEntrada(cliente.verEntradas().get(indice), archivo);
+        }
+        
         if(descargada){
             JOptionPane.showMessageDialog(VentanaCliente, "La entrada se ha descargado.","Entrada descargada",JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(VentanaCliente, "La entrada no se ha podido descargar.","Error",JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_DescargarEntradaActionPerformed
 
     private void ComprarEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradasActionPerformed
@@ -873,9 +911,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 sesión = sesiones.get(i);
             }
         }
+        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+        Cliente cliente = null;
+        for(int i = 0; i < clientes.size(); i++){
+            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
+                cliente = clientes.get(i);
+            }
+        }
+        Entrada entrada = new Entrada(0, cliente, sesión, sesión.getPrecio());
         ValorPelicula.setText(sesión.getPelicula().getTitulo());
         ValorSala.setText(String.valueOf(sesión.getSala().getNumero()));
         ValorDiaHora.setText(formato.format(sesión.getFechaHora()));
+        precioSesion.setText(String.valueOf(sesión.getPrecio()));
+        entrada.setPrecioFinal(sesión.getPrecio());
+        precioSesion.setText(String.valueOf(entrada.getPrecioFinal()));
+        if(Double.valueOf(precioSesion.getText()) != sesión.getPrecio()){
+            precioSesion.setForeground(Color.red);
+        }
         int capacidad = sesión.getSala().getCapacidad();
         List<Integer> obtenerEntrada;
         List<Integer> asientosOcupados = obtenerEntradas.obtenerAsientosOcupadosDeSala(sesión.getSala().getNumero());
@@ -908,11 +960,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
         int asiento = Integer.valueOf(AsientosDisponibles.getSelectedItem().toString());
-        Entrada entrada = new Entrada(asiento, cliente, sesión, 0);
+        Entrada entrada = new Entrada(asiento, cliente, sesión, sesión.getPrecio());
         entrada.setPrecioFinal(entrada.getSesion().getPrecio());
         int exito = añadirEntrada.añadirEntrada(entrada);
         if(exito == 1){
             cliente.setPuntosGanados(cliente.getPuntosGanados() + 5);
+            actualizarPuntosGanados.actualizarPuntos(cliente);
             JOptionPane.showMessageDialog(VentanaSesiones, "Entrada comprada con éxito.","Entrada comprada",JOptionPane.INFORMATION_MESSAGE);
             List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
                 List<Entrada> entradasCliente = cliente.verEntradas();
@@ -923,12 +976,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     for (int i = 0; i < entradasCliente.size(); i++) {
                         lista.addElement(entradasCliente.get(i));
                     }
-                    ListadoEntradasCliente.setModel(lista);
+                    
                 }
+                ListadoEntradasCliente.setModel(lista);
+                PuntosObtenidos.setText("Tienes acumulados " + cliente.getPuntosGanados() + " puntos.");
+                VentanaCompraEntrada.dispose();
         }else{
             JOptionPane.showMessageDialog(VentanaSesiones, "No se ha podido comprar la entrada.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ComprarEntradaAsientoActionPerformed
+
+    private void CerrarProgramaAlCerrarVentanaCliente(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarProgramaAlCerrarVentanaCliente
+        System.exit(0);
+    }//GEN-LAST:event_CerrarProgramaAlCerrarVentanaCliente
 
     /**
      * @param args the command line arguments
@@ -1012,6 +1072,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog VentanaCliente;
     private javax.swing.JDialog VentanaCompraEntrada;
     private javax.swing.JDialog VentanaRegistro;
+    private javax.swing.JFileChooser VentanaRutaDescarga;
     private javax.swing.JDialog VentanaSesiones;
     private javax.swing.JTable VerSesiones;
     private javax.swing.JScrollPane VerSesionesScroll;
@@ -1019,7 +1080,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1027,5 +1087,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel nombreAsientosDisponibles;
+    private javax.swing.JLabel nombrePrecioSesion;
+    private javax.swing.JLabel precioSesion;
     // End of variables declaration//GEN-END:variables
 }
