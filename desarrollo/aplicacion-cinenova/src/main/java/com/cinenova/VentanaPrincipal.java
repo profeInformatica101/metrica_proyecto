@@ -1,12 +1,15 @@
 package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
+import com.cinenova.autenticación.autenticaciónEmpleado;
 import com.cinenova.consultas.añadirPersona;
 import com.cinenova.consultas.obtenerClientes;
+import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerEntradas;
 import com.cinenova.consultas.obtenerPeliculas;
 import com.cinenova.consultas.obtenerSesiones;
 import com.cinenova.entidades.Cliente;
+import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Película;
 import com.cinenova.entidades.Sesión;
@@ -952,7 +955,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -1005,7 +1008,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_IniciarSesiónActionPerformed
 
     private void AccesoEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesoEmpleadosActionPerformed
-        // TODO add your handling code here:
+        InicioSesionEmpleados.pack();
+        InicioSesionEmpleados.setLocationRelativeTo(null);
+        InicioSesionEmpleados.setTitle("Ventana registro");
+        InicioSesionEmpleados.setModal(true);
+        InicioSesionEmpleados.setVisible(true);
     }//GEN-LAST:event_AccesoEmpleadosActionPerformed
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
@@ -1196,7 +1203,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ComprarEntradaActionPerformed
 
     private void IniciarSesiónEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesiónEmpleadosActionPerformed
-        // TODO add your handling code here:
+        String correo = CampoCorreoEmpleados.getText();
+        char[] password = CampoContraseñaEmpleados.getPassword();
+        String contrasena = new String(password);
+        
+        
+        if(autenticaciónEmpleado.esEmpleado(correo, contrasena)){
+            String nombre = "";
+            String apellidos = "";
+            List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+            for(int i = 0; i < empleados.size(); i++){
+                if((empleados.get(i).getCorreo().equals(correo)) && (empleados.get(i).getContrasena().equals(contrasena))){
+                    nombre = empleados.get(i).getNombre();
+                    apellidos = empleados.get(i).getApellidos();
+                }
+            }
+            VentanaEmpleados.pack();
+            VentanaEmpleados.setLocationRelativeTo(null);
+            VentanaEmpleados.setModal(true);
+            VentanaEmpleados.setTitle("Ventana Empleados");
+            BienvenidaEmpleado.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
+            VentanaEmpleados.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(jPanel6, "Correo y/o la contraseña incorrectos.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_IniciarSesiónEmpleadosActionPerformed
 
     private void CampoCorreoEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCorreoEmpleadosActionPerformed
