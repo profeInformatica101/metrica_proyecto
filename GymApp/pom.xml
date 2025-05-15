@@ -10,11 +10,17 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.instituto.gymapp.GymApp</exec.mainClass>
     </properties>
+    <repositories>
+        <repository>
+            <id>oracle</id>
+            <url>https://maven.oracle.com</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc8</artifactId>
-            <version>19.3.0.0</version>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>21.9.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
