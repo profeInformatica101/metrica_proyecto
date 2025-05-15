@@ -151,6 +151,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BorrarEmpleados = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        VentanaAñadirEmpleados = new javax.swing.JDialog();
+        jPanel9 = new javax.swing.JPanel();
+        RegistroEmpleado = new javax.swing.JLabel();
+        NombreEmpleado = new javax.swing.JLabel();
+        ApellidosEmpleado = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        CampoContraseñaRegistro1 = new javax.swing.JPasswordField();
+        CampoNombre1 = new javax.swing.JTextField();
+        CampoNombre2 = new javax.swing.JTextField();
+        CampoNombre3 = new javax.swing.JTextField();
+        CampoNombre4 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        CampoNombre5 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -919,6 +936,124 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        RegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        RegistroEmpleado.setText("Introduzca los datos para el registro del empleado");
+
+        NombreEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NombreEmpleado.setText("Nombre");
+
+        ApellidosEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ApellidosEmpleado.setText("Apellidos");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Contraseña");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("DNI");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Correo");
+
+        CampoContraseñaRegistro1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoNombre1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoNombre2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoNombre3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoNombre4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Sueldo");
+
+        CampoNombre5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jButton1.setText("Registrar empleado");
+
+        jButton2.setText("Borrar datos");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addComponent(RegistroEmpleado)
+                .addGap(71, 71, 71))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ApellidosEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NombreEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoContraseñaRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton2)
+                                .addComponent(CampoNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(RegistroEmpleado)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NombreEmpleado)
+                    .addComponent(CampoNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ApellidosEmpleado)
+                    .addComponent(CampoNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(CampoNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(CampoContraseñaRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(CampoNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(CampoNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaAñadirEmpleadosLayout = new javax.swing.GroupLayout(VentanaAñadirEmpleados.getContentPane());
+        VentanaAñadirEmpleados.getContentPane().setLayout(VentanaAñadirEmpleadosLayout);
+        VentanaAñadirEmpleadosLayout.setHorizontalGroup(
+            VentanaAñadirEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaAñadirEmpleadosLayout.setVerticalGroup(
+            VentanaAñadirEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -1408,6 +1543,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ActualizarEmpleados;
     private javax.swing.JButton ActualizarSesion;
     private javax.swing.JLabel Apellidos;
+    private javax.swing.JLabel ApellidosEmpleado;
     private javax.swing.JComboBox<String> AsientosDisponibles;
     private javax.swing.JButton AñadirEmpleados;
     private javax.swing.JButton AñadirPelicula;
@@ -1423,10 +1559,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPasswordField CampoContraseña;
     private javax.swing.JPasswordField CampoContraseñaEmpleados;
     private javax.swing.JPasswordField CampoContraseñaRegistro;
+    private javax.swing.JPasswordField CampoContraseñaRegistro1;
     private javax.swing.JTextField CampoCorreo;
     private javax.swing.JTextField CampoCorreoEmpleados;
     private javax.swing.JTextField CampoCorreoRegistro;
     private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextField CampoNombre1;
+    private javax.swing.JTextField CampoNombre2;
+    private javax.swing.JTextField CampoNombre3;
+    private javax.swing.JTextField CampoNombre4;
+    private javax.swing.JTextField CampoNombre5;
     private javax.swing.JButton ComprarEntrada;
     private javax.swing.JButton ComprarEntradaAsiento;
     private javax.swing.JButton ComprarEntradas;
@@ -1453,6 +1595,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ModificarPelicula;
     private javax.swing.JLabel NoRegistrado;
     private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel NombreEmpleado;
     private javax.swing.JLabel NombrePelicula;
     private javax.swing.JLabel NumeroSala;
     private javax.swing.JLabel PuntosGanadosCompra;
@@ -1461,6 +1604,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel QueDeseaHacerEmpleado;
     private javax.swing.JButton Registrarse;
     private javax.swing.JButton RegistrarseConfirmar;
+    private javax.swing.JLabel RegistroEmpleado;
     private javax.swing.JSeparator Separador;
     private javax.swing.JSeparator Separador1;
     private javax.swing.JLabel SesionSeleccionada;
@@ -1469,6 +1613,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel ValorDiaHora;
     private javax.swing.JLabel ValorPelicula;
     private javax.swing.JLabel ValorSala;
+    private javax.swing.JDialog VentanaAñadirEmpleados;
     private javax.swing.JDialog VentanaCliente;
     private javax.swing.JDialog VentanaCompraEntrada;
     private javax.swing.JDialog VentanaEmpleados;
@@ -1478,12 +1623,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton VerEmpleados;
     private javax.swing.JTable VerSesiones;
     private javax.swing.JScrollPane VerSesionesScroll;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jListPelículas;
     private javax.swing.JList<String> jListSesiones;
@@ -1495,6 +1646,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
