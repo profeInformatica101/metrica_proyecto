@@ -6,6 +6,7 @@ com\cinenova\VentanaPrincipal$4.class
 com\cinenova\VentanaPrincipal.class
 com\cinenova\entidades\Película.class
 com\cinenova\VentanaPrincipal$19.class
+com\cinenova\VentanaPrincipal$24.class
 com\cinenova\consultas\obtenerJefes.class
 com\cinenova\VentanaPrincipal$14.class
 com\cinenova\consultas\devolverEntrada.class
@@ -16,6 +17,7 @@ com\cinenova\VentanaPrincipal$21.class
 com\cinenova\VentanaPrincipal$11.class
 com\cinenova\autenticación\autenticaciónJefe.class
 com\cinenova\VentanaPrincipal$13.class
+com\cinenova\VentanaPrincipal$23.class
 com\cinenova\VentanaPrincipal$6.class
 com\cinenova\autenticación\autenticaciónEmpleado.class
 com\cinenova\VentanaPrincipal$16.class

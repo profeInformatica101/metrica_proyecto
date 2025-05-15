@@ -2,15 +2,18 @@ package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
 import com.cinenova.autenticación.autenticaciónEmpleado;
+import com.cinenova.autenticación.autenticaciónJefe;
 import com.cinenova.consultas.añadirPersona;
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerEntradas;
+import com.cinenova.consultas.obtenerJefes;
 import com.cinenova.consultas.obtenerPeliculas;
 import com.cinenova.consultas.obtenerSesiones;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Entrada;
+import com.cinenova.entidades.Jefe;
 import com.cinenova.entidades.Película;
 import com.cinenova.entidades.Sesión;
 import java.awt.Component;
@@ -139,6 +142,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BorrarPelicula = new javax.swing.JButton();
         VerEmpleados = new javax.swing.JButton();
         VentanaJefe = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        Logo1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        AñadirEmpleados = new javax.swing.JButton();
+        ActualizarEmpleados = new javax.swing.JButton();
+        BorrarEmpleados = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -663,6 +675,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        VentanaEmpleados.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                CerrarPrograma(evt);
+            }
+        });
+
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         BienvenidaEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -829,15 +847,76 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        Logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cinenova.png"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Buenas Jef@, ¿Qué desea hacer con los empleados?");
+
+        AñadirEmpleados.setText("Añadir empleados");
+
+        ActualizarEmpleados.setText("Actualizar empleados");
+
+        BorrarEmpleados.setText("Borrar empleados");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList1);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(14, 14, 14))
+                    .addComponent(Logo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                            .addComponent(AñadirEmpleados)
+                            .addGap(104, 104, 104)
+                            .addComponent(ActualizarEmpleados)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                            .addComponent(BorrarEmpleados))
+                        .addComponent(jSeparator4)))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(Logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AñadirEmpleados)
+                    .addComponent(ActualizarEmpleados)
+                    .addComponent(BorrarEmpleados))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout VentanaJefeLayout = new javax.swing.GroupLayout(VentanaJefe.getContentPane());
         VentanaJefe.getContentPane().setLayout(VentanaJefeLayout);
         VentanaJefeLayout.setHorizontalGroup(
             VentanaJefeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         VentanaJefeLayout.setVerticalGroup(
             VentanaJefeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1011,8 +1090,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         InicioSesionEmpleados.pack();
         InicioSesionEmpleados.setLocationRelativeTo(null);
         InicioSesionEmpleados.setTitle("Ventana registro");
-        InicioSesionEmpleados.setModal(true);
+        InicioSesionEmpleados.setModal(false);
         InicioSesionEmpleados.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_AccesoEmpleadosActionPerformed
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
@@ -1208,23 +1288,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String contrasena = new String(password);
         
         
-        if(autenticaciónEmpleado.esEmpleado(correo, contrasena)){
+        boolean esEmpleado = autenticaciónEmpleado.esEmpleado(correo, contrasena);
+        boolean esJefe = autenticaciónJefe.esJefe(correo, contrasena);
+
+        if(esEmpleado || esJefe){
             String nombre = "";
             String apellidos = "";
-            List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
-            for(int i = 0; i < empleados.size(); i++){
-                if((empleados.get(i).getCorreo().equals(correo)) && (empleados.get(i).getContrasena().equals(contrasena))){
-                    nombre = empleados.get(i).getNombre();
-                    apellidos = empleados.get(i).getApellidos();
+
+            if(esEmpleado){
+                List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+                for(Empleado emp : empleados){
+                    if(emp.getCorreo().equals(correo) && emp.getContrasena().equals(contrasena)){
+                        nombre = emp.getNombre();
+                        apellidos = emp.getApellidos();
+                    }
+                }
+            } else {
+                List<Jefe> jefes = obtenerJefes.obtenerConsulta();
+                for(Jefe jefe : jefes){
+                    if(jefe.getCorreo().equals(correo) && jefe.getContrasena().equals(contrasena)){
+                        nombre = jefe.getNombre();
+                        apellidos = jefe.getApellidos();
+                    }
                 }
             }
+            
+            VerEmpleados.setVisible(esJefe);
+            
             VentanaEmpleados.pack();
             VentanaEmpleados.setLocationRelativeTo(null);
-            VentanaEmpleados.setModal(true);
+            VentanaEmpleados.setModal(false);
             VentanaEmpleados.setTitle("Ventana Empleados");
             BienvenidaEmpleado.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
             VentanaEmpleados.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(jPanel6, "Correo y/o la contraseña incorrectos.","Error",JOptionPane.ERROR_MESSAGE);
         }
     
@@ -1259,8 +1356,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BorrarPeliculaActionPerformed
 
     private void VerEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEmpleadosActionPerformed
-        // TODO add your handling code here:
+        VentanaJefe.pack();
+        VentanaJefe.setLocationRelativeTo(null);
+        VentanaJefe.setTitle("Ventana registro");
+        VentanaJefe.setModal(false);
+        VentanaJefe.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VerEmpleadosActionPerformed
+
+    private void CerrarPrograma(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarPrograma
+        System.exit(0);
+    }//GEN-LAST:event_CerrarPrograma
 
     /**
      * @param args the command line arguments
@@ -1299,15 +1405,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccesoEmpleados;
+    private javax.swing.JButton ActualizarEmpleados;
     private javax.swing.JButton ActualizarSesion;
     private javax.swing.JLabel Apellidos;
     private javax.swing.JComboBox<String> AsientosDisponibles;
+    private javax.swing.JButton AñadirEmpleados;
     private javax.swing.JButton AñadirPelicula;
     private javax.swing.JButton AñadirSesion;
     private javax.swing.JLabel Bienvenida;
     private javax.swing.JLabel BienvenidaEmpleado;
     private javax.swing.JLabel BienvenidoEmpleado;
     private javax.swing.JButton BorrarDatosRegistro;
+    private javax.swing.JButton BorrarEmpleados;
     private javax.swing.JButton BorrarPelicula;
     private javax.swing.JButton BorrarSesion;
     private javax.swing.JTextField CampoApellidos;
@@ -1337,6 +1446,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane ListadoEntradas1;
     private javax.swing.JList<String> ListadoEntradasCliente;
     private javax.swing.JLabel Logo;
+    private javax.swing.JLabel Logo1;
     private javax.swing.JLabel LogoCliente;
     private javax.swing.JLabel LogoClienteEmpleado;
     private javax.swing.JLabel LogoInicioEmpleados;
@@ -1373,6 +1483,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jListPelículas;
     private javax.swing.JList<String> jListSesiones;
     private javax.swing.JPanel jPanel1;
@@ -1382,10 +1494,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
 }
