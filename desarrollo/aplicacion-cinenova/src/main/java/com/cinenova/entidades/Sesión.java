@@ -2,6 +2,7 @@ package com.cinenova.entidades;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -52,7 +53,7 @@ public class Sesión {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
+       
     
     @Override
     public String toString() {

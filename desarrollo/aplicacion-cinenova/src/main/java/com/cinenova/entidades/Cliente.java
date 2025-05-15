@@ -1,5 +1,6 @@
 package com.cinenova.entidades;
 
+import com.cinenova.consultas.añadirEntrada;
 import com.cinenova.consultas.devolverEntrada;
 import com.cinenova.consultas.obtenerEntradas;
 import java.io.File;
@@ -30,8 +31,12 @@ public class Cliente extends Persona{
         this.puntosGanados = puntosGanados;
     }
 
-    public void comprarEntrada(Entrada entrada){
-        
+    public boolean comprarEntrada(Entrada entrada){
+        boolean comprada = false;
+        if(añadirEntrada.añadirEntrada(entrada) == 1){
+            comprada = true;
+        }
+        return comprada;
     }
     
     public boolean devolverEntrada(Entrada entrada){
