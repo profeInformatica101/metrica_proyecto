@@ -65,9 +65,9 @@ CREATE TABLE Entrada (
     fechaHora TIMESTAMP(0) NOT NULL,
     correoPersona VARCHAR(100) NOT NULL,
     asiento NUMBER NOT NULL,
-    precioFinal NUMBER(10) NOT NULL,
+    precioFinal NUMBER(10,2) NOT NULL,
     fechaCompra DATE DEFAULT SYSDATE,
-    PRIMARY KEY (id_pelicula, numeroSala, fechaHora, correoPersona),
+    PRIMARY KEY (id_pelicula, numeroSala, fechaHora, correoPersona, asiento),
     FOREIGN KEY (id_pelicula, numeroSala, fechaHora) REFERENCES Sesion(id_pelicula, numeroSala, fechaHora),
     FOREIGN KEY (correoPersona) REFERENCES Persona(correo)
 );
