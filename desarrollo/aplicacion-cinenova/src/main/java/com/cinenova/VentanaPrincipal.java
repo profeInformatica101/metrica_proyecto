@@ -5,7 +5,9 @@ import com.cinenova.autenticación.autenticaciónEmpleado;
 import static com.cinenova.autenticación.autenticaciónEmpleado.esEmpleado;
 import com.cinenova.autenticación.autenticaciónJefe;
 import static com.cinenova.autenticación.autenticaciónJefe.esJefe;
+import static com.cinenova.consultas.actualizarEmpleado.actualizarEmpleado;
 import com.cinenova.consultas.añadirPersona;
+import com.cinenova.consultas.borrarEmpleado;
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerEntradas;
@@ -151,8 +153,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         AñadirEmpleados = new javax.swing.JButton();
         ActualizarEmpleados = new javax.swing.JButton();
         BorrarEmpleados = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPaneEmpleados = new javax.swing.JScrollPane();
+        jListEmpleados = new javax.swing.JList<>();
         VentanaAñadirEmpleados = new javax.swing.JDialog();
         jPanel9 = new javax.swing.JPanel();
         RegistroEmpleado = new javax.swing.JLabel();
@@ -170,6 +172,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         CampoSueldoRegistroEmpleado = new javax.swing.JTextField();
         RegistrarEmpleados = new javax.swing.JButton();
         BorrarDatosRegistroEmpleado = new javax.swing.JButton();
+        VentanaActualizarEmpleado = new javax.swing.JDialog();
+        jPanel10 = new javax.swing.JPanel();
+        ActualizarEmpleadoTexto = new javax.swing.JLabel();
+        ContraseñaActualizarEmpleado = new javax.swing.JLabel();
+        SueldoActualizarEmpleado = new javax.swing.JLabel();
+        CampoContraseñaActualizarEmpleado = new javax.swing.JPasswordField();
+        CampoSueldoActualizarEmpleado = new javax.swing.JTextField();
+        ActualizarEmpleadoConfirmar = new javax.swing.JButton();
+        CorreoActualizarEmpleado = new javax.swing.JLabel();
+        CampoCorreoActualizarEmpleado = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -881,15 +893,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         ActualizarEmpleados.setText("Actualizar empleados");
+        ActualizarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarEmpleadosActionPerformed(evt);
+            }
+        });
 
         BorrarEmpleados.setText("Borrar empleados");
+        BorrarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarEmpleadosActionPerformed(evt);
+            }
+        });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListEmpleados.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPaneEmpleados.setViewportView(jListEmpleados);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -903,7 +925,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(14, 14, 14))
                     .addComponent(Logo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPaneEmpleados, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                             .addComponent(AñadirEmpleados)
                             .addGap(104, 104, 104)
@@ -928,7 +950,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(ActualizarEmpleados)
                     .addComponent(BorrarEmpleados))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -964,6 +986,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         CorreoRegistroEmpleado.setText("Correo");
 
         CampoContraseñaRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CampoContraseñaRegistroEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoContraseñaRegistroEmpleadoActionPerformed(evt);
+            }
+        });
 
         CampoApellidosRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -1069,6 +1096,96 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaAñadirEmpleadosLayout.setVerticalGroup(
             VentanaAñadirEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        ActualizarEmpleadoTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ActualizarEmpleadoTexto.setText("Escriba lo que desea actualizar del empleado");
+
+        ContraseñaActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ContraseñaActualizarEmpleado.setText("Contraseña:");
+
+        SueldoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SueldoActualizarEmpleado.setText("Sueldo:");
+
+        CampoContraseñaActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CampoContraseñaActualizarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoContraseñaActualizarEmpleadoActionPerformed(evt);
+            }
+        });
+
+        CampoSueldoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ActualizarEmpleadoConfirmar.setText("Actualizar empleado");
+        ActualizarEmpleadoConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarEmpleadoConfirmarActionPerformed(evt);
+            }
+        });
+
+        CorreoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CorreoActualizarEmpleado.setText("Sueldo:");
+
+        CampoCorreoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ActualizarEmpleadoTexto)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(SueldoActualizarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ContraseñaActualizarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(CorreoActualizarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoContraseñaActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoSueldoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoCorreoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(ActualizarEmpleadoConfirmar)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(ActualizarEmpleadoTexto)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoContraseñaActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ContraseñaActualizarEmpleado))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SueldoActualizarEmpleado)
+                    .addComponent(CampoSueldoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CorreoActualizarEmpleado)
+                    .addComponent(CampoCorreoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(ActualizarEmpleadoConfirmar)
+                .addGap(41, 41, 41))
+        );
+
+        javax.swing.GroupLayout VentanaActualizarEmpleadoLayout = new javax.swing.GroupLayout(VentanaActualizarEmpleado.getContentPane());
+        VentanaActualizarEmpleado.getContentPane().setLayout(VentanaActualizarEmpleadoLayout);
+        VentanaActualizarEmpleadoLayout.setHorizontalGroup(
+            VentanaActualizarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaActualizarEmpleadoLayout.setVerticalGroup(
+            VentanaActualizarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1241,7 +1358,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void AccesoEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesoEmpleadosActionPerformed
         InicioSesionEmpleados.pack();
         InicioSesionEmpleados.setLocationRelativeTo(null);
-        InicioSesionEmpleados.setTitle("Ventana registro");
+        InicioSesionEmpleados.setTitle("Ventana Empleados");
         InicioSesionEmpleados.setModal(false);
         InicioSesionEmpleados.setVisible(true);
         this.dispose();
@@ -1513,7 +1630,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaJefe.setTitle("Ventana Ver Empleados");
         VentanaJefe.setModal(false);
         VentanaJefe.setVisible(true);
+        CorreoActualizarEmpleado.setVisible(false);
+        CampoCorreoActualizarEmpleado.setVisible(false);
         this.dispose();
+        
+        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+
+        for (Empleado empleado : empleados) {
+            String info = "Nombre: " + empleado.getNombre() +
+                          " " + empleado.getApellidos() +
+                          " | Correo: " + empleado.getCorreo() +
+                          " | DNI: " + empleado.getDNI() +
+                          " | Sueldo: " + empleado.getSueldo() + "€";
+
+            modelo.addElement(info);
+        }
+
+        jListEmpleados.setModel(modelo);
     }//GEN-LAST:event_VerEmpleadosActionPerformed
 
     private void CerrarPrograma(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarPrograma
@@ -1573,6 +1707,128 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegistrarEmpleadosActionPerformed
 
+    private void BorrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarEmpleadosActionPerformed
+                                         
+        int indice = jListEmpleados.getSelectedIndex();
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un empleado para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+
+        Empleado empleadoSeleccionado = empleados.get(indice);
+
+        int filasAfectadas = borrarEmpleado.borrarEmpleado(empleadoSeleccionado.getDNI());
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Empleado borrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            List<Empleado> empleadosActualizados = obtenerEmpleados.obtenerConsulta();
+            DefaultListModel modeloLista = new DefaultListModel();
+
+            if (empleadosActualizados.isEmpty()) {
+                modeloLista.addElement("No hay empleados registrados.");
+            } else {
+                for (Empleado empleado : empleadosActualizados) {
+                    String info = "Nombre: " + empleado.getNombre() +
+                          " " + empleado.getApellidos() +
+                          " | Correo: " + empleado.getCorreo() +
+                          " | DNI: " + empleado.getDNI() +
+                          " | Sueldo: " + empleado.getSueldo() + "€";
+
+                    modeloLista.addElement(info);
+                }
+            }
+            jListEmpleados.setModel(modeloLista);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar el empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_BorrarEmpleadosActionPerformed
+
+    private void CampoContraseñaRegistroEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoContraseñaRegistroEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoContraseñaRegistroEmpleadoActionPerformed
+
+    private void CampoContraseñaActualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoContraseñaActualizarEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoContraseñaActualizarEmpleadoActionPerformed
+
+    private void ActualizarEmpleadoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarEmpleadoConfirmarActionPerformed
+        String correo = CampoCorreoActualizarEmpleado.getText().trim();
+        String nuevaContrasena = CampoContraseñaActualizarEmpleado.getText().trim();
+        String sueldoTexto = CampoSueldoActualizarEmpleado.getText().trim();
+
+        if (correo.isEmpty() || nuevaContrasena.isEmpty() || sueldoTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double nuevoSueldo;
+        try {
+            nuevoSueldo = Double.parseDouble(sueldoTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El sueldo debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = actualizarEmpleado(correo, nuevaContrasena, nuevoSueldo);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            VentanaActualizarEmpleado.dispose();
+
+            List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Empleado empleado : empleados) {
+                String info = "Nombre: " + empleado.getNombre() +
+                              " " + empleado.getApellidos() +
+                              " | Correo: " + empleado.getCorreo() +
+                              " | DNI: " + empleado.getDNI() +
+                              " | Sueldo: " + empleado.getSueldo() + "€";
+                modelo.addElement(info);
+            }
+            jListEmpleados.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ActualizarEmpleadoConfirmarActionPerformed
+
+    private void ActualizarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarEmpleadosActionPerformed
+
+        int indice = jListEmpleados.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un empleado para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Obtener la lista completa de empleados de la base de datos
+        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+
+        if (indice >= empleados.size()) {
+            JOptionPane.showMessageDialog(this, "El empleado seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Empleado empleadoSeleccionado = empleados.get(indice);
+        
+        CampoCorreoActualizarEmpleado.setText(empleadoSeleccionado.getCorreo());
+        CampoContraseñaActualizarEmpleado.setText(empleadoSeleccionado.getContrasena());
+        CampoSueldoActualizarEmpleado.setText(String.valueOf(empleadoSeleccionado.getSueldo()));
+
+        VentanaActualizarEmpleado.pack();
+        VentanaActualizarEmpleado.setLocationRelativeTo(this);
+        VentanaActualizarEmpleado.setTitle("Actualizar Empleado");
+        VentanaActualizarEmpleado.setModal(true);
+        VentanaActualizarEmpleado.setVisible(true);
+    
+    }//GEN-LAST:event_ActualizarEmpleadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1610,6 +1866,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccesoEmpleados;
+    private javax.swing.JButton ActualizarEmpleadoConfirmar;
+    private javax.swing.JLabel ActualizarEmpleadoTexto;
     private javax.swing.JButton ActualizarEmpleados;
     private javax.swing.JButton ActualizarSesion;
     private javax.swing.JLabel Apellidos;
@@ -1629,25 +1887,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField CampoApellidos;
     private javax.swing.JTextField CampoApellidosRegistroEmpleado;
     private javax.swing.JPasswordField CampoContraseña;
+    private javax.swing.JPasswordField CampoContraseñaActualizarEmpleado;
     private javax.swing.JPasswordField CampoContraseñaEmpleados;
     private javax.swing.JPasswordField CampoContraseñaRegistro;
     private javax.swing.JPasswordField CampoContraseñaRegistroEmpleado;
     private javax.swing.JTextField CampoCorreo;
+    private javax.swing.JTextField CampoCorreoActualizarEmpleado;
     private javax.swing.JTextField CampoCorreoEmpleados;
     private javax.swing.JTextField CampoCorreoRegistro;
     private javax.swing.JTextField CampoCorreoRegistroEmpleado;
     private javax.swing.JTextField CampoDNIRegistroEmpleado;
     private javax.swing.JTextField CampoNombre;
     private javax.swing.JTextField CampoNombreRegistroEmpleado;
+    private javax.swing.JTextField CampoSueldoActualizarEmpleado;
     private javax.swing.JTextField CampoSueldoRegistroEmpleado;
     private javax.swing.JButton ComprarEntrada;
     private javax.swing.JButton ComprarEntradaAsiento;
     private javax.swing.JButton ComprarEntradas;
     private javax.swing.JLabel Contraseña;
+    private javax.swing.JLabel ContraseñaActualizarEmpleado;
     private javax.swing.JLabel ContraseñaEmpleados;
     private javax.swing.JLabel ContraseñaRegistro;
     private javax.swing.JLabel ContraseñaRegistroEmpleado;
     private javax.swing.JLabel Correo;
+    private javax.swing.JLabel CorreoActualizarEmpleado;
     private javax.swing.JLabel CorreoEmpleados;
     private javax.swing.JLabel CorreoRegistro;
     private javax.swing.JLabel CorreoRegistroEmpleado;
@@ -1683,12 +1946,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator Separador;
     private javax.swing.JSeparator Separador1;
     private javax.swing.JLabel SesionSeleccionada;
+    private javax.swing.JLabel SueldoActualizarEmpleado;
     private javax.swing.JLabel SueldoRegistroEmpleado;
     private javax.swing.JLabel TituloComprarEntrada;
     private javax.swing.JLabel TituloListadoEntradas;
     private javax.swing.JLabel ValorDiaHora;
     private javax.swing.JLabel ValorPelicula;
     private javax.swing.JLabel ValorSala;
+    private javax.swing.JDialog VentanaActualizarEmpleado;
     private javax.swing.JDialog VentanaAñadirEmpleados;
     private javax.swing.JDialog VentanaCliente;
     private javax.swing.JDialog VentanaCompraEntrada;
@@ -1705,10 +1970,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListEmpleados;
     private javax.swing.JList<String> jListPelículas;
     private javax.swing.JList<String> jListSesiones;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1719,7 +1985,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPaneEmpleados;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
