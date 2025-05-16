@@ -1261,6 +1261,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir empleados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A&#xf1;adirEmpleadosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="ActualizarEmpleados">
               <Properties>
@@ -1334,26 +1337,26 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="RegistrarEmpleados" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel7" alignment="0" pref="80" max="32767" attributes="0"/>
-                                  <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ApellidosEmpleado" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="NombreEmpleado" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ContraseñaRegistroEmpleado" alignment="0" pref="80" max="32767" attributes="0"/>
+                                  <Component id="CorreoRegistroEmpleado" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ApellidosRegistroEmpleado" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="NombreRegistroEmpleado" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="DNIRegistroEmpleado" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="SueldoRegistroEmpleado" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="CampoNombre1" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <Component id="CampoContraseñaRegistro1" min="-2" pref="152" max="-2" attributes="0"/>
-                                  <Component id="CampoNombre2" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <Component id="CampoNombre3" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <Component id="CampoNombre4" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Component id="CampoApellidosRegistroEmpleado" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Component id="CampoContraseñaRegistroEmpleado" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="CampoNombreRegistroEmpleado" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Component id="CampoCorreoRegistroEmpleado" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Component id="CampoDNIRegistroEmpleado" min="-2" pref="151" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="CampoNombre5" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="BorrarDatosRegistroEmpleado" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CampoSueldoRegistroEmpleado" min="-2" pref="151" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1369,38 +1372,38 @@
                       <Component id="RegistroEmpleado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="NombreEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoNombre2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NombreRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoNombreRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ApellidosEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ApellidosRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoApellidosRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoNombre3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CorreoRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoCorreoRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoContraseñaRegistro1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ContraseñaRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoContraseñaRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoNombre4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DNIRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoDNIRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoNombre5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SueldoRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoSueldoRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RegistrarEmpleados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BorrarDatosRegistroEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="73" max="32767" attributes="0"/>
                   </Group>
@@ -1416,7 +1419,7 @@
                 <Property name="text" type="java.lang.String" value="Introduzca los datos para el registro del empleado"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="NombreEmpleado">
+            <Component class="javax.swing.JLabel" name="NombreRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1424,7 +1427,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="ApellidosEmpleado">
+            <Component class="javax.swing.JLabel" name="ApellidosRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1432,7 +1435,7 @@
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="Contrase&#xf1;aRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1440,7 +1443,7 @@
                 <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
+            <Component class="javax.swing.JLabel" name="DNIRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1448,7 +1451,7 @@
                 <Property name="text" type="java.lang.String" value="DNI"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="CorreoRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1456,42 +1459,42 @@
                 <Property name="text" type="java.lang.String" value="Correo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="CampoContrase&#xf1;aRegistro1">
+            <Component class="javax.swing.JPasswordField" name="CampoContrase&#xf1;aRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoNombre1">
+            <Component class="javax.swing.JTextField" name="CampoApellidosRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoNombre2">
+            <Component class="javax.swing.JTextField" name="CampoNombreRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoNombre3">
+            <Component class="javax.swing.JTextField" name="CampoCorreoRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoNombre4">
+            <Component class="javax.swing.JTextField" name="CampoDNIRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="SueldoRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1499,22 +1502,28 @@
                 <Property name="text" type="java.lang.String" value="Sueldo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoNombre5">
+            <Component class="javax.swing.JTextField" name="CampoSueldoRegistroEmpleado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="RegistrarEmpleados">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar empleado"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarEmpleadosActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="BorrarDatosRegistroEmpleado">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Borrar datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BorrarDatosRegistroEmpleadoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

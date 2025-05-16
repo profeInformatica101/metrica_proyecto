@@ -36,4 +36,32 @@ public class añadirPersona {
         
         return row;
     }
+    
+    public static int añadirEmpleado(String nombre, String apellidos, String correo, String contrasena, String DNI, String sueldo){
+        int row = 0;
+        String sql = "INSERT INTO Persona (nombre, apellidos, correo, contrasena, DNI, sueldo, esEmpleado, esJefe) VALUES (?, ?, ?, ?, ?, ?, 1, 0)";        
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            
+                preparedStatement.setString(1, nombre);
+                preparedStatement.setString(2, apellidos);
+                preparedStatement.setString(3, correo);
+                preparedStatement.setString(4, contrasena);
+                preparedStatement.setString(5, DNI);
+                preparedStatement.setDouble(6, Double.parseDouble(sueldo));
+            
+
+            row = preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return row;
+    }
 }
