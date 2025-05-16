@@ -134,7 +134,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         LogoClienteEmpleado = new javax.swing.JLabel();
         QueDeseaHacerEmpleado = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPanePeliculas = new javax.swing.JScrollPane();
         jListPelículas = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListSesiones = new javax.swing.JList<>();
@@ -727,7 +727,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jListPelículas);
+        jScrollPanePeliculas.setViewportView(jListPelículas);
 
         jListSesiones.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -791,7 +791,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPanePeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -853,7 +853,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(VerEmpleados))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPanePeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
 
@@ -1590,6 +1590,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             VentanaEmpleados.setTitle("Ventana Empleados");
             BienvenidaEmpleado.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
             VentanaEmpleados.setVisible(true);
+            
+            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+
+            for (Película pelicula : peliculas) {
+                String info = "Nombre: " + pelicula.getTitulo() +
+                              " " + pelicula.getDuracion() +
+                              " | Correo: " + pelicula.getGenero() +
+                              " | DNI: " + pelicula.getClasificacionEdad() +
+                              " | Sueldo: " + pelicula.getDescripcion();
+
+                modelo.addElement(info);
+            }
+
+            jListPelículas.setModel(modelo);
+            
+            List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+            DefaultListModel<String> modelo2 = new DefaultListModel<>();
+
+            for (Sesión sesion : sesiones) {
+                String info = "ID:" + sesion.getFechaHora() +
+                              " | Pelicula: " + sesion.getPelicula() +
+                              " | Sala: " + sesion.getSala() +
+                              " | Sueldo: " + sesion.getPrecio();
+
+                modelo2.addElement(info);
+            }
+
+            jListSesiones.setModel(modelo2);
+            
         } else {
             JOptionPane.showMessageDialog(jPanel6, "Correo y/o la contraseña incorrectos.","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -1983,9 +2013,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPaneEmpleados;
+    private javax.swing.JScrollPane jScrollPanePeliculas;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
