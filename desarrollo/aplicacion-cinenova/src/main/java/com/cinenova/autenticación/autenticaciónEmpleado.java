@@ -1,6 +1,6 @@
 package com.cinenova.autenticación;
 
-import com.cinenova.consultas.obtenerEmpleados;
+import com.cinenova.consultas.consultasPersona;
 import com.cinenova.entidades.Empleado;
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class autenticaciónEmpleado {
     
     public static boolean esEmpleado(String correo, String contrasena){
         boolean autenticado = false;
-        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
         for(int i=0; i < empleados.size(); i++){
             if((empleados.get(i).getCorreo().equals(correo)) && (empleados.get(i).getContrasena().equals(contrasena))){
                 autenticado = true;

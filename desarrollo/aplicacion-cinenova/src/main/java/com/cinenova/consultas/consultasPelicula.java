@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Juan Carlos
  */
-public class obtenerPeliculas {
+public class consultasPelicula {
     
     public static List<Película> obtenerConsulta(){
         List<Película> peliculas = new ArrayList<>();

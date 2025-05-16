@@ -1,22 +1,17 @@
 package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
-import com.cinenova.consultas.actualizarPuntosGanados;
-import com.cinenova.consultas.añadirEntrada;
-import com.cinenova.consultas.añadirPersona;
-import com.cinenova.consultas.obtenerClientes;
-import com.cinenova.consultas.obtenerEntradas;
-import com.cinenova.consultas.obtenerSesiones;
+import com.cinenova.consultas.consultasEntrada;
+import com.cinenova.consultas.consultasPersona;
+import com.cinenova.consultas.consultasSesion;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Entrada;
+import com.cinenova.entidades.Persona;
 import com.cinenova.entidades.Sesión;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -684,32 +679,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         char[] password = CampoContraseña.getPassword();
         String contrasena = new String(password);
         
-        
         if(autenticaciónCliente.esCliente(correo, contrasena)){
-            String nombre = "";
-            String apellidos = "";
-            int puntos = 0;
-            List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-            for(int i = 0; i < clientes.size(); i++){
-                if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
-                    nombre = clientes.get(i).getNombre();
-                    apellidos = clientes.get(i).getApellidos();
-                    puntos = clientes.get(i).getPuntosGanados();
-                }
-            }
-            List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
-            List<Entrada> entradasCliente = new ArrayList<>();
-            for(int i = 0; i < entradas.size(); i++){
-                if(entradas.get(i).getCliente().getCorreo().equals(correo)){
-                    entradasCliente.add(entradas.get(i));
-                }
-            }
+            Cliente cliente = Persona.iniciarSesión(correo);
+            String nombre = cliente.getNombre();
+            String apellidos = cliente.getApellidos();
+            int puntos = cliente.getPuntosGanados();
+            List<Entrada> entradasCliente = cliente.verEntradasFuturo();
             DefaultListModel lista = new DefaultListModel<>();
             if(entradasCliente.isEmpty()){
-                lista.add(0, "No hay entradas");
+                lista.add(0, "No tienes entradas compradas");
             }else{
                 for (int i = 0; i < entradasCliente.size(); i++) {
-                    lista.addElement(entradasCliente.get(i));
+                       lista.addElement(entradasCliente.get(i)); 
                 }
                 ListadoEntradasCliente.setModel(lista);
             }
@@ -744,34 +725,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String correo = CampoCorreoRegistro.getText();
         char[] password = CampoContraseñaRegistro.getPassword();
         String contrasena = new String(password);
-        if(!autenticaciónCliente.esCliente(correo, contrasena)){
-            int row = añadirPersona.añadirCliente(correo, nombre, apellidos, contrasena);
+        if (!(correo.contains("@") && correo.contains("."))) {
+            JOptionPane.showMessageDialog(VentanaRegistro, "El correo debe contener @ y punto.","Correo no válido",JOptionPane.ERROR_MESSAGE);
+        }else if(!autenticaciónCliente.esCliente(correo, contrasena)){
+            int row = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);
             if(row > 0){
                 JOptionPane.showMessageDialog(VentanaRegistro, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
-                String nombreMostrar = "";
-                String apellidosMostrar = "";
-                int puntos = 0;
-                List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-                for(int i = 0; i < clientes.size(); i++){
-                    if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
-                        nombreMostrar = clientes.get(i).getNombre();
-                        apellidosMostrar = clientes.get(i).getApellidos();
-                        puntos = clientes.get(i).getPuntosGanados();
-                    }
-                }
-                List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
-                List<Entrada> entradasCliente = new ArrayList<>();
-                for(int i = 0; i < entradas.size(); i++){
-                    if(entradas.get(i).getCliente().getCorreo().equals(correo)){
-                        entradasCliente.add(entradas.get(i));
-                    }
-                }
+                consultasPersona.obtenerClientes();
+                Cliente cliente = Persona.iniciarSesión(correo);
+                String nombreMostrar = cliente.getNombre();
+                String apellidosMostrar = cliente.getApellidos();
+                int puntos = cliente.getPuntosGanados();
+                List<Entrada> entradasCliente = cliente.verEntradasFuturo();
                 DefaultListModel lista = new DefaultListModel<>();
                 if(entradasCliente.isEmpty()){
                     lista.addElement("No tienes entradas compradas");
                 }else{
                     for (int i = 0; i < entradasCliente.size(); i++) {
-                        lista.addElement(entradasCliente.get(i));
+                           lista.addElement(entradasCliente.get(i)); 
+
                     }
                     ListadoEntradasCliente.setModel(lista);
                     
@@ -789,13 +761,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(VentanaRegistro, "El registro no ha podido realizarse.","Error",JOptionPane.ERROR_MESSAGE);
             }
-            
-            CampoNombre.setText("");
-            CampoApellidos.setText("");
-            CampoCorreoRegistro.setText("");
-            CampoContraseñaRegistro.setText("");
         }else{
-            JOptionPane.showMessageDialog(jPanel1, "Este cliente ya está registrado.","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(VentanaRegistro, "Este cliente ya está registrado.","Error",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_RegistrarseConfirmarActionPerformed
@@ -809,57 +776,76 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void DevolverEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevolverEntradaActionPerformed
         int indice = ListadoEntradasCliente.getSelectedIndex();
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-        Cliente cliente = null;
-        for(int i = 0; i < clientes.size(); i++){
-            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
-                cliente = clientes.get(i);
+        String correo = "";
+        if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+            System.out.println(CampoCorreoRegistro.getText());
+            System.out.println(CampoCorreo.getText());
+            correo = CampoCorreoRegistro.getText();
+        }else{
+            correo = CampoCorreo.getText();
+        }
+        consultasPersona.obtenerClientes();
+        Cliente cliente = Persona.iniciarSesión(correo);
+        if(indice == -1){
+            JOptionPane.showMessageDialog(VentanaCliente, "Seleccione la entrada que desea devolver.","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
+            boolean exito = cliente.devolverEntrada(cliente.verEntradasFuturo().get(indice));
+            if(exito){
+                JOptionPane.showMessageDialog(VentanaCliente, "La entrada ha sido devuelta con éxito.","Entrada devuelta",JOptionPane.INFORMATION_MESSAGE);
+                List<Entrada> entradas = consultasEntrada.obtenerConsulta();
+                    List<Entrada> entradasCliente = cliente.verEntradasFuturo();
+                    DefaultListModel lista = new DefaultListModel<>();
+                    if(entradasCliente.isEmpty()){
+                        lista.addElement("No tienes entradas compradas");
+                    }else{
+                        Date hoy = new Date();
+                        for (int i = 0; i < entradasCliente.size(); i++) {
+                            if(entradasCliente.get(i).getSesion().getFechaHora().after(hoy)){
+                               lista.addElement(entradasCliente.get(i)); 
+                            }
+
+                        }
+
+                    }
+                    ListadoEntradasCliente.setModel(lista);
+            }else{
+                JOptionPane.showMessageDialog(VentanaCliente, "La entrada no ha podido ser devuelta.","Error",JOptionPane.ERROR_MESSAGE);
             }
         }
-        boolean exito = cliente.devolverEntrada(cliente.verEntradas().get(indice));
-        if(exito){
-            JOptionPane.showMessageDialog(VentanaCliente, "La entrada ha sido devuelta con éxito.","Entrada devuelta",JOptionPane.INFORMATION_MESSAGE);
-            List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
-                List<Entrada> entradasCliente = cliente.verEntradas();
-                DefaultListModel lista = new DefaultListModel<>();
-                if(entradasCliente.isEmpty()){
-                    lista.addElement("No tienes entradas compradas");
-                }else{
-                    for (int i = 0; i < entradasCliente.size(); i++) {
-                        lista.addElement(entradasCliente.get(i));
-                    }
-                    
-                }
-                ListadoEntradasCliente.setModel(lista);
-        }else{
-            JOptionPane.showMessageDialog(VentanaCliente, "La entrada no ha podido ser devuelta.","Error",JOptionPane.ERROR_MESSAGE);
-        }
+        
     }//GEN-LAST:event_DevolverEntradaActionPerformed
 
     private void DescargarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescargarEntradaActionPerformed
         int indice = ListadoEntradasCliente.getSelectedIndex();
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-        Cliente cliente = null;
-        for(int i = 0; i < clientes.size(); i++){
-            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
-                cliente = clientes.get(i);
-            }
-        }
-        boolean descargada = false;
-        VentanaRutaDescarga.setDialogTitle("Guardar entrada descargada");
-        VentanaRutaDescarga.setSelectedFile(new File("entrada_descargada.txt"));
-
-        int userSelection = VentanaRutaDescarga.showSaveDialog(null);
-
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File archivo = VentanaRutaDescarga.getSelectedFile();
-            descargada = cliente.descargarEntrada(cliente.verEntradas().get(indice), archivo);
-        }
-        
-        if(descargada){
-            JOptionPane.showMessageDialog(VentanaCliente, "La entrada se ha descargado.","Entrada descargada",JOptionPane.INFORMATION_MESSAGE);
+        String correo = "";
+        if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+            System.out.println(CampoCorreoRegistro.getText());
+            System.out.println(CampoCorreo.getText());
+            correo = CampoCorreoRegistro.getText();
         }else{
-            JOptionPane.showMessageDialog(VentanaCliente, "La entrada no se ha podido descargar.","Error",JOptionPane.ERROR_MESSAGE);
+            correo = CampoCorreo.getText();
+        }
+        consultasPersona.obtenerClientes();
+        Cliente cliente = Persona.iniciarSesión(correo);
+        if(indice == -1){
+            JOptionPane.showMessageDialog(VentanaCliente, "Seleccione la entrada que desea descargar.","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
+            boolean descargada = false;
+            VentanaRutaDescarga.setDialogTitle("Guardar entrada descargada");
+            VentanaRutaDescarga.setSelectedFile(new File("entrada_descargada.txt"));
+
+            int userSelection = VentanaRutaDescarga.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File archivo = VentanaRutaDescarga.getSelectedFile();
+                descargada = cliente.descargarEntrada(cliente.verEntradasFuturo().get(indice), archivo);
+            }
+
+            if(descargada){
+                JOptionPane.showMessageDialog(VentanaCliente, "La entrada se ha descargado.","Entrada descargada",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(VentanaCliente, "La entrada no se ha podido descargar.","Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
         
     }//GEN-LAST:event_DescargarEntradaActionPerformed
@@ -869,7 +855,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaSesiones.setLocationRelativeTo(null);
         VentanaSesiones.setTitle("Sesiones disponibles");
         VentanaSesiones.setModal(true);
-        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        String correo = "";
+        if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+            System.out.println(CampoCorreoRegistro.getText());
+            System.out.println(CampoCorreo.getText());
+            correo = CampoCorreoRegistro.getText();
+        }else{
+            correo = CampoCorreo.getText();
+        }
+        consultasPersona.obtenerClientes();
+        Cliente cliente = Persona.iniciarSesión(correo);
+        List<Sesión> sesiones = cliente.verSesionesFuturo();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Precio", "Asientos disponibles"};
         DefaultTableModel tabla = new DefaultTableModel(columnas, 0){
@@ -878,80 +874,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 return false; // desactiva edición de todas las celdas
             }
         };
-        filtrarPeliculas.removeAllItems();
-        filtrarFecha.removeAllItems();
-        ordenarPrecio.removeAllItems();
-        Map<Integer, Integer> entradasVendidas = obtenerEntradas.obtenerEntradasCompradasPorSala();
-        List<String> peliculasTitulo = obtenerSesiones.obtenerPeliculasSesiones();
-        List<Date> fechasSesiones = obtenerSesiones.obtenerFechasSesiones();
-        SimpleDateFormat formatoFechaUnica = new SimpleDateFormat("dd/MM/yyyy");
-        Set<String> fechasUnicas = new HashSet<>();
-        List<Date> fechasUnicasOrdenadas = new ArrayList<>();
-        for (int i = 0; i < peliculasTitulo.size(); i++) {
-                filtrarPeliculas.addItem(peliculasTitulo.get(i));
-        }
-        if(filtrarPeliculas.getItemCount() == 0){
-            filtrarPeliculas.addItem("--- Películas ---");
-        }
-        for (ActionListener al : filtrarPeliculas.getActionListeners()) {
-            filtrarPeliculas.removeActionListener(al);
-        }
-        filtrarPeliculas.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(filtrarPeliculas.getItemCount() == 0){
-                    filtrarPeliculas.addItem("--- Películas ---");
-                }
-                if(filtrarPeliculas.getSelectedIndex() == 0){
-                    DefaultTableModel modelo = (DefaultTableModel) VerSesiones.getModel();
-                    modelo.setRowCount(0);
-                }   
-                List<Sesión> sesionesPelicula = obtenerSesiones.obtenerSesionesPorPelículas(filtrarPeliculas.getSelectedItem().toString());
-                String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Precio", "Asientos disponibles"};
-                DefaultTableModel tabla = new DefaultTableModel(columnas, 0);
-                if(filtrarPeliculas.getSelectedItem() == "--- Películas ---"){
-                    tabla.setRowCount(0);
-                }else if(sesionesPelicula.isEmpty()){
-                    JOptionPane.showMessageDialog(VentanaSesiones, "No se han encontrado registros para los valores especificados","Información",JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    for (int i = 0; i < sesionesPelicula.size(); i++) {
-                    int numeroSala = sesionesPelicula.get(i).getSala().getNumero();
-                    int capacidad = sesionesPelicula.get(i).getSala().getCapacidad();
-                    int vendidas = entradasVendidas.getOrDefault(numeroSala, 0);
-                    int asientosDisponibles = capacidad - vendidas;
-                    String asientosDisponiblesTotal = String.valueOf(asientosDisponibles) + "/" + String.valueOf(capacidad);
-                    Object[] fila = {
-                        sesionesPelicula.get(i).getPelicula().getTitulo(),
-                        sesionesPelicula.get(i).getSala().getNumero(),
-                        formato.format(sesionesPelicula.get(i).getFechaHora()),
-                        sesionesPelicula.get(i).getPrecio(),
-                        asientosDisponiblesTotal
-                    };
-                    tabla.addRow(fila);
-                }
-                    VerSesiones.setModel(tabla);
-                    VerSesiones.setEnabled(true);
-                    VerSesiones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                }                
-            }
-        });
-        for (Date fecha : fechasSesiones) {
-            String fechaFormateada = formatoFechaUnica.format(fecha);
-            if (!fechasUnicas.contains(fechaFormateada)) {
-                fechasUnicas.add(fechaFormateada);
-                fechasUnicasOrdenadas.add(fecha);
-            }
-        }
-        Collections.sort(fechasUnicasOrdenadas);
-        for (Date fechaOrdenada : fechasUnicasOrdenadas) {
-            String fechaStr = formatoFechaUnica.format(fechaOrdenada);
-            filtrarFecha.addItem(fechaStr);
-        }
-        String[] ordenación = {"Mayor a menor", "Menor a mayor"};
-        for(int i = 0; i < ordenación.length; i++){
-            ordenarPrecio.addItem(ordenación[i]);
-        }
-        
+        Map<Integer, Integer> entradasVendidas = consultasEntrada.obtenerEntradasCompradasPorSala();
+              
         if(sesiones.isEmpty()){
             JOptionPane.showMessageDialog(VentanaSesiones, "No se han encontrado entradas a la venta","Información",JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -984,38 +908,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaCompraEntrada.setModal(true);
         AsientosDisponibles.removeAllItems();
         int sesionSeleccionada = VerSesiones.getSelectedRow();
-        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
-        Sesión sesión = null;
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        for(int i = 0; i < sesiones.size(); i++){
-            if(i == sesionSeleccionada){
-                sesión = sesiones.get(i);
+        if(sesionSeleccionada == -1){
+            JOptionPane.showMessageDialog(VentanaSesiones, "Seleccione la sesión para comprar la entrada.","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
+            String correo = "";
+            if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+                System.out.println(CampoCorreoRegistro.getText());
+                System.out.println(CampoCorreo.getText());
+                correo = CampoCorreoRegistro.getText();
+            }else{
+                correo = CampoCorreo.getText();
             }
-        }
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-        Cliente cliente = null;
-        for(int i = 0; i < clientes.size(); i++){
-            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
-                cliente = clientes.get(i);
+            consultasPersona.obtenerClientes();
+            Cliente cliente = Persona.iniciarSesión(correo);
+            List<Sesión> sesiones = cliente.verSesionesFuturo();
+            Sesión sesión = null;
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            for(int i = 0; i < sesiones.size(); i++){
+                if(i == sesionSeleccionada){
+                    sesión = sesiones.get(i);
+                }
             }
-        }
-        Entrada entrada = new Entrada(0, cliente, sesión, sesión.getPrecio());
-        ValorPelicula.setText(sesión.getPelicula().getTitulo());
-        ValorSala.setText(String.valueOf(sesión.getSala().getNumero()));
-        ValorDiaHora.setText(formato.format(sesión.getFechaHora()));
-        precioSesion.setText(String.valueOf(sesión.getPrecio()));
-        entrada.setPrecioFinal(sesión.getPrecio());
-        precioSesion.setText(String.valueOf(entrada.getPrecioFinal()));
-        if(Double.valueOf(precioSesion.getText()) != sesión.getPrecio()){
-            precioSesion.setForeground(Color.red);
-        }
-        int capacidad = sesión.getSala().getCapacidad();
-        List<Integer> obtenerEntrada;
-        List<Integer> asientosOcupados = obtenerEntradas.obtenerAsientosOcupadosDeSala(sesión.getSala().getNumero());
-        Set<Integer> ocupadosSet = new HashSet<>(asientosOcupados);
-        for (int i = 1; i <= capacidad; i++) {
-            if (!ocupadosSet.contains(i)) {
-                AsientosDisponibles.addItem(String.valueOf(i));
+            Entrada entrada = new Entrada(0, cliente, sesión, sesión.getPrecio());
+            ValorPelicula.setText(sesión.getPelicula().getTitulo());
+            ValorSala.setText(String.valueOf(sesión.getSala().getNumero()));
+            ValorDiaHora.setText(formato.format(sesión.getFechaHora()));
+            precioSesion.setText(String.valueOf(sesión.getPrecio()));
+            entrada.setPrecioFinal(sesión.getPrecio());
+            precioSesion.setText(String.valueOf(entrada.getPrecioFinal()));
+            if(Double.valueOf(precioSesion.getText()) != sesión.getPrecio()){
+                precioSesion.setForeground(Color.red);
+            }
+            int capacidad = sesión.getSala().getCapacidad();
+            List<Integer> obtenerEntrada;
+            List<Integer> asientosOcupados = consultasEntrada.obtenerAsientosOcupadosDeSala(sesión.getSala().getNumero());
+            Set<Integer> ocupadosSet = new HashSet<>(asientosOcupados);
+            for (int i = 1; i <= capacidad; i++) {
+                if (!ocupadosSet.contains(i)) {
+                    AsientosDisponibles.addItem(String.valueOf(i));
+                }
             }
         }
         
@@ -1025,36 +956,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void ComprarEntradaAsientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradaAsientoActionPerformed
         int sesionSeleccionada = VerSesiones.getSelectedRow();
         Sesión sesión = null;
-        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        String correo = "";
+        if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+            System.out.println(CampoCorreoRegistro.getText());
+            System.out.println(CampoCorreo.getText());
+            correo = CampoCorreoRegistro.getText();
+        }else{
+            correo = CampoCorreo.getText();
+        }
+        consultasPersona.obtenerClientes();
+        Cliente cliente = Persona.iniciarSesión(correo);
+        List<Sesión> sesiones = cliente.verSesionesFuturo();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         for(int i = 0; i < sesiones.size(); i++){
             if(i == sesionSeleccionada){
                 sesión = sesiones.get(i);
             }
         }
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-        Cliente cliente = null;
-        for(int i = 0; i < clientes.size(); i++){
-            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
-                cliente = clientes.get(i);
-            }
-        }
-        int asiento = Integer.valueOf(AsientosDisponibles.getSelectedItem().toString());
+        int asiento = Integer.parseInt(AsientosDisponibles.getSelectedItem().toString());
         Entrada entrada = new Entrada(asiento, cliente, sesión, sesión.getPrecio());
         entrada.setPrecioFinal(entrada.getSesion().getPrecio());
         boolean exito = cliente.comprarEntrada(entrada);
         if(exito){
             cliente.setPuntosGanados(cliente.getPuntosGanados() + 5);
-            actualizarPuntosGanados.actualizarPuntos(cliente);
-            JOptionPane.showMessageDialog(VentanaSesiones, "Entrada comprada con éxito.","Entrada comprada",JOptionPane.INFORMATION_MESSAGE);
-            List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
-                List<Entrada> entradasCliente = cliente.verEntradas();
+            consultasPersona.actualizarPuntos(cliente);
+            JOptionPane.showMessageDialog(VentanaCompraEntrada, "Entrada comprada con éxito.","Entrada comprada",JOptionPane.INFORMATION_MESSAGE);
+            List<Entrada> entradas = consultasEntrada.obtenerConsulta();
+                List<Entrada> entradasCliente = cliente.verEntradasFuturo();
                 DefaultListModel lista = new DefaultListModel<>();
                 if(entradasCliente.isEmpty()){
                     lista.addElement("No tienes entradas compradas");
                 }else{
+                    Date hoy = new Date();
                     for (int i = 0; i < entradasCliente.size(); i++) {
-                        lista.addElement(entradasCliente.get(i));
+                        if(entradasCliente.get(i).getSesion().getFechaHora().after(hoy)){
+                           lista.addElement(entradasCliente.get(i)); 
+                        }
+
                     }
                     
                 }
@@ -1062,7 +1000,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 PuntosObtenidos.setText("Tienes acumulados " + cliente.getPuntosGanados() + " puntos.");
                 VentanaCompraEntrada.dispose();
         }else{
-            JOptionPane.showMessageDialog(VentanaSesiones, "No se ha podido comprar la entrada.","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(VentanaCompraEntrada, "No se ha podido comprar la entrada.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ComprarEntradaAsientoActionPerformed
 

@@ -1,6 +1,6 @@
 package com.cinenova.autenticación;
 
-import com.cinenova.consultas.obtenerJefes;
+import com.cinenova.consultas.consultasPersona;
 import com.cinenova.entidades.Jefe;
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class autenticaciónJefe {
     
     public static boolean esJefe(String correo, String contrasena){
         boolean autenticado = false;
-        List<Jefe> jefes = obtenerJefes.obtenerConsulta();
+        List<Jefe> jefes = consultasPersona.obtenerJefes();
         for(int i=0; i < jefes.size(); i++){
             if((jefes.get(i).getCorreo().equals(correo)) && (jefes.get(i).getContrasena().equals(contrasena))){
                 autenticado = true;

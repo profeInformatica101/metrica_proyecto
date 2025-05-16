@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author usuarioDAW
  */
-public class obtenerSesiones {
+public class consultasSesion {
     
     public static List<Sesión> obtenerConsulta(){
         List<Sesión> sesiones = new ArrayList<>();
@@ -28,8 +28,8 @@ public class obtenerSesiones {
              Statement statement = conn.createStatement()) {
 
             ResultSet resultSet = statement.executeQuery(sql);
-            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
-            List<Sala> salas = obtenerSalas.obtenerConsulta();
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
+            List<Sala> salas = consultasSala.obtenerConsulta();
             Película pelicula = null;
             Sala sala = null;
             while (resultSet.next()) {
@@ -112,8 +112,8 @@ public class obtenerSesiones {
          
 
             preparedStatement.setString(1, titulo);
-            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
-            List<Sala> salas = obtenerSalas.obtenerConsulta();
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
+            List<Sala> salas = consultasSala.obtenerConsulta();
             Película pelicula = null;
             Sala sala = null;
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

@@ -1,13 +1,12 @@
 package com.cinenova.entidades;
 
-import com.cinenova.consultas.añadirEntrada;
-import com.cinenova.consultas.devolverEntrada;
-import com.cinenova.consultas.obtenerEntradas;
+import com.cinenova.consultas.consultasEntrada;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +32,7 @@ public class Cliente extends Persona{
 
     public boolean comprarEntrada(Entrada entrada){
         boolean comprada = false;
-        if(añadirEntrada.añadirEntrada(entrada) == 1){
+        if(consultasEntrada.añadirEntrada(entrada) == 1){
             comprada = true;
         }
         return comprada;
@@ -41,7 +40,7 @@ public class Cliente extends Persona{
     
     public boolean devolverEntrada(Entrada entrada){
         boolean exito = false;
-        int row = devolverEntrada.eliminarEntrada(entrada);
+        int row = consultasEntrada.eliminarEntrada(entrada);
         if(row != 0){
             exito = true;
         }
@@ -65,13 +64,25 @@ public class Cliente extends Persona{
     
     public List<Entrada> verEntradas(){
         List<Entrada> entradasCliente = new ArrayList<>();
-        List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
+        List<Entrada> entradas = consultasEntrada.obtenerConsulta();
         for(int i = 0; i < entradas.size(); i++){
             if(Cliente.this.getCorreo().equals(entradas.get(i).getCliente().getCorreo())){
                 entradasCliente.add(entradas.get(i));
             }
         }
         return entradasCliente;
+    }
+    
+    public List<Entrada> verEntradasFuturo(){
+        List<Entrada> entradasCliente = Cliente.this.verEntradas();
+        List<Entrada> entradasClienteFuturo = new ArrayList<>();
+        Date hoy = new Date();
+        for(int i = 0; i < entradasCliente.size(); i++){
+            if(entradasCliente.get(i).getSesion().getFechaHora().after(hoy)){
+                entradasClienteFuturo.add(entradasCliente.get(i));
+            }
+        }
+        return entradasClienteFuturo;
     }
     
     @Override

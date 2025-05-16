@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Juan Carlos
  */
-public class obtenerSalas {
+public class consultasSala {
     
     public static List<Sala> obtenerConsulta(){
         List<Sala> salas = new ArrayList<>();

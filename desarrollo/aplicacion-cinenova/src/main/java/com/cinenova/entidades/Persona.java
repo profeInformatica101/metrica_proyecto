@@ -1,5 +1,11 @@
 package com.cinenova.entidades;
 
+import com.cinenova.consultas.consultasPersona;
+import com.cinenova.consultas.consultasSesion;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author Juan Carlos
@@ -68,7 +74,31 @@ public abstract class Persona {
     public void setEsJefe(boolean esJefe) {
         this.esJefe = esJefe;
     }
+    
+    public static Cliente iniciarSesión(String correo){
+        consultasPersona.obtenerClientes();
+        List<Cliente> clientes = consultasPersona.obtenerClientes();
+        Cliente cliente = new Cliente(0, "Prueba", "Prueba", "Prueba", "prueba", false, false);
+        for(int i = 0; i < clientes.size(); i++){
+            if(clientes.get(i).getCorreo().equals(correo)){
+                cliente = clientes.get(i);
+            }
+        }
+        System.out.println(cliente.getCorreo());
+        return cliente;
+    }
 
+    public List<Sesión> verSesionesFuturo(){
+        List<Sesión> sesiones = consultasSesion.obtenerConsulta();
+        List<Sesión> sesionesFuturo = new ArrayList<>();
+        Date hoy = new Date();
+        for(int i = 0; i < sesiones.size(); i++){
+            if(sesiones.get(i).getFechaHora().after(hoy)){
+                sesionesFuturo.add(sesiones.get(i));
+            }
+        }
+        return sesionesFuturo;
+    }
     
     @Override
     public String toString() {

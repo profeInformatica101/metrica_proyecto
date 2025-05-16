@@ -1,7 +1,7 @@
 
 package com.cinenova.autenticación;
 
-import com.cinenova.consultas.obtenerClientes;
+import com.cinenova.consultas.consultasPersona;
 import com.cinenova.entidades.Cliente;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class autenticaciónCliente {
     
     public static boolean esCliente(String correo, String contrasena){
         boolean autenticado = false;
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+        List<Cliente> clientes = consultasPersona.obtenerClientes();
         for(int i=0; i < clientes.size(); i++){
             if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
                 autenticado = true;

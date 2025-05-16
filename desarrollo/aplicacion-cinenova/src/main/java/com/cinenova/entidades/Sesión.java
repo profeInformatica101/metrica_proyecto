@@ -1,6 +1,8 @@
 package com.cinenova.entidades;
 
+import com.cinenova.consultas.consultasSesion;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +55,7 @@ public class Sesión {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-       
+
     
     @Override
     public String toString() {
