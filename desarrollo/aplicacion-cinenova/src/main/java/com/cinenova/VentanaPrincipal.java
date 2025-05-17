@@ -9,8 +9,10 @@ import static com.cinenova.consultas.actualizarEmpleado.actualizarEmpleado;
 import static com.cinenova.consultas.actualizarPelicula.actualizarPelicula;
 import static com.cinenova.consultas.añadirPelicula.añadirPelicula;
 import com.cinenova.consultas.añadirPersona;
+import static com.cinenova.consultas.añadirSesion.añadirSesion;
 import com.cinenova.consultas.borrarEmpleado;
 import static com.cinenova.consultas.borrarPelicula.borrarPelicula;
+import com.cinenova.consultas.borrarSesion;
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerEntradas;
@@ -22,14 +24,18 @@ import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Jefe;
 import com.cinenova.entidades.Película;
+import com.cinenova.entidades.Sala;
 import com.cinenova.entidades.Sesión;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultCellEditor;
@@ -142,7 +148,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListSesiones = new javax.swing.JList<>();
         AñadirSesion = new javax.swing.JButton();
-        ActualizarSesion = new javax.swing.JButton();
         BorrarSesion = new javax.swing.JButton();
         AñadirPelicula = new javax.swing.JButton();
         ActualizarPelicula = new javax.swing.JButton();
@@ -216,8 +221,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ActualizarPeliculaConfirmar = new javax.swing.JButton();
         IdActualizarPelicula = new javax.swing.JLabel();
         CampoIdActualizarPelicula = new javax.swing.JTextField();
-        jDialog2 = new javax.swing.JDialog();
-        jDialog3 = new javax.swing.JDialog();
+        VentanaAñadirSesion = new javax.swing.JDialog();
+        jPanel13 = new javax.swing.JPanel();
+        PeliculaCampoAñadirSesion = new javax.swing.JTextField();
+        SalaCampoAñadirSesion = new javax.swing.JTextField();
+        PrecioCampoAñadirSesion = new javax.swing.JTextField();
+        FechaHoraCampoAñadirSesion = new javax.swing.JTextField();
+        AñadirSesionTexto = new javax.swing.JLabel();
+        FechaHoraAñadirSesion = new javax.swing.JLabel();
+        PeliculaAñadirSesion = new javax.swing.JLabel();
+        SalaAñadirSesion = new javax.swing.JLabel();
+        AñadirSesionConfirmar = new javax.swing.JButton();
+        PrecioAñadirSesion = new javax.swing.JLabel();
+        BorrarDatosAñadirSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -779,13 +795,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        ActualizarSesion.setText("Actualizar sesión");
-        ActualizarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarSesionActionPerformed(evt);
-            }
-        });
-
         BorrarSesion.setText("Borrar sesión");
         BorrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -833,12 +842,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AñadirPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ActualizarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(ActualizarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BorrarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(178, 178, 178)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ActualizarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(AñadirSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AñadirSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(BorrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(VerEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -856,7 +864,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(391, 391, 391)
                         .addComponent(QueDeseaHacerEmpleado)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -875,17 +883,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AñadirSesion)
-                            .addComponent(AñadirPelicula))
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ActualizarSesion)
-                            .addComponent(ActualizarPelicula))
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BorrarSesion)
-                            .addComponent(BorrarPelicula))
+                        .addComponent(AñadirPelicula)
+                        .addGap(25, 25, 25)
+                        .addComponent(AñadirSesion)
+                        .addGap(16, 16, 16)
+                        .addComponent(ActualizarPelicula)
+                        .addGap(25, 25, 25)
+                        .addComponent(BorrarSesion)
+                        .addGap(25, 25, 25)
+                        .addComponent(BorrarPelicula)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(VerEmpleados))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1469,26 +1475,117 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
-        jDialog2.getContentPane().setLayout(jDialog2Layout);
-        jDialog2Layout.setHorizontalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        PeliculaCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        SalaCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        PrecioCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        FechaHoraCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        AñadirSesionTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AñadirSesionTexto.setText("Introduzca los datos de la nueva sesión");
+
+        FechaHoraAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        FechaHoraAñadirSesion.setText("Fecha y hora:");
+
+        PeliculaAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PeliculaAñadirSesion.setText("Pelicula:");
+
+        SalaAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SalaAñadirSesion.setText("Sala:");
+
+        AñadirSesionConfirmar.setText("Añadir sesión");
+        AñadirSesionConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirSesionConfirmarActionPerformed(evt);
+            }
+        });
+
+        PrecioAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PrecioAñadirSesion.setText("Precio:");
+
+        BorrarDatosAñadirSesion.setText("Borrar datos");
+        BorrarDatosAñadirSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarDatosAñadirSesionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(AñadirSesionTexto))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(PeliculaAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(PeliculaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(SalaAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SalaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addComponent(AñadirSesionConfirmar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BorrarDatosAñadirSesion))
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(FechaHoraAñadirSesion)
+                                        .addComponent(PrecioAñadirSesion))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(FechaHoraCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(PrecioCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
-        jDialog2Layout.setVerticalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(AñadirSesionTexto)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PeliculaAñadirSesion)
+                    .addComponent(PeliculaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SalaAñadirSesion)
+                    .addComponent(SalaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FechaHoraCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FechaHoraAñadirSesion))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PrecioCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrecioAñadirSesion))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BorrarDatosAñadirSesion)
+                    .addComponent(AñadirSesionConfirmar))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
-        jDialog3.getContentPane().setLayout(jDialog3Layout);
-        jDialog3Layout.setHorizontalGroup(
-            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        javax.swing.GroupLayout VentanaAñadirSesionLayout = new javax.swing.GroupLayout(VentanaAñadirSesion.getContentPane());
+        VentanaAñadirSesion.getContentPane().setLayout(VentanaAñadirSesionLayout);
+        VentanaAñadirSesionLayout.setHorizontalGroup(
+            VentanaAñadirSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jDialog3Layout.setVerticalGroup(
-            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        VentanaAñadirSesionLayout.setVerticalGroup(
+            VentanaAñadirSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1934,15 +2031,50 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoCorreoEmpleadosActionPerformed
 
     private void AñadirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirSesionActionPerformed
-        // TODO add your handling code here:
+        VentanaAñadirSesion.pack();
+        VentanaAñadirSesion.setLocationRelativeTo(this);
+        VentanaAñadirSesion.setTitle("Añadir Sesion");
+        VentanaAñadirSesion.setModal(true);
+        VentanaAñadirSesion.setVisible(true);
     }//GEN-LAST:event_AñadirSesionActionPerformed
 
-    private void ActualizarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarSesionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ActualizarSesionActionPerformed
-
     private void BorrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarSesionActionPerformed
-        
+        int indice = jListSesiones.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una sesión para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        Sesión sesionSeleccionada = sesiones.get(indice);
+
+        int idPelicula = sesionSeleccionada.getPelicula().getIdPelicula();
+        int numeroSala = sesionSeleccionada.getSala().getNumero();
+        Timestamp fechaHora = new Timestamp(sesionSeleccionada.getFechaHora().getTime());
+
+        int filasAfectadas = borrarSesion.borrarSesion(idPelicula, numeroSala, fechaHora);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Sesión borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            List<Sesión> sesionesActualizadas = obtenerSesiones.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+
+            for (Sesión sesion : sesionesActualizadas) {
+                String info = "Fecha: " + sesion.getFechaHora() +
+                              " | Película: " + sesion.getPelicula().getTitulo() +
+                              " | Sala: " + sesion.getSala().getNumero() +
+                              " | Precio: " + sesion.getPrecio() + "€";
+
+                modelo.addElement(info);
+            }
+
+            jListSesiones.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar la sesión.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BorrarSesionActionPerformed
 
     private void AñadirPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirPeliculaActionPerformed
@@ -2207,7 +2339,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        // Obtener la lista completa de empleados de la base de datos
         List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
 
         if (indice >= empleados.size()) {
@@ -2327,6 +2458,61 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ActualizarPeliculaConfirmarActionPerformed
 
+    private void AñadirSesionConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirSesionConfirmarActionPerformed
+        String idPeliculaTexto = PeliculaCampoAñadirSesion.getText().trim();
+        String numeroSalaTexto = SalaCampoAñadirSesion.getText().trim();
+        String fechaHoraTexto = FechaHoraCampoAñadirSesion.getText().trim();
+        String precioTexto = PrecioCampoAñadirSesion.getText().trim();
+
+        if (idPeliculaTexto.isEmpty() || numeroSalaTexto.isEmpty() || fechaHoraTexto.isEmpty() || precioTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int idPelicula, numeroSala;
+        double precio;
+        Timestamp fechaHora;
+
+        try {
+            idPelicula = Integer.parseInt(idPeliculaTexto);
+            numeroSala = Integer.parseInt(numeroSalaTexto);
+            precio = Double.parseDouble(precioTexto);
+            Date fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(fechaHoraTexto);
+            fechaHora = new Timestamp(fecha.getTime());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID, Sala y Precio deben ser numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto. Usa: dd/MM/yyyy HH:mm", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = añadirSesion(idPelicula, numeroSala, fechaHora, precio);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Sesión añadida correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            VentanaAñadirSesion.dispose();
+
+            List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Sesión s : sesiones) {
+                String info = "Película: " + s.getPelicula().getTitulo() +
+                              " | Sala: " + s.getSala().getNumero() +
+                              " | Fecha: " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(s.getFechaHora()) +
+                              " | Precio: " + s.getPrecio() + "€";
+                modelo.addElement(info);
+            }
+            jListSesiones.setModel(modelo);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al añadir la sesión.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_AñadirSesionConfirmarActionPerformed
+
+    private void BorrarDatosAñadirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarDatosAñadirSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BorrarDatosAñadirSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2370,7 +2556,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ActualizarPelicula;
     private javax.swing.JButton ActualizarPeliculaConfirmar;
     private javax.swing.JLabel ActualizarPeliculaTexto;
-    private javax.swing.JButton ActualizarSesion;
     private javax.swing.JLabel Apellidos;
     private javax.swing.JLabel ApellidosRegistroEmpleado;
     private javax.swing.JComboBox<String> AsientosDisponibles;
@@ -2379,10 +2564,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton AñadirPeliculaConfirmar;
     private javax.swing.JLabel AñadirPeliculaTexto;
     private javax.swing.JButton AñadirSesion;
+    private javax.swing.JButton AñadirSesionConfirmar;
+    private javax.swing.JLabel AñadirSesionTexto;
     private javax.swing.JLabel Bienvenida;
     private javax.swing.JLabel BienvenidaEmpleado;
     private javax.swing.JLabel BienvenidoEmpleado;
     private javax.swing.JButton BorrarDatosAñadirPelicula;
+    private javax.swing.JButton BorrarDatosAñadirSesion;
     private javax.swing.JButton BorrarDatosRegistro;
     private javax.swing.JButton BorrarDatosRegistroEmpleado;
     private javax.swing.JButton BorrarEmpleados;
@@ -2439,6 +2627,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel DuracionActualizarPelicula;
     private javax.swing.JLabel DuracionAñadirPelicula;
     private javax.swing.JLabel EresEmpleado;
+    private javax.swing.JLabel FechaHoraAñadirSesion;
+    private javax.swing.JTextField FechaHoraCampoAñadirSesion;
     private javax.swing.JLabel FechaHoraSesion;
     private javax.swing.JLabel GeneroActualizarPelicula;
     private javax.swing.JLabel GeneroAñadirPelicula;
@@ -2458,6 +2648,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel NombrePelicula;
     private javax.swing.JLabel NombreRegistroEmpleado;
     private javax.swing.JLabel NumeroSala;
+    private javax.swing.JLabel PeliculaAñadirSesion;
+    private javax.swing.JTextField PeliculaCampoAñadirSesion;
+    private javax.swing.JLabel PrecioAñadirSesion;
+    private javax.swing.JTextField PrecioCampoAñadirSesion;
     private javax.swing.JLabel PuntosGanadosCompra;
     private javax.swing.JLabel PuntosObtenidos;
     private javax.swing.JLabel QueDeseaHacer;
@@ -2466,6 +2660,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton Registrarse;
     private javax.swing.JButton RegistrarseConfirmar;
     private javax.swing.JLabel RegistroEmpleado;
+    private javax.swing.JLabel SalaAñadirSesion;
+    private javax.swing.JTextField SalaCampoAñadirSesion;
     private javax.swing.JSeparator Separador;
     private javax.swing.JSeparator Separador1;
     private javax.swing.JLabel SesionSeleccionada;
@@ -2482,6 +2678,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog VentanaActualizarPelicula;
     private javax.swing.JDialog VentanaAñadirEmpleados;
     private javax.swing.JDialog VentanaAñadirPelicula;
+    private javax.swing.JDialog VentanaAñadirSesion;
     private javax.swing.JDialog VentanaCliente;
     private javax.swing.JDialog VentanaCompraEntrada;
     private javax.swing.JDialog VentanaEmpleados;
@@ -2494,8 +2691,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JDialog jDialog2;
-    private javax.swing.JDialog jDialog3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2506,6 +2701,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2522,4 +2718,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
+
+    private int borrarSesion(Película pelicula, Sala sala, String valueOf) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
