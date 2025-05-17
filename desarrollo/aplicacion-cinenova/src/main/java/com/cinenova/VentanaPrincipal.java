@@ -6,8 +6,11 @@ import static com.cinenova.autenticación.autenticaciónEmpleado.esEmpleado;
 import com.cinenova.autenticación.autenticaciónJefe;
 import static com.cinenova.autenticación.autenticaciónJefe.esJefe;
 import static com.cinenova.consultas.actualizarEmpleado.actualizarEmpleado;
+import static com.cinenova.consultas.actualizarPelicula.actualizarPelicula;
+import static com.cinenova.consultas.añadirPelicula.añadirPelicula;
 import com.cinenova.consultas.añadirPersona;
 import com.cinenova.consultas.borrarEmpleado;
+import static com.cinenova.consultas.borrarPelicula.borrarPelicula;
 import com.cinenova.consultas.obtenerClientes;
 import com.cinenova.consultas.obtenerEmpleados;
 import com.cinenova.consultas.obtenerEntradas;
@@ -142,7 +145,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ActualizarSesion = new javax.swing.JButton();
         BorrarSesion = new javax.swing.JButton();
         AñadirPelicula = new javax.swing.JButton();
-        ModificarPelicula = new javax.swing.JButton();
+        ActualizarPelicula = new javax.swing.JButton();
         BorrarPelicula = new javax.swing.JButton();
         VerEmpleados = new javax.swing.JButton();
         VentanaJefe = new javax.swing.JDialog();
@@ -182,6 +185,39 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ActualizarEmpleadoConfirmar = new javax.swing.JButton();
         CorreoActualizarEmpleado = new javax.swing.JLabel();
         CampoCorreoActualizarEmpleado = new javax.swing.JTextField();
+        VentanaAñadirPelicula = new javax.swing.JDialog();
+        jPanel11 = new javax.swing.JPanel();
+        AñadirPeliculaTexto = new javax.swing.JLabel();
+        TituloAñadirPelicula = new javax.swing.JLabel();
+        DuracionAñadirPelicula = new javax.swing.JLabel();
+        ClasificacionAñadirPelicula = new javax.swing.JLabel();
+        DescripcionAñadirPelicula = new javax.swing.JLabel();
+        CampoTituloAñadirPelicula = new javax.swing.JTextField();
+        CampoDuracionAñadirPelicula = new javax.swing.JTextField();
+        CampoClasificacionAñadirPelicula = new javax.swing.JTextField();
+        CampoDescripcionAñadirPelicula = new javax.swing.JTextField();
+        CampoGeneroAñadirPelicula = new javax.swing.JTextField();
+        GeneroAñadirPelicula = new javax.swing.JLabel();
+        AñadirPeliculaConfirmar = new javax.swing.JButton();
+        BorrarDatosAñadirPelicula = new javax.swing.JButton();
+        VentanaActualizarPelicula = new javax.swing.JDialog();
+        jPanel12 = new javax.swing.JPanel();
+        ActualizarPeliculaTexto = new javax.swing.JLabel();
+        TituloActualizarPelicula = new javax.swing.JLabel();
+        DuracionActualizarPelicula = new javax.swing.JLabel();
+        ClasificacionActualizarPelicula = new javax.swing.JLabel();
+        GeneroActualizarPelicula = new javax.swing.JLabel();
+        DescripcionActualizarPelicula = new javax.swing.JLabel();
+        CampoTituloActualizarPelicula = new javax.swing.JTextField();
+        CampoDuracionActualizarPelicula = new javax.swing.JTextField();
+        CampoGeneroActualizarPelicula = new javax.swing.JTextField();
+        CampoClasificacionActualizarPelicula = new javax.swing.JTextField();
+        CampoDescripcionActualizarPelicula = new javax.swing.JTextField();
+        ActualizarPeliculaConfirmar = new javax.swing.JButton();
+        IdActualizarPelicula = new javax.swing.JLabel();
+        CampoIdActualizarPelicula = new javax.swing.JTextField();
+        jDialog2 = new javax.swing.JDialog();
+        jDialog3 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -764,10 +800,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        ModificarPelicula.setText("Modificar película");
-        ModificarPelicula.addActionListener(new java.awt.event.ActionListener() {
+        ActualizarPelicula.setText("Actualizar película");
+        ActualizarPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarPeliculaActionPerformed(evt);
+                ActualizarPeliculaActionPerformed(evt);
             }
         });
 
@@ -797,7 +833,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AñadirPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ModificarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(ActualizarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                             .addComponent(BorrarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(178, 178, 178)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -845,7 +881,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(64, 64, 64)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ActualizarSesion)
-                            .addComponent(ModificarPelicula))
+                            .addComponent(ActualizarPelicula))
                         .addGap(73, 73, 73)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BorrarSesion)
@@ -1126,7 +1162,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         CorreoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CorreoActualizarEmpleado.setText("Sueldo:");
+        CorreoActualizarEmpleado.setText("Correo:");
 
         CampoCorreoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -1186,6 +1222,273 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaActualizarEmpleadoLayout.setVerticalGroup(
             VentanaActualizarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        AñadirPeliculaTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AñadirPeliculaTexto.setText("Introduzca los datos de la nueva película");
+
+        TituloAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TituloAñadirPelicula.setText("Título:");
+
+        DuracionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DuracionAñadirPelicula.setText("Duración:");
+
+        ClasificacionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ClasificacionAñadirPelicula.setText("Clasificación:");
+
+        DescripcionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DescripcionAñadirPelicula.setText("Descripción:");
+
+        CampoTituloAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDuracionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoClasificacionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDescripcionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoGeneroAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        GeneroAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        GeneroAñadirPelicula.setText("Género:");
+
+        AñadirPeliculaConfirmar.setText("Añadir pelicula");
+        AñadirPeliculaConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirPeliculaConfirmarActionPerformed(evt);
+            }
+        });
+
+        BorrarDatosAñadirPelicula.setText("Borrar datos");
+        BorrarDatosAñadirPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarDatosAñadirPeliculaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(AñadirPeliculaTexto))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                        .addComponent(ClasificacionAñadirPelicula)
+                                        .addGap(26, 26, 26))
+                                    .addGroup(jPanel11Layout.createSequentialGroup()
+                                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(GeneroAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(DuracionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TituloAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(9, 9, 9)))
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CampoDuracionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoTituloAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoGeneroAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoClasificacionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                    .addComponent(AñadirPeliculaConfirmar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BorrarDatosAñadirPelicula))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                    .addComponent(DescripcionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(CampoDescripcionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(AñadirPeliculaTexto)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TituloAñadirPelicula)
+                    .addComponent(CampoTituloAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DuracionAñadirPelicula)
+                    .addComponent(CampoDuracionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoGeneroAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GeneroAñadirPelicula))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ClasificacionAñadirPelicula)
+                    .addComponent(CampoClasificacionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescripcionAñadirPelicula)
+                    .addComponent(CampoDescripcionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AñadirPeliculaConfirmar)
+                    .addComponent(BorrarDatosAñadirPelicula))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaAñadirPeliculaLayout = new javax.swing.GroupLayout(VentanaAñadirPelicula.getContentPane());
+        VentanaAñadirPelicula.getContentPane().setLayout(VentanaAñadirPeliculaLayout);
+        VentanaAñadirPeliculaLayout.setHorizontalGroup(
+            VentanaAñadirPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaAñadirPeliculaLayout.setVerticalGroup(
+            VentanaAñadirPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        ActualizarPeliculaTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ActualizarPeliculaTexto.setText("Introduzca los datos que desee actualizar");
+
+        TituloActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TituloActualizarPelicula.setText("Título:");
+
+        DuracionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DuracionActualizarPelicula.setText("Duración:");
+
+        ClasificacionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ClasificacionActualizarPelicula.setText("Clasificación:");
+
+        GeneroActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        GeneroActualizarPelicula.setText("Género:");
+
+        DescripcionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DescripcionActualizarPelicula.setText("Descripción:");
+
+        CampoTituloActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDuracionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoGeneroActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoClasificacionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDescripcionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ActualizarPeliculaConfirmar.setText("Actualizar película");
+        ActualizarPeliculaConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarPeliculaConfirmarActionPerformed(evt);
+            }
+        });
+
+        IdActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        IdActualizarPelicula.setText("ID:");
+
+        CampoIdActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ActualizarPeliculaTexto)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IdActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TituloActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DuracionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(GeneroActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ClasificacionActualizarPelicula)
+                                    .addComponent(DescripcionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoDescripcionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoClasificacionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoGeneroActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoDuracionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoTituloActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoIdActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(ActualizarPeliculaConfirmar)))))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(ActualizarPeliculaTexto)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TituloActualizarPelicula)
+                    .addComponent(CampoTituloActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DuracionActualizarPelicula)
+                    .addComponent(CampoDuracionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GeneroActualizarPelicula)
+                    .addComponent(CampoGeneroActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClasificacionActualizarPelicula)
+                    .addComponent(CampoClasificacionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescripcionActualizarPelicula)
+                    .addComponent(CampoDescripcionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdActualizarPelicula)
+                    .addComponent(CampoIdActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ActualizarPeliculaConfirmar)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaActualizarPeliculaLayout = new javax.swing.GroupLayout(VentanaActualizarPelicula.getContentPane());
+        VentanaActualizarPelicula.getContentPane().setLayout(VentanaActualizarPeliculaLayout);
+        VentanaActualizarPeliculaLayout.setHorizontalGroup(
+            VentanaActualizarPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaActualizarPeliculaLayout.setVerticalGroup(
+            VentanaActualizarPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1639,19 +1942,86 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ActualizarSesionActionPerformed
 
     private void BorrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarSesionActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_BorrarSesionActionPerformed
 
     private void AñadirPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirPeliculaActionPerformed
-        // TODO add your handling code here:
+        VentanaAñadirPelicula.pack();
+        VentanaAñadirPelicula.setLocationRelativeTo(this);
+        VentanaAñadirPelicula.setTitle("Añadir Pelicula");
+        VentanaAñadirPelicula.setModal(true);
+        VentanaAñadirPelicula.setVisible(true);
     }//GEN-LAST:event_AñadirPeliculaActionPerformed
 
-    private void ModificarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPeliculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ModificarPeliculaActionPerformed
+    private void ActualizarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarPeliculaActionPerformed
+        int indice = jListPelículas.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una película para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+
+        if (indice >= peliculas.size()) {
+            JOptionPane.showMessageDialog(this, "La película seleccionada no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Película peliculaSeleccionada = peliculas.get(indice);
+        
+        CampoIdActualizarPelicula.setText(String.valueOf(peliculaSeleccionada.getIdPelicula()));
+        CampoTituloActualizarPelicula.setText(peliculaSeleccionada.getTitulo());
+        CampoDuracionActualizarPelicula.setText(String.valueOf(peliculaSeleccionada.getDuracion()));
+        CampoGeneroActualizarPelicula.setText(peliculaSeleccionada.getGenero());
+        CampoClasificacionActualizarPelicula.setText(peliculaSeleccionada.getClasificacionEdad());
+        CampoDescripcionActualizarPelicula.setText(peliculaSeleccionada.getDescripcion());
+        
+        IdActualizarPelicula.setVisible(false);
+        CampoIdActualizarPelicula.setVisible(false);
+        VentanaActualizarPelicula.pack();
+        VentanaActualizarPelicula.setLocationRelativeTo(this);
+        VentanaActualizarPelicula.setTitle("Actualizar Pelicula");
+        VentanaActualizarPelicula.setModal(true);
+        VentanaActualizarPelicula.setVisible(true);
+    }//GEN-LAST:event_ActualizarPeliculaActionPerformed
 
     private void BorrarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarPeliculaActionPerformed
-        // TODO add your handling code here:
+        int indice = jListPelículas.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una película para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+        Película peliculaSeleccionada = peliculas.get(indice);
+
+        int filasAfectadas = borrarPelicula(peliculaSeleccionada.getIdPelicula());
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Película borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            List<Película> peliculasActualizadas = obtenerPeliculas.obtenerConsulta();
+            DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+            if (peliculasActualizadas.isEmpty()) {
+                modeloLista.addElement("No hay películas registradas.");
+            } else {
+                for (Película p : peliculasActualizadas) {
+                    String info = "Título: " + p.getTitulo() +
+                                  " | Duración: " + p.getDuracion() + " min" +
+                                  " | Género: " + p.getGenero() +
+                                  " | Clasificación: " + p.getClasificacionEdad();
+                    modeloLista.addElement(info);
+                }
+            }
+            jListPelículas.setModel(modeloLista);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar la película.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_BorrarPeliculaActionPerformed
 
     private void VerEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEmpleadosActionPerformed
@@ -1859,6 +2229,104 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     }//GEN-LAST:event_ActualizarEmpleadosActionPerformed
 
+    private void AñadirPeliculaConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirPeliculaConfirmarActionPerformed
+        String titulo = CampoTituloAñadirPelicula.getText();
+        String duracionTexto = CampoDuracionAñadirPelicula.getText();
+        String genero = CampoGeneroAñadirPelicula.getText();
+        String clasificacion = CampoClasificacionAñadirPelicula.getText();
+        String descripcion = CampoDescripcionAñadirPelicula.getText();
+
+        if (titulo.isEmpty() || duracionTexto.isEmpty() || genero.isEmpty() || clasificacion.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int duracion;
+        try {
+            duracion = Integer.parseInt(duracionTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La duración debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = añadirPelicula(titulo, duracion, genero, clasificacion, descripcion);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Película añadida correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            VentanaAñadirPelicula.dispose();
+
+            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Película p : peliculas) {
+                String info = "Título: " + p.getTitulo() +
+                              " | Duración: " + p.getDuracion() + " min" +
+                              " | Género: " + p.getGenero() +
+                              " | Clasificación: " + p.getClasificacionEdad();
+                modelo.addElement(info);
+            }
+            jListPelículas.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al añadir la película.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_AñadirPeliculaConfirmarActionPerformed
+
+    private void BorrarDatosAñadirPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarDatosAñadirPeliculaActionPerformed
+        CampoTituloAñadirPelicula.setText("");
+        CampoDuracionAñadirPelicula.setText("");
+        CampoGeneroAñadirPelicula.setText("");
+        CampoClasificacionAñadirPelicula.setText("");
+        CampoDescripcionAñadirPelicula.setText("");
+    }//GEN-LAST:event_BorrarDatosAñadirPeliculaActionPerformed
+
+    private void ActualizarPeliculaConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarPeliculaConfirmarActionPerformed
+        String idTexto = CampoIdActualizarPelicula.getText();
+        String titulo = CampoTituloActualizarPelicula.getText();
+        String duracionTexto = CampoDuracionActualizarPelicula.getText();
+        String genero = CampoGeneroActualizarPelicula.getText();
+        String clasificacion = CampoClasificacionActualizarPelicula.getText();
+        String descripcion = CampoDescripcionActualizarPelicula.getText();
+
+        if (idTexto.isEmpty() || titulo.isEmpty() || duracionTexto.isEmpty() || genero.isEmpty() || clasificacion.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int id, duracion;
+        try {
+            id = Integer.parseInt(idTexto);
+            duracion = Integer.parseInt(duracionTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La duración debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = actualizarPelicula(id, titulo, duracion, genero, clasificacion, descripcion);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Película actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            VentanaActualizarPelicula.dispose();
+
+            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Película pelicula : peliculas) {
+                String info = "Título: " + pelicula.getTitulo() +
+                              " | Duración: " + pelicula.getDuracion() + " min" +
+                              " | Género: " + pelicula.getGenero() +
+                              " | Clasificación: " + pelicula.getClasificacionEdad();
+                modelo.addElement(info);
+            }
+            jListPelículas.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la película.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_ActualizarPeliculaConfirmarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1899,16 +2367,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ActualizarEmpleadoConfirmar;
     private javax.swing.JLabel ActualizarEmpleadoTexto;
     private javax.swing.JButton ActualizarEmpleados;
+    private javax.swing.JButton ActualizarPelicula;
+    private javax.swing.JButton ActualizarPeliculaConfirmar;
+    private javax.swing.JLabel ActualizarPeliculaTexto;
     private javax.swing.JButton ActualizarSesion;
     private javax.swing.JLabel Apellidos;
     private javax.swing.JLabel ApellidosRegistroEmpleado;
     private javax.swing.JComboBox<String> AsientosDisponibles;
     private javax.swing.JButton AñadirEmpleados;
     private javax.swing.JButton AñadirPelicula;
+    private javax.swing.JButton AñadirPeliculaConfirmar;
+    private javax.swing.JLabel AñadirPeliculaTexto;
     private javax.swing.JButton AñadirSesion;
     private javax.swing.JLabel Bienvenida;
     private javax.swing.JLabel BienvenidaEmpleado;
     private javax.swing.JLabel BienvenidoEmpleado;
+    private javax.swing.JButton BorrarDatosAñadirPelicula;
     private javax.swing.JButton BorrarDatosRegistro;
     private javax.swing.JButton BorrarDatosRegistroEmpleado;
     private javax.swing.JButton BorrarEmpleados;
@@ -1916,6 +2390,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BorrarSesion;
     private javax.swing.JTextField CampoApellidos;
     private javax.swing.JTextField CampoApellidosRegistroEmpleado;
+    private javax.swing.JTextField CampoClasificacionActualizarPelicula;
+    private javax.swing.JTextField CampoClasificacionAñadirPelicula;
     private javax.swing.JPasswordField CampoContraseña;
     private javax.swing.JPasswordField CampoContraseñaActualizarEmpleado;
     private javax.swing.JPasswordField CampoContraseñaEmpleados;
@@ -1927,10 +2403,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField CampoCorreoRegistro;
     private javax.swing.JTextField CampoCorreoRegistroEmpleado;
     private javax.swing.JTextField CampoDNIRegistroEmpleado;
+    private javax.swing.JTextField CampoDescripcionActualizarPelicula;
+    private javax.swing.JTextField CampoDescripcionAñadirPelicula;
+    private javax.swing.JTextField CampoDuracionActualizarPelicula;
+    private javax.swing.JTextField CampoDuracionAñadirPelicula;
+    private javax.swing.JTextField CampoGeneroActualizarPelicula;
+    private javax.swing.JTextField CampoGeneroAñadirPelicula;
+    private javax.swing.JTextField CampoIdActualizarPelicula;
     private javax.swing.JTextField CampoNombre;
     private javax.swing.JTextField CampoNombreRegistroEmpleado;
     private javax.swing.JTextField CampoSueldoActualizarEmpleado;
     private javax.swing.JTextField CampoSueldoRegistroEmpleado;
+    private javax.swing.JTextField CampoTituloActualizarPelicula;
+    private javax.swing.JTextField CampoTituloAñadirPelicula;
+    private javax.swing.JLabel ClasificacionActualizarPelicula;
+    private javax.swing.JLabel ClasificacionAñadirPelicula;
     private javax.swing.JButton ComprarEntrada;
     private javax.swing.JButton ComprarEntradaAsiento;
     private javax.swing.JButton ComprarEntradas;
@@ -1946,9 +2433,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel CorreoRegistroEmpleado;
     private javax.swing.JLabel DNIRegistroEmpleado;
     private javax.swing.JButton DescargarEntrada;
+    private javax.swing.JLabel DescripcionActualizarPelicula;
+    private javax.swing.JLabel DescripcionAñadirPelicula;
     private javax.swing.JButton DevolverEntrada;
+    private javax.swing.JLabel DuracionActualizarPelicula;
+    private javax.swing.JLabel DuracionAñadirPelicula;
     private javax.swing.JLabel EresEmpleado;
     private javax.swing.JLabel FechaHoraSesion;
+    private javax.swing.JLabel GeneroActualizarPelicula;
+    private javax.swing.JLabel GeneroAñadirPelicula;
+    private javax.swing.JLabel IdActualizarPelicula;
     private javax.swing.JButton IniciarSesión;
     private javax.swing.JButton IniciarSesiónEmpleados;
     private javax.swing.JDialog InicioSesionEmpleados;
@@ -1959,7 +2453,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel LogoCliente;
     private javax.swing.JLabel LogoClienteEmpleado;
     private javax.swing.JLabel LogoInicioEmpleados;
-    private javax.swing.JButton ModificarPelicula;
     private javax.swing.JLabel NoRegistrado;
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel NombrePelicula;
@@ -1978,13 +2471,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel SesionSeleccionada;
     private javax.swing.JLabel SueldoActualizarEmpleado;
     private javax.swing.JLabel SueldoRegistroEmpleado;
+    private javax.swing.JLabel TituloActualizarPelicula;
+    private javax.swing.JLabel TituloAñadirPelicula;
     private javax.swing.JLabel TituloComprarEntrada;
     private javax.swing.JLabel TituloListadoEntradas;
     private javax.swing.JLabel ValorDiaHora;
     private javax.swing.JLabel ValorPelicula;
     private javax.swing.JLabel ValorSala;
     private javax.swing.JDialog VentanaActualizarEmpleado;
+    private javax.swing.JDialog VentanaActualizarPelicula;
     private javax.swing.JDialog VentanaAñadirEmpleados;
+    private javax.swing.JDialog VentanaAñadirPelicula;
     private javax.swing.JDialog VentanaCliente;
     private javax.swing.JDialog VentanaCompraEntrada;
     private javax.swing.JDialog VentanaEmpleados;
@@ -1997,6 +2494,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2005,6 +2504,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> jListSesiones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
