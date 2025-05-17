@@ -3,11 +3,14 @@ package com.cinenova.entidades;
 import com.cinenova.consultas.consultasPersona;
 import com.cinenova.consultas.consultasSesion;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 /**
- *
+ * Clase donde se definen los atributos y métodos de las personas.
+ * 
  * @author Juan Carlos
  */
 public abstract class Persona {
@@ -18,6 +21,16 @@ public abstract class Persona {
     private boolean esEmpleado;
     private boolean esJefe;
 
+    /**
+     * Constructor de la clase Persona
+     * 
+     * @param nombre
+     * @param apellidos
+     * @param correo
+     * @param contrasena
+     * @param esEmpleado
+     * @param esJefe 
+     */
     public Persona(String nombre, String apellidos, String correo, String contrasena, boolean esEmpleado, boolean esJefe) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -84,7 +97,6 @@ public abstract class Persona {
                 cliente = clientes.get(i);
             }
         }
-        System.out.println(cliente.getCorreo());
         return cliente;
     }
 
@@ -97,6 +109,8 @@ public abstract class Persona {
                 sesionesFuturo.add(sesiones.get(i));
             }
         }
+        Comparator ordenaciónPorFecha = new ordenarSesionesPorFecha();
+        Collections.sort(sesionesFuturo, ordenaciónPorFecha);
         return sesionesFuturo;
     }
     

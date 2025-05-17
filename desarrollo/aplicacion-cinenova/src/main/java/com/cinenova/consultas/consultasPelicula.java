@@ -10,11 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Juan Carlos
+ * Clase que recoge todas las consultas relacionadas con la tabla Película en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class consultasPelicula {
     
+    /**
+     * Método para obtener todas las películas disponibles
+     * 
+     * @return Listado de películas total
+     */
     public static List<Película> obtenerConsulta(){
         List<Película> peliculas = new ArrayList<>();
         String sql = "SELECT * FROM Pelicula";

@@ -5,13 +5,17 @@ com\cinenova\VentanaPrincipal$2.class
 com\cinenova\VentanaPrincipal$4.class
 com\cinenova\VentanaPrincipal.class
 com\cinenova\entidades\Película.class
+com\cinenova\VentanaPrincipal$14.class
+com\cinenova\VentanaPrincipal$18.class
 com\cinenova\VentanaPrincipal$11.class
 com\cinenova\autenticación\autenticaciónJefe.class
 com\cinenova\VentanaPrincipal$13.class
 com\cinenova\VentanaPrincipal$6.class
 com\cinenova\autenticación\autenticaciónEmpleado.class
+com\cinenova\VentanaPrincipal$16.class
 com\cinenova\entidades\Empleado.class
 com\cinenova\entidades\Sala.class
+com\cinenova\VentanaPrincipal$15.class
 com\cinenova\VentanaPrincipal$3.class
 com\cinenova\VentanaPrincipal$8.class
 com\cinenova\entidades\Entrada.class
@@ -21,5 +25,6 @@ com\cinenova\VentanaPrincipal$5.class
 com\cinenova\entidades\Jefe.class
 com\cinenova\autenticación\autenticaciónCliente.class
 com\cinenova\entidades\Cliente.class
+com\cinenova\VentanaPrincipal$17.class
 com\cinenova\VentanaPrincipal$7.class
 com\cinenova\VentanaPrincipal$12.class

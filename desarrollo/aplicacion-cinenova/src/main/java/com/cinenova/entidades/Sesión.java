@@ -1,13 +1,11 @@
 package com.cinenova.entidades;
 
-import com.cinenova.consultas.consultasSesion;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
- *
+ * Clase donde se definen los atributos y métodos de las sesiones.
+ * 
  * @author Juan Carlos
  */
 public class Sesión {
@@ -17,6 +15,14 @@ public class Sesión {
     private double precio;
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
+    /**
+     * Constructor de la clase Sesión
+     * 
+     * @param pelicula
+     * @param sala
+     * @param fechaHora
+     * @param precio 
+     */
     public Sesión(Película pelicula, Sala sala, Date fechaHora, double precio) {
         this.fechaHora = fechaHora;
         this.pelicula = pelicula;

@@ -9,18 +9,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- *
- * @author usuarioDAW
+ * Clase que recoge todas las consultas relacionadas con la tabla Entrada en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class consultasEntrada {
     
+    /**
+     * Método para obtener todas las entradas disponibles
+     * 
+     * @return Listado de entradas total
+     */
     public static List<Entrada> obtenerConsulta(){
         List<Entrada> entradas = new ArrayList<>();
         String sql = "SELECT * FROM Entrada";
@@ -59,42 +64,24 @@ public class consultasEntrada {
         return entradas;
     }
     
-    public static Map<Integer, Integer> obtenerEntradasCompradasPorSala() {
-        Map<Integer, Integer> entradasPorSala = new HashMap<>();
-        String sql = "SELECT numeroSala FROM Entrada";
+    /**
+     * Método que devuleve una lista de enteros con los asientos ocupados en una sala a una fecha y hora concreta
+     * 
+     * @param numeroSala
+     * @param fechaHora
+     * @return Listado de asientos ocupados
+     */
+    public static List<Integer> obtenerAsientosOcupadosDeSala(Integer numeroSala, Timestamp fechaHora) {
+    List<Integer> asientosOcupados = new ArrayList<>();
+    String sql = "SELECT asiento FROM Entrada WHERE numeroSala = ? AND fechaHora = ?";
 
-        try (Connection conn = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
-             Statement statement = conn.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
+    try (Connection conn = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+         PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            while (resultSet.next()) {
-                int sala = resultSet.getInt("numeroSala");
-                entradasPorSala.merge(sala, 1, Integer::sum);
-            }
+        preparedStatement.setInt(1, numeroSala);
+        preparedStatement.setTimestamp(2, fechaHora); // usa java.sql.Timestamp
 
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return entradasPorSala;
-    }
-    
-    public static List<Integer> obtenerAsientosOcupadosDeSala(Integer numeroSala) {
-        List<Integer> asientosOcupados = new ArrayList<>();
-        String sql = "SELECT asiento FROM Entrada WHERE numeroSala = ?";
-        int row = 0;
-        try (Connection conn = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
-             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-
-         
-
-            preparedStatement.setInt(1, numeroSala);
-            
-            
         try (ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 int asiento = resultSet.getInt("asiento");
@@ -102,15 +89,21 @@ public class consultasEntrada {
             }
         }
 
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return asientosOcupados;
+    } catch (SQLException e) {
+        System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-    
+
+    return asientosOcupados;
+}
+
+    /**
+     * Método que devuelve el número de filas afectadas tras eliminar una entrada de la base de datos
+     * 
+     * @param entrada
+     * @return Número de filas afectadas en la eliminación de la entrada
+     */
     public static int eliminarEntrada(Entrada entrada){
         int row = 0;
         int id_pelicula = entrada.getSesion().getPelicula().getIdPelicula();
@@ -146,6 +139,12 @@ public class consultasEntrada {
         return row;
     }
     
+    /**
+     * Método que devuelve el número de filas afectadas tras añadir una entrada de la base de datos
+     * 
+     * @param entrada
+     * @return Número de filas afectadas en la inserción de la entrada
+     */
     public static int añadirEntrada(Entrada entrada){
         int row = 0;
         String sql = "INSERT INTO Entrada (id_pelicula, numeroSala, fechaHora, correoPersona, asiento, precioFinal) VALUES (?, ?, ?, ?, ?, ?)";        

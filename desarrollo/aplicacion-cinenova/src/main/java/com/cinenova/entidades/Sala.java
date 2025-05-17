@@ -1,7 +1,8 @@
 package com.cinenova.entidades;
 
 /**
- *
+ * Clase donde se definen los atributos y métodos de las salas.
+ * 
  * @author Juan Carlos
  */
 public class Sala {
@@ -10,6 +11,14 @@ public class Sala {
     private boolean es3D;
     private boolean esVIP;
 
+    /**
+     * Constructor de la clase Sala
+     * 
+     * @param numero
+     * @param capacidad
+     * @param esVIP
+     * @param es3D 
+     */
     public Sala(int numero, int capacidad, boolean esVIP, boolean es3D) {
         this.numero = numero;
         this.capacidad = capacidad;
