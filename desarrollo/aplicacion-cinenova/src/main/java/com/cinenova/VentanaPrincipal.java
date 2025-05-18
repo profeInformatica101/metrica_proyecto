@@ -66,6 +66,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DescargarEntrada = new javax.swing.JButton();
         DevolverEntrada = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        EliminarCuenta = new javax.swing.JButton();
         VentanaRegistro = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         CampoNombre = new javax.swing.JTextField();
@@ -168,6 +169,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        EliminarCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        EliminarCuenta.setText("Elminar cuenta");
+        EliminarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -180,20 +189,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(PuntosObtenidos)
                     .addComponent(DescargarEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DevolverEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ComprarEntradasSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ComprarEntradasSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EliminarCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TituloListadoEntradas)
-                            .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Bienvenida))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TituloListadoEntradas)
+                            .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +213,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(LogoCliente))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(79, 79, 79)
                         .addComponent(Bienvenida)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -220,7 +230,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(DevolverEntrada)
                         .addGap(34, 34, 34)
                         .addComponent(DescargarEntrada)
-                        .addGap(101, 101, 101)
+                        .addGap(34, 34, 34)
+                        .addComponent(EliminarCuenta)
+                        .addGap(40, 40, 40)
                         .addComponent(PuntosObtenidos))
                     .addComponent(ListadoEntradas1))
                 .addGap(38, 38, 38))
@@ -1123,6 +1135,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_CerrarProgramaAlCerrarVentanaCliente
 
+    private void EliminarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCuentaActionPerformed
+        String correo = "";
+        if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+            correo = CampoCorreoRegistro.getText();
+        }else{
+            correo = CampoCorreo.getText();
+        }
+        consultasPersona.obtenerClientes();
+        Cliente cliente = Persona.iniciarSesión(correo);
+        String[] opciones = {"Sí", "No"};
+            int confirmacion = JOptionPane.showOptionDialog( VentanaCliente,"¿Está seguro de que quiere eliminar su cuenta? Se eliminaran todos los datos y entradas que tenga guardados.","Confirmar baja",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null,opciones, opciones[1]);
+            if(confirmacion == 0){
+                boolean eliminada = cliente.eliminarCuenta();
+                if(eliminada){
+                    JOptionPane.showMessageDialog(VentanaCliente, "Cuenta eliminada correctamente.","Cuenta eliminada",JOptionPane.INFORMATION_MESSAGE);
+                    VentanaCliente.dispose();
+                    this.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(VentanaCompraEntrada, "No se ha podido eliminar la cuenta.","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_EliminarCuentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1179,6 +1214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel CorreoRegistro;
     private javax.swing.JButton DescargarEntrada;
     private javax.swing.JButton DevolverEntrada;
+    private javax.swing.JButton EliminarCuenta;
     private javax.swing.JLabel EresEmpleado;
     private javax.swing.JLabel FechaHoraSesion;
     private javax.swing.JButton IniciarSesión;

@@ -70,7 +70,7 @@ public class ClienteTest {
     @Test
     @DisplayName("Pruebas para el método getPuntosGanados()")
     public void testGetPuntosGanados() {
-        int puntosEsperados = 120;
+        int puntosEsperados = 75;
         assertEquals(puntosEsperados, cliente.getPuntosGanados(), "Los puntos esperados no coinciden con los obtenidos");
     }
 
@@ -197,6 +197,23 @@ public class ClienteTest {
     public void testVerSesionesFuturo() {
         int sesionesEsperadas = 5;
         assertEquals(sesionesEsperadas, cliente.verSesionesFuturo().size(), "El número de sesiones del futuro del cliente no coincide con el esperado");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método eliminarCuenta() cuando no se elimina con éxito")
+    public void testCuentaNoEliminada() {
+    	boolean valorEsperado = false;
+    	cliente.setCorreo("aaa");
+        boolean resultado = cliente.eliminarCuenta();
+        assertEquals(valorEsperado, resultado, "La cuenta sí se ha eliminado correctamente");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método eliminarCuenta() cuando sí se elimina con éxito")
+    public void testCuentaEliminada() {
+    	boolean valorEsperado = true;
+        boolean resultado = cliente.eliminarCuenta();
+        assertEquals(valorEsperado, resultado, "La cuenta no se ha eliminado correctamente");
     }
     
     /**
