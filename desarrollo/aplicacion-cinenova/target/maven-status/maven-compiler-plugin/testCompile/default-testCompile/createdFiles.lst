@@ -1,0 +1,6 @@
+com\cinenova\entidades\EntradaTest.class
+com\cinenova\entidades\PersonaTest.class
+com\cinenova\autenticación\autenticaciónJefeTest.class
+com\cinenova\autenticación\autenticaciónEmpleadoTest.class
+com\cinenova\entidades\ClienteTest.class
+com\cinenova\autenticación\autenticaciónClienteTest.class

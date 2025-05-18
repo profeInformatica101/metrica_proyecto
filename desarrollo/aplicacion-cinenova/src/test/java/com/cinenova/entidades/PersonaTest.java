@@ -60,14 +60,14 @@ class PersonaTest {
 	@Test
     @DisplayName("Pruebas para el método getNombre()")
     public void testGetNombre() {
-        String nombreEsperado = "Ana";
+        String nombreEsperado = "Juan";
         assertEquals(nombreEsperado, cliente.getNombre(), "El nombre del cliente esperado no coincide con el obtenido");
     }
 	
 	@Test
     @DisplayName("Pruebas para el método setNombre(String nombre)")
     public void testSetNombre() {
-        String nuevoNombre = "ANA";
+        String nuevoNombre = "JUAN";
         cliente.setNombre(nuevoNombre);
         assertEquals(nuevoNombre, cliente.getNombre(), "El nombre del cliente esperado no coincide con el obtenido");
     }
@@ -75,14 +75,14 @@ class PersonaTest {
 	@Test
     @DisplayName("Pruebas para el método getApellidos()")
     public void testGetApellidos() {
-        String apellidosEsperados = "Pérez López";
+        String apellidosEsperados = "García Ruiz";
         assertEquals(apellidosEsperados, cliente.getApellidos(), "Los apellidos del cliente esperado no coincide con el obtenido");
     }
 	
 	@Test
     @DisplayName("Pruebas para el método setApellidos()")
     public void testSetApellidos() {
-        String nuevosApellidos = "PÉREZ LÓPEZ";
+        String nuevosApellidos = "GARCÍA RUIZ";
         cliente.setApellidos(nuevosApellidos);
         assertEquals(nuevosApellidos, cliente.getApellidos(), "Los apellidos del cliente esperado no coincide con el obtenido");
     }
@@ -90,14 +90,14 @@ class PersonaTest {
 	@Test
     @DisplayName("Pruebas para el método getCorreo()")
     public void testGetCorreo() {
-        String correoEsperado = "ana.perez@gmail.com";
+        String correoEsperado = "juan.garcia@gmail.com";
         assertEquals(correoEsperado, cliente.getCorreo(), "El correo del cliente esperado no coincide con el obtenido");
     }
 	
 	@Test
     @DisplayName("Pruebas para el método setCorreo()")
     public void testSetCorreo() {
-        String nuevoCorreo = "ana.perez@hotmail.com";
+        String nuevoCorreo = "juan.garcia@hotmail.com";
         cliente.setCorreo(nuevoCorreo);
         assertEquals(nuevoCorreo, cliente.getCorreo(), "El correo del cliente esperado no coincide con el obtenido");
     }
@@ -105,14 +105,14 @@ class PersonaTest {
 	@Test
     @DisplayName("Pruebas para el método getContrasena()")
     public void testGetContrasena() {
-        String contrasenaEsperada = "ana123";
+        String contrasenaEsperada = "juan456";
         assertEquals(contrasenaEsperada, cliente.getContrasena(), "La contraseña del cliente esperado no coincide con el obtenido");
     }
 	
 	@Test
     @DisplayName("Pruebas para el método setContrasena()")
     public void testSetContrasena() {
-        String nuevaContraseña = "ana123456";
+        String nuevaContraseña = "juan123456";
         cliente.setContrasena(nuevaContraseña);
         assertEquals(nuevaContraseña, cliente.getContrasena(), "La contraseña del cliente esperado no coincide con el obtenido");
     }

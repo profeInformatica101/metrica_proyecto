@@ -85,6 +85,7 @@ class EntradaTest {
 	@Test
     @DisplayName("Pruebas para el método setPrecioFinal()")
     public void testSetPrecioFinal100200() {
+		cliente.setPuntosGanados(100);
 		double precioFinalEsperado = sesion.getPrecio() * 0.9;
         entrada.setPrecioFinal();
         assertEquals(precioFinalEsperado, entrada.getPrecioFinal(), "El precio final esperado no coinciden con el obtenido");
