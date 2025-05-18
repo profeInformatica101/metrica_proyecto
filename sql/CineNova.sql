@@ -69,7 +69,7 @@ CREATE TABLE Entrada (
     fechaCompra DATE DEFAULT SYSDATE,
     PRIMARY KEY (id_pelicula, numeroSala, fechaHora, correoPersona, asiento),
     FOREIGN KEY (id_pelicula, numeroSala, fechaHora) REFERENCES Sesion(id_pelicula, numeroSala, fechaHora),
-    FOREIGN KEY (correoPersona) REFERENCES Persona(correo)
+    FOREIGN KEY (correoPersona) REFERENCES Persona(correo) ON DELETE CASCADE
 );
 
 
