@@ -1,6 +1,7 @@
 package com.cinenova.entidades;
 
 import com.cinenova.consultas.consultasEntrada;
+import com.cinenova.consultas.consultasPersona;
 import com.cinenova.consultas.consultasSesion;
 import java.io.File;
 import java.io.FileWriter;
@@ -173,6 +174,20 @@ public class Cliente extends Persona{
             }
         }
         return peliculasDisponibles;
+    }
+    
+    /**
+     * Método que devuelve true en caso de eliminar con éxito la cuenta de la base de datos y false en caso contrario
+     * 
+     * @return True en caso de éxito en la eliminación de la cuenta y false en caso contrario
+     */
+    public boolean eliminarCuenta(){
+        boolean eliminada = false;
+        int eliminarCuenta = consultasPersona.eliminarCliente(this);
+        if(eliminarCuenta != 0){
+            eliminada = true;
+        }
+        return eliminada;
     }
     
     /**

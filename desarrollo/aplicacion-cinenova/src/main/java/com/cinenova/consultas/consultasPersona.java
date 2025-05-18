@@ -2,6 +2,7 @@ package com.cinenova.consultas;
 
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Empleado;
+import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Jefe;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,6 +191,31 @@ public class consultasPersona {
             preparedStatement.setInt(1, cliente.getPuntosGanados() - 5);
             preparedStatement.setString(2, cliente.getCorreo());
             
+            row = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return row;
+    }
+    
+    public static int eliminarCliente(Cliente cliente){
+        int row = 0;
+        String sql = "DELETE FROM Persona WHERE correo = ?";
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+         
+
+            preparedStatement.setString(1, cliente.getCorreo());
+            
+
+
             row = preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
