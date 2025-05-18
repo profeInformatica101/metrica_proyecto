@@ -1,11 +1,22 @@
 package com.cinenova.entidades;
 
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import com.cinenova.consultas.consultasEntrada;
+import com.cinenova.consultas.consultasPersona;
+import com.cinenova.consultas.consultasSesion;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 
@@ -18,8 +29,9 @@ public class ClienteTest {
     Cliente cliente;
     Entrada entrada;
     Sesión sesion;
-    Sala sala;
-    Película pelicula;
+    List<Cliente> clientes = consultasPersona.obtenerClientes();
+	List<Sesión> sesiones = consultasSesion.obtenerConsulta();
+	List<Entrada> entradas;
     
     public ClienteTest() {
     }
@@ -33,12 +45,19 @@ public class ClienteTest {
     }
     
     @BeforeEach
-    public void setUp() {
-        cliente = new Cliente(100, "Juan", "Perez", "juan@gmail.com", "juan", false, false);
-        sala = new Sala(1, 40, false, false);
-        pelicula = new Película(1, "Titanic", 200, "Drama", "+7", "Película antigua");
-        sesion = new Sesión(pelicula, sala, new Date(), 10);
-        entrada = new Entrada(10, cliente, sesion, 10);
+    public void setUp() throws ParseException {
+    	for(int i = 0; i < clientes.size(); i++) {
+    		if(i == 0) {
+    			cliente = clientes.get(i);
+    		}
+    	}
+    	for(int i = 0; i < sesiones.size(); i++) {
+    		if(i == 0) {
+    			sesion = sesiones.get(i);
+    		}
+    	}
+        entrada = new Entrada(10, cliente, sesion, sesion.getPrecio());
+        
     }
     
     @AfterEach
@@ -51,7 +70,7 @@ public class ClienteTest {
     @Test
     @DisplayName("Pruebas para el método getPuntosGanados()")
     public void testGetPuntosGanados() {
-        int puntosEsperados = 100;
+        int puntosEsperados = 120;
         assertEquals(puntosEsperados, cliente.getPuntosGanados(), "Los puntos esperados no coinciden con los obtenidos");
     }
 
@@ -69,125 +88,130 @@ public class ClienteTest {
     /**
      * Test of comprarEntrada method, of class Cliente.
      */
-    /*
+    
     @Test
-    @DisplayName("Pruebas para el método comprarEntrada(Entrada entrada)")
-    public void testComprarEntrada() {
+    @DisplayName("Pruebas para el método comprarEntrada(Entrada entrada) cuando se compra con éxito")
+    public void testEntradaComprada() {
         boolean valorEsperado = true;
         boolean resultado = cliente.comprarEntrada(entrada);
         assertEquals(valorEsperado, resultado, "La entrada no se ha comprado correctamente");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método comprarEntrada(Entrada entrada) cuando no se compra con éxito")
+    public void testEntradaNoComprada() {
+        boolean valorEsperado = false;
+        boolean resultado = cliente.comprarEntrada(entrada);
+        assertEquals(valorEsperado, resultado, "La entrada sí se ha comprado correctamente");
     }
 
     
     /**
      * Test of devolverEntrada method, of class Cliente.
      */
-    /*
+    
     @Test
-    public void testDevolverEntrada() {
-        System.out.println("devolverEntrada");
-        Entrada entrada = null;
-        Cliente instance = null;
-        boolean expResult = false;
-        boolean result = instance.devolverEntrada(entrada);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @DisplayName("Pruebas para el método devolverEntrada(Entrada entrada) cuando se devuelve con éxito")
+    public void testEntradaDevuelta() {
+    	boolean valorEsperado = true;
+        boolean resultado = cliente.devolverEntrada(entrada);
+        assertEquals(valorEsperado, resultado, "La entrada no se ha devuelto correctamente");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método devolverEntrada(Entrada entrada) cuando no se devuelve con éxito")
+    public void testEntradaNoDevuelta() {
+    	boolean valorEsperado = false;
+        boolean resultado = cliente.devolverEntrada(entrada);
+        assertEquals(valorEsperado, resultado, "La entrada sí se ha devuelto correctamente");
     }
 
     /**
      * Test of descargarEntrada method, of class Cliente.
      */
+    
+    @Test
+    @DisplayName("Pruebas para el método descargarEntrada(Entrada entrada) cuando se descarga con éxito")
+    public void testEntradaDescargada() {
+        File archivoDestino = new File("entrada_descargada.txt");
+        boolean resultadoEsperado = true;
+        boolean resultado = cliente.descargarEntrada(entrada, archivoDestino);
+        assertEquals(resultadoEsperado, resultado, "La entrada no se ha descargado correctamente");
+    }
     /*
     @Test
-    public void testDescargarEntrada() {
-        System.out.println("descargarEntrada");
-        Entrada entrada = null;
-        File archivoDestino = null;
-        Cliente instance = null;
-        boolean expResult = false;
-        boolean result = instance.descargarEntrada(entrada, archivoDestino);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @DisplayName("Pruebas para el método descargarEntrada(Entrada entrada) cuando no se descarga con éxito")
+    public void testEntradaNoDescargada() {
+        File archivoDestino = new File("entrada_descargada.txt");
+        Exception e = assertThrows(IllegalArgumentException.class, () -> cliente.descargarEntrada(entrada, archivoDestino));
+        String mensajeEsperado = "Error al escribir la entrada: "  + e.getMessage();
+		assertEquals(mensajeEsperado, e.getMessage(), "Deben coincidir los mensajes al no poder descargar la entrada");
     }
-
+	*/
     /**
      * Test of verEntradas method, of class Cliente.
      */
-    /*
+    
     @Test
+    @DisplayName("Pruebas para el método verEntradas()")
     public void testVerEntradas() {
-        System.out.println("verEntradas");
-        Cliente instance = null;
-        List<Entrada> expResult = null;
-        List<Entrada> result = instance.verEntradas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int entradasEsperadas = 1;
+        assertEquals(entradasEsperadas, cliente.verEntradas().size(), "El número de entradas del cliente no coincide con el esperado");
     }
 
     /**
      * Test of verEntradasFuturo method, of class Cliente.
      */
-    /*
+    
     @Test
+    @DisplayName("Pruebas para el método verEntradasFuturo()")
     public void testVerEntradasFuturo() {
-        System.out.println("verEntradasFuturo");
-        Cliente instance = null;
-        List<Entrada> expResult = null;
-        List<Entrada> result = instance.verEntradasFuturo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int entradasEsperadas = 0;
+        assertEquals(entradasEsperadas, cliente.verEntradasFuturo().size(), "El número de entradas del futuro del cliente no coincide con el esperado");
     }
 
     /**
      * Test of filtrarPorPelículas method, of class Cliente.
      */
-    /*
+    
     @Test
-    public void testFiltrarPorPelículas() {
-        System.out.println("filtrarPorPel\u00edculas");
-        String titulo = "";
-        Cliente instance = null;
-        List<Sesión> expResult = null;
-        List<Sesión> result = instance.filtrarPorPelículas(titulo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @DisplayName("Pruebas para el método filtrarPorPelículas(String título)")
+    public void testFiltrarPorPeliculas() {
+        int peliculasEsperadas = 0;
+        assertEquals(peliculasEsperadas, cliente.filtrarPorPelículas("Titanic").size(), "El número de peliculas no coincide con el esperado");
     }
 
     /**
      * Test of peliculasSesionesDisponibles method, of class Cliente.
      */
-    /*
+    
     @Test
+    @DisplayName("Pruebas para el método peliculasSesionesDisponibles(List<Sesion> sesiones)")
     public void testPeliculasSesionesDisponibles() {
-        System.out.println("peliculasSesionesDisponibles");
-        List<Sesión> sesiones = null;
-        Cliente instance = null;
-        List<String> expResult = null;
-        List<String> result = instance.peliculasSesionesDisponibles(sesiones);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int peliculasEsperadas = 5;
+        assertEquals(peliculasEsperadas, cliente.peliculasSesionesDisponibles(sesiones).size(), "El número de peliculas no coincide con el esperado");
     }
 
+    @Test
+    @DisplayName("Pruebas para el método verSesionesFuturo()")
+    public void testVerSesionesFuturo() {
+        int sesionesEsperadas = 5;
+        assertEquals(sesionesEsperadas, cliente.verSesionesFuturo().size(), "El número de sesiones del futuro del cliente no coincide con el esperado");
+    }
+    
     /**
      * Test of toString method, of class Cliente.
      */
     /*
     @Test
+    @DisplayName("Pruebas para el método toString()")
     public void testToString() {
-        System.out.println("toString");
-        Cliente instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    	String stringPadre = super.toString();
+        String resultadoEsperado = stringPadre + "Cliente{" + "puntosGanados=" + cliente.getPuntosGanados() + '}';
+        String mensaje = cliente.toString();
+        assertEquals(resultadoEsperado, mensaje, "El método no devuelve la cadena esperada");
     }
     */
+    
     
 }
