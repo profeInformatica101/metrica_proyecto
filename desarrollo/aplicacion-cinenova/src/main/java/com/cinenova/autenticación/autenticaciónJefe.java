@@ -14,8 +14,8 @@ public class autenticaciónJefe {
     /**
      * Método que devuelve true en caso de estar registrado el jefe introducido y false en caso contrario
      * 
-     * @param correo
-     * @param contrasena
+     * @param correo Correo
+     * @param contrasena Contraseña
      * @return True en caso de que el jefe este registrado y false en caso contrario
      */
     public static boolean esJefe(String correo, String contrasena){

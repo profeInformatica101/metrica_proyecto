@@ -13,11 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Juan Carlos
+ * Clase que recoge todas las consultas relacionadas con la tabla Persona en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class consultasPersona {
     
+    /**
+     * Método que devuelve el número de filas afectadas tras añadir un cliente en la tabla Persona de la base de datos
+     * 
+     * @param correo Correo
+     * @param nombre Nombre
+     * @param apellidos Apellidos
+     * @param contrasena Contraseña
+     * @return Número de filas afectadas tras la inserción en la base de datos
+     */
     public static int añadirCliente(String correo, String nombre, String apellidos, String contrasena){
         int row = 0;
         String sql = "INSERT INTO Persona (correo, nombre, apellidos, contrasena) VALUES (?, ?, ?, ?)";        
@@ -44,6 +54,11 @@ public class consultasPersona {
         return row;
     }
     
+    /**
+     * Método para obtener todas los clientes registrados
+     * 
+     * @return Listado de clientes registrados
+     */
     public static List<Cliente> obtenerClientes(){
         List<Cliente> clientes = new ArrayList<>();
         String sql = "SELECT * FROM Persona WHERE esEmpleado = 0 AND esJefe = 0";
@@ -71,6 +86,11 @@ public class consultasPersona {
         return clientes;
     }
     
+    /**
+     * Método para obtener todos los empleados registrados
+     * 
+     * @return Listado de empleados registrados
+     */
     public static List<Empleado> obtenerEmpleados(){
         List<Empleado> empleados = new ArrayList<>();
         String sql = "SELECT * FROM Persona WHERE esEmpleado = 1 OR esJefe = 1";
@@ -96,6 +116,11 @@ public class consultasPersona {
         return empleados;
     }
     
+    /**
+     * Método para obtener todos los jefes registrados
+     * 
+     * @return Listado de jefes registrados
+     */
     public static List<Jefe> obtenerJefes(){
         List<Jefe> jefes = new ArrayList<>();
         String sql = "SELECT * FROM Persona WHERE esJefe = 1";
@@ -120,10 +145,17 @@ public class consultasPersona {
         
         return jefes;
     }
-
+    
+    /**
+     * Método que actualiza sumando puntos extra a los puntos de un cliente en la base de datos
+     * 
+     * @param cliente Cliente
+     * @return Número de filas afectadas tras la actuaización de la base de datos
+     */ 
     public static int actualizarPuntos(Cliente cliente) {
         int row = 0;
         String sql = "UPDATE Persona SET puntosGanados = ? WHERE correo = ?";
+
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
@@ -142,6 +174,14 @@ public class consultasPersona {
         return row;
     }
     
+    /**
+     * Método que actualiza la contraseña y el sueldo de un empleado en la base de datos
+     * 
+     * @param correo Correo del empleado a actualizar
+     * @param nuevaContrasena Nueva contraseña para el empleado
+     * @param nuevoSueldo Nuevo sueldo a asignar
+     * @return Número de filas afectadas tras la actualización
+     */
     public static int actualizarEmpleado(String correo, String nuevaContrasena, double nuevoSueldo) {
         int row = 0;
         String sql = "UPDATE Persona SET contrasena = ?, sueldo = ? WHERE correo = ?";
@@ -165,6 +205,12 @@ public class consultasPersona {
         return row;
     }
     
+    /**
+     * Método que elimina un empleado de la base de datos a partir de su DNI
+     * 
+     * @param dni DNI del empleado a eliminar
+     * @return Número de filas afectadas tras la eliminación
+     */
     public static int borrarEmpleado(String dni) {
         int row = 0;
         String sql = "DELETE FROM Persona WHERE dni = ?";
@@ -186,6 +232,17 @@ public class consultasPersona {
         return row;
     }
     
+    /**
+     * Método que añade un nuevo empleado a la base de datos
+     * 
+     * @param nombre Nombre del empleado
+     * @param apellidos Apellidos del empleado
+     * @param correo Correo del empleado
+     * @param contrasena Contraseña del empleado
+     * @param DNI DNI del empleado
+     * @param sueldo Sueldo del empleado (en formato String)
+     * @return Número de filas afectadas tras la inserción en la base de datos
+     */
     public static int añadirEmpleado(String nombre, String apellidos, String correo, String contrasena, String DNI, String sueldo){
         int row = 0;
         String sql = "INSERT INTO Persona (nombre, apellidos, correo, contrasena, DNI, sueldo, esEmpleado, esJefe) VALUES (?, ?, ?, ?, ?, ?, 1, 0)";        

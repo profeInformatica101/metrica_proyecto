@@ -11,12 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Juan Carlos
+ * Clase que recoge todas las consultas relacionadas con la tabla Película en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class consultasPelicula {
     
-    public static List<Película> obtenerConsulta(){
+    /**
+     * Método para obtener todas las películas disponibles
+     * 
+     * @return Listado de películas total
+     */
+    public static List<Película> obtenerConsulta() {
         List<Película> peliculas = new ArrayList<>();
         String sql = "SELECT * FROM Pelicula";
 
@@ -41,6 +47,17 @@ public class consultasPelicula {
         return peliculas;
     }
     
+    /**
+     * Método para actualizar los datos de una película existente en la base de datos
+     * 
+     * @param id ID de la película a actualizar
+     * @param titulo Nuevo título de la película
+     * @param duracion Nueva duración en minutos
+     * @param genero Nuevo género de la película
+     * @param clasificacionEdad Nueva clasificación por edad
+     * @param descripcion Nueva descripción de la película
+     * @return Número de filas afectadas por la actualización
+     */
     public static int actualizarPelicula(int id, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
         int row = 0;
         String sql = "UPDATE Pelicula SET titulo = ?, duracion = ?, genero = ?, clasificacionEdad = ?, descripcion = ? WHERE id_Pelicula = ?";
@@ -66,7 +83,17 @@ public class consultasPelicula {
 
         return row;
     }
-    
+
+    /**
+     * Método para añadir una nueva película a la base de datos
+     * 
+     * @param titulo Título de la nueva película
+     * @param duracion Duración de la película en minutos
+     * @param genero Género de la película
+     * @param clasificacionEdad Clasificación por edad
+     * @param descripcion Descripción de la película
+     * @return Número de filas insertadas en la base de datos
+     */
     public static int añadirPelicula(String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
         int row = 0;
         String sql = "INSERT INTO Pelicula (titulo, duracion, genero, clasificacionEdad, descripcion) VALUES (?, ?, ?, ?, ?)";
@@ -91,8 +118,14 @@ public class consultasPelicula {
 
         return row;
     }
-    
-     public static int borrarPelicula(int idPelicula) {
+
+    /**
+     * Método para borrar una película existente de la base de datos
+     * 
+     * @param idPelicula ID de la película que se desea eliminar
+     * @return Número de filas eliminadas de la base de datos
+     */
+    public static int borrarPelicula(int idPelicula) {
         
         int row = 0;
         String sql = "DELETE FROM Pelicula WHERE id_pelicula = ?";
@@ -102,7 +135,7 @@ public class consultasPelicula {
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, idPelicula);
-
+            
             row = preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -113,8 +146,8 @@ public class consultasPelicula {
 
         return row;
     }
-
-
     
-
+    
+    
+    
 }
