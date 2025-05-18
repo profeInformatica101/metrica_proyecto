@@ -5,20 +5,17 @@ import com.cinenova.autenticación.autenticaciónEmpleado;
 import static com.cinenova.autenticación.autenticaciónEmpleado.esEmpleado;
 import com.cinenova.autenticación.autenticaciónJefe;
 import static com.cinenova.autenticación.autenticaciónJefe.esJefe;
-import static com.cinenova.consultas.actualizarEmpleado.actualizarEmpleado;
-import static com.cinenova.consultas.actualizarPelicula.actualizarPelicula;
-import static com.cinenova.consultas.añadirPelicula.añadirPelicula;
-import com.cinenova.consultas.añadirPersona;
-import static com.cinenova.consultas.añadirSesion.añadirSesion;
-import com.cinenova.consultas.borrarEmpleado;
-import static com.cinenova.consultas.borrarPelicula.borrarPelicula;
-import com.cinenova.consultas.borrarSesion;
-import com.cinenova.consultas.obtenerClientes;
-import com.cinenova.consultas.obtenerEmpleados;
-import com.cinenova.consultas.obtenerEntradas;
-import com.cinenova.consultas.obtenerJefes;
-import com.cinenova.consultas.obtenerPeliculas;
-import com.cinenova.consultas.obtenerSesiones;
+import com.cinenova.consultas.consultasEntrada;
+import com.cinenova.consultas.consultasPelicula;
+import static com.cinenova.consultas.consultasPelicula.actualizarPelicula;
+import static com.cinenova.consultas.consultasPelicula.añadirPelicula;
+import static com.cinenova.consultas.consultasPelicula.borrarPelicula;
+import com.cinenova.consultas.consultasPersona;
+import static com.cinenova.consultas.consultasPersona.actualizarEmpleado;
+import static com.cinenova.consultas.consultasPersona.borrarEmpleado;
+import static com.cinenova.consultas.consultasPersona.obtenerEmpleados;
+import com.cinenova.consultas.consultasSesion;
+import static com.cinenova.consultas.consultasSesion.añadirSesion;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Entrada;
@@ -1719,7 +1716,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String nombre = "";
             String apellidos = "";
             int puntos = 0;
-            List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+            List<Cliente> clientes = consultasPersona.obtenerClientes();
             for(int i = 0; i < clientes.size(); i++){
                 if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
                     nombre = clientes.get(i).getNombre();
@@ -1727,7 +1724,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     puntos = clientes.get(i).getPuntosGanados();
                 }
             }
-            List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
+            List<Entrada> entradas = consultasEntrada.obtenerConsulta();
             List<Entrada> entradasCliente = new ArrayList<>();
             for(int i = 0; i < entradas.size(); i++){
                 if(entradas.get(i).getCliente().getCorreo().equals(correo)){
@@ -1779,13 +1776,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         char[] password = CampoContraseñaRegistro.getPassword();
         String contrasena = new String(password);
         if(!autenticaciónCliente.esCliente(correo, contrasena)){
-            int row = añadirPersona.añadirCliente(correo, nombre, apellidos, contrasena);
+            int row = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);
             if(row > 0){
                 JOptionPane.showMessageDialog(VentanaRegistro, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
                 String nombreMostrar = "";
                 String apellidosMostrar = "";
                 int puntos = 0;
-                List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+                List<Cliente> clientes = consultasPersona.obtenerClientes();
                 for(int i = 0; i < clientes.size(); i++){
                     if((clientes.get(i).getCorreo().equals(correo)) && (clientes.get(i).getContrasena().equals(contrasena))){
                         nombreMostrar = clientes.get(i).getNombre();
@@ -1793,7 +1790,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         puntos = clientes.get(i).getPuntosGanados();
                     }
                 }
-                List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
+                List<Entrada> entradas = consultasEntrada.obtenerConsulta();
                 List<Entrada> entradasCliente = new ArrayList<>();
                 for(int i = 0; i < entradas.size(); i++){
                     if(entradas.get(i).getCliente().getCorreo().equals(correo)){
@@ -1842,7 +1839,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void DevolverEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevolverEntradaActionPerformed
         int indice = ListadoEntradasCliente.getSelectedIndex();
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
+        List<Cliente> clientes = consultasPersona.obtenerClientes();
         Cliente cliente = null;
         for(int i = 0; i < clientes.size(); i++){
             if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
@@ -1852,7 +1849,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         boolean exito = cliente.devolverEntrada(cliente.verEntradas().get(indice));
         if(exito){
             JOptionPane.showMessageDialog(VentanaCliente, "La entrada ha sido devuelta con éxito.","Entrada devuelta",JOptionPane.INFORMATION_MESSAGE);
-            List<Entrada> entradas = obtenerEntradas.obtenerConsulta();
+            List<Entrada> entradas = consultasEntrada.obtenerConsulta();
                 List<Entrada> entradasCliente = cliente.verEntradas();
                 DefaultListModel lista = new DefaultListModel<>();
                 if(entradasCliente.isEmpty()){
@@ -1870,19 +1867,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void DescargarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescargarEntradaActionPerformed
         int indice = ListadoEntradasCliente.getSelectedIndex();
-        List<Cliente> clientes = obtenerClientes.obtenerConsulta();
-        Cliente cliente = null;
-        for(int i = 0; i < clientes.size(); i++){
-            if(clientes.get(i).getCorreo().equals(CampoCorreo.getText())){
-                cliente = clientes.get(i);
-            }
-        }
-        boolean descargada = cliente.descargarEntrada(cliente.verEntradas().get(indice));
-        if(descargada){
-            JOptionPane.showMessageDialog(VentanaCliente, "La entrada se ha descargado.","Entrada descargada",JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(VentanaCliente, "La entrada no se ha podido descargar.","Error",JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_DescargarEntradaActionPerformed
 
     private void ComprarEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradasActionPerformed
@@ -1890,7 +1874,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaSesiones.setLocationRelativeTo(null);
         VentanaSesiones.setTitle("Sesiones disponibles");
         VentanaSesiones.setModal(true);
-        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        List<Sesión> sesiones = consultasSesion.obtenerConsulta();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Precio", "Asientos disponibles"};
         DefaultTableModel tabla = new DefaultTableModel(columnas, 0){
@@ -1899,7 +1883,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 return false; // desactiva edición de todas las celdas
             }
         };
-        Map<Integer, Integer> entradasVendidas = obtenerEntradas.obtenerEntradasCompradasPorSala();
+        Map<Integer, Integer> entradasVendidas = consultasEntrada.obtenerEntradasCompradasPorSala();
         if(sesiones.isEmpty()){
             JOptionPane.showMessageDialog(VentanaSesiones, "No se han encontrado entradas a la venta","Información",JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -1932,7 +1916,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaCompraEntrada.setModal(true);
         AsientosDisponibles.removeAllItems();
         int sesionSeleccionada = VerSesiones.getSelectedRow();
-        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        List<Sesión> sesiones = consultasSesion.obtenerConsulta();
         Sesión sesión = null;
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         for(int i = 0; i < sesiones.size(); i++){
@@ -1965,7 +1949,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String apellidos = "";
 
             if(esEmpleado){
-                List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+                List<Empleado> empleados = consultasPersona.obtenerEmpleados();
                 for(Empleado emp : empleados){
                     if(emp.getCorreo().equals(correo) && emp.getContrasena().equals(contrasena)){
                         nombre = emp.getNombre();
@@ -1973,7 +1957,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     }
                 }
             } else {
-                List<Jefe> jefes = obtenerJefes.obtenerConsulta();
+                List<Jefe> jefes = consultasPersona.obtenerJefes();
                 for(Jefe jefe : jefes){
                     if(jefe.getCorreo().equals(correo) && jefe.getContrasena().equals(contrasena)){
                         nombre = jefe.getNombre();
@@ -1991,7 +1975,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             BienvenidaEmpleado.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
             VentanaEmpleados.setVisible(true);
             
-            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
             DefaultListModel<String> modelo = new DefaultListModel<>();
 
             for (Película pelicula : peliculas) {
@@ -2006,7 +1990,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             jListPelículas.setModel(modelo);
             
-            List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+            List<Sesión> sesiones = consultasSesion.obtenerConsulta();
             DefaultListModel<String> modelo2 = new DefaultListModel<>();
 
             for (Sesión sesion : sesiones) {
@@ -2046,19 +2030,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+        List<Sesión> sesiones = consultasSesion.obtenerConsulta();
         Sesión sesionSeleccionada = sesiones.get(indice);
 
         int idPelicula = sesionSeleccionada.getPelicula().getIdPelicula();
         int numeroSala = sesionSeleccionada.getSala().getNumero();
         Timestamp fechaHora = new Timestamp(sesionSeleccionada.getFechaHora().getTime());
 
-        int filasAfectadas = borrarSesion.borrarSesion(idPelicula, numeroSala, fechaHora);
+        int filasAfectadas = consultasSesion.borrarSesion(idPelicula, numeroSala, fechaHora);
 
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(this, "Sesión borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-            List<Sesión> sesionesActualizadas = obtenerSesiones.obtenerConsulta();
+            List<Sesión> sesionesActualizadas = consultasSesion.obtenerConsulta();
             DefaultListModel<String> modelo = new DefaultListModel<>();
 
             for (Sesión sesion : sesionesActualizadas) {
@@ -2093,7 +2077,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+        List<Película> peliculas = consultasPelicula.obtenerConsulta();
 
         if (indice >= peliculas.size()) {
             JOptionPane.showMessageDialog(this, "La película seleccionada no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -2126,7 +2110,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+        List<Película> peliculas = consultasPelicula.obtenerConsulta();
         Película peliculaSeleccionada = peliculas.get(indice);
 
         int filasAfectadas = borrarPelicula(peliculaSeleccionada.getIdPelicula());
@@ -2134,7 +2118,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(this, "Película borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-            List<Película> peliculasActualizadas = obtenerPeliculas.obtenerConsulta();
+            List<Película> peliculasActualizadas = consultasPelicula.obtenerConsulta();
             DefaultListModel<String> modeloLista = new DefaultListModel<>();
 
             if (peliculasActualizadas.isEmpty()) {
@@ -2166,7 +2150,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         CampoCorreoActualizarEmpleado.setVisible(false);
         this.dispose();
         
-        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
         DefaultListModel<String> modelo = new DefaultListModel<>();
 
         for (Empleado empleado : empleados) {
@@ -2214,7 +2198,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String sueldo = CampoSueldoRegistroEmpleado.getText();
         
         if(!autenticaciónEmpleado.esEmpleado(correo, contraseña)){
-            int row = añadirPersona.añadirEmpleado(nombre, apellidos, correo, contraseña, DNI, sueldo);
+            int row = consultasPersona.añadirEmpleado(nombre, apellidos, correo, contraseña, DNI, sueldo);
             if(row > 0){
                 JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
                 
@@ -2237,6 +2221,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Este empleado ya está registrado.","Error",JOptionPane.ERROR_MESSAGE);
         }
+        
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+
+        for (Empleado empleado : empleados) {
+            String info = "Nombre: " + empleado.getNombre() +
+                          " " + empleado.getApellidos() +
+                          " | Correo: " + empleado.getCorreo() +
+                          " | DNI: " + empleado.getDNI() +
+                          " | Sueldo: " + empleado.getSueldo() + "€";
+
+            modelo.addElement(info);
+        }
+
+        jListEmpleados.setModel(modelo);
     }//GEN-LAST:event_RegistrarEmpleadosActionPerformed
 
     private void BorrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarEmpleadosActionPerformed
@@ -2247,16 +2246,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
 
         Empleado empleadoSeleccionado = empleados.get(indice);
 
-        int filasAfectadas = borrarEmpleado.borrarEmpleado(empleadoSeleccionado.getDNI());
+        int filasAfectadas = consultasPersona.borrarEmpleado(empleadoSeleccionado.getDNI());
 
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(this, "Empleado borrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-            List<Empleado> empleadosActualizados = obtenerEmpleados.obtenerConsulta();
+            List<Empleado> empleadosActualizados = consultasPersona.obtenerEmpleados();
             DefaultListModel modeloLista = new DefaultListModel();
 
             if (empleadosActualizados.isEmpty()) {
@@ -2313,7 +2312,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             VentanaActualizarEmpleado.dispose();
 
-            List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+            List<Empleado> empleados = consultasPersona.obtenerEmpleados();
             DefaultListModel<String> modelo = new DefaultListModel<>();
             for (Empleado empleado : empleados) {
                 String info = "Nombre: " + empleado.getNombre() +
@@ -2339,7 +2338,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        List<Empleado> empleados = obtenerEmpleados.obtenerConsulta();
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
 
         if (indice >= empleados.size()) {
             JOptionPane.showMessageDialog(this, "El empleado seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -2387,7 +2386,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             VentanaAñadirPelicula.dispose();
 
-            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
             DefaultListModel<String> modelo = new DefaultListModel<>();
             for (Película p : peliculas) {
                 String info = "Título: " + p.getTitulo() +
@@ -2441,7 +2440,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             VentanaActualizarPelicula.dispose();
 
-            List<Película> peliculas = obtenerPeliculas.obtenerConsulta();
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
             DefaultListModel<String> modelo = new DefaultListModel<>();
             for (Película pelicula : peliculas) {
                 String info = "Título: " + pelicula.getTitulo() +
@@ -2493,7 +2492,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sesión añadida correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             VentanaAñadirSesion.dispose();
 
-            List<Sesión> sesiones = obtenerSesiones.obtenerConsulta();
+            List<Sesión> sesiones = consultasSesion.obtenerConsulta();
             DefaultListModel<String> modelo = new DefaultListModel<>();
             for (Sesión s : sesiones) {
                 String info = "Película: " + s.getPelicula().getTitulo() +
@@ -2510,7 +2509,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_AñadirSesionConfirmarActionPerformed
 
     private void BorrarDatosAñadirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarDatosAñadirSesionActionPerformed
-        // TODO add your handling code here:
+        PeliculaCampoAñadirSesion.setText("");
+        SalaCampoAñadirSesion.setText("");
+        FechaHoraCampoAñadirSesion.setText("");
+        PrecioCampoAñadirSesion.setText("");
     }//GEN-LAST:event_BorrarDatosAñadirSesionActionPerformed
 
     /**

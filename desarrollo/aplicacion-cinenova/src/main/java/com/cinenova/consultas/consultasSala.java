@@ -1,6 +1,6 @@
 package com.cinenova.consultas;
 
-import com.cinenova.entidades.Cliente;
+import com.cinenova.entidades.Sala;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,11 +13,11 @@ import java.util.List;
  *
  * @author Juan Carlos
  */
-public class obtenerClientes {
+public class consultasSala {
     
-    public static List<Cliente> obtenerConsulta(){
-        List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM Persona WHERE esEmpleado = 0 AND esJefe = 0";
+    public static List<Sala> obtenerConsulta(){
+        List<Sala> salas = new ArrayList<>();
+        String sql = "SELECT * FROM Sala";
 
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
@@ -26,9 +26,9 @@ public class obtenerClientes {
             ResultSet resultSet = statement.executeQuery(sql);
             
             while (resultSet.next()) {
-                Cliente cliente = new Cliente(resultSet.getInt("puntosGanados"), resultSet.getString("nombre"), resultSet.getString("apellidos"), resultSet.getString("correo"), resultSet.getString("contrasena"), resultSet.getBoolean("esEmpleado"), resultSet.getBoolean("esJefe"));
+                Sala sala = new Sala(resultSet.getInt("numero"), resultSet.getInt("capacidad"), resultSet.getBoolean("esVIP"), resultSet.getBoolean("es3D"));
                 
-                clientes.add(cliente);
+                salas.add(sala);
             }
 
         } catch (SQLException e) {
@@ -37,6 +37,7 @@ public class obtenerClientes {
             e.printStackTrace();
         }
         
-        return clientes;
+        return salas;
     }
+    
 }

@@ -48,10 +48,39 @@ public class Entrada {
         return precioFinal;
     }
 
-    public void setPrecioFinal(double precioFinal) {
-        this.precioFinal = precioFinal;
+    public void setPrecioFinal(double precio) {
+        int puntos = cliente.getPuntosGanados();
+        if(puntos >= 100 && puntos < 200){
+            this.precioFinal = sesion.getPrecio() * 0.9;
+            cliente.setPuntosGanados(puntos - 100);
+        }else if(puntos >= 200 && puntos < 300){
+            this.precioFinal = sesion.getPrecio() * 0.8;
+            cliente.setPuntosGanados(puntos - 200);
+        }else if(puntos >= 300 && puntos < 400){
+            this.precioFinal = sesion.getPrecio() * 0.7;
+            cliente.setPuntosGanados(puntos - 300);
+        }else if(puntos >= 400 && puntos < 500){
+            this.precioFinal = sesion.getPrecio() * 0.6;
+            cliente.setPuntosGanados(puntos - 400);
+        }else if(puntos >= 500){
+            this.precioFinal = sesion.getPrecio() * 0.5;
+            cliente.setPuntosGanados(puntos - 500);
+        }
     }
     
+    public String mostrarEntradaFormato() {
+        StringBuilder entrada = new StringBuilder();
+        entrada.append("╔════════════════════════════╗\n");
+        entrada.append("║         CINENOVA 🎬        ║\n");
+        entrada.append("╠════════════════════════════╣\n");
+        entrada.append("║ Película:  ").append(sesion.getPelicula().getTitulo()).append("\n");
+        entrada.append("║ Sala:      ").append(sesion.getSala().getNumero()).append("\n");
+        entrada.append("║ Asiento:   ").append(asiento).append("\n");
+        entrada.append("║ Fecha/Hora:").append(" ").append(formato.format(sesion.getFechaHora())).append("\n");
+        entrada.append("║ Precio:    ").append(precioFinal).append(" €").append("\n");
+        entrada.append("╚════════════════════════════╝\n");
+        return entrada.toString();
+    }
     @Override
     public String toString() {
         return sesion.getPelicula().getTitulo() + " | Sala: " + sesion.getSala().getNumero() + " Asiento: " + asiento + " | Fecha/Hora: " + formato.format(sesion.getFechaHora()) + " | Precio: " + precioFinal;
