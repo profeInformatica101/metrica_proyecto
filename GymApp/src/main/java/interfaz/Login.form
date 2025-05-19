@@ -135,14 +135,14 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="200" y="230" width="140" height="30"/>
+              <AbsoluteConstraints x="200" y="230" width="150" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
+              <Font name="Arial Black" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#xbf;Primera vez por aqu&#xed;?"/>
           </Properties>
@@ -151,7 +151,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="190" y="280" width="180" height="20"/>
+              <AbsoluteConstraints x="180" y="280" width="190" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

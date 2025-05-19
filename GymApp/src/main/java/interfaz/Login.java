@@ -23,18 +23,17 @@ public class Login extends javax.swing.JFrame {
         System.out.println(getClass().getResource("/img/fondologin.png"));
         initComponents();
         ajustarImagen(jLabel5);
-        
 
     }
 
-     public void ajustarImagen(JLabel jlabel) {
+    public void ajustarImagen(JLabel jlabel) {
         // Recuperamos el objeto ImageIcon del jLabel
         ImageIcon iconoImagen = (ImageIcon) jlabel.getIcon();
         // Creamos una imagen escalada desde la imagen que contiene 
-        Image imagen = iconoImagen.getImage().getScaledInstance(jlabel.getWidth(), 
+        Image imagen = iconoImagen.getImage().getScaledInstance(jlabel.getWidth(),
                 -1, Image.SCALE_DEFAULT);
         // Creamos un nuevo ImageIcon con la imagen escalada, y se se lo asignamos al jlabel
-        jlabel.setIcon(new ImageIcon(imagen));        
+        jlabel.setIcon(new ImageIcon(imagen));
     }
 
     /**
@@ -97,13 +96,13 @@ public class Login extends javax.swing.JFrame {
         });
         jLayeredPane1.setLayer(botonIniciar, javax.swing.JLayeredPane.PALETTE_LAYER);
         jLayeredPane1.add(botonIniciar);
-        botonIniciar.setBounds(200, 230, 140, 30);
+        botonIniciar.setBounds(200, 230, 150, 30);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel4.setText("¿Primera vez por aquí?");
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.PALETTE_LAYER);
         jLayeredPane1.add(jLabel4);
-        jLabel4.setBounds(190, 280, 180, 20);
+        jLabel4.setBounds(180, 280, 190, 30);
 
         jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButton1.setText("Crear Cuenta");
@@ -131,9 +130,15 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-
+        String login = campoUsuario.getText().trim();
+        String password = campoPassword.getText().trim();
+        if (login.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Debe especificar usuario y contraseña", "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
     }//GEN-LAST:event_botonIniciarActionPerformed
-
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code her
     }//GEN-LAST:event_jButton1ActionPerformed
