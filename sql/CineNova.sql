@@ -11,7 +11,7 @@ CREATE TABLE Persona (
     apellidos VARCHAR(50) NOT NULL,
     contrasena VARCHAR(50) NOT NULL,
     puntosGanados NUMBER DEFAULT 0 NOT NULL,
-    dni VARCHAR(9),
+    dni VARCHAR(9) UNIQUE,
     sueldo NUMBER(10,2),
     esEmpleado NUMBER(1) DEFAULT 0 NOT NULL,
     esJefe NUMBER(1) DEFAULT 0 NOT NULL

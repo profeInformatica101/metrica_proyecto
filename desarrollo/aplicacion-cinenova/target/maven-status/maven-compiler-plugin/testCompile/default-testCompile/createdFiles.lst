@@ -1,5 +1,11 @@
-com\cinenova\entidades\SalaTest.class
+com\cinenova\entidades\PersonaTest.class
+com\cinenova\autenticación\autenticaciónEmpleadoTest.class
+com\cinenova\entidades\ClienteTest.class
 com\cinenova\entidades\EmpleadoTest.class
 com\cinenova\entidades\PelículaTest.class
-com\cinenova\entidades\JefeTest.class
 com\cinenova\entidades\SesiónTest.class
+com\cinenova\entidades\EntradaTest.class
+com\cinenova\entidades\SalaTest.class
+com\cinenova\autenticación\autenticaciónJefeTest.class
+com\cinenova\autenticación\autenticaciónClienteTest.class
+com\cinenova\entidades\JefeTest.class
