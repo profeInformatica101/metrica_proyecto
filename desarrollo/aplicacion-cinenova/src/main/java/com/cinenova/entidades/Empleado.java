@@ -1,7 +1,8 @@
 package com.cinenova.entidades;
 
 /**
- *
+ * Clase donde se definen los atributos y métodos de los empleados. Hereda de Persona.
+ * 
  * @author Juan Carlos
  */
 public class Empleado extends Persona {

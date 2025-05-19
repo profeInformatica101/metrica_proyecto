@@ -3,21 +3,23 @@ package com.cinenova;
 import com.cinenova.autenticación.autenticaciónCliente;
 import com.cinenova.consultas.consultasEntrada;
 import com.cinenova.consultas.consultasPersona;
-import com.cinenova.consultas.consultasSesion;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Persona;
 import com.cinenova.entidades.Sesión;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -64,6 +66,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DescargarEntrada = new javax.swing.JButton();
         DevolverEntrada = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        EliminarCuenta = new javax.swing.JButton();
         VentanaRegistro = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         CampoNombre = new javax.swing.JTextField();
@@ -84,8 +87,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ComprarEntrada = new javax.swing.JButton();
         SesionSeleccionada = new javax.swing.JLabel();
         filtrarPeliculas = new javax.swing.JComboBox<>();
-        filtrarFecha = new javax.swing.JComboBox<>();
-        ordenarPrecio = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
         VentanaCompraEntrada = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         TituloComprarEntrada = new javax.swing.JLabel();
@@ -165,6 +169,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        EliminarCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        EliminarCuenta.setText("Elminar cuenta");
+        EliminarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -177,20 +189,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(PuntosObtenidos)
                     .addComponent(DescargarEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DevolverEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ComprarEntradasSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ComprarEntradasSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EliminarCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TituloListadoEntradas)
-                            .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Bienvenida))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TituloListadoEntradas)
+                            .addComponent(ListadoEntradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +213,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(LogoCliente))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(79, 79, 79)
                         .addComponent(Bienvenida)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -217,7 +230,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(DevolverEntrada)
                         .addGap(34, 34, 34)
                         .addComponent(DescargarEntrada)
-                        .addGap(101, 101, 101)
+                        .addGap(34, 34, 34)
+                        .addComponent(EliminarCuenta)
+                        .addGap(40, 40, 40)
                         .addComponent(PuntosObtenidos))
                     .addComponent(ListadoEntradas1))
                 .addGap(38, 38, 38))
@@ -347,6 +362,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        VerSesiones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         VerSesiones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -369,52 +385,66 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         SesionSeleccionada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SesionSeleccionada.setText("Seleccione una sesión para poder comprar una entrada");
+        SesionSeleccionada.setText("Por favor, seleccione la sesión de la que quiere comprar una entrada");
 
         filtrarPeliculas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         filtrarPeliculas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        filtrarFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        filtrarFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Sesiones disponibles");
 
-        ordenarPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ordenarPrecio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Elija la película por la que desea filtrar: ");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(VerSesionesScroll)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(SesionSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(ComprarEntrada)
-                .addGap(106, 106, 106))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(filtrarPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166)
-                .addComponent(filtrarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ordenarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(VerSesionesScroll))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(250, 250, 250)
+                                .addComponent(ComprarEntrada))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(SesionSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 115, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filtrarPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filtrarPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ordenarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(VerSesionesScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComprarEntrada)
-                    .addComponent(SesionSeleccionada))
-                .addGap(17, 17, 17))
+                    .addComponent(jLabel3)
+                    .addComponent(filtrarPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(VerSesionesScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(SesionSeleccionada)
+                .addGap(18, 18, 18)
+                .addComponent(ComprarEntrada)
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout VentanaSesionesLayout = new javax.swing.GroupLayout(VentanaSesiones.getContentPane());
@@ -687,13 +717,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             List<Entrada> entradasCliente = cliente.verEntradasFuturo();
             DefaultListModel lista = new DefaultListModel<>();
             if(entradasCliente.isEmpty()){
-                lista.add(0, "No tienes entradas compradas");
+                ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel() {
+                @Override
+                public void setSelectionInterval(int index0, int index1) {
+                    // No hace nada: bloquea la selección
+                }
+            });
+
+                lista.addElement("No tienes entradas compradas");
             }else{
+                ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel());
                 for (int i = 0; i < entradasCliente.size(); i++) {
                        lista.addElement(entradasCliente.get(i)); 
                 }
-                ListadoEntradasCliente.setModel(lista);
+                
             }
+            ListadoEntradasCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            ListadoEntradasCliente.setModel(lista);
             VentanaCliente.pack();
             VentanaCliente.setLocationRelativeTo(null);
             VentanaCliente.setModal(false);
@@ -739,16 +779,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 List<Entrada> entradasCliente = cliente.verEntradasFuturo();
                 DefaultListModel lista = new DefaultListModel<>();
                 if(entradasCliente.isEmpty()){
+                    ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel() {
+                    @Override
+                    public void setSelectionInterval(int index0, int index1) {
+                        // No hace nada: bloquea la selección
+                    }
+                });
                     lista.addElement("No tienes entradas compradas");
                 }else{
+                    ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel());
                     for (int i = 0; i < entradasCliente.size(); i++) {
                            lista.addElement(entradasCliente.get(i)); 
 
                     }
-                    ListadoEntradasCliente.setModel(lista);
-                    
 
             }
+            ListadoEntradasCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            ListadoEntradasCliente.setModel(lista);
             VentanaRegistro.dispose();
             VentanaCliente.pack();
             VentanaCliente.setLocationRelativeTo(null);
@@ -778,8 +825,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int indice = ListadoEntradasCliente.getSelectedIndex();
         String correo = "";
         if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
-            System.out.println(CampoCorreoRegistro.getText());
-            System.out.println(CampoCorreo.getText());
             correo = CampoCorreoRegistro.getText();
         }else{
             correo = CampoCorreo.getText();
@@ -788,30 +833,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Cliente cliente = Persona.iniciarSesión(correo);
         if(indice == -1){
             JOptionPane.showMessageDialog(VentanaCliente, "Seleccione la entrada que desea devolver.","Error",JOptionPane.ERROR_MESSAGE);
-        }else{
-            boolean exito = cliente.devolverEntrada(cliente.verEntradasFuturo().get(indice));
-            if(exito){
-                JOptionPane.showMessageDialog(VentanaCliente, "La entrada ha sido devuelta con éxito.","Entrada devuelta",JOptionPane.INFORMATION_MESSAGE);
-                List<Entrada> entradas = consultasEntrada.obtenerConsulta();
-                    List<Entrada> entradasCliente = cliente.verEntradasFuturo();
-                    DefaultListModel lista = new DefaultListModel<>();
-                    if(entradasCliente.isEmpty()){
-                        lista.addElement("No tienes entradas compradas");
-                    }else{
-                        Date hoy = new Date();
-                        for (int i = 0; i < entradasCliente.size(); i++) {
-                            if(entradasCliente.get(i).getSesion().getFechaHora().after(hoy)){
-                               lista.addElement(entradasCliente.get(i)); 
+        }else {
+            String[] opciones = {"Sí", "No"};
+            int confirmacion = JOptionPane.showOptionDialog( VentanaCliente,"¿Está seguro de que quiere devolver la entrada? Se le retirarán los puntos ganados por la compra de la misma.","Confirmar devolución",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null,opciones, opciones[1]);
+            if(confirmacion == 0){
+                boolean exito = cliente.devolverEntrada(cliente.verEntradasFuturo().get(indice));
+                if(exito){
+                    JOptionPane.showMessageDialog(VentanaCliente, "La entrada ha sido devuelta con éxito.","Entrada devuelta",JOptionPane.INFORMATION_MESSAGE);
+                    List<Entrada> entradas = consultasEntrada.obtenerConsulta();
+                        List<Entrada> entradasCliente = cliente.verEntradasFuturo();
+                        DefaultListModel lista = new DefaultListModel<>();
+                        if(entradasCliente.isEmpty()){
+                            ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel() {
+                            @Override
+                            public void setSelectionInterval(int index0, int index1) {
+                                // No hace nada: bloquea la selección
+                            }
+                        });
+                            lista.addElement("No tienes entradas compradas");
+                        }else{
+                            ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel());
+                            Date hoy = new Date();
+                            for (int i = 0; i < entradasCliente.size(); i++) {
+                                if(entradasCliente.get(i).getSesion().getFechaHora().after(hoy)){
+                                   lista.addElement(entradasCliente.get(i)); 
+                                }
+
                             }
 
                         }
-
-                    }
-                    ListadoEntradasCliente.setModel(lista);
-            }else{
-                JOptionPane.showMessageDialog(VentanaCliente, "La entrada no ha podido ser devuelta.","Error",JOptionPane.ERROR_MESSAGE);
-            }
+                        ListadoEntradasCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                        ListadoEntradasCliente.setModel(lista);
+                        consultasPersona.actualizarPuntosDevueltos(cliente);
+                        consultasPersona.obtenerClientes();
+                        cliente = Persona.iniciarSesión(correo);
+                        PuntosObtenidos.setText("Tienes acumulados " + cliente.getPuntosGanados() + " puntos.");
+                }else{
+                    JOptionPane.showMessageDialog(VentanaCliente, "La entrada no ha podido ser devuelta.","Error",JOptionPane.ERROR_MESSAGE);
+                }
         }
+    }
         
     }//GEN-LAST:event_DevolverEntradaActionPerformed
 
@@ -819,8 +880,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int indice = ListadoEntradasCliente.getSelectedIndex();
         String correo = "";
         if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
-            System.out.println(CampoCorreoRegistro.getText());
-            System.out.println(CampoCorreo.getText());
             correo = CampoCorreoRegistro.getText();
         }else{
             correo = CampoCorreo.getText();
@@ -857,8 +916,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaSesiones.setModal(true);
         String correo = "";
         if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
-            System.out.println(CampoCorreoRegistro.getText());
-            System.out.println(CampoCorreo.getText());
             correo = CampoCorreoRegistro.getText();
         }else{
             correo = CampoCorreo.getText();
@@ -867,38 +924,84 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Cliente cliente = Persona.iniciarSesión(correo);
         List<Sesión> sesiones = cliente.verSesionesFuturo();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Precio", "Asientos disponibles"};
+        String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Duración (minutos)", "Precio (euros)"};
         DefaultTableModel tabla = new DefaultTableModel(columnas, 0){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // desactiva edición de todas las celdas
             }
         };
-        Map<Integer, Integer> entradasVendidas = consultasEntrada.obtenerEntradasCompradasPorSala();
-              
-        if(sesiones.isEmpty()){
-            JOptionPane.showMessageDialog(VentanaSesiones, "No se han encontrado entradas a la venta","Información",JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            for (int i = 0; i < sesiones.size(); i++) {
-                    int numeroSala = sesiones.get(i).getSala().getNumero();
-                    int capacidad = sesiones.get(i).getSala().getCapacidad();
-                    int vendidas = entradasVendidas.getOrDefault(numeroSala, 0);
-                    int asientosDisponibles = capacidad - vendidas;
-                    String asientosDisponiblesTotal = String.valueOf(asientosDisponibles) + "/" + String.valueOf(capacidad);
+        filtrarPeliculas.removeAllItems();
+        if(filtrarPeliculas.getItemCount() == 0){
+            filtrarPeliculas.addItem("--- Películas ---");
+        }
+        DefaultTableModel modelo = (DefaultTableModel) VerSesiones.getModel();     
+                    for (int i = 0; i < sesiones.size(); i++) {
+                        Object[] fila = {
+                            sesiones.get(i).getPelicula().getTitulo(),
+                            sesiones.get(i).getSala().getNumero(),
+                            formato.format(sesiones.get(i).getFechaHora()),
+                            sesiones.get(i).getPelicula().getDuracion(),
+                            sesiones.get(i).getPrecio()
+                        };
+                        tabla.addRow(fila);
+                        
+                    }
+                    VerSesiones.setModel(tabla); 
+        List<String> peliculasDisponibles = cliente.peliculasSesionesDisponibles(sesiones);
+        Set<String> peliculas = new HashSet<>(peliculasDisponibles);
+        for (String titulo : peliculas) {
+            filtrarPeliculas.addItem(titulo);
+        }
+        for (ActionListener al : filtrarPeliculas.getActionListeners()) {
+            filtrarPeliculas.removeActionListener(al);
+        }
+        filtrarPeliculas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(filtrarPeliculas.getItemCount() == 0){
+                    filtrarPeliculas.addItem("--- Películas ---");
+                }
+                List<Sesión> sesionesFiltradas = cliente.filtrarPorPelículas(filtrarPeliculas.getSelectedItem().toString());
+                List<Sesión> sesiones = cliente.verSesionesFuturo();
+                String[] columnas = {"Titulo", "Sala", "Fecha/Hora", "Duración (minutos)", "Precio (euros)"};
+                DefaultTableModel tabla = new DefaultTableModel(columnas, 0);
+                if(filtrarPeliculas.getSelectedItem().toString().equals("--- Películas ---")){
+                    DefaultTableModel modelo = (DefaultTableModel) VerSesiones.getModel();     
+                    for (int i = 0; i < sesiones.size(); i++) {
+                        Object[] fila = {
+                            sesiones.get(i).getPelicula().getTitulo(),
+                            sesiones.get(i).getSala().getNumero(),
+                            formato.format(sesiones.get(i).getFechaHora()),
+                            sesiones.get(i).getPelicula().getDuracion(),
+                            sesiones.get(i).getPrecio()
+                        };
+                        tabla.addRow(fila);
+                        
+                    }
+                    VerSesiones.setModel(tabla);
+                    VerSesiones.setEnabled(true);
+                    VerSesiones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                }else if(sesionesFiltradas.isEmpty()){
+                    JOptionPane.showMessageDialog(VentanaSesiones, "No se han encontrado sesiones para la película seleccionada","Información",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    for (int i = 0; i < sesionesFiltradas.size(); i++) {
                     Object[] fila = {
-                        sesiones.get(i).getPelicula().getTitulo(),
-                        sesiones.get(i).getSala().getNumero(),
-                        formato.format(sesiones.get(i).getFechaHora()),
-                        sesiones.get(i).getPrecio(),
-                        asientosDisponiblesTotal
+                        sesionesFiltradas.get(i).getPelicula().getTitulo(),
+                        sesionesFiltradas.get(i).getSala().getNumero(),
+                        formato.format(sesionesFiltradas.get(i).getFechaHora()),
+                        sesionesFiltradas.get(i).getPelicula().getDuracion(),
+                        sesionesFiltradas.get(i).getPrecio()
                     };
                     tabla.addRow(fila);
-                }
+                    }
+                    VerSesiones.setModel(tabla);
+                    VerSesiones.setEnabled(true);
+                    VerSesiones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                }                
             }
-            VerSesiones.setModel(tabla);
-            VerSesiones.setEnabled(true);
-            VerSesiones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            VentanaSesiones.setVisible(true);        
+        });     
+        VentanaSesiones.setVisible(true);        
     }//GEN-LAST:event_ComprarEntradasSesionesActionPerformed
 
     private void ComprarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradaActionPerformed
@@ -913,8 +1016,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }else{
             String correo = "";
             if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
-                System.out.println(CampoCorreoRegistro.getText());
-                System.out.println(CampoCorreo.getText());
                 correo = CampoCorreoRegistro.getText();
             }else{
                 correo = CampoCorreo.getText();
@@ -922,11 +1023,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             consultasPersona.obtenerClientes();
             Cliente cliente = Persona.iniciarSesión(correo);
             List<Sesión> sesiones = cliente.verSesionesFuturo();
+            List<Sesión> sesionesFiltradas = cliente.filtrarPorPelículas(filtrarPeliculas.getSelectedItem().toString());
+            List<Sesión> sesionesMostradas = new ArrayList<>();
+            if(sesionesFiltradas.isEmpty()){
+                sesionesMostradas.addAll(sesiones);
+            }else if(sesionesFiltradas.size() != sesiones.size()){
+                sesionesMostradas.addAll(sesionesFiltradas);
+            }else{
+                sesionesMostradas.addAll(sesiones);
+            }
             Sesión sesión = null;
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-            for(int i = 0; i < sesiones.size(); i++){
+            for(int i = 0; i < sesionesMostradas.size(); i++){
                 if(i == sesionSeleccionada){
-                    sesión = sesiones.get(i);
+                    sesión = sesionesMostradas.get(i);
                 }
             }
             Entrada entrada = new Entrada(0, cliente, sesión, sesión.getPrecio());
@@ -934,23 +1044,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ValorSala.setText(String.valueOf(sesión.getSala().getNumero()));
             ValorDiaHora.setText(formato.format(sesión.getFechaHora()));
             precioSesion.setText(String.valueOf(sesión.getPrecio()));
-            entrada.setPrecioFinal(sesión.getPrecio());
+            entrada.setPrecioFinal();
             precioSesion.setText(String.valueOf(entrada.getPrecioFinal()));
             if(Double.valueOf(precioSesion.getText()) != sesión.getPrecio()){
                 precioSesion.setForeground(Color.red);
             }
             int capacidad = sesión.getSala().getCapacidad();
             List<Integer> obtenerEntrada;
-            List<Integer> asientosOcupados = consultasEntrada.obtenerAsientosOcupadosDeSala(sesión.getSala().getNumero());
+            List<Integer> asientosOcupados = consultasEntrada.obtenerAsientosOcupadosDeSala(sesión.getSala().getNumero(), new Timestamp(sesión.getFechaHora().getTime()));
             Set<Integer> ocupadosSet = new HashSet<>(asientosOcupados);
             for (int i = 1; i <= capacidad; i++) {
                 if (!ocupadosSet.contains(i)) {
                     AsientosDisponibles.addItem(String.valueOf(i));
                 }
             }
+            VentanaCompraEntrada.setVisible(true);
         }
-        
-        VentanaCompraEntrada.setVisible(true);
     }//GEN-LAST:event_ComprarEntradaActionPerformed
 
     private void ComprarEntradaAsientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradaAsientoActionPerformed
@@ -958,8 +1067,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Sesión sesión = null;
         String correo = "";
         if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
-            System.out.println(CampoCorreoRegistro.getText());
-            System.out.println(CampoCorreo.getText());
             correo = CampoCorreoRegistro.getText();
         }else{
             correo = CampoCorreo.getText();
@@ -967,26 +1074,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         consultasPersona.obtenerClientes();
         Cliente cliente = Persona.iniciarSesión(correo);
         List<Sesión> sesiones = cliente.verSesionesFuturo();
+        List<Sesión> sesionesFiltradas = cliente.filtrarPorPelículas(filtrarPeliculas.getSelectedItem().toString());
+        List<Sesión> sesionesMostradas = new ArrayList<>();
+        if(sesionesFiltradas.isEmpty()){
+            sesionesMostradas.addAll(sesiones);
+        }else if(sesionesFiltradas.size() != sesiones.size()){
+            sesionesMostradas.addAll(sesionesFiltradas);
+        }else{
+            sesionesMostradas.addAll(sesiones);
+        }
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        for(int i = 0; i < sesiones.size(); i++){
+        for(int i = 0; i < sesionesMostradas.size(); i++){
             if(i == sesionSeleccionada){
-                sesión = sesiones.get(i);
+                sesión = sesionesMostradas.get(i);
             }
         }
         int asiento = Integer.parseInt(AsientosDisponibles.getSelectedItem().toString());
         Entrada entrada = new Entrada(asiento, cliente, sesión, sesión.getPrecio());
-        entrada.setPrecioFinal(entrada.getSesion().getPrecio());
+        entrada.setPrecioFinal();
         boolean exito = cliente.comprarEntrada(entrada);
         if(exito){
-            cliente.setPuntosGanados(cliente.getPuntosGanados() + 5);
-            consultasPersona.actualizarPuntos(cliente);
+            cliente.setPuntosGanados(cliente.getPuntosGanados());
+            consultasPersona.actualizarPuntosGanados(cliente);
             JOptionPane.showMessageDialog(VentanaCompraEntrada, "Entrada comprada con éxito.","Entrada comprada",JOptionPane.INFORMATION_MESSAGE);
             List<Entrada> entradas = consultasEntrada.obtenerConsulta();
                 List<Entrada> entradasCliente = cliente.verEntradasFuturo();
                 DefaultListModel lista = new DefaultListModel<>();
                 if(entradasCliente.isEmpty()){
+                    ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel() {
+                    @Override
+                    public void setSelectionInterval(int index0, int index1) {
+                        // No hace nada: bloquea la selección
+                    }
+                });
                     lista.addElement("No tienes entradas compradas");
                 }else{
+                    ListadoEntradasCliente.setSelectionModel(new DefaultListSelectionModel());
                     Date hoy = new Date();
                     for (int i = 0; i < entradasCliente.size(); i++) {
                         if(entradasCliente.get(i).getSesion().getFechaHora().after(hoy)){
@@ -996,7 +1119,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     }
                     
                 }
+                ListadoEntradasCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 ListadoEntradasCliente.setModel(lista);
+                consultasPersona.actualizarPuntosGanados(cliente);
+                consultasPersona.obtenerClientes();
+                cliente = Persona.iniciarSesión(correo);
                 PuntosObtenidos.setText("Tienes acumulados " + cliente.getPuntosGanados() + " puntos.");
                 VentanaCompraEntrada.dispose();
         }else{
@@ -1007,6 +1134,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void CerrarProgramaAlCerrarVentanaCliente(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarProgramaAlCerrarVentanaCliente
         System.exit(0);
     }//GEN-LAST:event_CerrarProgramaAlCerrarVentanaCliente
+
+    private void EliminarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCuentaActionPerformed
+        String correo = "";
+        if(CampoCorreo.getText().isEmpty() || CampoCorreo.getText().isBlank()){
+            correo = CampoCorreoRegistro.getText();
+        }else{
+            correo = CampoCorreo.getText();
+        }
+        consultasPersona.obtenerClientes();
+        Cliente cliente = Persona.iniciarSesión(correo);
+        String[] opciones = {"Sí", "No"};
+            int confirmacion = JOptionPane.showOptionDialog( VentanaCliente,"¿Está seguro de que quiere eliminar su cuenta? Se eliminaran todos los datos y entradas que tenga guardados.","Confirmar baja",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null,opciones, opciones[1]);
+            if(confirmacion == 0){
+                boolean eliminada = cliente.eliminarCuenta();
+                if(eliminada){
+                    JOptionPane.showMessageDialog(VentanaCliente, "Cuenta eliminada correctamente.","Cuenta eliminada",JOptionPane.INFORMATION_MESSAGE);
+                    VentanaCliente.dispose();
+                    this.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(VentanaCompraEntrada, "No se ha podido eliminar la cuenta.","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_EliminarCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1064,6 +1214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel CorreoRegistro;
     private javax.swing.JButton DescargarEntrada;
     private javax.swing.JButton DevolverEntrada;
+    private javax.swing.JButton EliminarCuenta;
     private javax.swing.JLabel EresEmpleado;
     private javax.swing.JLabel FechaHoraSesion;
     private javax.swing.JButton IniciarSesión;
@@ -1094,9 +1245,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog VentanaSesiones;
     private javax.swing.JTable VerSesiones;
     private javax.swing.JScrollPane VerSesionesScroll;
-    private javax.swing.JComboBox<String> filtrarFecha;
     private javax.swing.JComboBox<String> filtrarPeliculas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1104,9 +1256,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel nombreAsientosDisponibles;
     private javax.swing.JLabel nombrePrecioSesion;
-    private javax.swing.JComboBox<String> ordenarPrecio;
     private javax.swing.JLabel precioSesion;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,11 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Juan Carlos
+ * Clase que recoge todas las consultas relacionadas con la tabla Sala en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class consultasSala {
     
+     /**
+     * Método para obtener todas las salas disponibles
+     * 
+     * @return Listado de salas total
+     */
     public static List<Sala> obtenerConsulta(){
         List<Sala> salas = new ArrayList<>();
         String sql = "SELECT * FROM Sala";

@@ -5,11 +5,19 @@ import com.cinenova.entidades.Empleado;
 import java.util.List;
 
 /**
- *
- * @author Juan Carlos
+ * Clase para confirmar si un empleado existe en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class autenticaciónEmpleado {
     
+    /**
+     * Método que devuelve true en caso de estar registrado el empleado introducido y false en caso contrario
+     * 
+     * @param correo
+     * @param contrasena
+     * @return True en caso de que el empleado este registrado y false en caso contrario
+     */
     public static boolean esEmpleado(String correo, String contrasena){
         boolean autenticado = false;
         List<Empleado> empleados = consultasPersona.obtenerEmpleados();

@@ -1,7 +1,8 @@
 package com.cinenova.entidades;
 
 /**
- *
+ * Clase donde se definen los atributos y métodos de las películas.
+ * 
  * @author Juan Carlos
  */
 public class Película {
@@ -12,6 +13,16 @@ public class Película {
     private String clasificacionEdad;
     private String descripcion;
 
+    /**
+     * Constructor de la clase Película
+     * 
+     * @param idPelicula
+     * @param titulo
+     * @param duracion
+     * @param genero
+     * @param clasificacionEdad
+     * @param descripcion 
+     */
     public Película(int idPelicula, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
         this.idPelicula = idPelicula;
         this.titulo = titulo;

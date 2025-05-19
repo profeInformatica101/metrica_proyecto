@@ -6,11 +6,19 @@ import com.cinenova.entidades.Cliente;
 import java.util.List;
 
 /**
- *
- * @author Juan Carlos
+ * Clase para confirmar si un cliente existe en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class autenticaciónCliente {
     
+    /**
+     * Método que devuelve true en caso de estar registrado el usuario introducido y false en caso contrario
+     * 
+     * @param correo
+     * @param contrasena
+     * @return True en caso de que el cliente este registrado y false en caso contrario
+     */
     public static boolean esCliente(String correo, String contrasena){
         boolean autenticado = false;
         List<Cliente> clientes = consultasPersona.obtenerClientes();

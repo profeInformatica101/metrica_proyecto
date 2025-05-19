@@ -10,15 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author usuarioDAW
+ * Clase que recoge todas las consultas relacionadas con la tabla Sesión en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
  */
 public class consultasSesion {
     
+     /**
+     * Método para obtener todas las sesiones disponibles
+     * 
+     * @return Listado de sesiones total
+     */
     public static List<Sesión> obtenerConsulta(){
         List<Sesión> sesiones = new ArrayList<>();
         String sql = "SELECT * FROM Sesion";
@@ -57,6 +62,11 @@ public class consultasSesion {
         return sesiones;
     }
     
+    /**
+     * Método que devuelve el listado de títulos de películas que se encuentran en las sesiones disponibles
+     * 
+     * @return Listado de títulos de películas de las sesiones disponibles
+     */
     public static List<String> obtenerPeliculasSesiones(){
         List<String> peliculasTitulos = new ArrayList<>();
         String sql = "SELECT p.titulo FROM Sesion s, Pelicula p WHERE p.id_pelicula = s.id_pelicula";
@@ -79,28 +89,12 @@ public class consultasSesion {
         return peliculasTitulos;
     }
     
-    public static List<Date> obtenerFechasSesiones(){
-        List<Date> fechasSesiones = new ArrayList<>();
-        String sql = "SELECT fechaHora FROM Sesion";
-
-        try (Connection conn = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
-             Statement statement = conn.createStatement()) {
-
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {                
-                fechasSesiones.add(resultSet.getDate("fechaHora"));
-            }
-
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return fechasSesiones;
-    }
-
+    /**
+     * Método que devuelve una lista de sesiones que tienen como título de película el pasado como parámetro
+     * 
+     * @param titulo
+     * @return Listado de sesiones con el mismo título de película
+     */
     public static List<Sesión> obtenerSesionesPorPelículas(String titulo){
         List<Sesión> sesionesPeliculas = new ArrayList<>();
         String sql = "SELECT s.*, p.titulo FROM Sesion s, Pelicula p WHERE p.id_pelicula = s.id_pelicula AND p.titulo = ?";

@@ -63,7 +63,7 @@ CREATE TABLE Entrada (
     id_pelicula NUMBER,
     numeroSala NUMBER,
     fechaHora TIMESTAMP(0) NOT NULL,
-    correoPersona VARCHAR(100) NOT NULL,
+    correoPersona VARCHAR(100) NOT NULL ,
     asiento NUMBER NOT NULL,
     precioFinal NUMBER(10,2) NOT NULL,
     fechaCompra DATE DEFAULT SYSDATE,
