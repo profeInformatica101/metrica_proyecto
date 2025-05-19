@@ -2481,7 +2481,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String DNI = CampoDNIRegistroEmpleado.getText();
         String sueldo = CampoSueldoRegistroEmpleado.getText();
         
-        if(!autenticaciónEmpleado.esEmpleado(correo, contraseña)){
+        if (!(correo.contains("@") && correo.contains("."))) {
+            JOptionPane.showMessageDialog(VentanaRegistro, "El correo debe contener @ y punto.","Correo no válido",JOptionPane.ERROR_MESSAGE);
+            
+        }else if(!autenticaciónEmpleado.esEmpleado(correo, contraseña)){
             int row = consultasPersona.añadirEmpleado(nombre, apellidos, correo, contraseña, DNI, sueldo);
             if(row > 0){
                 JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
