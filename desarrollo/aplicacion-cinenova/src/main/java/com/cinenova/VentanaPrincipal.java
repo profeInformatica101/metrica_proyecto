@@ -36,6 +36,7 @@ import java.util.HashSet;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JFileChooser;
@@ -1830,8 +1831,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (!(correo.contains("@") && correo.contains("."))) {
             JOptionPane.showMessageDialog(VentanaRegistro, "El correo debe contener @ y punto.","Correo no válido",JOptionPane.ERROR_MESSAGE);
         }else if(!autenticaciónCliente.esCliente(correo, contrasena)){
-            int row = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);
-            if(row > 0){
+            boolean registrado = Persona.registrarCliente(correo, nombre, apellidos, contrasena);
+            if(registrado){
                 JOptionPane.showMessageDialog(VentanaRegistro, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
                 consultasPersona.obtenerClientes();
                 Cliente cliente = Persona.iniciarSesión(correo);
@@ -1926,7 +1927,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         }
                         ListadoEntradasCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                         ListadoEntradasCliente.setModel(lista);
-                        consultasPersona.actualizarPuntosDevueltos(cliente);
+                        cliente.actualizarPuntosDevueltos();
                         consultasPersona.obtenerClientes();
                         cliente = Persona.iniciarSesión(correo);
                         PuntosObtenidos.setText("Tienes acumulados " + cliente.getPuntosGanados() + " puntos.");
@@ -2009,8 +2010,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         
                     }
                     VerSesiones.setModel(tabla); 
-        List<String> peliculasDisponibles = cliente.peliculasSesionesDisponibles(sesiones);
-        Set<String> peliculas = new HashSet<>(peliculasDisponibles);
+        List<String> peliculas = cliente.peliculasSesionesDisponibles(sesiones).stream()
+        .distinct()
+        .sorted()
+        .collect(Collectors.toList());
+
         for (String titulo : peliculas) {
             filtrarPeliculas.addItem(titulo);
         }
@@ -2182,7 +2186,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 }
                 ListadoEntradasCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 ListadoEntradasCliente.setModel(lista);
-                consultasPersona.actualizarPuntosGanados(cliente);
+                cliente.actualizarPuntosGanados();
                 consultasPersona.obtenerClientes();
                 cliente = Persona.iniciarSesión(correo);
                 PuntosObtenidos.setText("Tienes acumulados " + cliente.getPuntosGanados() + " puntos.");

@@ -14,6 +14,11 @@ import org.junit.jupiter.api.Test;
 import com.cinenova.consultas.consultasPersona;
 import com.cinenova.consultas.consultasSesion;
 
+/**
+ * Clase para las pruebas unitarias de la clase Entrada
+ * 
+ * @author Juan Carlos Pizarro Alonso
+ */
 class EntradaTest {
 	
 	Cliente cliente, cliente2;

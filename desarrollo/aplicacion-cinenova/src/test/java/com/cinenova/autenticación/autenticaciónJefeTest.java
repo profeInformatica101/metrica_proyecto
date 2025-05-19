@@ -12,9 +12,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.cinenova.consultas.consultasPersona;
-import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Jefe;
 
+/**
+ * Clase para las pruebas unitarias de la clase autenticaciónJefe
+ * 
+ * @author Juan Carlos Pizarro
+ */
 class autenticaciónJefeTest {
 	
 	Jefe jefe, jefeExiste;

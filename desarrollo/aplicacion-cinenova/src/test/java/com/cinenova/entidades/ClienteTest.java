@@ -2,9 +2,6 @@ package com.cinenova.entidades;
 
 import java.io.File;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -13,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.cinenova.consultas.consultasEntrada;
 import com.cinenova.consultas.consultasPersona;
 import com.cinenova.consultas.consultasSesion;
 
@@ -21,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 
 /**
- *
+ * Clase para las pruebas unitarias de la clase Cliente
+ * 
  * @author Juan Carlos
  */
 public class ClienteTest {
@@ -85,6 +82,40 @@ public class ClienteTest {
         assertEquals(puntosNuevos, cliente.getPuntosGanados(), "No se han añadido correctamente los puntos");
     }
 
+    @Test
+    @DisplayName("Pruebas para el método actualizarPuntosGanados(Cliente cliente) en caso de éxito")
+    public void testActualizarPuntosGanadosÉxito() {
+        boolean valorEsperado = true;
+        boolean resultado = cliente.actualizarPuntosGanados();
+        assertEquals(valorEsperado, resultado, "No se han añadido correctamente los puntos");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método actualizarPuntosGanados(Cliente cliente) en caso de no éxito")
+    public void testActualizarPuntosGanadosSinÉxito() {
+        boolean valorEsperado = false;
+        Cliente cliente2 = new Cliente(0, "miguel@hotmail.com", "Miguel", "Lopez", "miguel", false, false);
+        boolean resultado = cliente2.actualizarPuntosGanados();
+        assertEquals(valorEsperado, resultado, "Se han añadido correctamente los puntos");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método actualizarPuntosGanados(Cliente cliente) en caso de éxito")
+    public void testActualizarPuntosDevueltosÉxito() {
+        boolean valorEsperado = true;
+        boolean resultado = cliente.actualizarPuntosDevueltos();
+        assertEquals(valorEsperado, resultado, "No se han añadido correctamente los puntos");
+    }
+    
+    @Test
+    @DisplayName("Pruebas para el método actualizarPuntosGanados(Cliente cliente) en caso de no éxito")
+    public void testActualizarPuntosDevuletosSinÉxito() {
+        boolean valorEsperado = false;
+        Cliente cliente2 = new Cliente(0, "miguel@hotmail.com", "Miguel", "Lopez", "miguel", false, false);
+        boolean resultado = cliente2.actualizarPuntosDevueltos();
+        assertEquals(valorEsperado, resultado, "Se han añadido correctamente los puntos");
+    }
+    
     /**
      * Test of comprarEntrada method, of class Cliente.
      */
@@ -155,7 +186,7 @@ public class ClienteTest {
     @Test
     @DisplayName("Pruebas para el método verEntradas()")
     public void testVerEntradas() {
-        int entradasEsperadas = 1;
+        int entradasEsperadas = 2;
         assertEquals(entradasEsperadas, cliente.verEntradas().size(), "El número de entradas del cliente no coincide con el esperado");
     }
 
@@ -166,7 +197,7 @@ public class ClienteTest {
     @Test
     @DisplayName("Pruebas para el método verEntradasFuturo()")
     public void testVerEntradasFuturo() {
-        int entradasEsperadas = 0;
+        int entradasEsperadas = 1;
         assertEquals(entradasEsperadas, cliente.verEntradasFuturo().size(), "El número de entradas del futuro del cliente no coincide con el esperado");
     }
 
@@ -188,14 +219,14 @@ public class ClienteTest {
     @Test
     @DisplayName("Pruebas para el método peliculasSesionesDisponibles(List<Sesion> sesiones)")
     public void testPeliculasSesionesDisponibles() {
-        int peliculasEsperadas = 5;
+        int peliculasEsperadas = 3;
         assertEquals(peliculasEsperadas, cliente.peliculasSesionesDisponibles(sesiones).size(), "El número de peliculas no coincide con el esperado");
     }
 
     @Test
     @DisplayName("Pruebas para el método verSesionesFuturo()")
     public void testVerSesionesFuturo() {
-        int sesionesEsperadas = 5;
+        int sesionesEsperadas = 3;
         assertEquals(sesionesEsperadas, cliente.verSesionesFuturo().size(), "El número de sesiones del futuro del cliente no coincide con el esperado");
     }
     

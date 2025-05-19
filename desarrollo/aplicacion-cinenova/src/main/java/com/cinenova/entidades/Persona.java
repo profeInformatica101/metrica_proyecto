@@ -166,6 +166,25 @@ public abstract class Persona {
         
         return cliente;
     }
+    
+     /**
+     * Método para registrar a un nuevo cliente en la base de datos
+     * 
+     * @param correo
+     * @param nombre
+     * @param apellidos
+     * @param contrasena
+     * @return True en caso de éxito en el registro y false en caso contrario
+     */
+    public static boolean registrarCliente(String correo, String nombre, String apellidos, String contrasena){
+        boolean registrado = false;
+        int éxito = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);
+        if(éxito > 0){
+            registrado = true;
+        }
+        return registrado;
+    }
+    
 
     /**
      * Devuelve una lista de sesiones futuras a partir de la fecha actual.

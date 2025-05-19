@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Clase donde se definen los atributos y métodos de los clientes. Hereda de Persona.
@@ -71,6 +72,36 @@ public class Cliente extends Persona{
     }
     
     /**
+     * Método que devuelve un boolean a true en caso de que se actualicen los puntos con éxito y false en caso contrario
+     * 
+     * @return 
+     */
+    public boolean actualizarPuntosGanados(){
+        boolean actualizado = false;
+        int row = consultasPersona.actualizarPuntosGanados(this);
+        if(row > 0){
+            actualizado = true;
+        }
+        
+        return actualizado;
+    }
+    
+    /**
+     * Método que devuelve un boolean a true en caso de que se actualicen los puntos con éxito y false en caso contrario
+     * 
+     * @return 
+     */
+    public boolean actualizarPuntosDevueltos(){
+        boolean actualizado = false;
+        int row = consultasPersona.actualizarPuntosDevueltos(this);
+        if(row > 0){
+            actualizado = true;
+        }
+        
+        return actualizado;
+    }
+    
+    /**
      * Método que devuelve un boolean a true si la entrada pasada como parámetro se eliminó con éxito y a false en caso contrario
      * 
      * @param entrada Entrada
@@ -112,14 +143,9 @@ public class Cliente extends Persona{
      * @return Listado de entradas total del cliente
      */
     public List<Entrada> verEntradas(){
-        List<Entrada> entradasCliente = new ArrayList<>();
-        List<Entrada> entradas = consultasEntrada.obtenerConsulta();
-        for(int i = 0; i < entradas.size(); i++){
-            if(Cliente.this.getCorreo().equals(entradas.get(i).getCliente().getCorreo())){
-                entradasCliente.add(entradas.get(i));
-            }
-        }
-        return entradasCliente;
+        return consultasEntrada.obtenerConsulta().stream()
+        .filter(e -> Cliente.this.getCorreo().equals(e.getCliente().getCorreo()))
+        .collect(Collectors.toList());
     }
     
     /**
@@ -199,4 +225,5 @@ public class Cliente extends Persona{
     public String toString() {
         return super.toString() + "Cliente{" + "puntosGanados=" + puntosGanados + '}';
     }
+    
 }

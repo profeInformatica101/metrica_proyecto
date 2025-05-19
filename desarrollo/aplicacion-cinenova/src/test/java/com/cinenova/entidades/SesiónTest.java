@@ -10,6 +10,11 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase para las pruebas unitarias de la clase Sesión
+ * 
+ * @author Álvaro Muñoz
+ */
 @DisplayName("Pruebas unitarias para la clase Sesión")
 public class SesiónTest {
 

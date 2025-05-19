@@ -14,6 +14,11 @@ import org.junit.jupiter.api.Test;
 import com.cinenova.consultas.consultasPersona;
 import com.cinenova.consultas.consultasSesion;
 
+/**
+ * Clase para las pruebas unitarias de la clase Persona
+ * 
+ * @author Juan Carlos Pizarro
+ */
 class PersonaTest {
 
 	Cliente cliente;
@@ -55,6 +60,22 @@ class PersonaTest {
         String correoEsperado = cliente.getCorreo();
         Cliente clienteDevuelto = Persona.iniciarSesión(correoEsperado);
         assertEquals(correoEsperado, clienteDevuelto.getCorreo(), "El cliente esperado no coincide con el obtenido");
+    }
+    
+    	@Test
+    @DisplayName("Pruebas para el método registrarCliente() en caso de éxito")
+    public void testRegistrarClienteÉxito() {
+        boolean valorEsperado = true;
+        boolean resultado = Persona.registrarCliente("hola@gmail.com", "Hola", "Hola hola", "hola");
+        assertEquals(valorEsperado, resultado, "El cliente no se ha registrado correctamente");
+    }
+    
+    	@Test
+    @DisplayName("Pruebas para el método registrarCliente() en caso de no éxito")
+    public void testRegistrarClienteSinÉxito() {
+        boolean valorEsperado = false;
+        boolean resultado = Persona.registrarCliente("hola@gmail.com", "", "Hola hola", "hola");
+        assertEquals(valorEsperado, resultado, "El cliente se ha registrado correctamente");
     }
 	
 	@Test

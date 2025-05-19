@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase para las pruebas unitarias de la clase Empleado
+ * 
+ * @author Álvaro Muñoz
+ */
 @DisplayName("Pruebas unitarias para la clase Empleado")
 public class EmpleadoTest {
 
