@@ -1994,10 +1994,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             DefaultListModel<String> modelo2 = new DefaultListModel<>();
 
             for (Sesión sesion : sesiones) {
-                String info = "ID:" + sesion.getFechaHora() +
-                              " | Pelicula: " + sesion.getPelicula() +
-                              " | Sala: " + sesion.getSala() +
-                              " | Sueldo: " + sesion.getPrecio();
+                String info = "Fecha:" + sesion.getFechaHora() +
+                              " | Pelicula: " + sesion.getPelicula().getTitulo() +
+                              " | Sala: " + sesion.getSala().getNumero() +
+                              " | Precio: " + sesion.getPrecio() + "€";
 
                 modelo2.addElement(info);
             }
@@ -2250,7 +2250,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         Empleado empleadoSeleccionado = empleados.get(indice);
 
-        int filasAfectadas = consultasPersona.borrarEmpleado(empleadoSeleccionado.getDNI());
+        int filasAfectadas = consultasPersona.borrarEmpleado(empleadoSeleccionado.getCorreo());
 
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(this, "Empleado borrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);

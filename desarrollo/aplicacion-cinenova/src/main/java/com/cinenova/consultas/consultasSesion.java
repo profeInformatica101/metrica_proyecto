@@ -149,26 +149,40 @@ public class consultasSesion {
      */
     public static int borrarSesion(int idPelicula, int numeroSala, Timestamp fechaHora) {
         int row = 0;
-        String sql = "DELETE FROM Sesion WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?";
 
-        try (Connection conn = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
-             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+        String deleteEntradasSQL = "DELETE FROM Entrada WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?";
+        String deleteSesionSQL = "DELETE FROM Sesion WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?";
 
-            preparedStatement.setInt(1, idPelicula);
-            preparedStatement.setInt(2, numeroSala);
-            preparedStatement.setTimestamp(3, fechaHora);
+        try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova")) {
+            conn.setAutoCommit(false);
 
-            row = preparedStatement.executeUpdate();
+            try (PreparedStatement psEntradas = conn.prepareStatement(deleteEntradasSQL);
+                 PreparedStatement psSesion = conn.prepareStatement(deleteSesionSQL)) {
+
+                psEntradas.setInt(1, idPelicula);
+                psEntradas.setInt(2, numeroSala);
+                psEntradas.setTimestamp(3, fechaHora);
+                psEntradas.executeUpdate();
+
+                psSesion.setInt(1, idPelicula);
+                psSesion.setInt(2, numeroSala);
+                psSesion.setTimestamp(3, fechaHora);
+                row = psSesion.executeUpdate();
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
+            }
 
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return row;
     }
+
 
     /**
      * Método que añade una nueva sesión a la base de datos con los datos proporcionados

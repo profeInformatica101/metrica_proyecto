@@ -93,7 +93,7 @@ public class consultasPersona {
      */
     public static List<Empleado> obtenerEmpleados(){
         List<Empleado> empleados = new ArrayList<>();
-        String sql = "SELECT * FROM Persona WHERE esEmpleado = 1 OR esJefe = 1";
+        String sql = "SELECT * FROM Persona WHERE esEmpleado = 1 AND esJefe = 0";
 
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
@@ -208,18 +208,18 @@ public class consultasPersona {
     /**
      * Método que elimina un empleado de la base de datos a partir de su DNI
      * 
-     * @param dni DNI del empleado a eliminar
+     * @param correo Correo del empleado a eliminar
      * @return Número de filas afectadas tras la eliminación
      */
-    public static int borrarEmpleado(String dni) {
+    public static int borrarEmpleado(String correo) {
         int row = 0;
-        String sql = "DELETE FROM Persona WHERE dni = ?";
+        String sql = "DELETE FROM Persona WHERE correo = ?";
 
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            preparedStatement.setString(1, dni);
+            preparedStatement.setString(1, correo);
 
             row = preparedStatement.executeUpdate();
 
