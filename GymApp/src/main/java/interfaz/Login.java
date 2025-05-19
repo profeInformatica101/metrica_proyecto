@@ -4,8 +4,9 @@
  */
 package interfaz;
 
+import bbdd.DAOUsuarios;
+import entidades.Usuario;
 import java.awt.Image;
-import java.security.Principal;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -130,15 +131,29 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-        String login = campoUsuario.getText().trim();
+        String usuario = campoUsuario.getText().trim();
         String password = campoPassword.getText().trim();
-        if (login.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Debe especificar usuario y contraseña", "Aviso",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
+        if (usuario.isEmpty() || password.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Debe especificar usuario y contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+            DAOUsuarios du = new DAOUsuarios();
+            Usuario user = du.buscarPorId(usuario);
+            if (user == null || !user.getPassword().equals(password)) {
+                JOptionPane.showMessageDialog(this, "usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (user.isEsAdmin()) {
+                    Administracion administracion = new Administracion(user);
+                    dispose();
+                    administracion.setVisible(true);
+                } else {
+                    Principal principal = new Principal(user);
+                    dispose();
+                    principal.setVisible(true);                    
+                }
+            }
+        }
     }//GEN-LAST:event_botonIniciarActionPerformed
-    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code her
     }//GEN-LAST:event_jButton1ActionPerformed
