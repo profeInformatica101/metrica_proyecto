@@ -22,7 +22,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         System.out.println(getClass().getResource("/img/fondologin.png"));
         initComponents();
-        ajustarImagen(jLabel5);
+        ajustarImagen(imageninicio);
 
     }
 
@@ -46,43 +46,43 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        imageninicio = new javax.swing.JLabel();
+        textoiniciodesesion = new javax.swing.JLabel();
+        textousuario = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        textocontraseña = new javax.swing.JLabel();
         campoPassword = new javax.swing.JPasswordField();
         botonIniciar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        textoprimeravez = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondologin.png"))); // NOI18N
-        jLayeredPane1.add(jLabel5);
-        jLabel5.setBounds(0, 0, 570, 380);
+        imageninicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondologin.png"))); // NOI18N
+        jLayeredPane1.add(imageninicio);
+        imageninicio.setBounds(0, 0, 570, 380);
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        jLabel1.setText("Inicio de Sesión");
-        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.PALETTE_LAYER);
-        jLayeredPane1.add(jLabel1);
-        jLabel1.setBounds(130, 30, 340, 52);
+        textoiniciodesesion.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        textoiniciodesesion.setText("Inicio de Sesión");
+        jLayeredPane1.setLayer(textoiniciodesesion, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(textoiniciodesesion);
+        textoiniciodesesion.setBounds(130, 30, 340, 52);
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel2.setText("Usuario");
-        jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.PALETTE_LAYER);
-        jLayeredPane1.add(jLabel2);
-        jLabel2.setBounds(30, 110, 70, 30);
+        textousuario.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        textousuario.setText("Usuario");
+        jLayeredPane1.setLayer(textousuario, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(textousuario);
+        textousuario.setBounds(30, 110, 70, 30);
         jLayeredPane1.setLayer(campoUsuario, javax.swing.JLayeredPane.PALETTE_LAYER);
         jLayeredPane1.add(campoUsuario);
         campoUsuario.setBounds(130, 110, 310, 30);
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel3.setText("Contraseña");
-        jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.PALETTE_LAYER);
-        jLayeredPane1.add(jLabel3);
-        jLabel3.setBounds(20, 170, 90, 30);
+        textocontraseña.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        textocontraseña.setText("Contraseña");
+        jLayeredPane1.setLayer(textocontraseña, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(textocontraseña);
+        textocontraseña.setBounds(20, 170, 90, 30);
         jLayeredPane1.setLayer(campoPassword, javax.swing.JLayeredPane.PALETTE_LAYER);
         jLayeredPane1.add(campoPassword);
         campoPassword.setBounds(130, 170, 310, 30);
@@ -98,11 +98,11 @@ public class Login extends javax.swing.JFrame {
         jLayeredPane1.add(botonIniciar);
         botonIniciar.setBounds(200, 230, 150, 30);
 
-        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel4.setText("¿Primera vez por aquí?");
-        jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.PALETTE_LAYER);
-        jLayeredPane1.add(jLabel4);
-        jLabel4.setBounds(180, 280, 190, 30);
+        textoprimeravez.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        textoprimeravez.setText("¿Primera vez por aquí?");
+        jLayeredPane1.setLayer(textoprimeravez, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(textoprimeravez);
+        textoprimeravez.setBounds(180, 280, 190, 30);
 
         jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButton1.setText("Crear Cuenta");
@@ -182,13 +182,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton botonIniciar;
     private javax.swing.JPasswordField campoPassword;
     private javax.swing.JTextField campoUsuario;
+    private javax.swing.JLabel imageninicio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel textocontraseña;
+    private javax.swing.JLabel textoiniciodesesion;
+    private javax.swing.JLabel textoprimeravez;
+    private javax.swing.JLabel textousuario;
     // End of variables declaration//GEN-END:variables
 
 }
