@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class consultasSesion {
     
-     /**
+    /**
      * Método para obtener todas las sesiones disponibles
      * 
      * @return Listado de sesiones total
@@ -92,7 +93,7 @@ public class consultasSesion {
     /**
      * Método que devuelve una lista de sesiones que tienen como título de película el pasado como parámetro
      * 
-     * @param titulo
+     * @param titulo Titulo
      * @return Listado de sesiones con el mismo título de película
      */
     public static List<Sesión> obtenerSesionesPorPelículas(String titulo){
@@ -135,5 +136,79 @@ public class consultasSesion {
         }
         
         return sesionesPeliculas;
+    }
+    
+    /**
+     * Método que elimina una sesión concreta de la base de datos a partir de su película, sala y fecha/hora
+     * 
+     * @param idPelicula ID de la película asociada a la sesión
+     * @param numeroSala Número de sala donde se proyecta la sesión
+     * @param fechaHora Fecha y hora exacta de la sesión
+     * @return Número de filas afectadas por la operación de borrado
+     */
+    public static int borrarSesion(int idPelicula, int numeroSala, Timestamp fechaHora) {
+        int row = 0;
+
+        String deleteEntradasSQL = "DELETE FROM Entrada WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?";
+        String deleteSesionSQL = "DELETE FROM Sesion WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova")) {
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement psEntradas = conn.prepareStatement(deleteEntradasSQL);
+                 PreparedStatement psSesion = conn.prepareStatement(deleteSesionSQL)) {
+
+                psEntradas.setInt(1, idPelicula);
+                psEntradas.setInt(2, numeroSala);
+                psEntradas.setTimestamp(3, fechaHora);
+                psEntradas.executeUpdate();
+
+                psSesion.setInt(1, idPelicula);
+                psSesion.setInt(2, numeroSala);
+                psSesion.setTimestamp(3, fechaHora);
+                row = psSesion.executeUpdate();
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+
+        return row;
+    }
+
+
+    /**
+     * Método que añade una nueva sesión a la base de datos con los datos proporcionados
+     * 
+     * @param idPelicula ID de la película que se proyectará en la sesión
+     * @param numeroSala Número de la sala donde tendrá lugar la sesión
+     * @param fechaHora Fecha y hora exacta de la sesión
+     * @param precio Precio de entrada para la sesión
+     * @return Número de filas afectadas por la operación de inserción
+     */
+    public static int añadirSesion(int idPelicula, int numeroSala, Timestamp fechaHora, double precio) {
+        int row = 0;
+        String sql = "INSERT INTO Sesion (id_pelicula, numeroSala, fechaHora, precio) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, idPelicula);
+            preparedStatement.setInt(2, numeroSala);
+            preparedStatement.setTimestamp(3, fechaHora);
+            preparedStatement.setDouble(4, precio);
+
+            row = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+
+        return row;
     }
 }

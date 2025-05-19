@@ -147,9 +147,9 @@ INSERT INTO Entrada VALUES (2, 2, TO_DATE('2025-05-15 20:30', 'YYYY-MM-DD HH24:M
 INSERT INTO Entrada VALUES (3, 3, TO_DATE('2025-05-16 17:00', 'YYYY-MM-DD HH24:MI'), 'laura.martin@gmail.com', 3, 9.00, SYSDATE);
 INSERT INTO Entrada VALUES (4, 4, TO_DATE('2025-05-16 19:30', 'YYYY-MM-DD HH24:MI'), 'lucia.moreno@gmail.com', 4, 6.50, SYSDATE);
 INSERT INTO Entrada VALUES (5, 5, TO_DATE('2025-05-17 21:00', 'YYYY-MM-DD HH24:MI'), 'sergio.alonso@gmail.com', 5, 10.00, SYSDATE);
-INSERT INTO Entrada VALUES (6, 6, TO_DATE('2025-05-18 16:00', 'YYYY-MM-DD HH24:MI'), 'carlos.lopez@cine.com', 6, 9.50, SYSDATE);
-INSERT INTO Entrada VALUES (7, 7, TO_DATE('2025-05-18 18:30', 'YYYY-MM-DD HH24:MI'), 'maria.sanchez@cine.com', 7, 6.00, SYSDATE);
-INSERT INTO Entrada VALUES (8, 8, TO_DATE('2025-05-19 20:00', 'YYYY-MM-DD HH24:MI'), 'david.fernandez@cine.com', 8, 8.00, SYSDATE);
-INSERT INTO Entrada VALUES (9, 9, TO_DATE('2025-05-20 17:30', 'YYYY-MM-DD HH24:MI'), 'ines.torres@cine.com', 9, 7.50, SYSDATE);
-INSERT INTO Entrada VALUES (10, 10, TO_DATE('2025-05-20 19:00', 'YYYY-MM-DD HH24:MI'), 'alberto.romero@cine.com', 10, 9.00, SYSDATE);
+INSERT INTO Entrada VALUES (6, 6, TO_DATE('2025-05-18 16:00', 'YYYY-MM-DD HH24:MI'), 'ana.perez@gmail.com', 6, 9.50, SYSDATE);
+INSERT INTO Entrada VALUES (7, 7, TO_DATE('2025-05-18 18:30', 'YYYY-MM-DD HH24:MI'), 'ana.perez@gmail.com', 7, 6.00, SYSDATE);
+INSERT INTO Entrada VALUES (8, 8, TO_DATE('2025-05-19 20:00', 'YYYY-MM-DD HH24:MI'), 'laura.martin@gmail.com', 8, 8.00, SYSDATE);
+INSERT INTO Entrada VALUES (9, 9, TO_DATE('2025-05-20 17:30', 'YYYY-MM-DD HH24:MI'), 'juan.garcia@gmail.com', 9, 7.50, SYSDATE);
+INSERT INTO Entrada VALUES (10, 10, TO_DATE('2025-05-20 19:00', 'YYYY-MM-DD HH24:MI'), 'sergio.alonso@gmail.com', 10, 9.00, SYSDATE);
 

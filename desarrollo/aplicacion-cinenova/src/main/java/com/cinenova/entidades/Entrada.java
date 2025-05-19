@@ -17,10 +17,10 @@ public class Entrada {
     /**
      * Contructor de la clase Entrada
      * 
-     * @param asiento
-     * @param cliente
-     * @param sesion
-     * @param precioFinal 
+     * @param asiento Asiento
+     * @param cliente Cliente
+     * @param sesion Sesion
+     * @param precioFinal precioFinal
      */
     public Entrada(int asiento, Cliente cliente, Sesión sesion, double precioFinal) {
         this.asiento = asiento;
@@ -41,7 +41,7 @@ public class Entrada {
     /**
      * Método que asigna el asiento pasado como parámetro a la entrada
      * 
-     * @param asiento 
+     * @param asiento Asiento
      */
     public void setAsiento(int asiento) {
         this.asiento = asiento;
@@ -59,7 +59,7 @@ public class Entrada {
     /**
      * Método que asigna el cliente pasado como parámetro a la entrada
      * 
-     * @param cliente 
+     * @param cliente Cliente
      */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
@@ -77,7 +77,7 @@ public class Entrada {
     /**
      * Método que asigna la sesión pasada como parámetro a la entrada
      * 
-     * @param sesion 
+     * @param sesion Sesion
      */
     public void setSesion(Sesión sesion) {
         this.sesion = sesion;

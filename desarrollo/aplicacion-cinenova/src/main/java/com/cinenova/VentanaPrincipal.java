@@ -1,21 +1,39 @@
 package com.cinenova;
 
 import com.cinenova.autenticación.autenticaciónCliente;
+import com.cinenova.autenticación.autenticaciónEmpleado;
+import com.cinenova.autenticación.autenticaciónJefe;
 import com.cinenova.consultas.consultasEntrada;
+import com.cinenova.consultas.consultasPelicula;
+import static com.cinenova.consultas.consultasPelicula.actualizarPelicula;
+import static com.cinenova.consultas.consultasPelicula.añadirPelicula;
+import static com.cinenova.consultas.consultasPelicula.borrarPelicula;
 import com.cinenova.consultas.consultasPersona;
+import static com.cinenova.consultas.consultasPersona.actualizarEmpleado;
+import com.cinenova.consultas.consultasSesion;
+import static com.cinenova.consultas.consultasSesion.añadirSesion;
+
 import com.cinenova.entidades.Cliente;
+import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Entrada;
+import com.cinenova.entidades.Jefe;
+import com.cinenova.entidades.Película;
+
 import com.cinenova.entidades.Persona;
+
 import com.cinenova.entidades.Sesión;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.File;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultListModel;
@@ -107,6 +125,113 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nombrePrecioSesion = new javax.swing.JLabel();
         precioSesion = new javax.swing.JLabel();
         VentanaRutaDescarga = new javax.swing.JFileChooser();
+        InicioSesionEmpleados = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        LogoInicioEmpleados = new javax.swing.JLabel();
+        CampoContraseñaEmpleados = new javax.swing.JPasswordField();
+        CampoCorreoEmpleados = new javax.swing.JTextField();
+        CorreoEmpleados = new javax.swing.JLabel();
+        ContraseñaEmpleados = new javax.swing.JLabel();
+        IniciarSesiónEmpleados = new javax.swing.JButton();
+        Separador1 = new javax.swing.JSeparator();
+        BienvenidoEmpleado = new javax.swing.JLabel();
+        VentanaEmpleados = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        BienvenidaEmpleado = new javax.swing.JLabel();
+        LogoClienteEmpleado = new javax.swing.JLabel();
+        QueDeseaHacerEmpleado = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jScrollPanePeliculas = new javax.swing.JScrollPane();
+        jListPelículas = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListSesiones = new javax.swing.JList<>();
+        AñadirSesion = new javax.swing.JButton();
+        BorrarSesion = new javax.swing.JButton();
+        AñadirPelicula = new javax.swing.JButton();
+        ActualizarPelicula = new javax.swing.JButton();
+        BorrarPelicula = new javax.swing.JButton();
+        VerEmpleados = new javax.swing.JButton();
+        VentanaJefe = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        Logo1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        AñadirEmpleados = new javax.swing.JButton();
+        ActualizarEmpleados = new javax.swing.JButton();
+        BorrarEmpleados = new javax.swing.JButton();
+        jScrollPaneEmpleados = new javax.swing.JScrollPane();
+        jListEmpleados = new javax.swing.JList<>();
+        VentanaAñadirEmpleados = new javax.swing.JDialog();
+        jPanel9 = new javax.swing.JPanel();
+        RegistroEmpleado = new javax.swing.JLabel();
+        NombreRegistroEmpleado = new javax.swing.JLabel();
+        ApellidosRegistroEmpleado = new javax.swing.JLabel();
+        ContraseñaRegistroEmpleado = new javax.swing.JLabel();
+        DNIRegistroEmpleado = new javax.swing.JLabel();
+        CorreoRegistroEmpleado = new javax.swing.JLabel();
+        CampoContraseñaRegistroEmpleado = new javax.swing.JPasswordField();
+        CampoApellidosRegistroEmpleado = new javax.swing.JTextField();
+        CampoNombreRegistroEmpleado = new javax.swing.JTextField();
+        CampoCorreoRegistroEmpleado = new javax.swing.JTextField();
+        CampoDNIRegistroEmpleado = new javax.swing.JTextField();
+        SueldoRegistroEmpleado = new javax.swing.JLabel();
+        CampoSueldoRegistroEmpleado = new javax.swing.JTextField();
+        RegistrarEmpleados = new javax.swing.JButton();
+        BorrarDatosRegistroEmpleado = new javax.swing.JButton();
+        VentanaActualizarEmpleado = new javax.swing.JDialog();
+        jPanel10 = new javax.swing.JPanel();
+        ActualizarEmpleadoTexto = new javax.swing.JLabel();
+        ContraseñaActualizarEmpleado = new javax.swing.JLabel();
+        SueldoActualizarEmpleado = new javax.swing.JLabel();
+        CampoContraseñaActualizarEmpleado = new javax.swing.JPasswordField();
+        CampoSueldoActualizarEmpleado = new javax.swing.JTextField();
+        ActualizarEmpleadoConfirmar = new javax.swing.JButton();
+        CorreoActualizarEmpleado = new javax.swing.JLabel();
+        CampoCorreoActualizarEmpleado = new javax.swing.JTextField();
+        VentanaAñadirPelicula = new javax.swing.JDialog();
+        jPanel11 = new javax.swing.JPanel();
+        AñadirPeliculaTexto = new javax.swing.JLabel();
+        TituloAñadirPelicula = new javax.swing.JLabel();
+        DuracionAñadirPelicula = new javax.swing.JLabel();
+        ClasificacionAñadirPelicula = new javax.swing.JLabel();
+        DescripcionAñadirPelicula = new javax.swing.JLabel();
+        CampoTituloAñadirPelicula = new javax.swing.JTextField();
+        CampoDuracionAñadirPelicula = new javax.swing.JTextField();
+        CampoClasificacionAñadirPelicula = new javax.swing.JTextField();
+        CampoDescripcionAñadirPelicula = new javax.swing.JTextField();
+        CampoGeneroAñadirPelicula = new javax.swing.JTextField();
+        GeneroAñadirPelicula = new javax.swing.JLabel();
+        AñadirPeliculaConfirmar = new javax.swing.JButton();
+        BorrarDatosAñadirPelicula = new javax.swing.JButton();
+        VentanaActualizarPelicula = new javax.swing.JDialog();
+        jPanel12 = new javax.swing.JPanel();
+        ActualizarPeliculaTexto = new javax.swing.JLabel();
+        TituloActualizarPelicula = new javax.swing.JLabel();
+        DuracionActualizarPelicula = new javax.swing.JLabel();
+        ClasificacionActualizarPelicula = new javax.swing.JLabel();
+        GeneroActualizarPelicula = new javax.swing.JLabel();
+        DescripcionActualizarPelicula = new javax.swing.JLabel();
+        CampoTituloActualizarPelicula = new javax.swing.JTextField();
+        CampoDuracionActualizarPelicula = new javax.swing.JTextField();
+        CampoGeneroActualizarPelicula = new javax.swing.JTextField();
+        CampoClasificacionActualizarPelicula = new javax.swing.JTextField();
+        CampoDescripcionActualizarPelicula = new javax.swing.JTextField();
+        ActualizarPeliculaConfirmar = new javax.swing.JButton();
+        IdActualizarPelicula = new javax.swing.JLabel();
+        CampoIdActualizarPelicula = new javax.swing.JTextField();
+        VentanaAñadirSesion = new javax.swing.JDialog();
+        jPanel13 = new javax.swing.JPanel();
+        PeliculaCampoAñadirSesion = new javax.swing.JTextField();
+        SalaCampoAñadirSesion = new javax.swing.JTextField();
+        PrecioCampoAñadirSesion = new javax.swing.JTextField();
+        FechaHoraCampoAñadirSesion = new javax.swing.JTextField();
+        AñadirSesionTexto = new javax.swing.JLabel();
+        FechaHoraAñadirSesion = new javax.swing.JLabel();
+        PeliculaAñadirSesion = new javax.swing.JLabel();
+        SalaAñadirSesion = new javax.swing.JLabel();
+        AñadirSesionConfirmar = new javax.swing.JButton();
+        PrecioAñadirSesion = new javax.swing.JLabel();
+        BorrarDatosAñadirSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         CampoContraseña = new javax.swing.JPasswordField();
@@ -246,7 +371,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         VentanaClienteLayout.setVerticalGroup(
             VentanaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(VentanaClienteLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -585,6 +712,934 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         VentanaRutaDescarga.setBackground(java.awt.Color.white);
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        LogoInicioEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cinenova.png"))); // NOI18N
+
+        CampoCorreoEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoCorreoEmpleadosActionPerformed(evt);
+            }
+        });
+
+        CorreoEmpleados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CorreoEmpleados.setText("Correo electrónico: ");
+
+        ContraseñaEmpleados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ContraseñaEmpleados.setText("Contraseña: ");
+
+        IniciarSesiónEmpleados.setText("Iniciar sesión");
+        IniciarSesiónEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IniciarSesiónEmpleadosActionPerformed(evt);
+            }
+        });
+
+        BienvenidoEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BienvenidoEmpleado.setText("Bienvenido a la pestaña de inicio de sesión de empleados");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(LogoInicioEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(CorreoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(CampoCorreoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(ContraseñaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(IniciarSesiónEmpleados)
+                                    .addComponent(CampoContraseñaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(BienvenidoEmpleado)
+                .addGap(131, 131, 131))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(LogoInicioEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BienvenidoEmpleado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoCorreoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CorreoEmpleados))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoContraseñaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ContraseñaEmpleados))
+                .addGap(47, 47, 47)
+                .addComponent(IniciarSesiónEmpleados)
+                .addGap(18, 18, 18)
+                .addComponent(Separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+        );
+
+        javax.swing.GroupLayout InicioSesionEmpleadosLayout = new javax.swing.GroupLayout(InicioSesionEmpleados.getContentPane());
+        InicioSesionEmpleados.getContentPane().setLayout(InicioSesionEmpleadosLayout);
+        InicioSesionEmpleadosLayout.setHorizontalGroup(
+            InicioSesionEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 753, Short.MAX_VALUE)
+            .addGroup(InicioSesionEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(InicioSesionEmpleadosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        InicioSesionEmpleadosLayout.setVerticalGroup(
+            InicioSesionEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 531, Short.MAX_VALUE)
+            .addGroup(InicioSesionEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(InicioSesionEmpleadosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        VentanaEmpleados.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                CerrarPrograma(evt);
+            }
+        });
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        BienvenidaEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BienvenidaEmpleado.setText("Bienvenida");
+
+        LogoClienteEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cinenova_logo.png"))); // NOI18N
+
+        QueDeseaHacerEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        QueDeseaHacerEmpleado.setText("¿Qué desea hacer?");
+
+        jListPelículas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPanePeliculas.setViewportView(jListPelículas);
+
+        jListSesiones.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListSesiones);
+
+        AñadirSesion.setText("Añadir sesión");
+        AñadirSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirSesionActionPerformed(evt);
+            }
+        });
+
+        BorrarSesion.setText("Borrar sesión");
+        BorrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarSesionActionPerformed(evt);
+            }
+        });
+
+        AñadirPelicula.setText("Añadir película");
+        AñadirPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirPeliculaActionPerformed(evt);
+            }
+        });
+
+        ActualizarPelicula.setText("Actualizar película");
+        ActualizarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarPeliculaActionPerformed(evt);
+            }
+        });
+
+        BorrarPelicula.setText("Borrar película");
+        BorrarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarPeliculaActionPerformed(evt);
+            }
+        });
+
+        VerEmpleados.setText("Ver empleados");
+        VerEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerEmpleadosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPanePeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AñadirPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ActualizarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BorrarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(178, 178, 178)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AñadirSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(BorrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(VerEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(LogoClienteEmpleado)
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BienvenidaEmpleado)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(391, 391, 391)
+                        .addComponent(QueDeseaHacerEmpleado)))
+                .addContainerGap(372, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(LogoClienteEmpleado))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(BienvenidaEmpleado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(QueDeseaHacerEmpleado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(AñadirPelicula)
+                        .addGap(25, 25, 25)
+                        .addComponent(AñadirSesion)
+                        .addGap(16, 16, 16)
+                        .addComponent(ActualizarPelicula)
+                        .addGap(25, 25, 25)
+                        .addComponent(BorrarSesion)
+                        .addGap(25, 25, 25)
+                        .addComponent(BorrarPelicula)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VerEmpleados))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPanePeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
+        );
+
+        javax.swing.GroupLayout VentanaEmpleadosLayout = new javax.swing.GroupLayout(VentanaEmpleados.getContentPane());
+        VentanaEmpleados.getContentPane().setLayout(VentanaEmpleadosLayout);
+        VentanaEmpleadosLayout.setHorizontalGroup(
+            VentanaEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(VentanaEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VentanaEmpleadosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        VentanaEmpleadosLayout.setVerticalGroup(
+            VentanaEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(VentanaEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VentanaEmpleadosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        Logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cinenova.png"))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setText("Buenas Jef@, ¿Qué desea hacer con los empleados?");
+
+        AñadirEmpleados.setText("Añadir empleados");
+        AñadirEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirEmpleadosActionPerformed(evt);
+            }
+        });
+
+        ActualizarEmpleados.setText("Actualizar empleados");
+        ActualizarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarEmpleadosActionPerformed(evt);
+            }
+        });
+
+        BorrarEmpleados.setText("Borrar empleados");
+        BorrarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarEmpleadosActionPerformed(evt);
+            }
+        });
+
+        jListEmpleados.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPaneEmpleados.setViewportView(jListEmpleados);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(14, 14, 14))
+                    .addComponent(Logo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPaneEmpleados, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                            .addComponent(AñadirEmpleados)
+                            .addGap(104, 104, 104)
+                            .addComponent(ActualizarEmpleados)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                            .addComponent(BorrarEmpleados))
+                        .addComponent(jSeparator4)))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(Logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AñadirEmpleados)
+                    .addComponent(ActualizarEmpleados)
+                    .addComponent(BorrarEmpleados))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPaneEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaJefeLayout = new javax.swing.GroupLayout(VentanaJefe.getContentPane());
+        VentanaJefe.getContentPane().setLayout(VentanaJefeLayout);
+        VentanaJefeLayout.setHorizontalGroup(
+            VentanaJefeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaJefeLayout.setVerticalGroup(
+            VentanaJefeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        RegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        RegistroEmpleado.setText("Introduzca los datos para el registro del empleado");
+
+        NombreRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NombreRegistroEmpleado.setText("Nombre");
+
+        ApellidosRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ApellidosRegistroEmpleado.setText("Apellidos");
+
+        ContraseñaRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ContraseñaRegistroEmpleado.setText("Contraseña");
+
+        DNIRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DNIRegistroEmpleado.setText("DNI");
+
+        CorreoRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CorreoRegistroEmpleado.setText("Correo");
+
+        CampoContraseñaRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CampoContraseñaRegistroEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoContraseñaRegistroEmpleadoActionPerformed(evt);
+            }
+        });
+
+        CampoApellidosRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoNombreRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoCorreoRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDNIRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        SueldoRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SueldoRegistroEmpleado.setText("Sueldo");
+
+        CampoSueldoRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        RegistrarEmpleados.setText("Registrar empleado");
+        RegistrarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarEmpleadosActionPerformed(evt);
+            }
+        });
+
+        BorrarDatosRegistroEmpleado.setText("Borrar datos");
+        BorrarDatosRegistroEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarDatosRegistroEmpleadoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addComponent(RegistroEmpleado)
+                .addGap(71, 71, 71))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RegistrarEmpleados)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ContraseñaRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(CorreoRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ApellidosRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NombreRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DNIRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SueldoRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoApellidosRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoContraseñaRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoNombreRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoCorreoRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoDNIRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(BorrarDatosRegistroEmpleado)
+                                .addComponent(CampoSueldoRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(RegistroEmpleado)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NombreRegistroEmpleado)
+                    .addComponent(CampoNombreRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ApellidosRegistroEmpleado)
+                    .addComponent(CampoApellidosRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CorreoRegistroEmpleado)
+                    .addComponent(CampoCorreoRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ContraseñaRegistroEmpleado)
+                    .addComponent(CampoContraseñaRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DNIRegistroEmpleado)
+                    .addComponent(CampoDNIRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SueldoRegistroEmpleado)
+                    .addComponent(CampoSueldoRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RegistrarEmpleados)
+                    .addComponent(BorrarDatosRegistroEmpleado))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaAñadirEmpleadosLayout = new javax.swing.GroupLayout(VentanaAñadirEmpleados.getContentPane());
+        VentanaAñadirEmpleados.getContentPane().setLayout(VentanaAñadirEmpleadosLayout);
+        VentanaAñadirEmpleadosLayout.setHorizontalGroup(
+            VentanaAñadirEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaAñadirEmpleadosLayout.setVerticalGroup(
+            VentanaAñadirEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        ActualizarEmpleadoTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ActualizarEmpleadoTexto.setText("Escriba lo que desea actualizar del empleado");
+
+        ContraseñaActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ContraseñaActualizarEmpleado.setText("Contraseña:");
+
+        SueldoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SueldoActualizarEmpleado.setText("Sueldo:");
+
+        CampoContraseñaActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CampoContraseñaActualizarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoContraseñaActualizarEmpleadoActionPerformed(evt);
+            }
+        });
+
+        CampoSueldoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ActualizarEmpleadoConfirmar.setText("Actualizar empleado");
+        ActualizarEmpleadoConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarEmpleadoConfirmarActionPerformed(evt);
+            }
+        });
+
+        CorreoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CorreoActualizarEmpleado.setText("Correo:");
+
+        CampoCorreoActualizarEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ActualizarEmpleadoTexto)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(SueldoActualizarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ContraseñaActualizarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(CorreoActualizarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoContraseñaActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoSueldoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoCorreoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(ActualizarEmpleadoConfirmar)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(ActualizarEmpleadoTexto)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoContraseñaActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ContraseñaActualizarEmpleado))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SueldoActualizarEmpleado)
+                    .addComponent(CampoSueldoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CorreoActualizarEmpleado)
+                    .addComponent(CampoCorreoActualizarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(ActualizarEmpleadoConfirmar)
+                .addGap(41, 41, 41))
+        );
+
+        javax.swing.GroupLayout VentanaActualizarEmpleadoLayout = new javax.swing.GroupLayout(VentanaActualizarEmpleado.getContentPane());
+        VentanaActualizarEmpleado.getContentPane().setLayout(VentanaActualizarEmpleadoLayout);
+        VentanaActualizarEmpleadoLayout.setHorizontalGroup(
+            VentanaActualizarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaActualizarEmpleadoLayout.setVerticalGroup(
+            VentanaActualizarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        AñadirPeliculaTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AñadirPeliculaTexto.setText("Introduzca los datos de la nueva película");
+
+        TituloAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TituloAñadirPelicula.setText("Título:");
+
+        DuracionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DuracionAñadirPelicula.setText("Duración:");
+
+        ClasificacionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ClasificacionAñadirPelicula.setText("Clasificación:");
+
+        DescripcionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DescripcionAñadirPelicula.setText("Descripción:");
+
+        CampoTituloAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDuracionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoClasificacionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDescripcionAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoGeneroAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        GeneroAñadirPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        GeneroAñadirPelicula.setText("Género:");
+
+        AñadirPeliculaConfirmar.setText("Añadir pelicula");
+        AñadirPeliculaConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirPeliculaConfirmarActionPerformed(evt);
+            }
+        });
+
+        BorrarDatosAñadirPelicula.setText("Borrar datos");
+        BorrarDatosAñadirPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarDatosAñadirPeliculaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(AñadirPeliculaTexto))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                        .addComponent(ClasificacionAñadirPelicula)
+                                        .addGap(26, 26, 26))
+                                    .addGroup(jPanel11Layout.createSequentialGroup()
+                                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(GeneroAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(DuracionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TituloAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(9, 9, 9)))
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CampoDuracionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoTituloAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoGeneroAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoClasificacionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                    .addComponent(AñadirPeliculaConfirmar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BorrarDatosAñadirPelicula))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                    .addComponent(DescripcionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(CampoDescripcionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(AñadirPeliculaTexto)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TituloAñadirPelicula)
+                    .addComponent(CampoTituloAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DuracionAñadirPelicula)
+                    .addComponent(CampoDuracionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoGeneroAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GeneroAñadirPelicula))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ClasificacionAñadirPelicula)
+                    .addComponent(CampoClasificacionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescripcionAñadirPelicula)
+                    .addComponent(CampoDescripcionAñadirPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AñadirPeliculaConfirmar)
+                    .addComponent(BorrarDatosAñadirPelicula))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaAñadirPeliculaLayout = new javax.swing.GroupLayout(VentanaAñadirPelicula.getContentPane());
+        VentanaAñadirPelicula.getContentPane().setLayout(VentanaAñadirPeliculaLayout);
+        VentanaAñadirPeliculaLayout.setHorizontalGroup(
+            VentanaAñadirPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaAñadirPeliculaLayout.setVerticalGroup(
+            VentanaAñadirPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        ActualizarPeliculaTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ActualizarPeliculaTexto.setText("Introduzca los datos que desee actualizar");
+
+        TituloActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TituloActualizarPelicula.setText("Título:");
+
+        DuracionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DuracionActualizarPelicula.setText("Duración:");
+
+        ClasificacionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ClasificacionActualizarPelicula.setText("Clasificación:");
+
+        GeneroActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        GeneroActualizarPelicula.setText("Género:");
+
+        DescripcionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DescripcionActualizarPelicula.setText("Descripción:");
+
+        CampoTituloActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDuracionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoGeneroActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoClasificacionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CampoDescripcionActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ActualizarPeliculaConfirmar.setText("Actualizar película");
+        ActualizarPeliculaConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarPeliculaConfirmarActionPerformed(evt);
+            }
+        });
+
+        IdActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        IdActualizarPelicula.setText("ID:");
+
+        CampoIdActualizarPelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ActualizarPeliculaTexto)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IdActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TituloActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DuracionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(GeneroActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ClasificacionActualizarPelicula)
+                                    .addComponent(DescripcionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoDescripcionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoClasificacionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoGeneroActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoDuracionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoTituloActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoIdActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(ActualizarPeliculaConfirmar)))))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(ActualizarPeliculaTexto)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TituloActualizarPelicula)
+                    .addComponent(CampoTituloActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DuracionActualizarPelicula)
+                    .addComponent(CampoDuracionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GeneroActualizarPelicula)
+                    .addComponent(CampoGeneroActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClasificacionActualizarPelicula)
+                    .addComponent(CampoClasificacionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescripcionActualizarPelicula)
+                    .addComponent(CampoDescripcionActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdActualizarPelicula)
+                    .addComponent(CampoIdActualizarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ActualizarPeliculaConfirmar)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaActualizarPeliculaLayout = new javax.swing.GroupLayout(VentanaActualizarPelicula.getContentPane());
+        VentanaActualizarPelicula.getContentPane().setLayout(VentanaActualizarPeliculaLayout);
+        VentanaActualizarPeliculaLayout.setHorizontalGroup(
+            VentanaActualizarPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaActualizarPeliculaLayout.setVerticalGroup(
+            VentanaActualizarPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        PeliculaCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        SalaCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        PrecioCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        FechaHoraCampoAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        AñadirSesionTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AñadirSesionTexto.setText("Introduzca los datos de la nueva sesión");
+
+        FechaHoraAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        FechaHoraAñadirSesion.setText("Fecha y hora:");
+
+        PeliculaAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PeliculaAñadirSesion.setText("Pelicula:");
+
+        SalaAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SalaAñadirSesion.setText("Sala:");
+
+        AñadirSesionConfirmar.setText("Añadir sesión");
+        AñadirSesionConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirSesionConfirmarActionPerformed(evt);
+            }
+        });
+
+        PrecioAñadirSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PrecioAñadirSesion.setText("Precio:");
+
+        BorrarDatosAñadirSesion.setText("Borrar datos");
+        BorrarDatosAñadirSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarDatosAñadirSesionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(AñadirSesionTexto))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(PeliculaAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(PeliculaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(SalaAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SalaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addComponent(AñadirSesionConfirmar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BorrarDatosAñadirSesion))
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(FechaHoraAñadirSesion)
+                                        .addComponent(PrecioAñadirSesion))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(FechaHoraCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(PrecioCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(AñadirSesionTexto)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PeliculaAñadirSesion)
+                    .addComponent(PeliculaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SalaAñadirSesion)
+                    .addComponent(SalaCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FechaHoraCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FechaHoraAñadirSesion))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PrecioCampoAñadirSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrecioAñadirSesion))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BorrarDatosAñadirSesion)
+                    .addComponent(AñadirSesionConfirmar))
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaAñadirSesionLayout = new javax.swing.GroupLayout(VentanaAñadirSesion.getContentPane());
+        VentanaAñadirSesion.getContentPane().setLayout(VentanaAñadirSesionLayout);
+        VentanaAñadirSesionLayout.setHorizontalGroup(
+            VentanaAñadirSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaAñadirSesionLayout.setVerticalGroup(
+            VentanaAñadirSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -698,7 +1753,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -748,7 +1805,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_IniciarSesiónActionPerformed
 
     private void AccesoEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesoEmpleadosActionPerformed
-        // TODO add your handling code here:
+        InicioSesionEmpleados.pack();
+        InicioSesionEmpleados.setLocationRelativeTo(null);
+        InicioSesionEmpleados.setTitle("Ventana Empleados");
+        InicioSesionEmpleados.setModal(false);
+        InicioSesionEmpleados.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_AccesoEmpleadosActionPerformed
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
@@ -906,7 +1968,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(VentanaCliente, "La entrada no se ha podido descargar.","Error",JOptionPane.ERROR_MESSAGE);
             }
         }
-        
     }//GEN-LAST:event_DescargarEntradaActionPerformed
 
     private void ComprarEntradasSesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarEntradasSesionesActionPerformed
@@ -1158,6 +2219,586 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_EliminarCuentaActionPerformed
 
+    private void IniciarSesiónEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesiónEmpleadosActionPerformed
+        String correo = CampoCorreoEmpleados.getText();
+        char[] password = CampoContraseñaEmpleados.getPassword();
+        String contrasena = new String(password);
+        
+        
+        boolean esEmpleado = autenticaciónEmpleado.esEmpleado(correo, contrasena);
+        boolean esJefe = autenticaciónJefe.esJefe(correo, contrasena);
+
+        if(esEmpleado || esJefe){
+            String nombre = "";
+            String apellidos = "";
+
+            if(esEmpleado){
+                List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+                for(Empleado emp : empleados){
+                    if(emp.getCorreo().equals(correo) && emp.getContrasena().equals(contrasena)){
+                        nombre = emp.getNombre();
+                        apellidos = emp.getApellidos();
+                    }
+                }
+            } else {
+                List<Jefe> jefes = consultasPersona.obtenerJefes();
+                for(Jefe jefe : jefes){
+                    if(jefe.getCorreo().equals(correo) && jefe.getContrasena().equals(contrasena)){
+                        nombre = jefe.getNombre();
+                        apellidos = jefe.getApellidos();
+                    }
+                }
+            }
+            
+            VerEmpleados.setVisible(esJefe);
+            
+            VentanaEmpleados.pack();
+            VentanaEmpleados.setLocationRelativeTo(null);
+            VentanaEmpleados.setModal(false);
+            VentanaEmpleados.setTitle("Ventana Empleados");
+            BienvenidaEmpleado.setText("¡Bienvenid@ " + nombre + " " + apellidos + "!");
+            VentanaEmpleados.setVisible(true);
+            
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+
+            for (Película pelicula : peliculas) {
+                String info = "Nombre: " + pelicula.getTitulo() +
+                              " " + pelicula.getDuracion() +
+                              " | Correo: " + pelicula.getGenero() +
+                              " | DNI: " + pelicula.getClasificacionEdad() +
+                              " | Sueldo: " + pelicula.getDescripcion();
+
+                modelo.addElement(info);
+            }
+
+            jListPelículas.setModel(modelo);
+            
+            List<Sesión> sesiones = consultasSesion.obtenerConsulta();
+            DefaultListModel<String> modelo2 = new DefaultListModel<>();
+
+            for (Sesión sesion : sesiones) {
+                String info = "Fecha:" + sesion.getFechaHora() +
+                              " | Pelicula: " + sesion.getPelicula().getTitulo() +
+                              " | Sala: " + sesion.getSala().getNumero() +
+                              " | Precio: " + sesion.getPrecio() + "€";
+
+                modelo2.addElement(info);
+            }
+
+            jListSesiones.setModel(modelo2);
+            
+        } else {
+            JOptionPane.showMessageDialog(jPanel6, "Correo y/o la contraseña incorrectos.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }//GEN-LAST:event_IniciarSesiónEmpleadosActionPerformed
+
+    private void CampoCorreoEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCorreoEmpleadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoCorreoEmpleadosActionPerformed
+
+    private void AñadirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirSesionActionPerformed
+        VentanaAñadirSesion.pack();
+        VentanaAñadirSesion.setLocationRelativeTo(this);
+        VentanaAñadirSesion.setTitle("Añadir Sesion");
+        VentanaAñadirSesion.setModal(true);
+        VentanaAñadirSesion.setVisible(true);
+    }//GEN-LAST:event_AñadirSesionActionPerformed
+
+    private void BorrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarSesionActionPerformed
+        int indice = jListSesiones.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una sesión para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Sesión> sesiones = consultasSesion.obtenerConsulta();
+        Sesión sesionSeleccionada = sesiones.get(indice);
+
+        int idPelicula = sesionSeleccionada.getPelicula().getIdPelicula();
+        int numeroSala = sesionSeleccionada.getSala().getNumero();
+        Timestamp fechaHora = new Timestamp(sesionSeleccionada.getFechaHora().getTime());
+
+        int filasAfectadas = consultasSesion.borrarSesion(idPelicula, numeroSala, fechaHora);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Sesión borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            List<Sesión> sesionesActualizadas = consultasSesion.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+
+            for (Sesión sesion : sesionesActualizadas) {
+                String info = "Fecha: " + sesion.getFechaHora() +
+                              " | Película: " + sesion.getPelicula().getTitulo() +
+                              " | Sala: " + sesion.getSala().getNumero() +
+                              " | Precio: " + sesion.getPrecio() + "€";
+
+                modelo.addElement(info);
+            }
+
+            jListSesiones.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar la sesión.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BorrarSesionActionPerformed
+
+    private void AñadirPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirPeliculaActionPerformed
+        VentanaAñadirPelicula.pack();
+        VentanaAñadirPelicula.setLocationRelativeTo(this);
+        VentanaAñadirPelicula.setTitle("Añadir Pelicula");
+        VentanaAñadirPelicula.setModal(true);
+        VentanaAñadirPelicula.setVisible(true);
+    }//GEN-LAST:event_AñadirPeliculaActionPerformed
+
+    private void ActualizarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarPeliculaActionPerformed
+        int indice = jListPelículas.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una película para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Película> peliculas = consultasPelicula.obtenerConsulta();
+
+        if (indice >= peliculas.size()) {
+            JOptionPane.showMessageDialog(this, "La película seleccionada no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Película peliculaSeleccionada = peliculas.get(indice);
+        
+        CampoIdActualizarPelicula.setText(String.valueOf(peliculaSeleccionada.getIdPelicula()));
+        CampoTituloActualizarPelicula.setText(peliculaSeleccionada.getTitulo());
+        CampoDuracionActualizarPelicula.setText(String.valueOf(peliculaSeleccionada.getDuracion()));
+        CampoGeneroActualizarPelicula.setText(peliculaSeleccionada.getGenero());
+        CampoClasificacionActualizarPelicula.setText(peliculaSeleccionada.getClasificacionEdad());
+        CampoDescripcionActualizarPelicula.setText(peliculaSeleccionada.getDescripcion());
+        
+        IdActualizarPelicula.setVisible(false);
+        CampoIdActualizarPelicula.setVisible(false);
+        VentanaActualizarPelicula.pack();
+        VentanaActualizarPelicula.setLocationRelativeTo(this);
+        VentanaActualizarPelicula.setTitle("Actualizar Pelicula");
+        VentanaActualizarPelicula.setModal(true);
+        VentanaActualizarPelicula.setVisible(true);
+    }//GEN-LAST:event_ActualizarPeliculaActionPerformed
+
+    private void BorrarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarPeliculaActionPerformed
+        int indice = jListPelículas.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una película para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Película> peliculas = consultasPelicula.obtenerConsulta();
+        Película peliculaSeleccionada = peliculas.get(indice);
+
+        int filasAfectadas = borrarPelicula(peliculaSeleccionada.getIdPelicula());
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Película borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            List<Película> peliculasActualizadas = consultasPelicula.obtenerConsulta();
+            DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+            if (peliculasActualizadas.isEmpty()) {
+                modeloLista.addElement("No hay películas registradas.");
+            } else {
+                for (Película p : peliculasActualizadas) {
+                    String info = "Título: " + p.getTitulo() +
+                                  " | Duración: " + p.getDuracion() + " min" +
+                                  " | Género: " + p.getGenero() +
+                                  " | Clasificación: " + p.getClasificacionEdad();
+                    modeloLista.addElement(info);
+                }
+            }
+            jListPelículas.setModel(modeloLista);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar la película.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_BorrarPeliculaActionPerformed
+
+    private void VerEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEmpleadosActionPerformed
+        VentanaJefe.pack();
+        VentanaJefe.setLocationRelativeTo(null);
+        VentanaJefe.setTitle("Ventana Ver Empleados");
+        VentanaJefe.setModal(false);
+        VentanaJefe.setVisible(true);
+        CorreoActualizarEmpleado.setVisible(false);
+        CampoCorreoActualizarEmpleado.setVisible(false);
+        this.dispose();
+        
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+
+        for (Empleado empleado : empleados) {
+            String info = "Nombre: " + empleado.getNombre() +
+                          " " + empleado.getApellidos() +
+                          " | Correo: " + empleado.getCorreo() +
+                          " | DNI: " + empleado.getDNI() +
+                          " | Sueldo: " + empleado.getSueldo() + "€";
+
+            modelo.addElement(info);
+        }
+
+        jListEmpleados.setModel(modelo);
+    }//GEN-LAST:event_VerEmpleadosActionPerformed
+
+    private void CerrarPrograma(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarPrograma
+        System.exit(0);
+    }//GEN-LAST:event_CerrarPrograma
+
+    private void AñadirEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirEmpleadosActionPerformed
+        VentanaAñadirEmpleados.pack();
+        VentanaAñadirEmpleados.setLocationRelativeTo(null);
+        VentanaAñadirEmpleados.setTitle("Ventana Añadir Empleados");
+        VentanaAñadirEmpleados.setModal(false);
+        VentanaAñadirEmpleados.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AñadirEmpleadosActionPerformed
+
+    private void BorrarDatosRegistroEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarDatosRegistroEmpleadoActionPerformed
+        CampoNombreRegistroEmpleado.setText("");
+        CampoApellidosRegistroEmpleado.setText("");
+        CampoCorreoRegistroEmpleado.setText("");
+        CampoContraseñaRegistroEmpleado.setText("");
+        CampoDNIRegistroEmpleado.setText("");
+        CampoSueldoRegistroEmpleado.setText("");
+    }//GEN-LAST:event_BorrarDatosRegistroEmpleadoActionPerformed
+
+    private void RegistrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarEmpleadosActionPerformed
+        String nombre = CampoNombreRegistroEmpleado.getText();
+        String apellidos = CampoApellidosRegistroEmpleado.getText();
+        String correo = CampoCorreoRegistroEmpleado.getText();
+        char[] password = CampoContraseñaRegistroEmpleado.getPassword();
+        String contraseña = new String(password);
+        String DNI = CampoDNIRegistroEmpleado.getText();
+        String sueldo = CampoSueldoRegistroEmpleado.getText();
+        
+        if(!autenticaciónEmpleado.esEmpleado(correo, contraseña)){
+            int row = consultasPersona.añadirEmpleado(nombre, apellidos, correo, contraseña, DNI, sueldo);
+            if(row > 0){
+                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
+                
+            VentanaAñadirEmpleados.dispose();
+            VentanaJefe.pack();
+            VentanaJefe.setLocationRelativeTo(null);
+            VentanaJefe.setTitle("Ventana Jefe");
+            VentanaJefe.setModal(true);
+            VentanaJefe.setVisible(true);
+            
+            } else {
+                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "El registro no ha podido realizarse.","Error",JOptionPane.ERROR_MESSAGE);
+            }         
+            CampoNombreRegistroEmpleado.setText("");
+            CampoApellidosRegistroEmpleado.setText("");
+            CampoCorreoRegistroEmpleado.setText("");
+            CampoContraseñaRegistroEmpleado.setText("");
+            CampoDNIRegistroEmpleado.setText("");
+            CampoSueldoRegistroEmpleado.setText("");
+        } else {
+            JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Este empleado ya está registrado.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+
+        for (Empleado empleado : empleados) {
+            String info = "Nombre: " + empleado.getNombre() +
+                          " " + empleado.getApellidos() +
+                          " | Correo: " + empleado.getCorreo() +
+                          " | DNI: " + empleado.getDNI() +
+                          " | Sueldo: " + empleado.getSueldo() + "€";
+
+            modelo.addElement(info);
+        }
+
+        jListEmpleados.setModel(modelo);
+    }//GEN-LAST:event_RegistrarEmpleadosActionPerformed
+
+    private void BorrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarEmpleadosActionPerformed
+                                         
+        int indice = jListEmpleados.getSelectedIndex();
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un empleado para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+
+        Empleado empleadoSeleccionado = empleados.get(indice);
+
+        int filasAfectadas = consultasPersona.borrarEmpleado(empleadoSeleccionado.getCorreo());
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Empleado borrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            List<Empleado> empleadosActualizados = consultasPersona.obtenerEmpleados();
+            DefaultListModel modeloLista = new DefaultListModel();
+
+            if (empleadosActualizados.isEmpty()) {
+                modeloLista.addElement("No hay empleados registrados.");
+            } else {
+                for (Empleado empleado : empleadosActualizados) {
+                    String info = "Nombre: " + empleado.getNombre() +
+                          " " + empleado.getApellidos() +
+                          " | Correo: " + empleado.getCorreo() +
+                          " | DNI: " + empleado.getDNI() +
+                          " | Sueldo: " + empleado.getSueldo() + "€";
+
+                    modeloLista.addElement(info);
+                }
+            }
+            jListEmpleados.setModel(modeloLista);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar el empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_BorrarEmpleadosActionPerformed
+
+    private void CampoContraseñaRegistroEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoContraseñaRegistroEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoContraseñaRegistroEmpleadoActionPerformed
+
+    private void CampoContraseñaActualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoContraseñaActualizarEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoContraseñaActualizarEmpleadoActionPerformed
+
+    private void ActualizarEmpleadoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarEmpleadoConfirmarActionPerformed
+        String correo = CampoCorreoActualizarEmpleado.getText().trim();
+        String nuevaContrasena = CampoContraseñaActualizarEmpleado.getText().trim();
+        String sueldoTexto = CampoSueldoActualizarEmpleado.getText().trim();
+
+        if (correo.isEmpty() || nuevaContrasena.isEmpty() || sueldoTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double nuevoSueldo;
+        try {
+            nuevoSueldo = Double.parseDouble(sueldoTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El sueldo debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = actualizarEmpleado(correo, nuevaContrasena, nuevoSueldo);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            VentanaActualizarEmpleado.dispose();
+
+            List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Empleado empleado : empleados) {
+                String info = "Nombre: " + empleado.getNombre() +
+                              " " + empleado.getApellidos() +
+                              " | Correo: " + empleado.getCorreo() +
+                              " | DNI: " + empleado.getDNI() +
+                              " | Sueldo: " + empleado.getSueldo() + "€";
+                modelo.addElement(info);
+            }
+            jListEmpleados.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ActualizarEmpleadoConfirmarActionPerformed
+
+    private void ActualizarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarEmpleadosActionPerformed
+
+        int indice = jListEmpleados.getSelectedIndex();
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un empleado para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+
+        if (indice >= empleados.size()) {
+            JOptionPane.showMessageDialog(this, "El empleado seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Empleado empleadoSeleccionado = empleados.get(indice);
+        
+        CampoCorreoActualizarEmpleado.setText(empleadoSeleccionado.getCorreo());
+        CampoContraseñaActualizarEmpleado.setText(empleadoSeleccionado.getContrasena());
+        CampoSueldoActualizarEmpleado.setText(String.valueOf(empleadoSeleccionado.getSueldo()));
+
+        VentanaActualizarEmpleado.pack();
+        VentanaActualizarEmpleado.setLocationRelativeTo(this);
+        VentanaActualizarEmpleado.setTitle("Actualizar Empleado");
+        VentanaActualizarEmpleado.setModal(true);
+        VentanaActualizarEmpleado.setVisible(true);
+    
+    }//GEN-LAST:event_ActualizarEmpleadosActionPerformed
+
+    private void AñadirPeliculaConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirPeliculaConfirmarActionPerformed
+        String titulo = CampoTituloAñadirPelicula.getText();
+        String duracionTexto = CampoDuracionAñadirPelicula.getText();
+        String genero = CampoGeneroAñadirPelicula.getText();
+        String clasificacion = CampoClasificacionAñadirPelicula.getText();
+        String descripcion = CampoDescripcionAñadirPelicula.getText();
+
+        if (titulo.isEmpty() || duracionTexto.isEmpty() || genero.isEmpty() || clasificacion.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int duracion;
+        try {
+            duracion = Integer.parseInt(duracionTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La duración debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = añadirPelicula(titulo, duracion, genero, clasificacion, descripcion);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Película añadida correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            VentanaAñadirPelicula.dispose();
+
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Película p : peliculas) {
+                String info = "Título: " + p.getTitulo() +
+                              " | Duración: " + p.getDuracion() + " min" +
+                              " | Género: " + p.getGenero() +
+                              " | Clasificación: " + p.getClasificacionEdad();
+                modelo.addElement(info);
+            }
+            jListPelículas.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al añadir la película.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_AñadirPeliculaConfirmarActionPerformed
+
+    private void BorrarDatosAñadirPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarDatosAñadirPeliculaActionPerformed
+        CampoTituloAñadirPelicula.setText("");
+        CampoDuracionAñadirPelicula.setText("");
+        CampoGeneroAñadirPelicula.setText("");
+        CampoClasificacionAñadirPelicula.setText("");
+        CampoDescripcionAñadirPelicula.setText("");
+    }//GEN-LAST:event_BorrarDatosAñadirPeliculaActionPerformed
+
+    private void ActualizarPeliculaConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarPeliculaConfirmarActionPerformed
+        String idTexto = CampoIdActualizarPelicula.getText();
+        String titulo = CampoTituloActualizarPelicula.getText();
+        String duracionTexto = CampoDuracionActualizarPelicula.getText();
+        String genero = CampoGeneroActualizarPelicula.getText();
+        String clasificacion = CampoClasificacionActualizarPelicula.getText();
+        String descripcion = CampoDescripcionActualizarPelicula.getText();
+
+        if (idTexto.isEmpty() || titulo.isEmpty() || duracionTexto.isEmpty() || genero.isEmpty() || clasificacion.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int id, duracion;
+        try {
+            id = Integer.parseInt(idTexto);
+            duracion = Integer.parseInt(duracionTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La duración debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = actualizarPelicula(id, titulo, duracion, genero, clasificacion, descripcion);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Película actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            VentanaActualizarPelicula.dispose();
+
+            List<Película> peliculas = consultasPelicula.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Película pelicula : peliculas) {
+                String info = "Título: " + pelicula.getTitulo() +
+                              " | Duración: " + pelicula.getDuracion() + " min" +
+                              " | Género: " + pelicula.getGenero() +
+                              " | Clasificación: " + pelicula.getClasificacionEdad();
+                modelo.addElement(info);
+            }
+            jListPelículas.setModel(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la película.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_ActualizarPeliculaConfirmarActionPerformed
+
+    private void AñadirSesionConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirSesionConfirmarActionPerformed
+        String idPeliculaTexto = PeliculaCampoAñadirSesion.getText().trim();
+        String numeroSalaTexto = SalaCampoAñadirSesion.getText().trim();
+        String fechaHoraTexto = FechaHoraCampoAñadirSesion.getText().trim();
+        String precioTexto = PrecioCampoAñadirSesion.getText().trim();
+
+        if (idPeliculaTexto.isEmpty() || numeroSalaTexto.isEmpty() || fechaHoraTexto.isEmpty() || precioTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int idPelicula, numeroSala;
+        double precio;
+        Timestamp fechaHora;
+
+        try {
+            idPelicula = Integer.parseInt(idPeliculaTexto);
+            numeroSala = Integer.parseInt(numeroSalaTexto);
+            precio = Double.parseDouble(precioTexto);
+            Date fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(fechaHoraTexto);
+            fechaHora = new Timestamp(fecha.getTime());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID, Sala y Precio deben ser numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto. Usa: dd/MM/yyyy HH:mm", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int filasAfectadas = añadirSesion(idPelicula, numeroSala, fechaHora, precio);
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Sesión añadida correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            VentanaAñadirSesion.dispose();
+
+            List<Sesión> sesiones = consultasSesion.obtenerConsulta();
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Sesión s : sesiones) {
+                String info = "Película: " + s.getPelicula().getTitulo() +
+                              " | Sala: " + s.getSala().getNumero() +
+                              " | Fecha: " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(s.getFechaHora()) +
+                              " | Precio: " + s.getPrecio() + "€";
+                modelo.addElement(info);
+            }
+            jListSesiones.setModel(modelo);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al añadir la sesión.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_AñadirSesionConfirmarActionPerformed
+
+    private void BorrarDatosAñadirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarDatosAñadirSesionActionPerformed
+        PeliculaCampoAñadirSesion.setText("");
+        SalaCampoAñadirSesion.setText("");
+        FechaHoraCampoAñadirSesion.setText("");
+        PrecioCampoAñadirSesion.setText("");
+    }//GEN-LAST:event_BorrarDatosAñadirSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1195,70 +2836,178 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccesoEmpleados;
+    private javax.swing.JButton ActualizarEmpleadoConfirmar;
+    private javax.swing.JLabel ActualizarEmpleadoTexto;
+    private javax.swing.JButton ActualizarEmpleados;
+    private javax.swing.JButton ActualizarPelicula;
+    private javax.swing.JButton ActualizarPeliculaConfirmar;
+    private javax.swing.JLabel ActualizarPeliculaTexto;
     private javax.swing.JLabel Apellidos;
+    private javax.swing.JLabel ApellidosRegistroEmpleado;
     private javax.swing.JComboBox<String> AsientosDisponibles;
+    private javax.swing.JButton AñadirEmpleados;
+    private javax.swing.JButton AñadirPelicula;
+    private javax.swing.JButton AñadirPeliculaConfirmar;
+    private javax.swing.JLabel AñadirPeliculaTexto;
+    private javax.swing.JButton AñadirSesion;
+    private javax.swing.JButton AñadirSesionConfirmar;
+    private javax.swing.JLabel AñadirSesionTexto;
     private javax.swing.JLabel Bienvenida;
+    private javax.swing.JLabel BienvenidaEmpleado;
+    private javax.swing.JLabel BienvenidoEmpleado;
+    private javax.swing.JButton BorrarDatosAñadirPelicula;
+    private javax.swing.JButton BorrarDatosAñadirSesion;
     private javax.swing.JButton BorrarDatosRegistro;
+    private javax.swing.JButton BorrarDatosRegistroEmpleado;
+    private javax.swing.JButton BorrarEmpleados;
+    private javax.swing.JButton BorrarPelicula;
+    private javax.swing.JButton BorrarSesion;
     private javax.swing.JTextField CampoApellidos;
+    private javax.swing.JTextField CampoApellidosRegistroEmpleado;
+    private javax.swing.JTextField CampoClasificacionActualizarPelicula;
+    private javax.swing.JTextField CampoClasificacionAñadirPelicula;
     private javax.swing.JPasswordField CampoContraseña;
+    private javax.swing.JPasswordField CampoContraseñaActualizarEmpleado;
+    private javax.swing.JPasswordField CampoContraseñaEmpleados;
     private javax.swing.JPasswordField CampoContraseñaRegistro;
+    private javax.swing.JPasswordField CampoContraseñaRegistroEmpleado;
     private javax.swing.JTextField CampoCorreo;
+    private javax.swing.JTextField CampoCorreoActualizarEmpleado;
+    private javax.swing.JTextField CampoCorreoEmpleados;
     private javax.swing.JTextField CampoCorreoRegistro;
+    private javax.swing.JTextField CampoCorreoRegistroEmpleado;
+    private javax.swing.JTextField CampoDNIRegistroEmpleado;
+    private javax.swing.JTextField CampoDescripcionActualizarPelicula;
+    private javax.swing.JTextField CampoDescripcionAñadirPelicula;
+    private javax.swing.JTextField CampoDuracionActualizarPelicula;
+    private javax.swing.JTextField CampoDuracionAñadirPelicula;
+    private javax.swing.JTextField CampoGeneroActualizarPelicula;
+    private javax.swing.JTextField CampoGeneroAñadirPelicula;
+    private javax.swing.JTextField CampoIdActualizarPelicula;
     private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextField CampoNombreRegistroEmpleado;
+    private javax.swing.JTextField CampoSueldoActualizarEmpleado;
+    private javax.swing.JTextField CampoSueldoRegistroEmpleado;
+    private javax.swing.JTextField CampoTituloActualizarPelicula;
+    private javax.swing.JTextField CampoTituloAñadirPelicula;
+    private javax.swing.JLabel ClasificacionActualizarPelicula;
+    private javax.swing.JLabel ClasificacionAñadirPelicula;
     private javax.swing.JButton ComprarEntrada;
     private javax.swing.JButton ComprarEntradaAsiento;
     private javax.swing.JButton ComprarEntradasSesiones;
     private javax.swing.JLabel Contraseña;
+    private javax.swing.JLabel ContraseñaActualizarEmpleado;
+    private javax.swing.JLabel ContraseñaEmpleados;
     private javax.swing.JLabel ContraseñaRegistro;
+    private javax.swing.JLabel ContraseñaRegistroEmpleado;
     private javax.swing.JLabel Correo;
+    private javax.swing.JLabel CorreoActualizarEmpleado;
+    private javax.swing.JLabel CorreoEmpleados;
     private javax.swing.JLabel CorreoRegistro;
+    private javax.swing.JLabel CorreoRegistroEmpleado;
+    private javax.swing.JLabel DNIRegistroEmpleado;
     private javax.swing.JButton DescargarEntrada;
+    private javax.swing.JLabel DescripcionActualizarPelicula;
+    private javax.swing.JLabel DescripcionAñadirPelicula;
     private javax.swing.JButton DevolverEntrada;
+    private javax.swing.JLabel DuracionActualizarPelicula;
+    private javax.swing.JLabel DuracionAñadirPelicula;
     private javax.swing.JButton EliminarCuenta;
     private javax.swing.JLabel EresEmpleado;
+    private javax.swing.JLabel FechaHoraAñadirSesion;
+    private javax.swing.JTextField FechaHoraCampoAñadirSesion;
     private javax.swing.JLabel FechaHoraSesion;
+    private javax.swing.JLabel GeneroActualizarPelicula;
+    private javax.swing.JLabel GeneroAñadirPelicula;
+    private javax.swing.JLabel IdActualizarPelicula;
     private javax.swing.JButton IniciarSesión;
+    private javax.swing.JButton IniciarSesiónEmpleados;
+    private javax.swing.JDialog InicioSesionEmpleados;
     private javax.swing.JScrollPane ListadoEntradas1;
     private javax.swing.JList<String> ListadoEntradasCliente;
     private javax.swing.JLabel Logo;
+    private javax.swing.JLabel Logo1;
     private javax.swing.JLabel LogoCliente;
+    private javax.swing.JLabel LogoClienteEmpleado;
+    private javax.swing.JLabel LogoInicioEmpleados;
     private javax.swing.JLabel NoRegistrado;
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel NombrePelicula;
+    private javax.swing.JLabel NombreRegistroEmpleado;
     private javax.swing.JLabel NumeroSala;
+    private javax.swing.JLabel PeliculaAñadirSesion;
+    private javax.swing.JTextField PeliculaCampoAñadirSesion;
+    private javax.swing.JLabel PrecioAñadirSesion;
+    private javax.swing.JTextField PrecioCampoAñadirSesion;
     private javax.swing.JLabel PuntosGanadosCompra;
     private javax.swing.JLabel PuntosObtenidos;
     private javax.swing.JLabel QueDeseaHacer;
+    private javax.swing.JLabel QueDeseaHacerEmpleado;
+    private javax.swing.JButton RegistrarEmpleados;
     private javax.swing.JButton Registrarse;
     private javax.swing.JButton RegistrarseConfirmar;
+    private javax.swing.JLabel RegistroEmpleado;
+    private javax.swing.JLabel SalaAñadirSesion;
+    private javax.swing.JTextField SalaCampoAñadirSesion;
     private javax.swing.JSeparator Separador;
+    private javax.swing.JSeparator Separador1;
     private javax.swing.JLabel SesionSeleccionada;
+    private javax.swing.JLabel SueldoActualizarEmpleado;
+    private javax.swing.JLabel SueldoRegistroEmpleado;
+    private javax.swing.JLabel TituloActualizarPelicula;
+    private javax.swing.JLabel TituloAñadirPelicula;
     private javax.swing.JLabel TituloComprarEntrada;
     private javax.swing.JLabel TituloListadoEntradas;
     private javax.swing.JLabel ValorDiaHora;
     private javax.swing.JLabel ValorPelicula;
     private javax.swing.JLabel ValorSala;
+    private javax.swing.JDialog VentanaActualizarEmpleado;
+    private javax.swing.JDialog VentanaActualizarPelicula;
+    private javax.swing.JDialog VentanaAñadirEmpleados;
+    private javax.swing.JDialog VentanaAñadirPelicula;
+    private javax.swing.JDialog VentanaAñadirSesion;
     private javax.swing.JDialog VentanaCliente;
     private javax.swing.JDialog VentanaCompraEntrada;
+    private javax.swing.JDialog VentanaEmpleados;
+    private javax.swing.JDialog VentanaJefe;
     private javax.swing.JDialog VentanaRegistro;
     private javax.swing.JFileChooser VentanaRutaDescarga;
     private javax.swing.JDialog VentanaSesiones;
+    private javax.swing.JButton VerEmpleados;
     private javax.swing.JTable VerSesiones;
     private javax.swing.JScrollPane VerSesionesScroll;
     private javax.swing.JComboBox<String> filtrarPeliculas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jListEmpleados;
+    private javax.swing.JList<String> jListPelículas;
+    private javax.swing.JList<String> jListSesiones;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPaneEmpleados;
+    private javax.swing.JScrollPane jScrollPanePeliculas;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel nombreAsientosDisponibles;
     private javax.swing.JLabel nombrePrecioSesion;
     private javax.swing.JLabel precioSesion;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -21,17 +21,17 @@ import java.util.List;
 public class Cliente extends Persona{
     private int puntosGanados;
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
+    
     /**
      * Constructor de la clase Cliente
      * 
-     * @param puntosGanados
-     * @param nombre
-     * @param apellidos
-     * @param correo
-     * @param contrasena
-     * @param esEmpleado
-     * @param esJefe 
+     * @param puntosGanados puntosGanados
+     * @param nombre Nombre
+     * @param apellidos Apellidos
+     * @param correo Correo
+     * @param contrasena Contraseña
+     * @param esEmpleado esEmpleado
+     * @param esJefe esJefe
      */
     public Cliente(int puntosGanados, String nombre, String apellidos, String correo, String contrasena, boolean esEmpleado, boolean esJefe) {
         super(nombre, apellidos, correo, contrasena, esEmpleado, esJefe);
@@ -46,20 +46,20 @@ public class Cliente extends Persona{
     public int getPuntosGanados() {
         return puntosGanados;
     }
-
+    
     /**
      * Método que establece los puntos ganados por el cliente a los pasados como parámetro
      * 
-     * @param puntosGanados 
+     * @param puntosGanados puntosGanados
      */
     public void setPuntosGanados(int puntosGanados) {
         this.puntosGanados = puntosGanados;
     }
-
+    
     /**
      * Método que devuelve un boolean a true si la entrada pasada como parámetro se compró con éxito y a false en caso contrario
      * 
-     * @param entrada
+     * @param entrada Entrada
      * @return True en caso de éxito de compra y false en caso contrario
      */
     public boolean comprarEntrada(Entrada entrada){
@@ -73,7 +73,7 @@ public class Cliente extends Persona{
     /**
      * Método que devuelve un boolean a true si la entrada pasada como parámetro se eliminó con éxito y a false en caso contrario
      * 
-     * @param entrada
+     * @param entrada Entrada
      * @return True en caso de éxito de devolución y false en caso contrario
      */
     public boolean devolverEntrada(Entrada entrada){
@@ -85,11 +85,11 @@ public class Cliente extends Persona{
         return exito;
     }
     
-    /**
+     /**
      * Método que devuelve un boolean a true si la entrada pasada como parámetro se descargó con éxito y a false en caso contrario
      * 
-     * @param entrada
-     * @param archivoDestino
+     * @param entrada Entrada
+     * @param archivoDestino archivoDestino
      * @return True en caso de éxito de descarga y false en caso contrario
      */
     public boolean descargarEntrada(Entrada entrada, File archivoDestino){
@@ -199,9 +199,4 @@ public class Cliente extends Persona{
     public String toString() {
         return super.toString() + "Cliente{" + "puntosGanados=" + puntosGanados + '}';
     }
-
-   
-
-    
-    
 }

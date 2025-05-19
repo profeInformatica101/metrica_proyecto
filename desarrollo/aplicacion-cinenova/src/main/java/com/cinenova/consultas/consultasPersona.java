@@ -2,7 +2,6 @@ package com.cinenova.consultas;
 
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Empleado;
-import com.cinenova.entidades.Entrada;
 import com.cinenova.entidades.Jefe;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +22,10 @@ public class consultasPersona {
     /**
      * Método que devuelve el número de filas afectadas tras añadir un cliente en la tabla Persona de la base de datos
      * 
-     * @param correo
-     * @param nombre
-     * @param apellidos
-     * @param contrasena
+     * @param correo Correo
+     * @param nombre Nombre
+     * @param apellidos Apellidos
+     * @param contrasena Contraseña
      * @return Número de filas afectadas tras la inserción en la base de datos
      */
     public static int añadirCliente(String correo, String nombre, String apellidos, String contrasena){
@@ -89,13 +87,13 @@ public class consultasPersona {
     }
     
     /**
-     * Método para obtener todas los empleados registrados
+     * Método para obtener todos los empleados registrados
      * 
      * @return Listado de empleados registrados
      */
     public static List<Empleado> obtenerEmpleados(){
         List<Empleado> empleados = new ArrayList<>();
-        String sql = "SELECT * FROM Persona WHERE esEmpleado = 1 OR esJefe = 1";
+        String sql = "SELECT * FROM Persona WHERE esEmpleado = 1 AND esJefe = 0";
 
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
@@ -119,7 +117,7 @@ public class consultasPersona {
     }
     
     /**
-     * Método para obtener todas los jefes registrados
+     * Método para obtener todos los jefes registrados
      * 
      * @return Listado de jefes registrados
      */
@@ -151,7 +149,7 @@ public class consultasPersona {
     /**
      * Método que actualiza sumando puntos extra a los puntos de un cliente en la base de datos
      * 
-     * @param cliente
+     * @param cliente Cliente
      * @return Número de filas afectadas tras la actuaización de la base de datos
      */
     public static int actualizarPuntosGanados(Cliente cliente) {
@@ -184,14 +182,114 @@ public class consultasPersona {
     public static int actualizarPuntosDevueltos(Cliente cliente) {
         int row = 0;
         String sql = "UPDATE Persona SET puntosGanados = ? WHERE correo = ?";
+        
+            
+            try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                
+                preparedStatement.setInt(1, cliente.getPuntosGanados() - 5);
+                preparedStatement.setString(2, cliente.getCorreo());
+            
+            row = preparedStatement.executeUpdate();
+                
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return row;
+    }
+    
+    
+     /** Método que actualiza la contraseña y el sueldo de un empleado en la base de datos
+     * 
+     * @param correo Correo del empleado a actualizar
+     * @param nuevaContrasena Nueva contraseña para el empleado
+     * @param nuevoSueldo Nuevo sueldo a asignar
+     * @return Número de filas afectadas tras la actualización
+     */
+    public static int actualizarEmpleado(String correo, String nuevaContrasena, double nuevoSueldo) {
+        int row = 0;
+        String sql = "UPDATE Persona SET contrasena = ?, sueldo = ? WHERE correo = ?";
+
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            preparedStatement.setInt(1, cliente.getPuntosGanados() - 5);
-            preparedStatement.setString(2, cliente.getCorreo());
-            
+
+            preparedStatement.setString(1, nuevaContrasena);
+            preparedStatement.setDouble(2, nuevoSueldo);
+            preparedStatement.setString(3, correo);
+
             row = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return row;
+    }
+    
+    /**
+     * Método que elimina un empleado de la base de datos a partir de su DNI
+     * 
+     * @param correo Correo del empleado a eliminar
+     * @return Número de filas afectadas tras la eliminación
+     */
+    public static int borrarEmpleado(String correo) {
+        int row = 0;
+        String sql = "DELETE FROM Persona WHERE correo = ?";
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, correo);
+
+            row = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return row;
+    }
+    
+    /**
+     * Método que añade un nuevo empleado a la base de datos
+     * 
+     * @param nombre Nombre del empleado
+     * @param apellidos Apellidos del empleado
+     * @param correo Correo del empleado
+     * @param contrasena Contraseña del empleado
+     * @param DNI DNI del empleado
+     * @param sueldo Sueldo del empleado (en formato String)
+     * @return Número de filas afectadas tras la inserción en la base de datos
+     */
+    public static int añadirEmpleado(String nombre, String apellidos, String correo, String contrasena, String DNI, String sueldo){
+        int row = 0;
+        String sql = "INSERT INTO Persona (nombre, apellidos, correo, contrasena, DNI, sueldo, esEmpleado, esJefe) VALUES (?, ?, ?, ?, ?, ?, 1, 0)";        
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            
+                preparedStatement.setString(1, nombre);
+                preparedStatement.setString(2, apellidos);
+                preparedStatement.setString(3, correo);
+                preparedStatement.setString(4, contrasena);
+                preparedStatement.setString(5, DNI);
+                preparedStatement.setDouble(6, Double.parseDouble(sueldo));
+            
+
+            row = preparedStatement.executeUpdate();
+
 
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());

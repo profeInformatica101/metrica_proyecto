@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class consultasSala {
     
-     /**
+    /**
      * Método para obtener todas las salas disponibles
      * 
      * @return Listado de salas total

@@ -1,0 +1,63 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new WindowAdapter() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new WindowAdapter() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new AbstractListModel() {...},39,0,0,0,4,0,3,0,3,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new AbstractListModel() {...},39,0,0,0,4,0,3,0,3,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new AbstractListModel() {...},39,0,0,0,4,0,3,0,3,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal,9042,0,220,0,2009,0,148,0,38,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new DefaultListSelectionModel() {...},7,0,0,0,2,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new DefaultListSelectionModel() {...},7,0,0,0,2,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new DefaultListSelectionModel() {...},7,0,0,0,2,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new DefaultListSelectionModel() {...},7,0,0,0,2,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new DefaultTableModel() {...},10,0,0,0,2,0,2,0,2,0
+aplicacion-cinenova,com.cinenova,VentanaPrincipal.new ActionListener() {...},247,0,10,0,34,0,7,0,2,0
+aplicacion-cinenova,com.cinenova.consultas,consultasSesion,420,0,22,0,102,0,17,0,6,0
+aplicacion-cinenova,com.cinenova.consultas,consultasPersona,603,0,6,0,143,0,14,0,11,0
+aplicacion-cinenova,com.cinenova.consultas,consultasPelicula,243,0,2,0,61,0,6,0,5,0
+aplicacion-cinenova,com.cinenova.consultas,consultasEntrada,364,0,14,0,83,0,12,0,5,0
+aplicacion-cinenova,com.cinenova.consultas,consultasSala,69,0,2,0,16,0,3,0,2,0
+aplicacion-cinenova,com.cinenova.entidades,Empleado,0,37,0,0,0,11,0,6,0,6
+aplicacion-cinenova,com.cinenova.entidades,Persona,102,53,8,0,27,15,12,8,8,8
+aplicacion-cinenova,com.cinenova.entidades,Sesión,0,64,0,0,0,20,0,10,0,10
+aplicacion-cinenova,com.cinenova.entidades,ordenarSesionesPorFecha,15,0,0,0,4,0,2,0,2,0
+aplicacion-cinenova,com.cinenova.entidades,Película,0,75,0,0,0,27,0,14,0,14
+aplicacion-cinenova,com.cinenova.entidades,Cliente,235,0,22,0,59,0,23,0,12,0
+aplicacion-cinenova,com.cinenova.entidades,Sala,0,53,0,0,0,19,0,10,0,10
+aplicacion-cinenova,com.cinenova.entidades,Jefe,0,15,0,0,0,3,0,2,0,2
+aplicacion-cinenova,com.cinenova.entidades,Entrada,246,0,18,0,46,0,20,0,11,0
+aplicacion-cinenova,com.cinenova.autenticación,autenticaciónJefe,35,0,6,0,7,0,5,0,2,0
+aplicacion-cinenova,com.cinenova.autenticación,autenticaciónEmpleado,35,0,6,0,7,0,5,0,2,0
+aplicacion-cinenova,com.cinenova.autenticación,autenticaciónCliente,35,0,6,0,7,0,5,0,2,0

@@ -101,7 +101,7 @@ public class consultasEntrada {
     /**
      * Método que devuelve el número de filas afectadas tras eliminar una entrada de la base de datos
      * 
-     * @param entrada
+     * @param entrada Entrada
      * @return Número de filas afectadas en la eliminación de la entrada
      */
     public static int eliminarEntrada(Entrada entrada){
@@ -142,7 +142,7 @@ public class consultasEntrada {
     /**
      * Método que devuelve el número de filas afectadas tras añadir una entrada de la base de datos
      * 
-     * @param entrada
+     * @param entrada Entrada
      * @return Número de filas afectadas en la inserción de la entrada
      */
     public static int añadirEntrada(Entrada entrada){

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Película.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">aplicacion-cinenova</a> &gt; <a href="index.source.html" class="el_package">com.cinenova.entidades</a> &gt; <span class="el_source">Película.java</span></div><h1>Película.java</h1><pre class="source lang-java linenums">package com.cinenova.entidades;
+
+/**
+ * Clase donde se definen los atributos y métodos de las películas.
+ * 
+ * @author Juan Carlos
+ */
+public class Película {
+    private int idPelicula;
+    private String titulo;
+    private int duracion;
+    private String genero;
+    private String clasificacionEdad;
+    private String descripcion;
+
+    /**
+     * Constructor de la clase Película
+     * 
+     * @param idPelicula Identificador único de la película
+     * @param titulo Título de la película
+     * @param duracion Duración de la película en minutos
+     * @param genero Género de la película
+     * @param clasificacionEdad Clasificación por edad de la película
+     * @param descripcion Breve sinopsis o descripción de la película
+     */
+<span class="fc" id="L26">    public Película(int idPelicula, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {</span>
+<span class="fc" id="L27">        this.idPelicula = idPelicula;</span>
+<span class="fc" id="L28">        this.titulo = titulo;</span>
+<span class="fc" id="L29">        this.duracion = duracion;</span>
+<span class="fc" id="L30">        this.genero = genero;</span>
+<span class="fc" id="L31">        this.clasificacionEdad = clasificacionEdad;</span>
+<span class="fc" id="L32">        this.descripcion = descripcion;</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Obtiene el ID de la película
+     * 
+     * @return ID de la película
+     */
+    public int getIdPelicula() {
+<span class="fc" id="L41">        return idPelicula;</span>
+    }
+
+    /**
+     * Establece el ID de la película
+     * 
+     * @param idPelicula Nuevo ID de la película
+     */
+    public void setIdPelicula(int idPelicula) {
+<span class="fc" id="L50">        this.idPelicula = idPelicula;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Obtiene el título de la película
+     * 
+     * @return Título de la película
+     */
+    public String getTitulo() {
+<span class="fc" id="L59">        return titulo;</span>
+    }
+
+    /**
+     * Establece el título de la película
+     * 
+     * @param titulo Nuevo título de la película
+     */
+    public void setTitulo(String titulo) {
+<span class="fc" id="L68">        this.titulo = titulo;</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     * Obtiene la duración de la película
+     * 
+     * @return Duración de la película en minutos
+     */
+    public int getDuracion() {
+<span class="fc" id="L77">        return duracion;</span>
+    }
+
+    /**
+     * Establece la duración de la película
+     * 
+     * @param duracion Nueva duración de la película en minutos
+     */
+    public void setDuracion(int duracion) {
+<span class="fc" id="L86">        this.duracion = duracion;</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Obtiene el género de la película
+     * 
+     * @return Género de la película
+     */
+    public String getGenero() {
+<span class="fc" id="L95">        return genero;</span>
+    }
+
+    /**
+     * Establece el género de la película
+     * 
+     * @param genero Nuevo género de la película
+     */
+    public void setGenero(String genero) {
+<span class="fc" id="L104">        this.genero = genero;</span>
+<span class="fc" id="L105">    }</span>
+
+    /**
+     * Obtiene la clasificación por edad de la película
+     * 
+     * @return Clasificación por edad de la película
+     */
+    public String getClasificacionEdad() {
+<span class="fc" id="L113">        return clasificacionEdad;</span>
+    }
+
+    /**
+     * Establece la clasificación por edad de la película
+     * 
+     * @param clasificacionEdad Nueva clasificación por edad
+     */
+    public void setClasificacionEdad(String clasificacionEdad) {
+<span class="fc" id="L122">        this.clasificacionEdad = clasificacionEdad;</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * Obtiene la descripción de la película
+     * 
+     * @return Descripción de la película
+     */
+    public String getDescripcion() {
+<span class="fc" id="L131">        return descripcion;</span>
+    }
+
+    /**
+     * Establece la descripción de la película
+     * 
+     * @param descripcion Nueva descripción de la película
+     */
+    public void setDescripcion(String descripcion) {
+<span class="fc" id="L140">        this.descripcion = descripcion;</span>
+<span class="fc" id="L141">    }</span>
+
+    /**
+     * Representación textual del objeto Película
+     * 
+     * @return Cadena con los datos principales de la película
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L150">        return &quot;Película{&quot; + &quot;titulo=&quot; + titulo + &quot;, duracion=&quot; + duracion + &quot;, genero=&quot; + genero + &quot;, clasificacionEdad=&quot; + clasificacionEdad + &quot;, descripcion=&quot; + descripcion + '}';</span>
+    }
+    
+    
+    
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -14,8 +14,8 @@ public class autenticaciónEmpleado {
     /**
      * Método que devuelve true en caso de estar registrado el empleado introducido y false en caso contrario
      * 
-     * @param correo
-     * @param contrasena
+     * @param correo Correo
+     * @param contrasena Contraseña 
      * @return True en caso de que el empleado este registrado y false en caso contrario
      */
     public static boolean esEmpleado(String correo, String contrasena){

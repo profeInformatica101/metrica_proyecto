@@ -15,8 +15,8 @@ public class autenticaciónCliente {
     /**
      * Método que devuelve true en caso de estar registrado el usuario introducido y false en caso contrario
      * 
-     * @param correo
-     * @param contrasena
+     * @param correo Correo
+     * @param contrasena Contraseña
      * @return True en caso de que el cliente este registrado y false en caso contrario
      */
     public static boolean esCliente(String correo, String contrasena){
