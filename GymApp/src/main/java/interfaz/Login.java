@@ -8,6 +8,7 @@ import bbdd.DAOUsuarios;
 import entidades.Usuario;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -55,7 +56,7 @@ public class Login extends javax.swing.JFrame {
         campoPassword = new javax.swing.JPasswordField();
         botonIniciar = new javax.swing.JButton();
         textoprimeravez = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        crearcuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -105,16 +106,16 @@ public class Login extends javax.swing.JFrame {
         jLayeredPane1.add(textoprimeravez);
         textoprimeravez.setBounds(180, 280, 190, 30);
 
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton1.setText("Crear Cuenta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        crearcuenta.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        crearcuenta.setText("Crear Cuenta");
+        crearcuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                crearcuentaActionPerformed(evt);
             }
         });
-        jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.PALETTE_LAYER);
-        jLayeredPane1.add(jButton1);
-        jButton1.setBounds(200, 320, 150, 30);
+        jLayeredPane1.setLayer(crearcuenta, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(crearcuenta);
+        crearcuenta.setBounds(200, 320, 150, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,15 +149,19 @@ public class Login extends javax.swing.JFrame {
                 } else {
                     Principal principal = new Principal(user);
                     dispose();
-                    principal.setVisible(true);                    
+                    principal.setVisible(true);
                 }
             }
         }
     }//GEN-LAST:event_botonIniciarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code her
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void crearcuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearcuentaActionPerformed
+        Registro registro = new Registro();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registro.setSize(550, 540);
+        registro.setLocationRelativeTo(null);
+        registro.setVisible(true);
+    }//GEN-LAST:event_crearcuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,8 +202,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton botonIniciar;
     private javax.swing.JPasswordField campoPassword;
     private javax.swing.JTextField campoUsuario;
+    private javax.swing.JButton crearcuenta;
     private javax.swing.JLabel imageninicio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel textocontraseña;
     private javax.swing.JLabel textoiniciodesesion;
