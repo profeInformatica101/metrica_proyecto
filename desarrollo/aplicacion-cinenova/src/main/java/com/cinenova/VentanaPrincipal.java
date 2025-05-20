@@ -2375,13 +2375,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         Película peliculaSeleccionada = peliculasTotales.get(indice);
 
-        int filasAfectadas = borrarPelicula(peliculaSeleccionada.getIdPelicula());
+        int filasAfectadas = consultasPelicula.borrarPelicula(peliculaSeleccionada.getIdPelicula());
 
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(this, "Película borrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             peliculasTotales.remove(indice);
-            for(int i = 0; i < sesionesTotal.size(); i++){
-                if(sesionesTotal.get(i).getPelicula().equals(peliculaSeleccionada)){
+            for (int i = sesionesTotal.size() - 1; i >= 0; i--) {
+                if (sesionesTotal.get(i).getPelicula().getIdPelicula() == peliculaSeleccionada.getIdPelicula()) {
                     sesionesTotal.remove(i);
                 }
             }
