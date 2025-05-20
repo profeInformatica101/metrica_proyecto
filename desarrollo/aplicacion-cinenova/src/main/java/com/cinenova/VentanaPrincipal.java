@@ -377,6 +377,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
+        VentanaRegistro.setResizable(false);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         CampoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -502,6 +504,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        VerSesiones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         VerSesionesScroll.setViewportView(VerSesiones);
 
         ComprarEntrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

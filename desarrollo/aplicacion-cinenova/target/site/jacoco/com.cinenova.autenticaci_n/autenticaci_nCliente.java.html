@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>autenticaciónCliente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">aplicacion-cinenova</a> &gt; <a href="index.source.html" class="el_package">com.cinenova.autenticación</a> &gt; <span class="el_source">autenticaciónCliente.java</span></div><h1>autenticaciónCliente.java</h1><pre class="source lang-java linenums">
+package com.cinenova.autenticación;
+
+import com.cinenova.consultas.consultasPersona;
+import com.cinenova.entidades.Cliente;
+import java.util.List;
+
+/**
+ * Clase para confirmar si un cliente existe en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
+ */
+<span class="nc" id="L13">public class autenticaciónCliente {</span>
+    
+    /**
+     * Método que devuelve true en caso de estar registrado el usuario introducido y false en caso contrario
+     * 
+     * @param correo Correo
+     * @param contrasena Contraseña
+     * @return True en caso de que el cliente este registrado y false en caso contrario
+     */
+    public static boolean esCliente(String correo, String contrasena){
+<span class="fc" id="L23">        boolean autenticado = false;</span>
+<span class="fc" id="L24">        List&lt;Cliente&gt; clientes = consultasPersona.obtenerClientes();</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for(int i=0; i &lt; clientes.size(); i++){</span>
+<span class="pc bpc" id="L26" title="1 of 4 branches missed.">            if((clientes.get(i).getCorreo().equals(correo)) &amp;&amp; (clientes.get(i).getContrasena().equals(contrasena))){</span>
+<span class="fc" id="L27">                autenticado = true;</span>
+            }
+        }
+<span class="fc" id="L30">        return autenticado;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

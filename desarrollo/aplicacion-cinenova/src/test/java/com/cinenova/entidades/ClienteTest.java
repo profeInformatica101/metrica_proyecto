@@ -4,10 +4,7 @@ import java.io.File;
 import java.text.ParseException;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.cinenova.consultas.consultasPersona;
@@ -19,7 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 /**
  * Clase para las pruebas unitarias de la clase Cliente
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public class ClienteTest {
     
@@ -29,17 +26,7 @@ public class ClienteTest {
     List<Cliente> clientes = consultasPersona.obtenerClientes();
 	List<Sesión> sesiones = consultasSesion.obtenerConsulta();
 	List<Entrada> entradas;
-    
-    public ClienteTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
+   
     
     @BeforeEach
     public void setUp() throws ParseException {
@@ -55,10 +42,6 @@ public class ClienteTest {
     	}
         entrada = new Entrada(10, cliente, sesion, sesion.getPrecio());
         
-    }
-    
-    @AfterEach
-    public void tearDown() {
     }
 
     /**

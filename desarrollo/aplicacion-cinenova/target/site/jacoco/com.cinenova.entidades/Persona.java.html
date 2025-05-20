@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Persona.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">aplicacion-cinenova</a> &gt; <a href="index.source.html" class="el_package">com.cinenova.entidades</a> &gt; <span class="el_source">Persona.java</span></div><h1>Persona.java</h1><pre class="source lang-java linenums">package com.cinenova.entidades;
+
+import com.cinenova.consultas.consultasPersona;
+import com.cinenova.consultas.consultasSesion;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Clase abstracta donde se definen los atributos y métodos comunes a todas las personas del sistema.
+ * Es la clase base para empleados, jefes y clientes.
+ * 
+ * @author Juan Carlos
+ */
+public abstract class Persona {
+    private String nombre;
+    private String apellidos;
+    private String correo;
+    private String contrasena;
+    private boolean esEmpleado;
+    private boolean esJefe;
+
+    /**
+     * Constructor de la clase Persona
+     * 
+     * @param nombre Nombre de la persona
+     * @param apellidos Apellidos de la persona
+     * @param correo Correo electrónico de la persona
+     * @param contrasena Contraseña de acceso
+     * @param esEmpleado Indica si la persona es un empleado
+     * @param esJefe Indica si la persona es un jefe
+     */
+<span class="fc" id="L35">    public Persona(String nombre, String apellidos, String correo, String contrasena, boolean esEmpleado, boolean esJefe) {</span>
+<span class="fc" id="L36">        this.nombre = nombre;</span>
+<span class="fc" id="L37">        this.apellidos = apellidos;</span>
+<span class="fc" id="L38">        this.correo = correo;</span>
+<span class="fc" id="L39">        this.contrasena = contrasena;</span>
+<span class="fc" id="L40">        this.esEmpleado = esEmpleado;</span>
+<span class="fc" id="L41">        this.esJefe = esJefe;</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Obtiene el nombre de la persona
+     * 
+     * @return Nombre
+     */
+    public String getNombre() {
+<span class="fc" id="L50">        return nombre;</span>
+    }
+
+    /**
+     * Establece el nombre de la persona
+     * 
+     * @param nombre Nuevo nombre
+     */
+    public void setNombre(String nombre) {
+<span class="fc" id="L59">        this.nombre = nombre;</span>
+<span class="fc" id="L60">    }</span>
+
+    /**
+     * Obtiene los apellidos de la persona
+     * 
+     * @return Apellidos
+     */
+    public String getApellidos() {
+<span class="fc" id="L68">        return apellidos;</span>
+    }
+
+    /**
+     * Establece los apellidos de la persona
+     * 
+     * @param apellidos Nuevos apellidos
+     */
+    public void setApellidos(String apellidos) {
+<span class="fc" id="L77">        this.apellidos = apellidos;</span>
+<span class="fc" id="L78">    }</span>
+
+    /**
+     * Obtiene el correo electrónico de la persona
+     * 
+     * @return Correo
+     */
+    public String getCorreo() {
+<span class="fc" id="L86">        return correo;</span>
+    }
+
+    /**
+     * Establece el correo electrónico de la persona
+     * 
+     * @param correo Nuevo correo
+     */
+    public void setCorreo(String correo) {
+<span class="fc" id="L95">        this.correo = correo;</span>
+<span class="fc" id="L96">    }</span>
+
+    /**
+     * Obtiene la contraseña de la persona
+     * 
+     * @return Contraseña
+     */
+    public String getContrasena() {
+<span class="fc" id="L104">        return contrasena;</span>
+    }
+
+    /**
+     * Establece la contraseña de la persona
+     * 
+     * @param contrasena Nueva contraseña
+     */
+    public void setContrasena(String contrasena) {
+<span class="fc" id="L113">        this.contrasena = contrasena;</span>
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Indica si la persona es un empleado
+     * 
+     * @return true si es empleado, false si no
+     */
+    public boolean isEsEmpleado() {
+<span class="fc" id="L122">        return esEmpleado;</span>
+    }
+
+    /**
+     * Establece si la persona es un empleado
+     * 
+     * @param esEmpleado true si es empleado, false si no
+     */
+    public void setEsEmpleado(boolean esEmpleado) {
+<span class="fc" id="L131">        this.esEmpleado = esEmpleado;</span>
+<span class="fc" id="L132">    }</span>
+
+    /**
+     * Indica si la persona es un jefe
+     * 
+     * @return true si es jefe, false si no
+     */
+    public boolean isEsJefe() {
+<span class="fc" id="L140">        return esJefe;</span>
+    }
+
+    /**
+     * Establece si la persona es un jefe
+     * 
+     * @param esJefe true si es jefe, false si no
+     */
+    public void setEsJefe(boolean esJefe) {
+<span class="fc" id="L149">        this.esJefe = esJefe;</span>
+<span class="fc" id="L150">    }</span>
+
+    /**
+     * Método estático para iniciar sesión como cliente mediante el correo.
+     * 
+     * @param correo Correo del cliente a buscar
+     * @return Objeto Cliente si se encuentra, objeto Cliente vacío si no
+     */
+    public static Cliente iniciarSesión(String correo) {
+<span class="fc" id="L159">        List&lt;Cliente&gt; clientes = consultasPersona.obtenerClientes();</span>
+<span class="fc" id="L160">        Cliente cliente = new Cliente(0, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;prueba&quot;, false, false);</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        for (int i = 0; i &lt; clientes.size(); i++) {</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">            if (clientes.get(i).getCorreo().equals(correo)) {</span>
+<span class="fc" id="L163">                cliente = clientes.get(i);</span>
+            }
+        }
+        
+<span class="fc" id="L167">        return cliente;</span>
+    }
+    
+     /**
+     * Método para registrar a un nuevo cliente en la base de datos
+     * 
+     * @param correo
+     * @param nombre
+     * @param apellidos
+     * @param contrasena
+     * @return True en caso de éxito en el registro y false en caso contrario
+     */
+    public static boolean registrarCliente(String correo, String nombre, String apellidos, String contrasena){
+<span class="fc" id="L180">        boolean registrado = false;</span>
+<span class="fc" id="L181">        int éxito = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        if(éxito &gt; 0){</span>
+<span class="fc" id="L183">            registrado = true;</span>
+        }
+<span class="fc" id="L185">        return registrado;</span>
+    }
+    
+
+    /**
+     * Devuelve una lista de sesiones futuras a partir de la fecha actual.
+     * 
+     * @return Lista de objetos Sesión con fecha posterior a hoy, ordenadas por fecha
+     */
+    public List&lt;Sesión&gt; verSesionesFuturo() {
+<span class="fc" id="L195">        List&lt;Sesión&gt; sesiones = consultasSesion.obtenerConsulta();</span>
+<span class="fc" id="L196">        List&lt;Sesión&gt; sesionesFuturo = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L197">        Date hoy = new Date();</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">        for (int i = 0; i &lt; sesiones.size(); i++) {</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">            if (sesiones.get(i).getFechaHora().after(hoy)) {</span>
+<span class="fc" id="L200">                sesionesFuturo.add(sesiones.get(i));</span>
+            }
+        }
+<span class="fc" id="L203">        Comparator ordenaciónPorFecha = new ordenarSesionesPorFecha();</span>
+<span class="fc" id="L204">        Collections.sort(sesionesFuturo, ordenaciónPorFecha);</span>
+<span class="fc" id="L205">        return sesionesFuturo;</span>
+    }
+    
+
+    /**
+     * toString del objeto Persona
+     * 
+     * @return Cadena con los datos principales de la persona
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L216">        return &quot;Persona{&quot; + &quot;nombre=&quot; + nombre + &quot;, apellidos=&quot; + apellidos + &quot;, correo=&quot; + correo + &quot;, contrasena=&quot; + contrasena + &quot;, esEmpleado=&quot; + esEmpleado + &quot;, esJefe=&quot; + esJefe + '}';</span>
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
