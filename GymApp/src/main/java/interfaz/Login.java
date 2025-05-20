@@ -139,7 +139,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe especificar usuario y contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             DAOUsuarios du = new DAOUsuarios();
-            Usuario user = du.buscarPorId(usuario);
+            Usuario user = du.buscarPorNombre(usuario);
             if (user == null || !user.getPassword().equals(password)) {
                 JOptionPane.showMessageDialog(this, "usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
