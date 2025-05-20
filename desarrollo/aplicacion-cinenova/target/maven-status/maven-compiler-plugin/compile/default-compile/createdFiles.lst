@@ -1,6 +1,8 @@
 com\cinenova\entidades\Persona.class
+com\cinenova\entidades\ClasificaciónEdad.class
 com\cinenova\VentanaPrincipal$4.class
 com\cinenova\VentanaPrincipal$39.class
+com\cinenova\entidades\Género.class
 com\cinenova\VentanaPrincipal$29.class
 com\cinenova\VentanaPrincipal$19.class
 com\cinenova\entidades\ordenarSesionesPorFecha.class
@@ -14,7 +16,6 @@ com\cinenova\VentanaPrincipal$16.class
 com\cinenova\entidades\Empleado.class
 com\cinenova\VentanaPrincipal$25.class
 com\cinenova\VentanaPrincipal$8.class
-com\cinenova\VentanaPrincipal$45.class
 com\cinenova\VentanaPrincipal$33.class
 com\cinenova\VentanaPrincipal$30.class
 com\cinenova\VentanaPrincipal$10.class
@@ -23,7 +24,6 @@ com\cinenova\VentanaPrincipal$37.class
 com\cinenova\VentanaPrincipal$17.class
 com\cinenova\VentanaPrincipal$22.class
 com\cinenova\VentanaPrincipal$42.class
-com\cinenova\VentanaPrincipal$44.class
 com\cinenova\VentanaPrincipal$9.class
 com\cinenova\entidades\Sesión.class
 com\cinenova\VentanaPrincipal$2.class
@@ -46,7 +46,6 @@ com\cinenova\entidades\Sala.class
 com\cinenova\VentanaPrincipal$15.class
 com\cinenova\VentanaPrincipal$3.class
 com\cinenova\VentanaPrincipal$35.class
-com\cinenova\VentanaPrincipal$43.class
 com\cinenova\VentanaPrincipal$20.class
 com\cinenova\entidades\Entrada.class
 com\cinenova\VentanaPrincipal$1.class

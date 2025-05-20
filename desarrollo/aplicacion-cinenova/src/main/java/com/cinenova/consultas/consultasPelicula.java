@@ -50,15 +50,10 @@ public class consultasPelicula {
     /**
      * Método para actualizar los datos de una película existente en la base de datos
      * 
-     * @param id ID de la película a actualizar
-     * @param titulo Nuevo título de la película
-     * @param duracion Nueva duración en minutos
-     * @param genero Nuevo género de la película
-     * @param clasificacionEdad Nueva clasificación por edad
-     * @param descripcion Nueva descripción de la película
+     * @param pelicula
      * @return Número de filas afectadas por la actualización
      */
-    public static int actualizarPelicula(int id, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
+    public static int actualizarPelicula(Película pelicula) {
         int row = 0;
         String sql = "UPDATE Pelicula SET titulo = ?, duracion = ?, genero = ?, clasificacionEdad = ?, descripcion = ? WHERE id_Pelicula = ?";
 
@@ -66,12 +61,12 @@ public class consultasPelicula {
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            preparedStatement.setString(1, titulo);
-            preparedStatement.setInt(2, duracion);
-            preparedStatement.setString(3, genero);
-            preparedStatement.setString(4, clasificacionEdad);
-            preparedStatement.setString(5, descripcion);
-            preparedStatement.setInt(6, id);
+            preparedStatement.setString(1, pelicula.getTitulo());
+            preparedStatement.setInt(2, pelicula.getDuracion());
+            preparedStatement.setString(3, pelicula.getGenero());
+            preparedStatement.setString(4, pelicula.getClasificacionEdad());
+            preparedStatement.setString(5, pelicula.getDescripcion());
+            preparedStatement.setInt(6, pelicula.getIdPelicula());
 
             row = preparedStatement.executeUpdate();
 
@@ -87,14 +82,10 @@ public class consultasPelicula {
     /**
      * Método para añadir una nueva película a la base de datos
      * 
-     * @param titulo Título de la nueva película
-     * @param duracion Duración de la película en minutos
-     * @param genero Género de la película
-     * @param clasificacionEdad Clasificación por edad
-     * @param descripcion Descripción de la película
+     * @param pelicula
      * @return Número de filas insertadas en la base de datos
      */
-    public static int añadirPelicula(String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
+    public static int añadirPelicula(Película pelicula) {
         int row = 0;
         String sql = "INSERT INTO Pelicula (titulo, duracion, genero, clasificacionEdad, descripcion) VALUES (?, ?, ?, ?, ?)";
 
@@ -102,11 +93,11 @@ public class consultasPelicula {
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            preparedStatement.setString(1, titulo);
-            preparedStatement.setInt(2, duracion);
-            preparedStatement.setString(3, genero);
-            preparedStatement.setString(4, clasificacionEdad);
-            preparedStatement.setString(5, descripcion);
+            preparedStatement.setString(1, pelicula.getTitulo());
+            preparedStatement.setInt(2, pelicula.getDuracion());
+            preparedStatement.setString(3, pelicula.getGenero());
+            preparedStatement.setString(4, pelicula.getClasificacionEdad());
+            preparedStatement.setString(5, pelicula.getDescripcion());
 
             row = preparedStatement.executeUpdate();
 

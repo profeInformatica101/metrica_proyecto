@@ -186,23 +186,20 @@ public class consultasSesion {
     /**
      * Método que añade una nueva sesión a la base de datos con los datos proporcionados
      * 
-     * @param idPelicula ID de la película que se proyectará en la sesión
-     * @param numeroSala Número de la sala donde tendrá lugar la sesión
-     * @param fechaHora Fecha y hora exacta de la sesión
-     * @param precio Precio de entrada para la sesión
+     * @param sesion
      * @return Número de filas afectadas por la operación de inserción
      */
-    public static int añadirSesion(int idPelicula, int numeroSala, Timestamp fechaHora, double precio) {
+    public static int añadirSesion(Sesión sesion) {
         int row = 0;
         String sql = "INSERT INTO Sesion (id_pelicula, numeroSala, fechaHora, precio) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            preparedStatement.setInt(1, idPelicula);
-            preparedStatement.setInt(2, numeroSala);
-            preparedStatement.setTimestamp(3, fechaHora);
-            preparedStatement.setDouble(4, precio);
+            preparedStatement.setInt(1, sesion.getPelicula().getIdPelicula());
+            preparedStatement.setInt(2, sesion.getSala().getNumero());
+            preparedStatement.setTimestamp(3, (Timestamp) sesion.getFechaHora());
+            preparedStatement.setDouble(4, sesion.getPrecio());
 
             row = preparedStatement.executeUpdate();
         } catch (SQLException e) {

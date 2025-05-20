@@ -16,15 +16,15 @@ public class Película {
     /**
      * Constructor de la clase Película
      * 
-     * @param idPelicula Identificador único de la película
+     * @param idPelícula
      * @param titulo Título de la película
      * @param duracion Duración de la película en minutos
      * @param genero Género de la película
      * @param clasificacionEdad Clasificación por edad de la película
      * @param descripcion Breve sinopsis o descripción de la película
      */
-    public Película(int idPelicula, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
-        this.idPelicula = idPelicula;
+    public Película(int idPelícula, String titulo, int duracion, String genero, String clasificacionEdad, String descripcion) {
+        this.idPelicula = idPelícula;
         this.titulo = titulo;
         this.duracion = duracion;
         this.genero = genero;

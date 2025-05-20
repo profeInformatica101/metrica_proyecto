@@ -58,7 +58,7 @@ class PersonaTest {
     @DisplayName("Pruebas para el método inciarSesión()")
     public void testIniciarSesión() {
         String correoEsperado = cliente.getCorreo();
-        Cliente clienteDevuelto = Persona.iniciarSesión(correoEsperado);
+        Cliente clienteDevuelto = (Cliente) Persona.iniciarSesiónCliente(correoEsperado);
         assertEquals(correoEsperado, clienteDevuelto.getCorreo(), "El cliente esperado no coincide con el obtenido");
     }
     

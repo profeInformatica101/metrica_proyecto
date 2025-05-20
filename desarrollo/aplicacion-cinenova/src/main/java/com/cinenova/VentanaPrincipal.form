@@ -931,9 +931,6 @@
             <Component class="javax.swing.JPasswordField" name="CampoContrase&#xf1;aEmpleados">
             </Component>
             <Component class="javax.swing.JTextField" name="CampoCorreoEmpleados">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CampoCorreoEmpleadosActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="CorreoEmpleados">
               <Properties>
@@ -1521,9 +1518,6 @@
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CampoContrase&#xf1;aRegistroEmpleadoActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="CampoApellidosRegistroEmpleado">
               <Properties>
@@ -1701,9 +1695,6 @@
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CampoContrase&#xf1;aActualizarEmpleadoActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="CampoSueldoActualizarEmpleado">
               <Properties>
@@ -1772,7 +1763,17 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="AñadirPeliculaConfirmar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="BorrarDatosAñadirPelicula" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="DescripcionAñadirPelicula" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="CampoDescripcionAñadirPelicula" min="-2" pref="151" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
@@ -1788,23 +1789,14 @@
                                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="CampoDuracionAñadirPelicula" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoTituloAñadirPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoGeneroAñadirPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoClasificacionAñadirPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="AñadirPeliculaConfirmar" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="BorrarDatosAñadirPelicula" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="DescripcionAñadirPelicula" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="CampoDescripcionAñadirPelicula" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="CampoDuracionAñadirPelicula" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="CampoTituloAñadirPelicula" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="GéneroPelícula" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                              <Component id="ClasificaciónPelícula" min="-2" pref="150" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1829,17 +1821,17 @@
                           <Component id="DuracionAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CampoDuracionAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="CampoGeneroAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="GeneroAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="GéneroPelícula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ClasificacionAñadirPelicula" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoClasificacionAñadirPelicula" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ClasificacionAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ClasificaciónPelícula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="DescripcionAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CampoDescripcionAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1849,7 +1841,7 @@
                           <Component id="AñadirPeliculaConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BorrarDatosAñadirPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <EmptySpace pref="55" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1909,21 +1901,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoClasificacionA&#xf1;adirPelicula">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="CampoDescripcionA&#xf1;adirPelicula">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="CampoGeneroA&#xf1;adirPelicula">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1953,6 +1931,42 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BorrarDatosA&#xf1;adirPeliculaActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="G&#xe9;neroPel&#xed;cula">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="Clasificaci&#xf3;nPel&#xed;cula">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -1990,7 +2004,6 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="IdActualizarPelicula" min="-2" pref="80" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="TituloActualizarPelicula" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
@@ -2000,13 +2013,12 @@
                                           <Component id="DescripcionActualizarPelicula" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="CampoDescripcionActualizarPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoClasificacionActualizarPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoGeneroActualizarPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoDuracionActualizarPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoTituloActualizarPelicula" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="CampoIdActualizarPelicula" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="CampoDescripcionActualizarPelicula" pref="151" max="32767" attributes="0"/>
+                                          <Component id="CampoDuracionActualizarPelicula" pref="151" max="32767" attributes="0"/>
+                                          <Component id="CampoTituloActualizarPelicula" pref="151" max="32767" attributes="0"/>
+                                          <Component id="GéneroActualizado" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ClasificaciónActualizar" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -2035,29 +2047,24 @@
                           <Component id="DuracionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CampoDuracionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="GeneroActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoGeneroActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ClasificacionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoClasificacionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="GeneroActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="GéneroActualizado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ClasificacionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ClasificaciónActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="DescripcionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CampoDescripcionActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="IdActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="CampoIdActualizarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="ActualizarPeliculaConfirmar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2125,20 +2132,6 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoGeneroActualizarPelicula">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="CampoClasificacionActualizarPelicula">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="CampoDescripcionActualizarPelicula">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2154,20 +2147,41 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ActualizarPeliculaConfirmarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="IdActualizarPelicula">
+            <Component class="javax.swing.JComboBox" name="G&#xe9;neroActualizado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ID:"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoIdActualizarPelicula">
+            <Component class="javax.swing.JComboBox" name="Clasificaci&#xf3;nActualizar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -2206,33 +2220,31 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="PeliculaAñadirSesion" min="-2" pref="80" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="PeliculaCampoAñadirSesion" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="PelículaSesión" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="SalaAñadirSesion" min="-2" pref="80" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="SalaCampoAñadirSesion" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="SalaSesión" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="AñadirSesionConfirmar" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="BorrarDatosAñadirSesion" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="AñadirSesionConfirmar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="BorrarDatosAñadirSesion" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="FechaHoraAñadirSesion" min="-2" max="-2" attributes="0"/>
+                                          <Component id="PrecioAñadirSesion" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="FechaHoraAñadirSesion" min="-2" max="-2" attributes="0"/>
-                                              <Component id="PrecioAñadirSesion" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="FechaHoraCampoAñadirSesion" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <Component id="PrecioCampoAñadirSesion" min="-2" pref="151" max="-2" attributes="0"/>
-                                          </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="FechaHoraCampoAñadirSesion" min="-2" pref="151" max="-2" attributes="0"/>
+                                          <Component id="PrecioCampoAñadirSesion" min="-2" pref="151" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -2247,17 +2259,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="AñadirSesionTexto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PeliculaAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="PeliculaCampoAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="PelículaSesión" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="SalaAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="SalaCampoAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SalaSesión" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="FechaHoraCampoAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="FechaHoraAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2272,26 +2284,12 @@
                           <Component id="BorrarDatosAñadirSesion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="AñadirSesionConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="PeliculaCampoA&#xf1;adirSesion">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="SalaCampoA&#xf1;adirSesion">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="PrecioCampoA&#xf1;adirSesion">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2361,6 +2359,42 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BorrarDatosA&#xf1;adirSesionActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="Pel&#xed;culaSesi&#xf3;n">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="SalaSesi&#xf3;n">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

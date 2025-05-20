@@ -155,7 +155,7 @@ public abstract class Persona {
      * @param correo Correo del cliente a buscar
      * @return Objeto Cliente si se encuentra, objeto Cliente vacío si no
      */
-    public static Cliente iniciarSesión(String correo) {
+    public static Cliente iniciarSesiónCliente(String correo) {
         List<Cliente> clientes = consultasPersona.obtenerClientes();
         Cliente cliente = new Cliente(0, "Prueba", "Prueba", "Prueba", "prueba", false, false);
         for (int i = 0; i < clientes.size(); i++) {
@@ -165,6 +165,30 @@ public abstract class Persona {
         }
         
         return cliente;
+    }
+    
+    public static Empleado iniciarSesiónEmpleado(String correo) {
+        List<Empleado> empleados = consultasPersona.obtenerEmpleados();
+        Empleado empleado = new Empleado("11111111O", 2000, "Prueba", "Prueba", "Prueba", "prueba", false, false);
+        for (int i = 0; i < empleados.size(); i++) {
+            if (empleados.get(i).getCorreo().equals(correo)) {
+                empleado = empleados.get(i);
+            }
+        }
+        
+        return empleado;
+    }
+    
+    public static Jefe iniciarSesiónJefe(String correo) {
+        List<Jefe> jefes = consultasPersona.obtenerJefes();
+        Jefe jefe = new Jefe("11111111O", 2000, "Prueba", "Prueba", "Prueba", "prueba", false, false);
+        for (int i = 0; i < jefes.size(); i++) {
+            if (jefes.get(i).getCorreo().equals(correo)) {
+                jefe = jefes.get(i);
+            }
+        }
+        
+        return jefe;
     }
     
      /**

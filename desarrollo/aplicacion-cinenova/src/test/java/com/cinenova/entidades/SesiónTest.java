@@ -27,7 +27,7 @@ public class SesiónTest {
     @BeforeEach
     @DisplayName("Inicialización de Sesión con valores de prueba")
     public void setUp() throws ParseException {
-        pelicula = new Película(1, "Matrix", 136, "Acción", "+16", "Película de ciencia ficción");
+        pelicula = new Película(10, "Matrix", 136, "Acción", "+16", "Película de ciencia ficción");
         sala = new Sala(5, 100, false, true);
         fecha = formato.parse("25/12/2025 20:00");
         sesion = new Sesión(pelicula, sala, fecha, 8.5);

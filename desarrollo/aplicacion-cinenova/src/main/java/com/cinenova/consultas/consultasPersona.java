@@ -3,6 +3,7 @@ package com.cinenova.consultas;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Jefe;
+import com.cinenova.entidades.Persona;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -264,15 +265,10 @@ public class consultasPersona {
     /**
      * Método que añade un nuevo empleado a la base de datos
      * 
-     * @param nombre Nombre del empleado
-     * @param apellidos Apellidos del empleado
-     * @param correo Correo del empleado
-     * @param contrasena Contraseña del empleado
-     * @param DNI DNI del empleado
-     * @param sueldo Sueldo del empleado (en formato String)
+     * @param empleado
      * @return Número de filas afectadas tras la inserción en la base de datos
      */
-    public static int añadirEmpleado(String nombre, String apellidos, String correo, String contrasena, String DNI, String sueldo){
+    public static int añadirEmpleado(Empleado empleado){
         int row = 0;
         String sql = "INSERT INTO Persona (nombre, apellidos, correo, contrasena, DNI, sueldo, esEmpleado, esJefe) VALUES (?, ?, ?, ?, ?, ?, 1, 0)";        
 
@@ -280,12 +276,12 @@ public class consultasPersona {
                 "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             
-                preparedStatement.setString(1, nombre);
-                preparedStatement.setString(2, apellidos);
-                preparedStatement.setString(3, correo);
-                preparedStatement.setString(4, contrasena);
-                preparedStatement.setString(5, DNI);
-                preparedStatement.setDouble(6, Double.parseDouble(sueldo));
+                preparedStatement.setString(1, empleado.getNombre());
+                preparedStatement.setString(2, empleado.getApellidos());
+                preparedStatement.setString(3, empleado.getCorreo());
+                preparedStatement.setString(4, empleado.getContrasena());
+                preparedStatement.setString(5, empleado.getDNI());
+                preparedStatement.setDouble(6, empleado.getSueldo());
             
 
             row = preparedStatement.executeUpdate();

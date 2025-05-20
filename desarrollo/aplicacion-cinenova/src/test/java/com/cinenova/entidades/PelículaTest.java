@@ -36,14 +36,14 @@ public class PelículaTest {
     @Test
     @DisplayName("Actualiza correctamente todos los atributos")
     public void testSetters() {
-        pelicula.setIdPelicula(2);
+        pelicula.setIdPelicula(1);
         pelicula.setTitulo("Interstellar");
         pelicula.setDuracion(169);
         pelicula.setGenero("Drama espacial");
         pelicula.setClasificacionEdad("+12");
         pelicula.setDescripcion("Exploración espacial y agujeros de gusano.");
 
-        assertEquals(2, pelicula.getIdPelicula());
+        assertEquals(1, pelicula.getIdPelicula());
         assertEquals("Interstellar", pelicula.getTitulo());
         assertEquals(169, pelicula.getDuracion());
         assertEquals("Drama espacial", pelicula.getGenero());

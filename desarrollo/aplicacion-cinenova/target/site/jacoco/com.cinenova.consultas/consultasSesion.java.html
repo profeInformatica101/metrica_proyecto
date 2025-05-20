@@ -186,30 +186,27 @@ import java.util.List;
     /**
      * Método que añade una nueva sesión a la base de datos con los datos proporcionados
      * 
-     * @param idPelicula ID de la película que se proyectará en la sesión
-     * @param numeroSala Número de la sala donde tendrá lugar la sesión
-     * @param fechaHora Fecha y hora exacta de la sesión
-     * @param precio Precio de entrada para la sesión
+     * @param sesion
      * @return Número de filas afectadas por la operación de inserción
      */
-    public static int añadirSesion(int idPelicula, int numeroSala, Timestamp fechaHora, double precio) {
-<span class="nc" id="L196">        int row = 0;</span>
-<span class="nc" id="L197">        String sql = &quot;INSERT INTO Sesion (id_pelicula, numeroSala, fechaHora, precio) VALUES (?, ?, ?, ?)&quot;;</span>
+    public static int añadirSesion(Sesión sesion) {
+<span class="nc" id="L193">        int row = 0;</span>
+<span class="nc" id="L194">        String sql = &quot;INSERT INTO Sesion (id_pelicula, numeroSala, fechaHora, precio) VALUES (?, ?, ?, ?)&quot;;</span>
 
-<span class="nc" id="L199">        try (Connection conn = DriverManager.getConnection(&quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);</span>
-<span class="nc" id="L200">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
+<span class="nc" id="L196">        try (Connection conn = DriverManager.getConnection(&quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);</span>
+<span class="nc" id="L197">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
 
-<span class="nc" id="L202">            preparedStatement.setInt(1, idPelicula);</span>
-<span class="nc" id="L203">            preparedStatement.setInt(2, numeroSala);</span>
-<span class="nc" id="L204">            preparedStatement.setTimestamp(3, fechaHora);</span>
-<span class="nc" id="L205">            preparedStatement.setDouble(4, precio);</span>
+<span class="nc" id="L199">            preparedStatement.setInt(1, sesion.getPelicula().getIdPelicula());</span>
+<span class="nc" id="L200">            preparedStatement.setInt(2, sesion.getSala().getNumero());</span>
+<span class="nc" id="L201">            preparedStatement.setTimestamp(3, (Timestamp) sesion.getFechaHora());</span>
+<span class="nc" id="L202">            preparedStatement.setDouble(4, sesion.getPrecio());</span>
 
-<span class="nc" id="L207">            row = preparedStatement.executeUpdate();</span>
-<span class="nc" id="L208">        } catch (SQLException e) {</span>
-<span class="nc" id="L209">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
-<span class="nc" id="L210">        }</span>
+<span class="nc" id="L204">            row = preparedStatement.executeUpdate();</span>
+<span class="nc" id="L205">        } catch (SQLException e) {</span>
+<span class="nc" id="L206">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L207">        }</span>
 
-<span class="nc" id="L212">        return row;</span>
+<span class="nc" id="L209">        return row;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

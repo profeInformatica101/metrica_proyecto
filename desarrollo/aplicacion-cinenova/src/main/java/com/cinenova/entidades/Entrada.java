@@ -127,6 +127,7 @@ public class Entrada {
         entrada.append("║         CINENOVA 🎬        ║\n");
         entrada.append("╠════════════════════════════╣\n");
         entrada.append("║ Película:  ").append(sesion.getPelicula().getTitulo()).append("\n");
+        entrada.append("║ Duración:   ").append(this.getSesion().getPelicula().getDuracion()).append(" minutos\n");
         entrada.append("║ Sala:      ").append(sesion.getSala().getNumero()).append("\n");
         entrada.append("║ Asiento:   ").append(asiento).append("\n");
         entrada.append("║ Fecha/Hora:").append(" ").append(formato.format(sesion.getFechaHora())).append("\n");
@@ -142,7 +143,7 @@ public class Entrada {
      */
     @Override
     public String toString() {
-        return sesion.getPelicula().getTitulo() + " | Sala: " + sesion.getSala().getNumero() + " Asiento: " + asiento + " | Fecha/Hora: " + formato.format(sesion.getFechaHora()) + " | Precio: " + precioFinal;
+        return sesion.getPelicula().getTitulo() + " | Duración: " + this.getSesion().getPelicula().getDuracion() + " min | Sala: " + sesion.getSala().getNumero() + " Asiento: " + asiento + " | Fecha/Hora: " + formato.format(sesion.getFechaHora()) + " | Precio: " + precioFinal;
     }
 
     

@@ -155,7 +155,7 @@ public abstract class Persona {
      * @param correo Correo del cliente a buscar
      * @return Objeto Cliente si se encuentra, objeto Cliente vacío si no
      */
-    public static Cliente iniciarSesión(String correo) {
+    public static Cliente iniciarSesiónCliente(String correo) {
 <span class="fc" id="L159">        List&lt;Cliente&gt; clientes = consultasPersona.obtenerClientes();</span>
 <span class="fc" id="L160">        Cliente cliente = new Cliente(0, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;prueba&quot;, false, false);</span>
 <span class="fc bfc" id="L161" title="All 2 branches covered.">        for (int i = 0; i &lt; clientes.size(); i++) {</span>
@@ -165,6 +165,30 @@ public abstract class Persona {
         }
         
 <span class="fc" id="L167">        return cliente;</span>
+    }
+    
+    public static Empleado iniciarSesiónEmpleado(String correo) {
+<span class="nc" id="L171">        List&lt;Empleado&gt; empleados = consultasPersona.obtenerEmpleados();</span>
+<span class="nc" id="L172">        Empleado empleado = new Empleado(&quot;11111111O&quot;, 2000, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;prueba&quot;, false, false);</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        for (int i = 0; i &lt; empleados.size(); i++) {</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            if (empleados.get(i).getCorreo().equals(correo)) {</span>
+<span class="nc" id="L175">                empleado = empleados.get(i);</span>
+            }
+        }
+        
+<span class="nc" id="L179">        return empleado;</span>
+    }
+    
+    public static Jefe iniciarSesiónJefe(String correo) {
+<span class="nc" id="L183">        List&lt;Jefe&gt; jefes = consultasPersona.obtenerJefes();</span>
+<span class="nc" id="L184">        Jefe jefe = new Jefe(&quot;11111111O&quot;, 2000, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;Prueba&quot;, &quot;prueba&quot;, false, false);</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        for (int i = 0; i &lt; jefes.size(); i++) {</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (jefes.get(i).getCorreo().equals(correo)) {</span>
+<span class="nc" id="L187">                jefe = jefes.get(i);</span>
+            }
+        }
+        
+<span class="nc" id="L191">        return jefe;</span>
     }
     
      /**
@@ -177,12 +201,12 @@ public abstract class Persona {
      * @return True en caso de éxito en el registro y false en caso contrario
      */
     public static boolean registrarCliente(String correo, String nombre, String apellidos, String contrasena){
-<span class="fc" id="L180">        boolean registrado = false;</span>
-<span class="fc" id="L181">        int éxito = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);</span>
-<span class="fc bfc" id="L182" title="All 2 branches covered.">        if(éxito &gt; 0){</span>
-<span class="fc" id="L183">            registrado = true;</span>
+<span class="fc" id="L204">        boolean registrado = false;</span>
+<span class="fc" id="L205">        int éxito = consultasPersona.añadirCliente(correo, nombre, apellidos, contrasena);</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        if(éxito &gt; 0){</span>
+<span class="fc" id="L207">            registrado = true;</span>
         }
-<span class="fc" id="L185">        return registrado;</span>
+<span class="fc" id="L209">        return registrado;</span>
     }
     
 
@@ -192,17 +216,17 @@ public abstract class Persona {
      * @return Lista de objetos Sesión con fecha posterior a hoy, ordenadas por fecha
      */
     public List&lt;Sesión&gt; verSesionesFuturo() {
-<span class="fc" id="L195">        List&lt;Sesión&gt; sesiones = consultasSesion.obtenerConsulta();</span>
-<span class="fc" id="L196">        List&lt;Sesión&gt; sesionesFuturo = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L197">        Date hoy = new Date();</span>
-<span class="fc bfc" id="L198" title="All 2 branches covered.">        for (int i = 0; i &lt; sesiones.size(); i++) {</span>
-<span class="fc bfc" id="L199" title="All 2 branches covered.">            if (sesiones.get(i).getFechaHora().after(hoy)) {</span>
-<span class="fc" id="L200">                sesionesFuturo.add(sesiones.get(i));</span>
+<span class="fc" id="L219">        List&lt;Sesión&gt; sesiones = consultasSesion.obtenerConsulta();</span>
+<span class="fc" id="L220">        List&lt;Sesión&gt; sesionesFuturo = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L221">        Date hoy = new Date();</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        for (int i = 0; i &lt; sesiones.size(); i++) {</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">            if (sesiones.get(i).getFechaHora().after(hoy)) {</span>
+<span class="fc" id="L224">                sesionesFuturo.add(sesiones.get(i));</span>
             }
         }
-<span class="fc" id="L203">        Comparator ordenaciónPorFecha = new ordenarSesionesPorFecha();</span>
-<span class="fc" id="L204">        Collections.sort(sesionesFuturo, ordenaciónPorFecha);</span>
-<span class="fc" id="L205">        return sesionesFuturo;</span>
+<span class="fc" id="L227">        Comparator ordenaciónPorFecha = new ordenarSesionesPorFecha();</span>
+<span class="fc" id="L228">        Collections.sort(sesionesFuturo, ordenaciónPorFecha);</span>
+<span class="fc" id="L229">        return sesionesFuturo;</span>
     }
     
 
@@ -213,7 +237,7 @@ public abstract class Persona {
      */
     @Override
     public String toString() {
-<span class="fc" id="L216">        return &quot;Persona{&quot; + &quot;nombre=&quot; + nombre + &quot;, apellidos=&quot; + apellidos + &quot;, correo=&quot; + correo + &quot;, contrasena=&quot; + contrasena + &quot;, esEmpleado=&quot; + esEmpleado + &quot;, esJefe=&quot; + esJefe + '}';</span>
+<span class="fc" id="L240">        return &quot;Persona{&quot; + &quot;nombre=&quot; + nombre + &quot;, apellidos=&quot; + apellidos + &quot;, correo=&quot; + correo + &quot;, contrasena=&quot; + contrasena + &quot;, esEmpleado=&quot; + esEmpleado + &quot;, esJefe=&quot; + esJefe + '}';</span>
     }
     
     
