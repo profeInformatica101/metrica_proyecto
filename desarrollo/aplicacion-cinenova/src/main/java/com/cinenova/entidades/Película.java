@@ -1,5 +1,7 @@
 package com.cinenova.entidades;
 
+import com.cinenova.consultas.consultasPelicula;
+
 /**
  * Clase donde se definen los atributos y métodos de las películas.
  * 
@@ -139,7 +141,33 @@ public class Película {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    /**
+     * Añade una película a la base de datos
+     * @param pelicula Película a añadir
+     * @return true si se añadió correctamente, false en caso contrario
+     */
+    public static boolean añadirPelicula(Película pelicula) {
+        return consultasPelicula.añadirPelicula(pelicula) == 1;
+    }
 
+    /**
+     * Actualiza los datos de una película en la base de datos
+     * @param pelicula Película a actualizar
+     * @return true si se actualizó correctamente, false en caso contrario
+     */
+    public static boolean actualizarPelicula(Película pelicula) {
+        return consultasPelicula.actualizarPelicula(pelicula) == 1;
+    }
+
+    /**
+     * Borra una película de la base de datos por su ID
+     * @return true si se borró correctamente, false en caso contrario
+     */
+    public boolean borrarPelicula() {
+        return consultasPelicula.borrarPelicula(this.idPelicula) == 1;
+    }
+    
     /**
      * Representación textual del objeto Película
      * 

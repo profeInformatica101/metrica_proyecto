@@ -265,7 +265,7 @@ public class consultasPersona {
     /**
      * Método que añade un nuevo empleado a la base de datos
      * 
-     * @param empleado
+     * @param empleado Empleado
      * @return Número de filas afectadas tras la inserción en la base de datos
      */
     public static int añadirEmpleado(Empleado empleado){
@@ -296,6 +296,13 @@ public class consultasPersona {
         return row;
     }
     
+    /**
+     * Método que elimina un cliente en la base de datos
+     * 
+     * @param cliente Cliente
+     * 
+     * @return Número de filas afectadas tras la eliminación en la base de datos
+     */
     public static int eliminarCliente(Cliente cliente){
         int row = 0;
         String sql = "DELETE FROM Persona WHERE correo = ?";

@@ -1,5 +1,7 @@
 package com.cinenova.entidades;
 
+import com.cinenova.consultas.consultasPersona;
+
 /**
  * Clase donde se definen los atributos y métodos de los empleados. Hereda de Persona.
  * 
@@ -62,7 +64,31 @@ public class Empleado extends Persona {
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
+    
+    public boolean añadirEmpleado(Empleado empleado){
+        boolean añadido = false;
+        if(consultasPersona.añadirEmpleado(empleado) == 1){
+            añadido = true;
+        }
+        return añadido;
+    }
+    
+    public boolean actualizarEmpleado(Empleado empleado) {
+        boolean actualizado = false;
+        if (consultasPersona.actualizarEmpleado(empleado.getCorreo(), empleado.getContrasena(), empleado.getSueldo()) == 1) {
+            actualizado = true;
+        }
+        return actualizado;
+    }
 
+    public boolean borrarEmpleado(Empleado empleado) {
+        boolean borrado = false;
+        if (consultasPersona.borrarEmpleado(empleado.getCorreo()) == 1) {
+            borrado = true;
+        }
+        return borrado;
+    }
+    
     /**
      * Representación en forma de cadena del objeto Empleado
      * 

@@ -5,7 +5,6 @@ import com.cinenova.autenticación.autenticaciónEmpleado;
 import com.cinenova.autenticación.autenticaciónJefe;
 import com.cinenova.consultas.consultasEntrada;
 import com.cinenova.consultas.consultasPelicula;
-import static com.cinenova.consultas.consultasPelicula.borrarPelicula;
 import com.cinenova.consultas.consultasPersona;
 import static com.cinenova.consultas.consultasPersona.actualizarEmpleado;
 import com.cinenova.consultas.consultasSala;
@@ -73,14 +72,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         alinearVentana();
         
     }
-
+    
+    /**
+     * Método para alinear Ventanas
+     */
     public void alinearVentana(){
         setLocationRelativeTo(null);
     }
     
+    /**
+     * Método que llama al método original de la clase persona, para iniciar sesión como cliente
+     * 
+     * @param correo Correo 
+     */
     public void iniciarSesiónCliente(String correo){
         this.clienteLogueado = Persona.iniciarSesiónCliente(correo);
-         this.sesionesCliente = clienteLogueado.verSesionesFuturo();
+        this.sesionesCliente = clienteLogueado.verSesionesFuturo();
         this.entradasCliente = clienteLogueado.verEntradasFuturo();
         this.peliculasDisponibles = clienteLogueado.peliculasSesionesDisponibles(sesionesCliente).stream()
         .distinct()
@@ -88,6 +95,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         .collect(Collectors.toList());
     }
     
+    /**
+     * Método que llama al método original de la clase persona, para iniciar sesión como empleado
+     * 
+     * @param correo Correo 
+     */
     public void iniciarSesiónEmpleado(String correo){
         this.empleadoLogueado = Persona.iniciarSesiónEmpleado(correo);
         this.sesionesTotal = consultasSesion.obtenerConsulta();
@@ -95,6 +107,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.salasTotales = consultasSala.obtenerConsulta();
     }
     
+    /**
+     * Método que llama al método original de la clase persona, para iniciar sesión como jefe
+     * 
+     * @param correo Correo 
+     */
     public void iniciarSesiónJefe(String correo){
         this.jefeLogueado = Persona.iniciarSesiónJefe(correo);
         this.empleadosTotales = consultasPersona.obtenerEmpleados();
@@ -867,6 +884,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListPelículas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPanePeliculas.setViewportView(jListPelículas);
 
         jListSesiones.setModel(new javax.swing.AbstractListModel<String>() {
@@ -874,6 +892,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListSesiones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListSesiones);
 
         AñadirSesion.setText("Añadir sesión");
@@ -1035,6 +1054,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListEmpleados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPaneEmpleados.setViewportView(jListEmpleados);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -2468,56 +2488,84 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BorrarDatosRegistroEmpleadoActionPerformed
 
     private void RegistrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarEmpleadosActionPerformed
-        String nombre = CampoNombreRegistroEmpleado.getText();
-        String apellidos = CampoApellidosRegistroEmpleado.getText();
-        String correo = CampoCorreoRegistroEmpleado.getText();
-        char[] password = CampoContraseñaRegistroEmpleado.getPassword();
-        String contraseña = new String(password);
-        String DNI = CampoDNIRegistroEmpleado.getText();
-        String sueldo = CampoSueldoRegistroEmpleado.getText();
-        
-        if (!(correo.contains("@") && correo.contains("."))) {
-            JOptionPane.showMessageDialog(VentanaRegistro, "El correo debe contener @ y punto.","Correo no válido",JOptionPane.ERROR_MESSAGE);
-            
-        }else if(!autenticaciónEmpleado.esEmpleado(correo, contraseña)){
-            Empleado empleado = new Empleado(DNI, Double.parseDouble(sueldo), nombre, apellidos, correo, contraseña, true, false);
-            int row = consultasPersona.añadirEmpleado(empleado);
-            if(row > 0){
-                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Registro completado exitosamente.","Información",JOptionPane.INFORMATION_MESSAGE);
-                empleadosTotales.add(empleado);
-            VentanaAñadirEmpleados.dispose();
-            VentanaJefe.pack();
-            VentanaJefe.setLocationRelativeTo(null);
-            VentanaJefe.setTitle("Ventana Jefe");
-            VentanaJefe.setModal(true);
-            VentanaJefe.setVisible(true);
-            
+        try {
+            String nombre = CampoNombreRegistroEmpleado.getText();
+            String apellidos = CampoApellidosRegistroEmpleado.getText();
+            String correo = CampoCorreoRegistroEmpleado.getText();
+            char[] password = CampoContraseñaRegistroEmpleado.getPassword();
+            String contraseña = new String(password);
+            String DNI = CampoDNIRegistroEmpleado.getText();
+            String sueldo = CampoSueldoRegistroEmpleado.getText();
+
+            if (nombre.isEmpty() || apellidos.isEmpty() || correo.isEmpty() || contraseña.isEmpty() || DNI.isEmpty() || sueldo.isEmpty()) {
+                JOptionPane.showMessageDialog(VentanaRegistro, "Todos los campos deben estar completos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (!(correo.contains("@") && correo.contains("."))) {
+                JOptionPane.showMessageDialog(VentanaRegistro, "El correo debe contener '@' y un punto.", "Correo no válido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            double sueldoParseado;
+            try {
+                sueldoParseado = Double.parseDouble(sueldo);
+                if (sueldoParseado < 0) {
+                    JOptionPane.showMessageDialog(VentanaRegistro, "El sueldo no puede ser negativo.", "Sueldo inválido", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(VentanaRegistro, "El sueldo debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (!autenticaciónEmpleado.esEmpleado(correo, contraseña)) {
+                Empleado empleado = new Empleado(DNI, sueldoParseado, nombre, apellidos, correo, contraseña, true, false);
+                int row = consultasPersona.añadirEmpleado(empleado);
+                if (row > 0) {
+                    JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Registro completado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    empleadosTotales.add(empleado);
+
+                    VentanaAñadirEmpleados.dispose();
+                    VentanaJefe.pack();
+                    VentanaJefe.setLocationRelativeTo(null);
+                    VentanaJefe.setTitle("Ventana Jefe");
+                    VentanaJefe.setModal(true);
+                    VentanaJefe.setVisible(true);
+                    
+                } else {
+                    JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "El registro no ha podido realizarse.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                CampoNombreRegistroEmpleado.setText("");
+                CampoApellidosRegistroEmpleado.setText("");
+                CampoCorreoRegistroEmpleado.setText("");
+                CampoContraseñaRegistroEmpleado.setText("");
+                CampoDNIRegistroEmpleado.setText("");
+                CampoSueldoRegistroEmpleado.setText("");
+
             } else {
-                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "El registro no ha podido realizarse.","Error",JOptionPane.ERROR_MESSAGE);
-            }         
-            CampoNombreRegistroEmpleado.setText("");
-            CampoApellidosRegistroEmpleado.setText("");
-            CampoCorreoRegistroEmpleado.setText("");
-            CampoContraseñaRegistroEmpleado.setText("");
-            CampoDNIRegistroEmpleado.setText("");
-            CampoSueldoRegistroEmpleado.setText("");
-        } else {
-            JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Este empleado ya está registrado.","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Este empleado ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+
+            for (Empleado empleado : empleadosTotales) {
+                String info = "Nombre: " + empleado.getNombre() +
+                              " " + empleado.getApellidos() +
+                              " | Correo: " + empleado.getCorreo() +
+                              " | DNI: " + empleado.getDNI() +
+                              " | Sueldo: " + empleado.getSueldo() + "€";
+
+                modelo.addElement(info);
+            }
+
+            jListEmpleados.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "Ha ocurrido un error inesperado:\n" + e.getMessage(), "Error inesperado", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
-        
-        DefaultListModel<String> modelo = new DefaultListModel<>();
-
-        for (Empleado empleado : empleadosTotales) {
-            String info = "Nombre: " + empleado.getNombre() +
-                          " " + empleado.getApellidos() +
-                          " | Correo: " + empleado.getCorreo() +
-                          " | DNI: " + empleado.getDNI() +
-                          " | Sueldo: " + empleado.getSueldo() + "€";
-
-            modelo.addElement(info);
-        }
-
-        jListEmpleados.setModel(modelo);
     }//GEN-LAST:event_RegistrarEmpleadosActionPerformed
 
     private void BorrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarEmpleadosActionPerformed

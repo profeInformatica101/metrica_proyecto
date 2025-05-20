@@ -1,4 +1,76 @@
 -------------------------------------------------------------------------------
 Test set: com.cinenova.entidades.ClienteTest
 -------------------------------------------------------------------------------
-Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.749 s -- in com.cinenova.entidades.ClienteTest
+Tests run: 18, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 9.481 s <<< FAILURE! -- in com.cinenova.entidades.ClienteTest
+com.cinenova.entidades.ClienteTest.testCuentaEliminada -- Time elapsed: 0.232 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: La cuenta no se ha eliminado correctamente ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at com.cinenova.entidades.ClienteTest.testCuentaEliminada(ClienteTest.java:230)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.ClienteTest.testPeliculasSesionesDisponibles -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El número de peliculas no coincide con el esperado ==> expected: <7> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testPeliculasSesionesDisponibles(ClienteTest.java:206)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.ClienteTest.testVerEntradasFuturo -- Time elapsed: 0.505 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El número de entradas del futuro del cliente no coincide con el esperado ==> expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testVerEntradasFuturo(ClienteTest.java:184)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.ClienteTest.testGetPuntosGanados -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Los puntos esperados no coinciden con los obtenidos ==> expected: <75> but was: <120>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testGetPuntosGanados(ClienteTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.ClienteTest.testVerSesionesFuturo -- Time elapsed: 0.252 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El número de sesiones del futuro del cliente no coincide con el esperado ==> expected: <7> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testVerSesionesFuturo(ClienteTest.java:213)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.ClienteTest.testVerEntradas -- Time elapsed: 0.402 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El número de entradas del cliente no coincide con el esperado ==> expected: <2> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testVerEntradas(ClienteTest.java:173)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

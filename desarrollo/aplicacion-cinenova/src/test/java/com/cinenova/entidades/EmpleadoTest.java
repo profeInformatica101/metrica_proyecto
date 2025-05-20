@@ -48,6 +48,38 @@ public class EmpleadoTest {
         empleado.setSueldo(2500.75);
         assertEquals(2500.75, empleado.getSueldo());
     }
+    
+    @Test
+    @DisplayName("Añade correctamente un nuevo empleado a la base de datos")
+    public void testAñadirEmpleado() {
+        Empleado nuevo = new Empleado("87654321B", 1800.00, "Laura", "Martínez", "laura.martinez@correo.com", "clave456", true, false);
+        boolean resultado = nuevo.añadirEmpleado(nuevo);
+        assertTrue(resultado, "El empleado debería haberse añadido correctamente");
+        nuevo.borrarEmpleado(nuevo);
+    }
+
+    @Test
+    @DisplayName("Actualiza correctamente la contraseña y sueldo de un empleado existente")
+    public void testActualizarEmpleado() {
+        Empleado actualizar = new Empleado("11223344C", 1500.00, "Carlos", "Gómez", "carlos.gomez@correo.com", "pass123", true, false);
+        actualizar.añadirEmpleado(actualizar);
+
+        actualizar.setContrasena("nuevaPass789");
+        actualizar.setSueldo(2000.00);
+        boolean resultado = actualizar.actualizarEmpleado(actualizar);
+        assertTrue(resultado, "El empleado debería haberse actualizado correctamente");
+
+        actualizar.borrarEmpleado(actualizar);
+    }
+
+    @Test
+    @DisplayName("Elimina correctamente un empleado de la base de datos")
+    public void testBorrarEmpleado() {
+        Empleado borrar = new Empleado("33445566D", 1700.00, "Ana", "Ruiz", "ana.ruiz@correo.com", "clave789", true, false);
+        borrar.añadirEmpleado(borrar);
+        boolean resultado = borrar.borrarEmpleado(borrar);
+        assertTrue(resultado, "El empleado debería haberse borrado correctamente");
+    }
 
     @Test
     @DisplayName("Devuelve la representación esperada del empleado")

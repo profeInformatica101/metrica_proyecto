@@ -50,6 +50,22 @@ public class PelículaTest {
         assertEquals("+12", pelicula.getClasificacionEdad());
         assertEquals("Exploración espacial y agujeros de gusano.", pelicula.getDescripcion());
     }
+    
+    @Test
+    @DisplayName("Añade una película a la base de datos")
+    public void testAñadirPeliculaBD() {
+        Película nueva = new Película(0, "Matrix", 136, "Acción", "+16", "Un hacker descubre la verdad sobre su realidad.");
+        boolean resultado = Película.añadirPelicula(nueva);
+        assertTrue(resultado, "La película debería haberse añadido correctamente.");
+    }
+
+    @Test
+    @DisplayName("Actualiza una película existente en la base de datos")
+    public void testActualizarPeliculaBD() {
+        Película modificada = new Película(1, "Inception 2", 150, "Ciencia ficción", "+13", "Secuela no oficial de Inception.");
+        boolean resultado = Película.actualizarPelicula(modificada);
+        assertTrue(resultado, "La película debería haberse actualizado correctamente.");
+    }
 
     @Test
     @DisplayName("Devuelve la representación esperada del objeto Película")

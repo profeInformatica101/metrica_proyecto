@@ -167,6 +167,12 @@ public abstract class Persona {
         return cliente;
     }
     
+    /**
+     * Método estático para iniciar sesión como empleado mediante el correo.
+     * 
+     * @param correo Correo del empleado a buscar
+     * @return Objeto Empleado si se encuentra, objeto Empleado vacío si no
+     */
     public static Empleado iniciarSesiónEmpleado(String correo) {
         List<Empleado> empleados = consultasPersona.obtenerEmpleados();
         Empleado empleado = new Empleado("11111111O", 2000, "Prueba", "Prueba", "Prueba", "prueba", false, false);
@@ -179,6 +185,12 @@ public abstract class Persona {
         return empleado;
     }
     
+    /**
+     * Método estático para iniciar sesión como Jefe mediante el correo.
+     * 
+     * @param correo Correo del jefe a buscar
+     * @return Objeto Jefe si se encuentra, objeto Jefe vacío si no
+     */
     public static Jefe iniciarSesiónJefe(String correo) {
         List<Jefe> jefes = consultasPersona.obtenerJefes();
         Jefe jefe = new Jefe("11111111O", 2000, "Prueba", "Prueba", "Prueba", "prueba", false, false);
