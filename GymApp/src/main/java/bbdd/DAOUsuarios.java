@@ -38,6 +38,27 @@ public class DAOUsuarios {
         return user;
     }
     
+    public Usuario buscarPorNombre(String nombre) {
+        Usuario user = null;
+        Connection conn = null;
+        try {
+            conn = Conexion.conectarBD();
+            System.out.println("Conexion:" + conn);
+            PreparedStatement ps = conn.prepareStatement("select * from usuario where nombre = ?");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                System.out.println(rs.getString("id") + rs.getString("password") + rs.getString("nombre") + rs.getBoolean("es_admin"));
+                user = new Usuario(rs.getString("id"), rs.getString("password"), rs.getString("nombre"), rs.getBoolean("es_admin"));
+            }
+        } catch (SQLException e) {
+            System.err.println("buscarPorNombre: " + e.getMessage());
+        } finally {
+            Conexion.desconectarBD(conn);
+        }
+        return user;
+    }
+    
     public void insertarUsuario(Usuario user) {
         Connection conn = null;
         try {
