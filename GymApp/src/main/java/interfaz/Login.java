@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         System.out.println(getClass().getResource("/img/fondologin.png"));
         initComponents();
+        setLocationRelativeTo(null);
         ajustarImagen(imageninicio);
 
     }
@@ -156,10 +157,20 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void crearcuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearcuentaActionPerformed
+        this.setEnabled(false);
         Registro registro = new Registro();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registro.setSize(550, 540);
         registro.setLocationRelativeTo(null);
+        registro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        registro.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                Login.this.setEnabled(true); // Reactivas el login
+                Login.this.toFront();
+            }
+        });
+
         registro.setVisible(true);
     }//GEN-LAST:event_crearcuentaActionPerformed
 
