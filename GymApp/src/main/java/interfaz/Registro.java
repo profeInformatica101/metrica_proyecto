@@ -4,6 +4,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author usuarioDAW
@@ -33,12 +35,12 @@ public class Registro extends javax.swing.JFrame {
         textousuario2 = new javax.swing.JLabel();
         textousuario3 = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
-        campoUsuario1 = new javax.swing.JTextField();
-        campoUsuario2 = new javax.swing.JTextField();
-        campoPassword = new javax.swing.JPasswordField();
+        campocorreo = new javax.swing.JTextField();
+        campolocalidad = new javax.swing.JTextField();
+        campopassword = new javax.swing.JPasswordField();
         terminos = new javax.swing.JCheckBox();
         textoterminos = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        crearcuentaregistro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(570, 378));
@@ -60,15 +62,15 @@ public class Registro extends javax.swing.JFrame {
         textousuario3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textousuario3.setText("Correo");
 
-        campoUsuario2.addActionListener(new java.awt.event.ActionListener() {
+        campolocalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoUsuario2ActionPerformed(evt);
+                campolocalidadActionPerformed(evt);
             }
         });
 
-        campoPassword.addActionListener(new java.awt.event.ActionListener() {
+        campopassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPasswordActionPerformed(evt);
+                campopasswordActionPerformed(evt);
             }
         });
 
@@ -83,13 +85,13 @@ public class Registro extends javax.swing.JFrame {
         textoterminos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         textoterminos.setText("Al crear la cuenta de usuario, acepto los Términos y Condiciones");
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Crear Cuenta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        crearcuentaregistro.setBackground(new java.awt.Color(102, 102, 102));
+        crearcuentaregistro.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        crearcuentaregistro.setForeground(new java.awt.Color(255, 255, 255));
+        crearcuentaregistro.setText("Crear Cuenta");
+        crearcuentaregistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                crearcuentaregistroActionPerformed(evt);
             }
         });
 
@@ -103,36 +105,40 @@ public class Registro extends javax.swing.JFrame {
                         .addGap(192, 192, 192)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(textousuario2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textousuario3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(textousuario1)
                                 .addGap(18, 18, 18)
-                                .addComponent(campoUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(campopassword, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addComponent(terminos, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(textoterminos)))))
+                                .addComponent(textoterminos))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textousuario2))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(textousuario3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campocorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(campolocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(71, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(crearcuentaregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(126, 126, 126))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,15 +153,15 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textousuario3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campocorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textousuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campolocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textousuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textousuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campopassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -164,7 +170,7 @@ public class Registro extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(textoterminos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(crearcuentaregistro)
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
@@ -174,21 +180,39 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code her
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void crearcuentaregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearcuentaregistroActionPerformed
+        String usuario = campoUsuario.getText().trim();
+        String correo = campocorreo.getText().trim();
+        String localidad = campolocalidad.getText().trim();
+        String password = campopassword.getText().trim();
+        if (usuario.isEmpty() || password.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Rellena todos los campos", "Faltan datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!terminos.isSelected()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Acepta los terminos y condiciones", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!correo.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Formato de correo inválido", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+    }//GEN-LAST:event_crearcuentaregistroActionPerformed
 
     private void terminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_terminosActionPerformed
 
-    private void campoPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPasswordActionPerformed
+    private void campopasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campopasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoPasswordActionPerformed
+    }//GEN-LAST:event_campopasswordActionPerformed
 
-    private void campoUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuario2ActionPerformed
+    private void campolocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campolocalidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoUsuario2ActionPerformed
+    }//GEN-LAST:event_campolocalidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,11 +253,11 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField campoPassword;
     private javax.swing.JTextField campoUsuario;
-    private javax.swing.JTextField campoUsuario1;
-    private javax.swing.JTextField campoUsuario2;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField campocorreo;
+    private javax.swing.JTextField campolocalidad;
+    private javax.swing.JPasswordField campopassword;
+    private javax.swing.JButton crearcuentaregistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox terminos;

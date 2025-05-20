@@ -166,7 +166,7 @@ public class Login extends javax.swing.JFrame {
         registro.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
-                Login.this.setEnabled(true); // Reactivas el login
+                Login.this.setEnabled(true);
                 Login.this.toFront();
             }
         });
