@@ -1,8 +1,9 @@
 package com.cinenova.entidades;
 
 /**
- *
- * @author Juan Carlos
+ * Enumerado que recoge las diferentes clasificaciones de edad de las películas
+ * 
+ * @author Juan Carlos Pizarro Alonso
  */
 public enum ClasificaciónEdad {
 

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 /**
  * Clase donde se definen los atributos y métodos de los clientes. Hereda de Persona.
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public class Cliente extends Persona{
     private int puntosGanados;

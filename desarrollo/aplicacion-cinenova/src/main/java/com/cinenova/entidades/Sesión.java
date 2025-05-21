@@ -8,7 +8,7 @@ import java.util.Date;
  * Una sesión representa la proyección de una película en una sala en una fecha y hora específica,
  * con un precio asociado.
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public class Sesión {
     

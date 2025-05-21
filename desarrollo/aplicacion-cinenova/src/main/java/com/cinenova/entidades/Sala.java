@@ -2,9 +2,8 @@ package com.cinenova.entidades;
 
 /**
  * Clase donde se definen los atributos y métodos de las salas de cine.
- * Cada sala puede tener distintas características como si es 3D o VIP.
- * 
- * @author Juan Carlos
+ *  
+ * @author Juan Carlos Pizarro Alonso
  */
 public class Sala {
 

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Clase que recoge todas las consultas relacionadas con la tabla Sala en la base de datos
  * 
- * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
+ * @author Juan Carlos Pizarro Alonso
  */
 public class consultasSala {
     

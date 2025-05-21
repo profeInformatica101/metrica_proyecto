@@ -5,7 +5,7 @@ import com.cinenova.consultas.consultasPersona;
 /**
  * Clase donde se definen los atributos y métodos de los empleados. Hereda de Persona.
  * 
- * @author Juan Carlos
+ * @author Álvaro Muñoz Fernández
  */
 public class Empleado extends Persona {
     private String DNI;
@@ -65,6 +65,12 @@ public class Empleado extends Persona {
         this.sueldo = sueldo;
     }
     
+    /**
+     * Método para añadir un nuevo empleado
+     * 
+     * @param empleado Empleado a añadir
+     * @return True en caso de éxito al añadir el empleado y false en caso contrario
+     */
     public boolean añadirEmpleado(Empleado empleado){
         boolean añadido = false;
         if(consultasPersona.añadirEmpleado(empleado) == 1){
@@ -73,6 +79,12 @@ public class Empleado extends Persona {
         return añadido;
     }
     
+    /**
+     * Método para actualizar la información de un empleado
+     * 
+     * @param empleado Empleado del cual actualizar la información
+     * @return True en caso de éxito al actualizar la información y false en caso contrario
+     */
     public boolean actualizarEmpleado(Empleado empleado) {
         boolean actualizado = false;
         if (consultasPersona.actualizarEmpleado(empleado.getCorreo(), empleado.getContrasena(), empleado.getSueldo()) == 1) {
@@ -81,6 +93,12 @@ public class Empleado extends Persona {
         return actualizado;
     }
 
+    /**
+     * Método para eliminar un empleado de la base de datos
+     * 
+     * @param empleado Empleado a eliminar
+     * @return True en caso de éxito en la eliminación del empleado y false en caso contrario
+     */
     public boolean borrarEmpleado(Empleado empleado) {
         boolean borrado = false;
         if (consultasPersona.borrarEmpleado(empleado.getCorreo()) == 1) {

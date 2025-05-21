@@ -106,16 +106,16 @@ VALUES ('alberto.romero@cine.com', 'Alberto', 'Romero Nieto', 'alberto000', 0, '
 
 
 
-INSERT INTO Pelicula VALUES (1, 'Inception', 148, 'CIENCIA_FICCION', 'MAS_13', 'Un ladrón roba secretos del subconsciente.');
+INSERT INTO Pelicula VALUES (1, 'Inception', 148, 'CIENCIA_FICCION', 'MAS_12', 'Un ladrón roba secretos del subconsciente.');
 INSERT INTO Pelicula VALUES (2, 'Titanic', 195, 'ROMANCE', 'MAS_12', 'Una historia de amor a bordo del Titanic.');
-INSERT INTO Pelicula VALUES (3, 'Avengers: Endgame', 181, 'ACCION', 'MAS_13', 'Los Vengadores enfrentan a Thanos.');
+INSERT INTO Pelicula VALUES (3, 'Avengers: Endgame', 181, 'ACCION', 'MAS_12', 'Los Vengadores enfrentan a Thanos.');
 INSERT INTO Pelicula VALUES (4, 'Coco', 105, 'ANIMACION', 'MAS_7', 'Un niño descubre la Tierra de los Muertos.');
 INSERT INTO Pelicula VALUES (5, 'Joker', 122, 'DRAMA', 'MAS_18', 'Origen del icónico villano de DC.');
-INSERT INTO Pelicula VALUES (6, 'Interstellar', 169, 'CIENCIA_FICCION', 'MAS_13', 'Viaje espacial en busca de un nuevo hogar.');
-INSERT INTO Pelicula VALUES (7, 'Frozen', 102, 'ANIMACION', 'MAS_6', 'La historia de dos hermanas en un reino congelado.');
+INSERT INTO Pelicula VALUES (6, 'Interstellar', 169, 'CIENCIA_FICCION', 'MAS_12', 'Viaje espacial en busca de un nuevo hogar.');
+INSERT INTO Pelicula VALUES (7, 'Frozen', 102, 'ANIMACION', 'MAS_7', 'La historia de dos hermanas en un reino congelado.');
 INSERT INTO Pelicula VALUES (8, 'The Matrix', 136, 'ACCION', 'MAS_16', 'Un hacker descubre la verdad sobre su mundo.');
 INSERT INTO Pelicula VALUES (9, 'Up', 96, 'ANIMACION', 'MAS_7', 'Un anciano vuela con su casa a Sudamérica.');
-INSERT INTO Pelicula VALUES (10, 'La La Land', 128, 'MUSICAL', 'MAS_13', 'Un músico y una actriz persiguen sus sueños.');
+INSERT INTO Pelicula VALUES (10, 'La La Land', 128, 'MUSICAL', 'MAS_12', 'Un músico y una actriz persiguen sus sueños.');
 
 
 

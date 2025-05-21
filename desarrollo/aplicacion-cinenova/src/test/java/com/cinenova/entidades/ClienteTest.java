@@ -202,14 +202,14 @@ public class ClienteTest {
     @Test
     @DisplayName("Pruebas para el método peliculasSesionesDisponibles(List<Sesion> sesiones)")
     public void testPeliculasSesionesDisponibles() {
-        int peliculasEsperadas = 7;
+        int peliculasEsperadas = 6;
         assertEquals(peliculasEsperadas, cliente.peliculasSesionesDisponibles(sesiones).size(), "El número de peliculas no coincide con el esperado");
     }
 
     @Test
     @DisplayName("Pruebas para el método verSesionesFuturo()")
     public void testVerSesionesFuturo() {
-        int sesionesEsperadas = 7;
+        int sesionesEsperadas = 6;
         assertEquals(sesionesEsperadas, cliente.verSesionesFuturo().size(), "El número de sesiones del futuro del cliente no coincide con el esperado");
     }
     

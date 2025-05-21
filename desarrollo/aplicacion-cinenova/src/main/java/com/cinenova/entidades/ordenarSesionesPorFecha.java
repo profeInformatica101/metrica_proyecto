@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Clase donde se define un método de ordenación de sesiones por fecha
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public class ordenarSesionesPorFecha implements Comparator{
     

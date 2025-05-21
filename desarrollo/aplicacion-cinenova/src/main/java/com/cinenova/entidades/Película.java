@@ -5,7 +5,7 @@ import com.cinenova.consultas.consultasPelicula;
 /**
  * Clase donde se definen los atributos y métodos de las películas.
  * 
- * @author Juan Carlos
+ * @author Álvaro Muñoz Fernández
  */
 public class Película {
     private int idPelicula;

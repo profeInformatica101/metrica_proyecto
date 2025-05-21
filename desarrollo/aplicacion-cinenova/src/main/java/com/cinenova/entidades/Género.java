@@ -1,8 +1,9 @@
 package com.cinenova.entidades;
 
 /**
- *
- * @author Juan Carlos
+ * Enumerado que recoge los diferentes géneros de las películas
+ * 
+ * @author Juan Carlos Pizarro Alonso
  */
 public enum Género {
 
@@ -34,5 +35,15 @@ public enum Género {
     /**
      * Categoría de género Documental
      */
-    DOCUMENTAL
+    DOCUMENTAL,
+    
+    /**
+     * Categoría de género Musical
+     */
+    MUSICAL,
+    
+    /**
+     * Categoría de género Romance
+     */
+    ROMANCE
 }

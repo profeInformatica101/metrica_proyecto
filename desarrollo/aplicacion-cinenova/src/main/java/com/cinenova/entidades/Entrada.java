@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 /**
  * Clase donde se definen los atributos y métodos de las entradas.
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public class Entrada {
     private int asiento;

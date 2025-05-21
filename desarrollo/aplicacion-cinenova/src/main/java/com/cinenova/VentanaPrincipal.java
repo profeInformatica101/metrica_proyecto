@@ -2224,7 +2224,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             DefaultListModel<String> modelo2 = new DefaultListModel<>();
 
             for (Sesión sesion : sesionesTotal) {
-                String info = "Fecha:" + sesion.getFechaHora() +
+                String info = "Fecha:" + formato.format(sesion.getFechaHora()) +
                               " | Pelicula: " + sesion.getPelicula().getTitulo() +
                               " | Sala: " + sesion.getSala().getNumero() +
                               " | Precio: " + sesion.getPrecio() + "€";
@@ -2263,7 +2263,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             DefaultListModel<String> modelo2 = new DefaultListModel<>();
 
             for (Sesión sesion : sesionesTotal) {
-                String info = "Fecha:" + sesion.getFechaHora() +
+                String info = "Fecha:" + formato.format(sesion.getFechaHora()) +
                               " | Pelicula: " + sesion.getPelicula().getTitulo() +
                               " | Sala: " + sesion.getSala().getNumero() +
                               " | Precio: " + sesion.getPrecio() + "€";
@@ -2319,7 +2319,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             DefaultListModel<String> modelo = new DefaultListModel<>();
 
             for (Sesión sesion : sesionesTotal) {
-                String info = "Fecha: " + sesion.getFechaHora() +
+                String info = "Fecha: " + formato.format(sesion.getFechaHora()) +
                               " | Película: " + sesion.getPelicula().getTitulo() +
                               " | Sala: " + sesion.getSala().getNumero() +
                               " | Precio: " + sesion.getPrecio() + "€";
@@ -2424,7 +2424,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             DefaultListModel<String> modelo2 = new DefaultListModel<>();
 
             for (Sesión sesion : sesionesTotal) {
-                String info = "Fecha:" + sesion.getFechaHora() +
+                String info = "Fecha:" + formato.format(sesion.getFechaHora()) +
                               " | Pelicula: " + sesion.getPelicula().getTitulo() +
                               " | Sala: " + sesion.getSala().getNumero() +
                               " | Precio: " + sesion.getPrecio() + "€";
@@ -2735,6 +2735,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String genero = GéneroActualizado.getSelectedItem().toString();
         String clasificacion = ClasificaciónActualizar.getSelectedItem().toString();
         String descripcion = CampoDescripcionActualizarPelicula.getText();
+        int indice = jListPelículas.getSelectedIndex();
 
         if (titulo.isEmpty() || duracionTexto.isEmpty() || genero.isEmpty() || clasificacion.isEmpty() || descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -2749,13 +2750,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
         
-        Película peliculaActualizada = new Película(jListPelículas.getSelectedIndex(), titulo, duracion, genero, clasificacion, descripcion);
+        Película peliculaActualizada = new Película(indice + 1, titulo, duracion, genero, clasificacion, descripcion);
         int filasAfectadas = consultasPelicula.actualizarPelicula(peliculaActualizada);
 
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(this, "Película actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             for(int i = 0; i < peliculasTotales.size(); i++){
-                if(i == jListPelículas.getSelectedIndex()){
+                if(i == indice){
                     peliculasTotales.get(i).setTitulo(titulo);
                     peliculasTotales.get(i).setDuracion(duracion);
                     peliculasTotales.get(i).setGenero(genero);
@@ -2773,6 +2774,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 modelo.addElement(info);
             }
             jListPelículas.setModel(modelo);
+            
+            for(int i = 0; i < sesionesTotal.size(); i++){
+                if(peliculasTotales.get(indice).getIdPelicula() == sesionesTotal.get(i).getPelicula().getIdPelicula()){
+                    sesionesTotal.get(i).getPelicula().setTitulo(titulo);
+                    sesionesTotal.get(i).getPelicula().setDuracion(duracion);
+                    sesionesTotal.get(i).getPelicula().setGenero(genero);
+                    sesionesTotal.get(i).getPelicula().setClasificacionEdad(clasificacion);
+                    sesionesTotal.get(i).getPelicula().setDescripcion(descripcion);
+                }
+            }
+            DefaultListModel<String> modelo2 = new DefaultListModel<>();
+
+            for (Sesión sesion : sesionesTotal) {
+                String info = "Fecha:" + formato.format(sesion.getFechaHora()) +
+                              " | Pelicula: " + sesion.getPelicula().getTitulo() +
+                              " | Sala: " + sesion.getSala().getNumero() +
+                              " | Precio: " + sesion.getPrecio() + "€";
+
+                modelo2.addElement(info);
+            }
+
+            jListSesiones.setModel(modelo2);
 
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar la película.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.cinenova"},{"l":"com.cinenova.autenticación"},{"l":"com.cinenova.consultas"},{"l":"com.cinenova.entidades"}];updateSearchResults();

@@ -12,7 +12,7 @@ import java.util.List;
  * Clase abstracta donde se definen los atributos y métodos comunes a todas las personas del sistema.
  * Es la clase base para empleados, jefes y clientes.
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public abstract class Persona {
     private String nombre;

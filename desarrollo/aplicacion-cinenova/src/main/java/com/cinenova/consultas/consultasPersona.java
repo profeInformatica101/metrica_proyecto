@@ -3,7 +3,6 @@ package com.cinenova.consultas;
 import com.cinenova.entidades.Cliente;
 import com.cinenova.entidades.Empleado;
 import com.cinenova.entidades.Jefe;
-import com.cinenova.entidades.Persona;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

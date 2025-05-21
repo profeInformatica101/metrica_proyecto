@@ -1,4 +1,40 @@
 -------------------------------------------------------------------------------
 Test set: com.cinenova.entidades.EmpleadoTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.088 s -- in com.cinenova.entidades.EmpleadoTest
+Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.149 s <<< FAILURE! -- in com.cinenova.entidades.EmpleadoTest
+com.cinenova.entidades.EmpleadoTest.testActualizarEmpleado -- Time elapsed: 0.057 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El empleado debería haberse actualizado correctamente ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.cinenova.entidades.EmpleadoTest.testActualizarEmpleado(EmpleadoTest.java:66)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.EmpleadoTest.testBorrarEmpleado -- Time elapsed: 0.032 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El empleado debería haberse borrado correctamente ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.cinenova.entidades.EmpleadoTest.testBorrarEmpleado(EmpleadoTest.java:73)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.cinenova.entidades.EmpleadoTest.testAñadirEmpleado -- Time elapsed: 0.032 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El empleado debería haberse añadido correctamente ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.cinenova.entidades.EmpleadoTest.testAñadirEmpleado(EmpleadoTest.java:57)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

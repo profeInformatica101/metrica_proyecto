@@ -3,7 +3,7 @@ package com.cinenova.entidades;
 /**
  * Clase donde se definen los atributos y métodos de los jefes. Hereda de Empleado e implícitamente de Persona.
  * 
- * @author Juan Carlos
+ * @author Juan Carlos Pizarro Alonso
  */
 public class Jefe extends Empleado {
 

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Clase para confirmar si un jefe existe en la base de datos
  * 
- * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
+ * @author Juan Carlos Pizarro Alonso
  */
 public class autenticaciónJefe {
     

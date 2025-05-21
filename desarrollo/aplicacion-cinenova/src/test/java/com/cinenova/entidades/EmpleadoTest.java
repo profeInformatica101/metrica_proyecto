@@ -14,12 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Pruebas unitarias para la clase Empleado")
 public class EmpleadoTest {
 
-    private Empleado empleado;
+    private Empleado empleado, nuevo;
 
     @BeforeEach
     @DisplayName("Inicialización del objeto Empleado para pruebas")
     public void setUp() {
         empleado = new Empleado("12345678A", 2000.50, "Juan", "Pérez", "juan.perez@correo.com", "contrasena123", true, false);
+        nuevo = new Empleado("87654321B", 1800.00, "Laura", "Martínez", "laura.martinez@correo.com", "clave456", true, false);
     }
 
     @Test
@@ -52,32 +53,23 @@ public class EmpleadoTest {
     @Test
     @DisplayName("Añade correctamente un nuevo empleado a la base de datos")
     public void testAñadirEmpleado() {
-        Empleado nuevo = new Empleado("87654321B", 1800.00, "Laura", "Martínez", "laura.martinez@correo.com", "clave456", true, false);
         boolean resultado = nuevo.añadirEmpleado(nuevo);
         assertTrue(resultado, "El empleado debería haberse añadido correctamente");
-        nuevo.borrarEmpleado(nuevo);
     }
 
     @Test
     @DisplayName("Actualiza correctamente la contraseña y sueldo de un empleado existente")
     public void testActualizarEmpleado() {
-        Empleado actualizar = new Empleado("11223344C", 1500.00, "Carlos", "Gómez", "carlos.gomez@correo.com", "pass123", true, false);
-        actualizar.añadirEmpleado(actualizar);
-
-        actualizar.setContrasena("nuevaPass789");
-        actualizar.setSueldo(2000.00);
-        boolean resultado = actualizar.actualizarEmpleado(actualizar);
+        nuevo.setContrasena("nuevaPass789");
+        nuevo.setSueldo(2000.00);
+        boolean resultado = nuevo.actualizarEmpleado(nuevo);
         assertTrue(resultado, "El empleado debería haberse actualizado correctamente");
-
-        actualizar.borrarEmpleado(actualizar);
     }
 
     @Test
     @DisplayName("Elimina correctamente un empleado de la base de datos")
     public void testBorrarEmpleado() {
-        Empleado borrar = new Empleado("33445566D", 1700.00, "Ana", "Ruiz", "ana.ruiz@correo.com", "clave789", true, false);
-        borrar.añadirEmpleado(borrar);
-        boolean resultado = borrar.borrarEmpleado(borrar);
+        boolean resultado = nuevo.borrarEmpleado(nuevo);
         assertTrue(resultado, "El empleado debería haberse borrado correctamente");
     }
 
