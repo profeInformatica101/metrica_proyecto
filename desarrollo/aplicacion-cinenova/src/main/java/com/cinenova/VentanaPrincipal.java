@@ -2503,7 +2503,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
 
             if (!(correo.contains("@") && correo.contains("."))) {
-                JOptionPane.showMessageDialog(VentanaRegistro, "El correo debe contener '@' y un punto.", "Correo no válido", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "El correo debe contener '@' y un punto.", "Correo no válido", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -2511,11 +2511,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             try {
                 sueldoParseado = Double.parseDouble(sueldo);
                 if (sueldoParseado < 0) {
-                    JOptionPane.showMessageDialog(VentanaRegistro, "El sueldo no puede ser negativo.", "Sueldo inválido", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "El sueldo no puede ser negativo.", "Sueldo inválido", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(VentanaRegistro, "El sueldo debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(VentanaAñadirEmpleados, "El sueldo debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
