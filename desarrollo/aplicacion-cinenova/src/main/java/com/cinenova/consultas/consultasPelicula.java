@@ -50,7 +50,7 @@ public class consultasPelicula {
     /**
      * Método para actualizar los datos de una película existente en la base de datos
      * 
-     * @param pelicula
+     * @param pelicula Película
      * @return Número de filas afectadas por la actualización
      */
     public static int actualizarPelicula(Película pelicula) {
@@ -82,7 +82,7 @@ public class consultasPelicula {
     /**
      * Método para añadir una nueva película a la base de datos
      * 
-     * @param pelicula
+     * @param pelicula Película
      * @return Número de filas insertadas en la base de datos
      */
     public static int añadirPelicula(Película pelicula) {

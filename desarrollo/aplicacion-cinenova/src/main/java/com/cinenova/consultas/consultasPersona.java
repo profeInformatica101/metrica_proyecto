@@ -176,7 +176,7 @@ public class consultasPersona {
     /**
      * Método que actualiza restando puntos a los puntos de un cliente en la base de datos
      * 
-     * @param cliente
+     * @param cliente Cliente
      * @return Número de filas afectadas tras la actuaización de la base de datos
      */
     public static int actualizarPuntosDevueltos(Cliente cliente) {

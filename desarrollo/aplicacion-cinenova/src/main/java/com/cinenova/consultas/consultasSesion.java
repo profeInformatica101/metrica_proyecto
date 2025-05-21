@@ -186,7 +186,7 @@ public class consultasSesion {
     /**
      * Método que añade una nueva sesión a la base de datos con los datos proporcionados
      * 
-     * @param sesion
+     * @param sesion Sesión
      * @return Número de filas afectadas por la operación de inserción
      */
     public static int añadirSesion(Sesión sesion) {

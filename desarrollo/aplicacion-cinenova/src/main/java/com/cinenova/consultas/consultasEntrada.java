@@ -67,36 +67,36 @@ public class consultasEntrada {
     /**
      * Método que devuleve una lista de enteros con los asientos ocupados en una sala a una fecha y hora concreta
      * 
-     * @param numeroSala
-     * @param fechaHora
+     * @param numeroSala numero de la Sala
+     * @param fechaHora Fecha y Hora
      * @return Listado de asientos ocupados
      */
     public static List<Integer> obtenerAsientosOcupadosDeSala(Integer numeroSala, Timestamp fechaHora) {
-    List<Integer> asientosOcupados = new ArrayList<>();
-    String sql = "SELECT asiento FROM Entrada WHERE numeroSala = ? AND fechaHora = ?";
+        List<Integer> asientosOcupados = new ArrayList<>();
+        String sql = "SELECT asiento FROM Entrada WHERE numeroSala = ? AND fechaHora = ?";
 
-    try (Connection conn = DriverManager.getConnection(
-            "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
-         PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521/xe", "CineNova", "CineNova");
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-        preparedStatement.setInt(1, numeroSala);
-        preparedStatement.setTimestamp(2, fechaHora); // usa java.sql.Timestamp
+            preparedStatement.setInt(1, numeroSala);
+            preparedStatement.setTimestamp(2, fechaHora); // usa java.sql.Timestamp
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                int asiento = resultSet.getInt("asiento");
-                asientosOcupados.add(asiento);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int asiento = resultSet.getInt("asiento");
+                    asientosOcupados.add(asiento);
+                }
             }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-    } catch (SQLException e) {
-        System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-    } catch (Exception e) {
-        e.printStackTrace();
+        return asientosOcupados;
     }
-
-    return asientosOcupados;
-}
 
     /**
      * Método que devuelve el número de filas afectadas tras eliminar una entrada de la base de datos
