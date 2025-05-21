@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>consultasSesion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">aplicacion-cinenova</a> &gt; <a href="index.source.html" class="el_package">com.cinenova.consultas</a> &gt; <span class="el_source">consultasSesion.java</span></div><h1>consultasSesion.java</h1><pre class="source lang-java linenums">package com.cinenova.consultas;
+
+import com.cinenova.entidades.Película;
+import com.cinenova.entidades.Sala;
+import com.cinenova.entidades.Sesión;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Clase que recoge todas las consultas relacionadas con la tabla Sesión en la base de datos
+ * 
+ * @author Juan Carlos Pizarro Alonso, Álvaro Muñoz Fernández
+ */
+<span class="nc" id="L21">public class consultasSesion {</span>
+    
+    /**
+     * Método para obtener todas las sesiones disponibles
+     * 
+     * @return Listado de sesiones total
+     */
+    public static List&lt;Sesión&gt; obtenerConsulta(){
+<span class="fc" id="L29">        List&lt;Sesión&gt; sesiones = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L30">        String sql = &quot;SELECT * FROM Sesion&quot;;</span>
+
+<span class="fc" id="L32">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="fc" id="L34">             Statement statement = conn.createStatement()) {</span>
+
+<span class="fc" id="L36">            ResultSet resultSet = statement.executeQuery(sql);</span>
+<span class="fc" id="L37">            List&lt;Película&gt; peliculas = consultasPelicula.obtenerConsulta();</span>
+<span class="fc" id="L38">            List&lt;Sala&gt; salas = consultasSala.obtenerConsulta();</span>
+<span class="fc" id="L39">            Película pelicula = null;</span>
+<span class="fc" id="L40">            Sala sala = null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                for(int i = 0; i &lt; peliculas.size(); i++){</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                    if(peliculas.get(i).getIdPelicula() == resultSet.getInt(&quot;id_pelicula&quot;)){</span>
+<span class="fc" id="L44">                        pelicula = peliculas.get(i);</span>
+                    }
+                }
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                for(int i = 0; i &lt; salas.size(); i++){</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                    if(salas.get(i).getNumero() == resultSet.getInt(&quot;numeroSala&quot;)){</span>
+<span class="fc" id="L49">                        sala = salas.get(i);</span>
+                    }
+                }
+<span class="fc" id="L52">                Sesión sesion = new Sesión(pelicula, sala, resultSet.getDate(&quot;fechaHora&quot;), resultSet.getDouble(&quot;precio&quot;));</span>
+                
+<span class="fc" id="L54">                sesiones.add(sesion);</span>
+<span class="fc" id="L55">            }</span>
+
+<span class="nc" id="L57">        } catch (SQLException e) {</span>
+<span class="nc" id="L58">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L59">        } catch (Exception e) {</span>
+<span class="nc" id="L60">            e.printStackTrace();</span>
+<span class="pc" id="L61">        }</span>
+        
+<span class="fc" id="L63">        return sesiones;</span>
+    }
+    
+    /**
+     * Método que devuelve el listado de títulos de películas que se encuentran en las sesiones disponibles
+     * 
+     * @return Listado de títulos de películas de las sesiones disponibles
+     */
+    public static List&lt;String&gt; obtenerPeliculasSesiones(){
+<span class="nc" id="L72">        List&lt;String&gt; peliculasTitulos = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L73">        String sql = &quot;SELECT p.titulo FROM Sesion s, Pelicula p WHERE p.id_pelicula = s.id_pelicula&quot;;</span>
+
+<span class="nc" id="L75">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="nc" id="L77">             Statement statement = conn.createStatement()) {</span>
+
+<span class="nc" id="L79">            ResultSet resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            while (resultSet.next()) {                </span>
+<span class="nc" id="L81">                peliculasTitulos.add(resultSet.getString(&quot;titulo&quot;));</span>
+            }
+
+<span class="nc" id="L84">        } catch (SQLException e) {</span>
+<span class="nc" id="L85">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L86">        } catch (Exception e) {</span>
+<span class="nc" id="L87">            e.printStackTrace();</span>
+<span class="nc" id="L88">        }</span>
+        
+<span class="nc" id="L90">        return peliculasTitulos;</span>
+    }
+    
+    /**
+     * Método que devuelve una lista de sesiones que tienen como título de película el pasado como parámetro
+     * 
+     * @param titulo Titulo
+     * @return Listado de sesiones con el mismo título de película
+     */
+    public static List&lt;Sesión&gt; obtenerSesionesPorPelículas(String titulo){
+<span class="fc" id="L100">        List&lt;Sesión&gt; sesionesPeliculas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L101">        String sql = &quot;SELECT s.*, p.titulo FROM Sesion s, Pelicula p WHERE p.id_pelicula = s.id_pelicula AND p.titulo = ?&quot;;</span>
+
+<span class="fc" id="L103">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="fc" id="L105">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
+
+         
+
+<span class="fc" id="L109">            preparedStatement.setString(1, titulo);</span>
+<span class="fc" id="L110">            List&lt;Película&gt; peliculas = consultasPelicula.obtenerConsulta();</span>
+<span class="fc" id="L111">            List&lt;Sala&gt; salas = consultasSala.obtenerConsulta();</span>
+<span class="fc" id="L112">            Película pelicula = null;</span>
+<span class="fc" id="L113">            Sala sala = null;</span>
+<span class="fc" id="L114">            try (ResultSet resultSet = preparedStatement.executeQuery()) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                while (resultSet.next()) {</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">                for(int i = 0; i &lt; peliculas.size(); i++){</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">                    if(peliculas.get(i).getTitulo().equals(resultSet.getString(&quot;titulo&quot;))){</span>
+<span class="fc" id="L118">                        pelicula = peliculas.get(i);</span>
+                    }
+                }
+<span class="fc bfc" id="L121" title="All 2 branches covered.">                for(int i = 0; i &lt; salas.size(); i++){</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">                    if(salas.get(i).getNumero() == resultSet.getInt(&quot;numeroSala&quot;)){</span>
+<span class="fc" id="L123">                        sala = salas.get(i);</span>
+                    }
+                }
+<span class="fc" id="L126">                Sesión sesion = new Sesión(pelicula, sala, resultSet.getDate(&quot;fechaHora&quot;), resultSet.getDouble(&quot;precio&quot;));</span>
+                
+<span class="fc" id="L128">                sesionesPeliculas.add(sesion);</span>
+<span class="fc" id="L129">                }</span>
+            }
+
+<span class="nc" id="L132">        } catch (SQLException e) {</span>
+<span class="nc" id="L133">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L134">        } catch (Exception e) {</span>
+<span class="nc" id="L135">            e.printStackTrace();</span>
+<span class="pc" id="L136">        }</span>
+        
+<span class="fc" id="L138">        return sesionesPeliculas;</span>
+    }
+    
+    /**
+     * Método que elimina una sesión concreta de la base de datos a partir de su película, sala y fecha/hora
+     * 
+     * @param idPelicula ID de la película asociada a la sesión
+     * @param numeroSala Número de sala donde se proyecta la sesión
+     * @param fechaHora Fecha y hora exacta de la sesión
+     * @return Número de filas afectadas por la operación de borrado
+     */
+    public static int borrarSesion(int idPelicula, int numeroSala, Timestamp fechaHora) {
+<span class="nc" id="L150">        int row = 0;</span>
+
+<span class="nc" id="L152">        String deleteEntradasSQL = &quot;DELETE FROM Entrada WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?&quot;;</span>
+<span class="nc" id="L153">        String deleteSesionSQL = &quot;DELETE FROM Sesion WHERE id_pelicula = ? AND numeroSala = ? AND fechaHora = ?&quot;;</span>
+
+<span class="nc" id="L155">        try (Connection conn = DriverManager.getConnection(&quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;)) {</span>
+<span class="nc" id="L156">            conn.setAutoCommit(false);</span>
+
+<span class="nc" id="L158">            try (PreparedStatement psEntradas = conn.prepareStatement(deleteEntradasSQL);</span>
+<span class="nc" id="L159">                 PreparedStatement psSesion = conn.prepareStatement(deleteSesionSQL)) {</span>
+
+<span class="nc" id="L161">                psEntradas.setInt(1, idPelicula);</span>
+<span class="nc" id="L162">                psEntradas.setInt(2, numeroSala);</span>
+<span class="nc" id="L163">                psEntradas.setTimestamp(3, fechaHora);</span>
+<span class="nc" id="L164">                psEntradas.executeUpdate();</span>
+
+<span class="nc" id="L166">                psSesion.setInt(1, idPelicula);</span>
+<span class="nc" id="L167">                psSesion.setInt(2, numeroSala);</span>
+<span class="nc" id="L168">                psSesion.setTimestamp(3, fechaHora);</span>
+<span class="nc" id="L169">                row = psSesion.executeUpdate();</span>
+
+<span class="nc" id="L171">                conn.commit();</span>
+
+<span class="nc" id="L173">            } catch (SQLException e) {</span>
+<span class="nc" id="L174">                conn.rollback();</span>
+<span class="nc" id="L175">                e.printStackTrace();</span>
+<span class="nc" id="L176">            }</span>
+
+<span class="nc" id="L178">        } catch (SQLException e) {</span>
+<span class="nc" id="L179">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L180">        }</span>
+
+<span class="nc" id="L182">        return row;</span>
+    }
+
+
+    /**
+     * Método que añade una nueva sesión a la base de datos con los datos proporcionados
+     * 
+     * @param sesion
+     * @return Número de filas afectadas por la operación de inserción
+     */
+    public static int añadirSesion(Sesión sesion) {
+<span class="nc" id="L193">        int row = 0;</span>
+<span class="nc" id="L194">        String sql = &quot;INSERT INTO Sesion (id_pelicula, numeroSala, fechaHora, precio) VALUES (?, ?, ?, ?)&quot;;</span>
+
+<span class="nc" id="L196">        try (Connection conn = DriverManager.getConnection(&quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);</span>
+<span class="nc" id="L197">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
+
+<span class="nc" id="L199">            preparedStatement.setInt(1, sesion.getPelicula().getIdPelicula());</span>
+<span class="nc" id="L200">            preparedStatement.setInt(2, sesion.getSala().getNumero());</span>
+<span class="nc" id="L201">            preparedStatement.setTimestamp(3, (Timestamp) sesion.getFechaHora());</span>
+<span class="nc" id="L202">            preparedStatement.setDouble(4, sesion.getPrecio());</span>
+
+<span class="nc" id="L204">            row = preparedStatement.executeUpdate();</span>
+<span class="nc" id="L205">        } catch (SQLException e) {</span>
+<span class="nc" id="L206">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L207">        }</span>
+
+<span class="nc" id="L209">        return row;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
