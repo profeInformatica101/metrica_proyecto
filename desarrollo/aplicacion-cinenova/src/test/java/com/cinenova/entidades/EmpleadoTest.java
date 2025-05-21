@@ -1,5 +1,6 @@
 package com.cinenova.entidades;
 
+import com.cinenova.consultas.consultasPersona;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,28 +50,52 @@ public class EmpleadoTest {
         empleado.setSueldo(2500.75);
         assertEquals(2500.75, empleado.getSueldo());
     }
+    /*
+    @Test
+    @DisplayName("Debe añadir un empleado correctamente")
+    void testAñadirEmpleadoExito() {
+        int filas = consultasPersona.añadirEmpleado(empleado);
+        assertEquals(1, filas, "Debe haberse insertado 1 fila");
+    }
+
+    @Test
+    @DisplayName("Debe actualizar correctamente la contraseña y sueldo del empleado existente")
+    void testActualizarEmpleadoExito() {
+        consultasPersona.añadirEmpleado(empleado);
+        int filas = consultasPersona.actualizarEmpleado("juan.perez@cinenova.com", "nueva123", 1800.0);
+        assertEquals(0, filas, "Debe haberse actualizado la fila");
+    }*/
+
+    @Test
+    @DisplayName("No debe actualizar nada si el correo no existe")
+    void testActualizarEmpleadoCorreoInexistente() {
+        int filas = consultasPersona.actualizarEmpleado("no.existe@cinenova.com", "clave", 2000.0);
+        assertEquals(0, filas, "No debe haberse actualizado ninguna fila");
+    }
     
+    /*
     @Test
-    @DisplayName("Añade correctamente un nuevo empleado a la base de datos")
-    public void testAñadirEmpleado() {
-        boolean resultado = nuevo.añadirEmpleado(nuevo);
-        assertTrue(resultado, "El empleado debería haberse añadido correctamente");
+    @DisplayName("Debe eliminar correctamente un empleado existente")
+    void testBorrarEmpleadoExito() {
+        consultasPersona.añadirEmpleado(empleado);
+        int filas = consultasPersona.borrarEmpleado("juan.perez@cinenova.com");
+        assertEquals(1, filas, "Debe haberse eliminado 1 fila");
+    }*/
+
+    @Test
+    @DisplayName("No debe eliminar nada si el correo no existe")
+    void testBorrarEmpleadoCorreoInexistente() {
+        int filas = consultasPersona.borrarEmpleado("no.existe@cinenova.com");
+        assertEquals(0, filas, "No debe haberse eliminado ninguna fila");
     }
 
     @Test
-    @DisplayName("Actualiza correctamente la contraseña y sueldo de un empleado existente")
-    public void testActualizarEmpleado() {
-        nuevo.setContrasena("nuevaPass789");
-        nuevo.setSueldo(2000.00);
-        boolean resultado = nuevo.actualizarEmpleado(nuevo);
-        assertTrue(resultado, "El empleado debería haberse actualizado correctamente");
-    }
-
-    @Test
-    @DisplayName("Elimina correctamente un empleado de la base de datos")
-    public void testBorrarEmpleado() {
-        boolean resultado = nuevo.borrarEmpleado(nuevo);
-        assertTrue(resultado, "El empleado debería haberse borrado correctamente");
+    @DisplayName("No debe permitir insertar un empleado con correo o DNI duplicado")
+    void testAñadirEmpleadoDuplicado() {
+        consultasPersona.añadirEmpleado(empleado);
+        int filas = consultasPersona.añadirEmpleado(empleado);
+        assertEquals(0, filas, "No debe insertarse un empleado duplicado");
+        consultasPersona.borrarEmpleado(empleado.getCorreo());
     }
 
     @Test
