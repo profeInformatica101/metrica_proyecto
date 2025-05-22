@@ -168,7 +168,7 @@ public class Cliente extends Persona{
     /**
      * Método que devuelve una lista de sesiones filtradas por el título pasado como parámetro
      * 
-     * @param titulo
+     * @param titulo Título
      * @return Listado de sesiones que coinciden con el título pasado como parámetro
      */
     public List<Sesión> filtrarPorPelículas(String titulo){
@@ -188,7 +188,7 @@ public class Cliente extends Persona{
     /**
      * Método que devuelve una lista de títulos depelículas de la lista de sesiones pasada como parámetro
      * 
-     * @param sesiones
+     * @param sesiones Sesiones
      * @return Listado de títulos de películas los cuales tienen sesiones pendientes de celebrarse
      */
     public List<String> peliculasSesionesDisponibles(List<Sesión> sesiones){

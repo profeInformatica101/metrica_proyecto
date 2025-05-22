@@ -206,10 +206,10 @@ public abstract class Persona {
      /**
      * Método para registrar a un nuevo cliente en la base de datos
      * 
-     * @param correo
-     * @param nombre
-     * @param apellidos
-     * @param contrasena
+     * @param correo Correo
+     * @param nombre Nombre
+     * @param apellidos Apellidos
+     * @param contrasena Contraseña
      * @return True en caso de éxito en el registro y false en caso contrario
      */
     public static boolean registrarCliente(String correo, String nombre, String apellidos, String contrasena){

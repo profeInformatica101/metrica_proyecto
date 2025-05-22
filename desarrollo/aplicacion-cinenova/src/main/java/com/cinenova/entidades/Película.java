@@ -18,7 +18,7 @@ public class Película {
     /**
      * Constructor de la clase Película
      * 
-     * @param idPelícula
+     * @param idPelícula ID de la película
      * @param titulo Título de la película
      * @param duracion Duración de la película en minutos
      * @param genero Género de la película
