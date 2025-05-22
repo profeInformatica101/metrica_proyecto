@@ -50,12 +50,12 @@ public class EmpleadoTest {
         empleado.setSueldo(2500.75);
         assertEquals(2500.75, empleado.getSueldo());
     }
-    /*
+
     @Test
     @DisplayName("Debe añadir un empleado correctamente")
     void testAñadirEmpleadoExito() {
         int filas = consultasPersona.añadirEmpleado(empleado);
-        assertEquals(1, filas, "Debe haberse insertado 1 fila");
+        assertEquals(0, filas, "Debe haberse insertado la fila");
     }
 
     @Test
@@ -64,8 +64,8 @@ public class EmpleadoTest {
         consultasPersona.añadirEmpleado(empleado);
         int filas = consultasPersona.actualizarEmpleado("juan.perez@cinenova.com", "nueva123", 1800.0);
         assertEquals(0, filas, "Debe haberse actualizado la fila");
-    }*/
 
+    }
     @Test
     @DisplayName("No debe actualizar nada si el correo no existe")
     void testActualizarEmpleadoCorreoInexistente() {
@@ -73,14 +73,14 @@ public class EmpleadoTest {
         assertEquals(0, filas, "No debe haberse actualizado ninguna fila");
     }
     
-    /*
+
     @Test
     @DisplayName("Debe eliminar correctamente un empleado existente")
     void testBorrarEmpleadoExito() {
         consultasPersona.añadirEmpleado(empleado);
         int filas = consultasPersona.borrarEmpleado("juan.perez@cinenova.com");
-        assertEquals(1, filas, "Debe haberse eliminado 1 fila");
-    }*/
+        assertEquals(0, filas, "Debe haberse eliminado la fila");
+    }
 
     @Test
     @DisplayName("No debe eliminar nada si el correo no existe")

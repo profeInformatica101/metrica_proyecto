@@ -1,4 +1,28 @@
 -------------------------------------------------------------------------------
 Test set: com.cinenova.entidades.ClienteTest
 -------------------------------------------------------------------------------
-Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.981 s -- in com.cinenova.entidades.ClienteTest
+Tests run: 18, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 2.055 s <<< FAILURE! -- in com.cinenova.entidades.ClienteTest
+com.cinenova.entidades.ClienteTest.testPeliculasSesionesDisponibles -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El número de peliculas no coincide con el esperado ==> expected: <6> but was: <5>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testPeliculasSesionesDisponibles(ClienteTest.java:206)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.cinenova.entidades.ClienteTest.testVerSesionesFuturo -- Time elapsed: 0.057 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: El número de sesiones del futuro del cliente no coincide con el esperado ==> expected: <6> but was: <5>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.cinenova.entidades.ClienteTest.testVerSesionesFuturo(ClienteTest.java:213)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

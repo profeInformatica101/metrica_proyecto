@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.cinenova.entidades.PersonaTest" time="1.13" tests="15" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.cinenova.entidades.PersonaTest" time="1.226" tests="15" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="21"/>
+    <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\usuarioDAW\Downloads\ED\metrica_proyecto\desarrollo\aplicacion-cinenova\target\test-classes;C:\Users\usuarioDAW\Downloads\ED\metrica_proyecto\desarrollo\aplicacion-cinenova\target\classes;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.3\junit-jupiter-engine-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-engine\1.11.3\junit-platform-engine-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\ons\19.3.0.0\ons-19.3.0.0.jar;"/>
+    <property name="java.class.path" value="C:\Users\usuarioDAW\Documents\PROGRAMACIÓN\PROYECTOFINAL\metrica_proyecto\desarrollo\aplicacion-cinenova\target\test-classes;C:\Users\usuarioDAW\Documents\PROGRAMACIÓN\PROYECTOFINAL\metrica_proyecto\desarrollo\aplicacion-cinenova\target\classes;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.3\junit-jupiter-engine-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-engine\1.11.3\junit-platform-engine-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\ons\19.3.0.0\ons-19.3.0.0.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Europe/Madrid"/>
     <property name="os.name" value="Windows 10"/>
-    <property name="java.vm.specification.version" value="21"/>
-    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.version" value="23"/>
     <property name="user.country" value="ES"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\usuarioDAW\AppData\Local\Temp\surefire7872885705194773683\surefirebooter-20250521131344763_3.jar C:\Users\usuarioDAW\AppData\Local\Temp\surefire7872885705194773683 2025-05-21T13-13-44_665-jvmRun1 surefire-20250521131344763_1tmp surefire_0-20250521131344763_2tmp"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
+    <property name="sun.java.command" value="C:\Users\usuarioDAW\AppData\Local\Temp\surefire9438988270919420445\surefirebooter-20250522103314844_3.jar C:\Users\usuarioDAW\AppData\Local\Temp\surefire9438988270919420445 2025-05-22T10-33-14_694-jvmRun1 surefire-20250522103314844_1tmp surefire_0-20250522103314844_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\usuarioDAW\Downloads\ED\metrica_proyecto\desarrollo\aplicacion-cinenova\target\test-classes;C:\Users\usuarioDAW\Downloads\ED\metrica_proyecto\desarrollo\aplicacion-cinenova\target\classes;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.3\junit-jupiter-engine-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-engine\1.11.3\junit-platform-engine-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\ons\19.3.0.0\ons-19.3.0.0.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\usuarioDAW\Documents\PROGRAMACIÓN\PROYECTOFINAL\metrica_proyecto\desarrollo\aplicacion-cinenova\target\test-classes;C:\Users\usuarioDAW\Documents\PROGRAMACIÓN\PROYECTOFINAL\metrica_proyecto\desarrollo\aplicacion-cinenova\target\classes;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.3\junit-jupiter-engine-5.11.3.jar;C:\Users\usuarioDAW\.m2\repository\org\junit\platform\junit-platform-engine\1.11.3\junit-platform-engine-1.11.3.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\jdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\security\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\usuarioDAW\.m2\repository\com\oracle\database\ha\ons\19.3.0.0\ons-19.3.0.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\usuarioDAW"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2024-07-16"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="java.version.date" value="2024-09-17"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-23"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\usuarioDAW\Downloads\ED\metrica_proyecto\desarrollo\aplicacion-cinenova"/>
+    <property name="basedir" value="C:\Users\usuarioDAW\Documents\PROGRAMACIÓN\PROYECTOFINAL\metrica_proyecto\desarrollo\aplicacion-cinenova"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\usuarioDAW\AppData\Local\Temp\surefire7872885705194773683\surefirebooter-20250521131344763_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\usuarioDAW\AppData\Local\Temp\surefire9438988270919420445\surefirebooter-20250522103314844_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="21.0.4+8-LTS-274"/>
+    <property name="java.runtime.version" value="23+37-2369"/>
     <property name="user.name" value="usuarioDAW"/>
     <property name="stdout.encoding" value="Cp1252"/>
     <property name="path.separator" value=";"/>
@@ -41,25 +41,26 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-22\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\usuarioDAW\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\USUARI~1\AppData\Local\Temp\"/>
-    <property name="java.version" value="21.0.4"/>
-    <property name="user.dir" value="C:\Users\usuarioDAW\Downloads\ED\metrica_proyecto\desarrollo\aplicacion-cinenova"/>
+    <property name="java.version" value="23"/>
+    <property name="user.dir" value="C:\Users\usuarioDAW\Documents\PROGRAMACIÓN\PROYECTOFINAL\metrica_proyecto\desarrollo\aplicacion-cinenova"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\usuarioDAW\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\usuarioDAW\bin;C:\app\usuarioDAW\product\21c\dbhomeXE\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\apache-maven-3.9.9\bin;C:\Users\usuarioDAW\AppData\Local\Microsoft\WindowsApps;C:\Users\usuarioDAW\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-23\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\app\usuarioDAW\product\21c\dbhomeXE\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Users\usuarioDAW\Desktop\Oracle\dbhomeXE\bin;C:\app\Usuario\product\21c\dbhomeXE\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\usuarioDAW\AppData\Local\Microsoft\WindowsApps;C:\Users\usuarioDAW\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="21.0.4+8-LTS-274"/>
+    <property name="java.vm.version" value="23+37-2369"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="65.0"/>
+    <property name="java.class.version" value="67.0"/>
   </properties>
   <testcase name="testGetContrasena" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
-  <testcase name="testRegistrarClienteSinÉxito" classname="com.cinenova.entidades.PersonaTest" time="0.02">
+  <testcase name="testRegistrarClienteSinÉxito" classname="com.cinenova.entidades.PersonaTest" time="0.025">
     <system-err><![CDATA[SQL State: 23000
 ORA-01400: no se puede realizar una inserción NULL en ("CINENOVA"."PERSONA"."NOMBRE")
 ]]></system-err>
@@ -67,14 +68,14 @@ ORA-01400: no se puede realizar una inserción NULL en ("CINENOVA"."PERSONA"."NO
   <testcase name="testSetContrasena" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
   <testcase name="testSetEsEmpleado" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
   <testcase name="testSetApellidos" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
-  <testcase name="testIsEsEmpleado" classname="com.cinenova.entidades.PersonaTest" time="0.0"/>
+  <testcase name="testIsEsEmpleado" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
   <testcase name="testIsEsJefe" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
   <testcase name="testSetCorreo" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
-  <testcase name="testSetEsJefe" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
+  <testcase name="testSetEsJefe" classname="com.cinenova.entidades.PersonaTest" time="0.002"/>
   <testcase name="testGetCorreo" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
   <testcase name="testSetNombre" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
-  <testcase name="testGetNombre" classname="com.cinenova.entidades.PersonaTest" time="0.002"/>
-  <testcase name="testIniciarSesión" classname="com.cinenova.entidades.PersonaTest" time="0.018"/>
+  <testcase name="testGetNombre" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
+  <testcase name="testIniciarSesión" classname="com.cinenova.entidades.PersonaTest" time="0.021"/>
   <testcase name="testGetApellidos" classname="com.cinenova.entidades.PersonaTest" time="0.001"/>
-  <testcase name="testRegistrarClienteÉxito" classname="com.cinenova.entidades.PersonaTest" time="0.02"/>
+  <testcase name="testRegistrarClienteÉxito" classname="com.cinenova.entidades.PersonaTest" time="0.026"/>
 </testsuite>
