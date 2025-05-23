@@ -1,8 +1,8 @@
 ╔════════════════════════════╗
 ║         CINENOVA 🎬        ║
 ╠════════════════════════════╣
-║ Película:  Inception
-║ Duración:   148 minutos
+║ Película:  Inception 2
+║ Duración:   150 minutos
 ║ Sala:      1
 ║ Asiento:   10
 ║ Fecha/Hora: 16/05/2025 18:00
