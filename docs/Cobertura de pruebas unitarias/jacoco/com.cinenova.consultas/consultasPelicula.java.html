@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>consultasPelicula.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">aplicacion-cinenova</a> &gt; <a href="index.source.html" class="el_package">com.cinenova.consultas</a> &gt; <span class="el_source">consultasPelicula.java</span></div><h1>consultasPelicula.java</h1><pre class="source lang-java linenums">package com.cinenova.consultas;
+
+import com.cinenova.entidades.Película;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Clase que recoge todas las consultas relacionadas con la tabla Película en la base de datos
+ * 
+ * @author Álvaro Muñoz Fernández
+ */
+<span class="nc" id="L18">public class consultasPelicula {</span>
+    
+    /**
+     * Método para obtener todas las películas disponibles
+     * 
+     * @return Listado de películas total
+     */
+    public static List&lt;Película&gt; obtenerConsulta(){
+<span class="fc" id="L26">        List&lt;Película&gt; peliculas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L27">        String sql = &quot;SELECT * FROM Pelicula&quot;;</span>
+
+<span class="fc" id="L29">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="fc" id="L31">             Statement statement = conn.createStatement()) {</span>
+
+<span class="fc" id="L33">            ResultSet resultSet = statement.executeQuery(sql);</span>
+            
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L36">                Película pelicula = new Película(resultSet.getInt(&quot;id_pelicula&quot;), resultSet.getString(&quot;titulo&quot;), resultSet.getInt(&quot;duracion&quot;), resultSet.getString(&quot;genero&quot;), resultSet.getString(&quot;clasificacionEdad&quot;), resultSet.getString(&quot;descripcion&quot;));</span>
+                
+<span class="fc" id="L38">                peliculas.add(pelicula);</span>
+<span class="fc" id="L39">            }</span>
+
+<span class="nc" id="L41">        } catch (SQLException e) {</span>
+<span class="nc" id="L42">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L43">        } catch (Exception e) {</span>
+<span class="nc" id="L44">            e.printStackTrace();</span>
+<span class="pc" id="L45">        }</span>
+        
+<span class="fc" id="L47">        return peliculas;</span>
+    }
+    
+    /**
+     * Método para actualizar los datos de una película existente en la base de datos
+     * 
+     * @param pelicula Película
+     * @return Número de filas afectadas por la actualización
+     */
+    public static int actualizarPelicula(Película pelicula) {
+<span class="fc" id="L57">        int row = 0;</span>
+<span class="fc" id="L58">        String sql = &quot;UPDATE Pelicula SET titulo = ?, duracion = ?, genero = ?, clasificacionEdad = ?, descripcion = ? WHERE id_Pelicula = ?&quot;;</span>
+
+<span class="fc" id="L60">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="fc" id="L62">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
+
+<span class="fc" id="L64">            preparedStatement.setString(1, pelicula.getTitulo());</span>
+<span class="fc" id="L65">            preparedStatement.setInt(2, pelicula.getDuracion());</span>
+<span class="fc" id="L66">            preparedStatement.setString(3, pelicula.getGenero());</span>
+<span class="fc" id="L67">            preparedStatement.setString(4, pelicula.getClasificacionEdad());</span>
+<span class="fc" id="L68">            preparedStatement.setString(5, pelicula.getDescripcion());</span>
+<span class="fc" id="L69">            preparedStatement.setInt(6, pelicula.getIdPelicula());</span>
+
+<span class="fc" id="L71">            row = preparedStatement.executeUpdate();</span>
+
+<span class="nc" id="L73">        } catch (SQLException e) {</span>
+<span class="nc" id="L74">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L75">        } catch (Exception e) {</span>
+<span class="nc" id="L76">            e.printStackTrace();</span>
+<span class="pc" id="L77">        }</span>
+
+<span class="fc" id="L79">        return row;</span>
+    }
+
+    /**
+     * Método para añadir una nueva película a la base de datos
+     * 
+     * @param pelicula Película
+     * @return Número de filas insertadas en la base de datos
+     */
+    public static int añadirPelicula(Película pelicula) {
+<span class="fc" id="L89">        int row = 0;</span>
+<span class="fc" id="L90">        String sql = &quot;INSERT INTO Pelicula (titulo, duracion, genero, clasificacionEdad, descripcion) VALUES (?, ?, ?, ?, ?)&quot;;</span>
+
+<span class="fc" id="L92">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="fc" id="L94">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
+
+<span class="fc" id="L96">            preparedStatement.setString(1, pelicula.getTitulo());</span>
+<span class="fc" id="L97">            preparedStatement.setInt(2, pelicula.getDuracion());</span>
+<span class="fc" id="L98">            preparedStatement.setString(3, pelicula.getGenero());</span>
+<span class="fc" id="L99">            preparedStatement.setString(4, pelicula.getClasificacionEdad());</span>
+<span class="fc" id="L100">            preparedStatement.setString(5, pelicula.getDescripcion());</span>
+
+<span class="fc" id="L102">            row = preparedStatement.executeUpdate();</span>
+
+<span class="nc" id="L104">        } catch (SQLException e) {</span>
+<span class="nc" id="L105">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L106">        } catch (Exception e) {</span>
+<span class="nc" id="L107">            e.printStackTrace();</span>
+<span class="pc" id="L108">        }</span>
+
+<span class="fc" id="L110">        return row;</span>
+    }
+
+    /**
+     * Método para borrar una película existente de la base de datos
+     * 
+     * @param idPelicula ID de la película que se desea eliminar
+     * @return Número de filas eliminadas de la base de datos
+     */
+    public static int borrarPelicula(int idPelicula) {
+        
+<span class="nc" id="L121">        int row = 0;</span>
+<span class="nc" id="L122">        String sql = &quot;DELETE FROM Pelicula WHERE id_pelicula = ?&quot;;</span>
+
+<span class="nc" id="L124">        try (Connection conn = DriverManager.getConnection(</span>
+                &quot;jdbc:oracle:thin:@localhost:1521/xe&quot;, &quot;CineNova&quot;, &quot;CineNova&quot;);
+<span class="nc" id="L126">             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {</span>
+
+<span class="nc" id="L128">            preparedStatement.setInt(1, idPelicula);</span>
+            
+<span class="nc" id="L130">            row = preparedStatement.executeUpdate();</span>
+
+<span class="nc" id="L132">        } catch (SQLException e) {</span>
+<span class="nc" id="L133">            System.err.format(&quot;SQL State: %s\n%s&quot;, e.getSQLState(), e.getMessage());</span>
+<span class="nc" id="L134">        } catch (Exception e) {</span>
+<span class="nc" id="L135">            e.printStackTrace();</span>
+<span class="nc" id="L136">        }</span>
+
+<span class="nc" id="L138">        return row;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
