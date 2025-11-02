@@ -34,8 +34,8 @@ El producto final incluirá:
 |------------|--------------|--------------|--------------|
 | Lenguaje | ☕ **Java** | ✅ | Lenguaje principal del proyecto |
 | Dependencias | 📦 **Maven** | ✅ | Gestión de librerías y compilación |
-| Base de datos | 🐬 **SQLite** | ✅ | Almacenamiento local de datos |
-| BBDD visual | 🧰 **DBeaver** | Recomendado | Gestión gráfica de la base de datos |
+| Base de datos | 🐬 **SQLite** | Recomendado | Almacenamiento local de datos |
+| BBDD visual | 🧰 **DBeaver** |✅  | Gestión gráfica de la base de datos |
 | Modelado | 🧱 **Umbrello** | ✅ | Creación de diagramas UML |
 | Control de versiones | 🌐 **GitHub** | ✅ | Repositorio y seguimiento de versiones |
 | Pruebas | 🧪 **JUnit 5** | ✅ | Pruebas unitarias automatizadas |
